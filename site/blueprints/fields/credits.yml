@@ -1,0 +1,24 @@
+label: Credits
+type: structure
+
+# https://github.com/TimOetting/kirby-builder
+
+translate: false
+empty: No credits given
+fields:
+
+  title:
+    label: Service
+    type: select
+    options: query
+    help: Options can be defined at parent page
+    query:
+      fetch: page.parent.credit_roles.toStructure
+      text: "{{ structureItem.title }}"
+      value: "{{ structureItem.title }}"
+
+  person:
+    type: tags
+    label: Name
+    options: query
+    query: site.kirby.users.pluck('name',','true)

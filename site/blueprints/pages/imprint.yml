@@ -1,0 +1,51 @@
+title: Imprint
+
+options:
+  # valid for all users
+  preview: true
+  read:	true
+  duplicate: false
+  changeStatus: false
+  changeTemplate: false
+  delete: false
+  # only allow some users
+  update:
+    *: false
+    super: true
+    admin: true
+  changeSlug:
+    *: false
+    super: true
+    admin: true
+  changeTitle:
+    *: false
+    super: true
+    admin: true
+
+fields:
+
+  imprint:
+    type: textarea
+    label: Imprint
+    width: 1/2
+    buttons:
+      - headlines
+      - italic
+      - link
+      - email
+      - file
+      - ol
+      - ul
+
+  privacy:
+    type: textarea
+    label: Privacy Policy
+    width: 1/2
+    buttons:
+      - headlines
+      - italic
+      - link
+      - email
+      - file
+      - ol
+      - ul

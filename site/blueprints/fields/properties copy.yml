@@ -1,0 +1,18 @@
+label: Individual Properties
+type: builder
+
+# https://github.com/TimOetting/kirby-builder
+
+translate: false
+columns: 1
+fieldsets:
+
+  text:     fields/properties/text
+  pages:    fields/properties/pages
+  url:      fields/properties/url
+  date:     fields/properties/date
+  event:    fields/properties/event
+  location: fields/properties/location
+  textarea: fields/properties/textarea
+  all1:     fields/properties/all1
+  all2:     fields/properties/all2

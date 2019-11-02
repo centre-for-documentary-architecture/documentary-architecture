@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 960 960" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <title>Centre for Documentary Architecture</title>
+    <style>
+        rect, path {
+            fill: #000;
+        }
+    </style>
+    <g id="CDA-Logo">
+        <rect x="340.702" y="288.717" width="278.596" height="16.752"/>
+        <rect x="340.702" y="575.168" width="278.596" height="16.752"/>
+        <rect x="340.702" y="861.626" width="278.596" height="16.752"/>
+        <path d="M477.513,495.025l-25.393,0l0,-109.26l25.393,0c38.213,0 47.707,27.701 47.707,54.63c0,26.929 -9.494,54.63 -47.707,54.63m68.222,-54.63c0,-42.829 -21.542,-71.556 -68.739,-71.556l-44.882,0l0,143.112l44.882,0c47.197,0 68.739,-28.72 68.739,-71.556" style="fill-rule:nonzero;"/>
+        <path d="M483.364,228.064c32.317,0 55.911,-17.188 57.964,-47.714l-20.005,0c-1.282,16.169 -13.592,30.271 -37.449,30.271c-34.108,0 -42.32,-28.473 -42.32,-56.69c0,-28.211 8.212,-56.684 42.32,-56.684c23.857,0 36.167,14.117 37.449,30.271l20.005,0c-2.053,-30.518 -25.647,-47.699 -57.964,-47.699c-41.81,0 -62.325,29.746 -62.325,74.112c0,44.379 20.515,74.133 62.325,74.133" style="fill-rule:nonzero;"/>
+        <path d="M479.643,675.557l26.164,73.609l-52.322,0l26.158,-73.609Zm31.806,89.516l11.794,33.336l21.287,0l-53.858,-143.113l-21.287,0l-53.858,143.113l20.515,0l11.801,-33.336l63.606,0Z" style="fill-rule:nonzero;"/>
+    </g>
+</svg>

@@ -1,0 +1,46 @@
+title: Default Item
+icon: document
+
+num: zero
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  # only allow some users
+  changeTemplate: true
+  update: true
+  changeSlug: true
+  changeStatus: true
+  changeTitle: true
+  delete: true
+
+tabs:
+
+  tab_info:
+    extends: tabs/info
+    columns:
+
+      column_right:
+        sections:
+          info_section_fields5:
+            type: fields
+            fields:
+
+              date_start:
+                extends: fields/date_historical
+                label: Date
+
+              date_end: false
+
+              location_start:
+                extends: fields/location/location_city
+                label: Location
+
+              location_end: false
+
+  tab_contexts:
+    extends: tabs/contexts
+  
+  tab_meta:
+    extends: tabs/meta

@@ -1,0 +1,36 @@
+title: Organisation
+icon: users
+
+num: zero
+
+extends: pages/item
+
+tabs:
+  tab_info:
+    columns:
+      column_right:
+        sections:
+          info_section_fields5:
+            fields:
+
+              date_start:
+                label: Foundation date
+                width: 1/2
+
+              date_end:
+                extends: fields/date_historical
+                label: Termination
+                width: 1/2
+
+              location_start:
+                extends: fields/location/location_city
+                label: Home location
+
+              members:
+                extends: fields/tags
+                label: Members
+                options: query
+                query:
+                  fetch: site.find('archive/persons').children
+                  text: '{{ page.title }}'
+                  value: '{{ page.id }}'

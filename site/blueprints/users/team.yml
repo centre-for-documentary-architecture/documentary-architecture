@@ -1,0 +1,47 @@
+title: Team member
+description: Panel access without editing permissions
+permissions:
+
+  access:
+    panel: true
+    site: true
+    settings: false
+    users: false
+  files:
+    create: false
+    changeName: false
+    delete: false
+    replace: false
+    update: false
+  site:
+    update: false
+  pages:
+    create: false
+    changeTemplate: false
+    changeTitle: false
+    changeSlug: false
+    delete: false
+    hide: false
+    sort: false
+    update: false
+  user:
+    create: false
+    changeName: false
+    changeEmail: false
+    changeLanguage: true
+    changePassword: true
+    changeRole: false
+    delete: false
+    update: true
+  users: false
+
+fields:
+
+  website:
+    extends: fields/url
+
+  info:
+    type: info
+    label: Info
+    text: |
+      Also a user can be linked to using a tag `(-user: email@web.com)`

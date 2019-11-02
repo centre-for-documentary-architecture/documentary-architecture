@@ -1,0 +1,123 @@
+title: External Source
+icon: url
+
+num: zero
+
+options:
+  # valid for all users
+  preview: false
+  read: true
+  changeTemplate: false
+  update: true
+  # only allow some users
+  changeSlug: true
+  changeStatus: true
+  changeTitle: true
+  delete: true
+
+status:
+  unlisted:
+    label: Unlisted
+    text: Not public 
+
+columns:
+  column_left:
+    width: 1/2
+    sections:
+
+      info_section_fields1:
+        type: fields
+        fields:
+
+          additional_title:
+            extends: fields/title
+            label: Subtitle
+            translate: false
+
+          category:
+            label: Type of Source
+            type: select
+            translate: false
+            options:
+              publication: Publication, Article or Film
+              website: Website
+              archive: Archive Document
+
+          signature: fields/signature
+
+      info_section_fields2:
+        type: fields
+        fields:
+
+          thumbnail:
+            extends: fields/thumbnail
+
+      info_section_uploads:
+        extends: sections/files
+
+  column_right:
+    width: 1/2
+    sections:
+
+      info_section_fields3:
+        type: fields
+        fields:
+
+          website:
+            extends: fields/url
+            halp: Link to source
+            when:
+              category: website
+
+          authors:
+            label: Authors or Producers
+            type: tags
+            translate: false
+
+          publisher:
+            label: Publisher
+            type: text
+            translate: false
+            when:
+              category: publication
+
+          archive:
+            label: Archive
+            type: text
+            when:
+              category: archive
+
+          archive_signature:
+            label: Archive Signature
+            type: text
+            when:
+              category: archive
+
+          location:
+            extends: fields/location/location_city
+            label: Release location
+            multiple: false
+            max: 1
+            when:
+              category: publication
+
+          date:
+            extends: fields/date_historical
+            label: Year or Date
+            help: Of release or access (web)
+
+          declaration_help:
+            type: info
+            label: Auto-Suggested (Save and reload)
+            text: |
+              {{ page.autoDeclaration }}
+
+          declaration:
+            extends: fields/description
+            translate: false
+            label: Source decleration
+            help: "Author (ed), Author: Title. Subtitle, Publisher, Year". Leave empty, save, relaod to use suggested.
+
+      
+
+          

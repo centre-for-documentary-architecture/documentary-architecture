@@ -1,0 +1,10 @@
+type: tags
+# https://getkirby.com/docs/reference/panel/fields/text
+
+label: Copyright
+
+translate: false
+before: ©
+help: Rights holding subject or organization
+options: query
+query: site.index.pluck( "copyright", ",", true )

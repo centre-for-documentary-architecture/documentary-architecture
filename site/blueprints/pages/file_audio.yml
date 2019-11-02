@@ -1,0 +1,51 @@
+title: Audio File
+icon: file-audio
+
+num: zero
+
+extends: pages/file
+
+tabs:
+  tab_info:
+    columns:
+      column_left:
+        sections:
+          info_section_fields2:
+            fields:
+
+              content_files:
+                label: File selection
+                type: files
+                query: page.audio
+                max: 1
+
+              soundcloud:
+                extends: fields/url
+                label: SoundCloud Link
+                disabled: true
+                placeholder: 'https://soundcloud.com/...'
+
+          file_info:
+            type: info
+            headline: Info on audio files
+            text: |
+              Audio files must be provided as mp3. After uploading, it can be assigned under the **File selection** field. Alternatively, the file could also be uploaded to SoundCloud.
+
+      column_right:
+        sections:
+          info_section_fields5:
+            fields:
+              location_start:
+                multiple: true
+
+  tab_meta:
+    columns:
+      meta_column_left:
+        sections:
+          meta_section_fields1:
+            fields:
+
+              duration:
+                extends: fields/files/duration
+                label: Audio play time
+                required: true

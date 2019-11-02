@@ -1,0 +1,9 @@
+type: select
+label: Content presentation
+translate: false
+options:
+  thumbnail: Thumbnail
+  map: Map
+  liebling-house: Liebling House 3D World
+  # timeline: Timeline
+  # graph: Context graph

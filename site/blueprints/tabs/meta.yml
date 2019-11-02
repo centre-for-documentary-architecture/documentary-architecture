@@ -1,0 +1,64 @@
+# https://getkirby.com/docs/guide/blueprints/tabs
+
+label: Meta
+icon: dots
+
+columns:
+  meta_column_left:
+    width: 1/2
+    sections:
+
+      meta_section_fields1:
+        type: fields
+        fields:
+
+          category:
+            extends: fields/category
+
+          duration: false
+
+          credits:
+            extends: fields/credits
+
+          sources:
+            extends: fields/sources
+
+          tags:
+            extends: fields/tags
+
+          worlditem:
+            extends: liebling-house/fields/worlditem
+
+  meta_column_right:
+    width: 1/2
+    sections:
+
+      meta_section_fields3:
+        type: fields
+        fields:
+
+          signature:
+            extends: fields/signature
+
+          date_created:
+            extends: fields/modified
+            label: Entity created
+            width: 1/2
+
+          date_modified:
+            extends: fields/modified
+            label: Entity modified
+            width: 1/2
+
+          user_created:
+            extends: fields/user
+            label: Created by
+            width: 1/2
+
+          user_modified:
+            extends: fields/user
+            label: Last modified by
+            width: 1/2
+
+          protocol:
+            extends: fields/protocol

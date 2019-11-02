@@ -1,0 +1,169 @@
+//
+// light and dark theme
+//
+
+body {
+	background-color: $black;
+	color: $black;
+}
+
+.bar.history {
+	border-bottom: $border;
+}
+.bar.cda {
+	border-right: $border-dark;
+}
+.bar.archive {
+	border-top: $border-dark;
+}
+
+body.white {
+	.bar.history {
+		border-color: $light;
+	}
+	.presentation {
+		background-color: $light;
+	}
+}
+
+body.black {
+	/*
+	.presentation {
+		background-color: $black;
+	}
+	*/
+	.presentation.collection .grid {
+		padding-top: 1px;
+	}
+}
+
+.cards.grid {
+	padding: 2px;
+}
+.cards,
+.gallery {
+	.card {
+		padding: 2px;
+	}
+}
+.list {
+	.card {
+		margin: 2px 0;
+	}
+}
+
+.card > a {
+	transition: background-color 100ms ease;
+	user-select: none;
+}
+
+//
+// text selection
+//
+::selection {
+	background-color: $blue;
+}
+
+
+
+//
+// light theme
+//
+.white {
+	background-color: $white;
+	color: $black;
+	// border-color: $black;
+}
+.light {
+	background-color: $light;
+	color: $black;
+	// border-color: $white;
+}
+.dark {
+	background-color: $dark;
+	color: $white;
+	// border-color: $black;
+}
+.black {
+	background-color: $black;
+	color: $white;
+	// border-color: $white;
+}
+
+/*
+.whites {
+	.card {
+		color: $black;
+		a {
+			background-color: $white;
+			&:hover {
+				background-color: $white-active;
+			}
+		}
+	}
+}
+*/
+body.entity.white,
+.whites {
+	background-color: $light;
+	.card {
+		color: $black;
+		// border-color: $light;
+		a {
+			background-color: $white;
+			&:hover {
+				background-color: $white-active;
+			}
+		}
+	}
+}
+.lights {
+	.card {
+		color: $black;
+		// border-color: $white;
+		a {
+			background-color: $light;
+			&:hover {
+				background-color: $light-active;
+			}
+		}
+	}
+}
+body.entity.black,
+.darks {
+	.card {
+		color: $white;
+		// border-color: $black;
+		a {
+			background-color: $dark;
+			&:hover {
+				background-color: $dark-active;
+			}
+		}
+	}
+
+}
+.blacks {
+	.card {
+		color: $white;
+		// border-color: $white;
+		a {
+			background-color: $dark;
+			&:hover {
+				background-color: $dark-active;
+			}
+		}
+	}
+}
+
+/*
+.border-bottom-white {
+	border-bottom: $border-width $border-style $white;
+}
+.border-bottom-none {
+	border-bottom: none;
+}
+.border-right-none {
+	border-right: none;
+}
+*/

@@ -1,0 +1,33 @@
+title: Pool of Landmarks
+icon: globe
+
+num: zero
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  delete: false
+  duplicate: false
+  changeTemplate: false
+  update: true
+  changeStatus: false
+  # only allow some users
+  changeSlug:
+    *: false
+    admin: true
+  changeTitle:
+    *: false
+    admin: true
+
+extends: pages/items
+
+tabs:
+
+  tab_archive:
+    columns:
+      column_left:
+        sections:
+          section_pool:
+            templates:
+              - item_landmark

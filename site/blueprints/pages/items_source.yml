@@ -1,0 +1,30 @@
+title: Pool of Sources
+icon: url
+
+num: zero
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  # only allow some users
+  changeTemplate: false
+  update: true
+  changeSlug: false
+  changeStatus: false
+  changeTitle: true
+  delete: false
+  duplicate: false
+
+extends: pages/items
+
+tabs: false
+
+sections:
+  section_pool:
+    extends: sections/pages_pool
+    headline: Items
+    text: "{{ page.declaration }}"
+    info: "{{ page.slug }}"
+    templates:
+      - item_source

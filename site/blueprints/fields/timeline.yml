@@ -1,0 +1,49 @@
+type: structure
+# https://getkirby.com/docs/reference/panel/fields/structure
+
+label: Timeline
+
+translate: false
+sortable: false
+sortBy: date asc
+help: Subject that created or contributed to the production of this entity
+
+columns:
+  dateType:
+    width: 1/2
+  date:
+    width: 1/2
+
+fields:
+
+  dateType:
+    label: Event
+    type: select
+    width: 1/2
+    help: Sort of event
+    options:
+      start: Initial date
+      end: Final date
+      other: 'Other ...'
+
+  date:
+    extends: fields/date_historical
+    width: 1/2
+
+  title:
+    label: Description
+    type: tags
+    help: Sort of event
+    when:
+      dateType: other
+    layout: list
+    options: query
+    query: site.index.pluckStructure('timeline','title')
+
+  location:
+    extends: fields/location
+    fields:
+
+      title: false
+      streetAddress: false
+      postalCode: false

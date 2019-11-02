@@ -1,0 +1,134 @@
+// media
+
+.presentation {
+
+	.section--header {
+		display: none;
+	}
+
+	.section--content {
+		user-select: none;
+		flex: 1;
+		flex-grow: 1;
+		flex-shrink: 1;
+		flex-basis: 1px;
+
+		.presentation-container,
+		canvas {
+			display: block;
+			width: 100%;
+			height: 100%;
+		}
+
+	}
+
+	&.image {
+		figure {
+			width: 100%;
+			img {
+				display: inline-block;
+				width: 100%;
+				height: auto;
+			}
+		}
+	}
+
+	&.video,
+	&.audio {
+		display: block;
+		overflow: auto;
+		height: 100%;
+
+		.transcript {
+			padding: $padding-double $padding-double $padding-double 0;
+		}
+	}
+
+}
+
+@media screen and (min-width: 768px){
+
+	.presentation {
+
+		&.image,
+		&.\33 d,
+		&.map,
+		&.liebling-house {
+			overflow: hidden !important;
+			display: flex;
+			flex-direction: column;
+			height: 100%;
+
+			.section--content {
+				max-height: 100%;
+			}
+		}
+
+		&.image {
+			figure {
+				width: 100%;
+				height: 100%;
+				display: flex;
+				img {
+					width: 100%;
+					height: auto;
+					object-fit: contain;
+					object-position: center;
+					max-width: 100%;
+					max-height: 100%;
+				}
+			}
+		}
+
+	}
+
+}
+
+.controls {
+	z-index: 500;
+	button {
+		text-transform: uppercase;
+		letter-spacing: 0.07em;
+	}
+}
+
+/*
+body.tourstop {
+	main .content {
+		> header,
+		> section {
+			// border: $border;
+			// border-bottom: none;
+		}
+		> section:last-child {
+			// border-bottom-width: $border-width;
+			// border-bottom-style: $border-style;
+		}
+		section .card {
+			// border-bottom: none;
+			// border-top-width: $border-width;
+		}
+	}
+}
+main .content {
+	.tab:last-child {
+		// border-bottom: none;
+	}
+	.tab .card {
+		// border-bottom: none;
+		// border-top-width: $border-width;
+		// border-top-style: $border-style;
+	}
+}
+*/
+
+
+// lazyloading
+// https://github.com/aFarkas/lazysizes
+img.lazyload,
+img.lazyloading {
+	filter: blur(8px);
+}
+img.lazyloaded {
+	filter: none;
+}

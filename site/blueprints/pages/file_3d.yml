@@ -1,0 +1,33 @@
+title: 3D Object File
+icon: file-word
+
+num: zero
+
+extends: pages/file
+
+tabs:
+  tab_info:
+    columns:
+      column_left:
+        sections:
+          info_section_fields2:
+            fields:
+
+              content_files:
+                label: 3D file selection
+                type: files
+                max: 1
+                translate: false
+
+              content_texture:
+                label: Texture selection
+                type: files
+                max: 1
+                query: page.images
+                translate: false
+
+          file_info:
+            type: info
+            headline: Info on 3D object files
+            text: |
+              3D files should be uploaded as **Fbx**. Please also upload the texture image and a thumbnail of the object.

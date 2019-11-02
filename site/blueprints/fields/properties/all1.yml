@@ -1,0 +1,27 @@
+name: Kombi field 1
+label: "Kombi 1: {{title}}"
+translate: false
+fields:
+
+  list:
+    type: structure
+    label: Entires
+    fields:
+
+      title:
+        type: text
+        label: Titel
+
+      text:
+        type: text
+        label: Text
+
+      page:
+        label: Entity
+        type: pages
+
+      location:
+        extends: fields/location/location_city
+
+      date:
+        extends: fields/date_historical

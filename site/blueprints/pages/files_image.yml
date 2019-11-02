@@ -1,0 +1,50 @@
+title: Pool of Images
+icon: file-image
+
+num: zero
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  # only allow some users
+  changeTemplate: false
+  update: true
+  changeSlug: false
+  changeStatus: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+
+extends: pages/files
+
+tabs:
+
+  tab_archive:
+    columns:
+      column_left:
+        sections:
+          section_pool: sections/files_image
+
+      column_right:
+        sections:
+          
+          section_info1:
+            type: info
+            headline: About uploading image files
+            text: | 
+              Images don’t need to be provided in a specific format or size, but a standard could be:
+              
+              **Jpg** for photography and other motifs with a lot of color or noise.
+              • Around 3000 px on the short side
+              • Rgb, 72 dpi, can be compressed with 80%
+              • File size between 1MB and 6MB
+              Export from Photoshop via File → Export → Save for web 
+
+              **Png** for graphics and other motifs with a limited range of colors.
+              **Svg** just like PNGs, when originating from a vector drawing.
+              Export from Illustrator via File → Export for Screens
+
+              **Gif** for animated video sequences. If a Gif represents a video file, then it should be uploaded directly to the video entity.
+
+              **Panorama** images will be cropped to 4096 x 2048 pixels

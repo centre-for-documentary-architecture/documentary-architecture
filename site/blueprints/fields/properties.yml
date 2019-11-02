@@ -1,0 +1,10 @@
+label: Individual Properties
+type: builder
+
+# https://github.com/TimOetting/kirby-builder
+
+translate: false
+columns: 1
+fieldsets:
+
+  all2:     fields/properties/all2

@@ -1,0 +1,104 @@
+// https://sass-lang.com/documentation
+
+// reset
+@import '0-reset';
+
+//
+// fonts
+//
+@font-face {
+	font-family: "Favorit";
+    src: url("../fonts/FavoritStd-Book.woff2") format("woff2"),
+         url("../fonts/FavoritStd-Book.woff2") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Favorit Mono";
+    src: url("../fonts/FavoritMonoStd-Book.woff2") format("woff2"),
+         url("../fonts/FavoritMonoStd-Book.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+
+//
+// variables
+//
+
+$barWidth: 2rem;
+
+// colors
+$white: #fff;
+$white-active: #fafafa;
+
+$light: #eee;
+$light-active: #ddd;
+
+$dark: #1a1a1a;
+$dark-active: #222;
+
+$black: #000;
+$black-active: #111;
+
+$grey-light: #ddd;
+$grey: #999;
+$grey-dark: #333;
+
+$blue: #00f;
+$blue-active: #66f;
+
+$red: #f00;
+$red-active: #f66;
+
+// typography
+$favorit: "Favorit", Favorit Std Book, Favorit Std, Favorit, Roboto, Helvetica, Arial, sans-serif;
+$mono: "Favorit Mono", Favorit Mono Std Book, Favorit Mono Book, Favorit Mono, Roboto Mono, monospace;
+$font-size: 1rem;
+$font-small: 0.8rem;
+$font-medium: 1.6rem;
+$font-large: 2.8rem;
+
+// borders
+$border-style: solid;
+$border-width: 2px;
+$border-half: $border-width / 2;
+
+$border: $border-width $border-style $black;
+$border-dark: $border-width $border-style $dark;
+$border-light: $border-width $border-style $light;
+$border-white: $border-width $border-style $white;
+
+// paddings
+$padding: 0.5rem;
+$padding-double: $padding * 2;
+
+$padding-box-top: $padding;
+$padding-box-side: $padding;
+$padding-box: $padding-box-top $padding-box-side;
+$padding-box-double: $padding-double $padding-double;
+
+$padding-text-top: 0.5em;
+$padding-text-side: 0;
+$padding-text: $padding-text-top $padding-text-side;
+
+$padding-text-inside-top: 0.5em;
+$padding-text-inside-side: 0.5rem;
+$padding-text-inside: $padding-text-inside-top $padding-text-inside-side;
+
+//
+// modules
+//
+
+@import '1-typography';
+
+@import '2-navigation';
+
+@import '3-layout';
+
+@import '4-components';
+
+@import '5-theme';
+
+@import '6-media';
+
+@import '7-content';

@@ -1,0 +1,54 @@
+title: Collection
+icon: list-bullet
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  update: true
+  # only allow some users
+  changeTemplate: true
+    *: false
+    super: true
+    admin: true
+  changeStatus: true
+    *: false
+    super: true
+    admin: true
+  changeSlug: true
+    *: false
+    super: true
+    admin: true
+  changeTitle: true
+    *: false
+    super: true
+    admin: true
+  delete: true
+    *: false
+    super: true
+    admin: true
+
+tabs:
+
+  tab_info:
+    extends: tabs/info
+
+  tab_content:
+    extends: tabs/content
+
+  tab_contexts:
+    extends: tabs/contexts
+
+  tab_meta:
+    extends: tabs/meta
+    columns:
+      meta_column_left:
+        sections:
+          meta_section_fields1:
+            fields:
+
+              credits:
+                fields:
+                  title:
+                    type: text
+                    help: false

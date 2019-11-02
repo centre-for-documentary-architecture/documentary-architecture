@@ -1,0 +1,118 @@
+title: Pool of Videos
+icon: file-video
+
+num: zero
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  # only allow some users
+  changeTemplate: false
+  update: true
+  changeSlug: false
+  changeStatus: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+
+extends: pages/files
+
+tabs:
+
+  tab_archive:
+    columns:
+      column_left:
+        sections:
+          section_pool:
+            templates:
+              - file_video
+
+      column_right:
+        sections:
+
+          section_info1:
+            type: info
+            headline: About uploading videos files
+            text: |
+              **File naming convention:**
+              `{filename}-{height-in-pixels}.mp4`
+              e.g.: `my-video-720.mp4`
+
+              Include the `.mp4` in the name of this archive entity.
+
+              To make a video accessible for many devices, it should be availible in 4 quality version:
+              • MP4 1080p: 1920 x 1080
+              • MP4 720p: 1280 x 720 (most important)
+              • MP4 480p: 854 x 480
+              • MP4 360p: 640 x 360
+
+              CDA owns a dedicated Digital Ovean Spaces file hosting service. Upload videos in the following pattern:
+              `cda/archive/videos/{filename}/{filename}-{size}.mp4`
+
+              **Thumbnails**
+              Thumbnails should have the same aspect ratio as the original video (e.g. 16:9), but can have best quality.
+              `{video-name}-thumb.jpg`
+
+  tab_converter:
+    label: Converter Tool
+    icon: video
+    sections:
+
+      tldr_info:
+        type: info
+        headline: TL;DR
+        text: |
+          ```
+          https://gist.github.com/neopostmodern/2f1d2a9616cc6bbaa5d2bb81ebbf862e
+          ```
+
+      tool_info:
+        type: info
+        headline: CDA Video Converter Tool
+        text: |
+          **1. Install [Homebrew](https://brew.sh) for Mac**
+          Open the Terminal and run
+          ```
+          /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+          ```
+          to install Homebrew, a extension manager for MacOS.
+
+          **2. Install ffmpeg**
+          If you have Homebrew installed, run
+          ```
+          brew install ffmpeg
+          ```
+          If you successfully have installed both, you can close the Teminal window and preceed.
+
+          **3. Get the Script**
+          Open this [Gist](https://gist.github.com/neopostmodern/2f1d2a9616cc6bbaa5d2bb81ebbf862e) and download the code as a zip archive. Unpack to your harddrive. Inside it, you will finde a file called `cda-video-convert.command`. (In case you use Linux, rename the file to `.sh` instead of `.command`.)
+
+          **4. Allow execution**
+          Doubleclick on the file to run it. When you do so for the first time, a message will appear "cannot be opened because it is from an unidentified developer", preceed with "OK". Go to macOS System Preferences, Security. At the bottom you can choose "Open nevertheless". Another window will pop up "Do you really want to open this?", you choose "Open".
+
+          **5. Prepare your Video file**
+          The Original Video should have 1920x1080 resolution and relatively uncompressed quality.
+
+          **6. Run the Script**
+          Open the file `cda-video-convert.command`. A promt will appear, asking you for the absolute path to the correctly named original video file.
+          Go to the video file you want to convert, right click on it, press the `alt` key on your keyboard and hit `copy as path`.
+          Return to `CDA Video-Converter` and paste the path.
+          You can convert multiple files at once, when you paste multiple paths, each in a new line (Copy all the paths to a plain text file, each path in a new line and then copy the whole file content).
+          Hit `Start` to start convertig the video.
+          This can take quite some time. Select multiple videos and let it run overnight.
+
+          **7. The result**
+          The converter will create 7 versions of the video, always adding the height to the filename:
+          • {year}-{file-name}-360.mp4
+          • {year}-{file-name}-480.mp4
+          • {year}-{file-name}-720.mp4
+          • {year}-{file-name}-1080.mp4
+          • {year}-{file-name}-360.webm
+          • {year}-{file-name}-480.webm
+          • {year}-{file-name}-720.webm
+
+          These files can be uploaded to Kirby. The video-files *must* be named exactly in the proposed pattern (`...-{height}.{format}`) otherwise they won't be recognised.
+
+          If you upload the files directly via FTP:
+          Create the File Entity first via the Kirby panel. Afterwards naviagte to `/content/0_archive/0_videos/` using your FTP client. In there will be a new directory called after your newly created file. Open that folder and copy the video files in there. Go back to Kirby, and refresh the page.

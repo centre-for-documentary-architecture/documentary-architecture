@@ -1,0 +1,72 @@
+title: Person
+icon: user
+
+num: zero
+
+extends: pages/item
+
+tabs:
+  tab_info:
+    columns:
+      column_right:
+        sections:
+          info_section_fields5:
+            fields:
+
+              date_start:
+                label: Date of Birth
+                width: 1/2
+
+              date_end:
+                extends: fields/date_historical
+                label: Date of death
+                width: 1/2
+
+              location_start:
+                extends: fields/location/location_city
+                label: Place of Birth
+
+              location_end:
+                extends: fields/location/location_city
+                label: Place of Death
+
+              occupation:
+                type: tags
+                label: Occupation
+                translate: false
+                options: query
+                query: site.find('archive/persons').children.pluck('occupation',',',true)
+
+              projects:
+                extends: fields/tags
+                label: Projects
+                options: query
+                query:
+                  fetch: site.find('archive/buildings').children
+                  text: '{{ page.title }}'
+                  value: '{{ page.id }}'
+              
+              bio:
+                extends: fields/body
+                label: Biography
+                buttons: false
+                translate: false
+                help: false
+
+              education:
+                type: structure
+                label: Education
+                translate: false
+                fields:
+
+                  date_start:
+                    extends: fields/date_historical
+                    label: Date
+
+                  text:
+                    type: textarea
+                    buttons: false
+
+                  location:
+                    extends: fields/location/location_city
+                    multiple: false

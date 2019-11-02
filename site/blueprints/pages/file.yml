@@ -1,0 +1,90 @@
+title: Default File
+icon: file
+
+num: zero
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  # only allow some users
+  changeTemplate: true
+  update: true
+  changeSlug: true
+  changeStatus: true
+  changeTitle: true
+  delete: true
+
+tabs:
+
+  tab_info:
+    extends: tabs/info
+    columns:
+      column_left:
+        sections:
+
+          info_section_fields2:
+            fields:
+              thumbnail:
+                query: page.images
+                
+          info_section_uploads:
+            extends: sections/files
+            min: 1
+
+      column_right:
+        sections:
+          info_section_fields5:
+            type: fields
+            fields:
+
+              date_start:
+                extends: fields/date_historical
+                label: Date of recording
+
+              location_start:
+                extends: fields/location/location_city
+                label: Location of recording
+                # select building
+
+              starring:
+                type: tags
+                label: Starring
+                help: People, Objects, Buildings, ...
+                options: query
+                translate: false
+                query:
+                  fetch: site.archive.items.children
+                  text: '{{ page.title }}'
+                  value: '{{ page.id }}'
+
+  tab_content:
+    label: Transcript
+    icon: text
+    fields:
+
+      transcript: fields/files/transcript
+
+  tab_contexts:
+    extends: tabs/contexts
+  
+  tab_meta:
+    extends: tabs/meta
+    columns:
+      meta_column_left:
+        sections:
+          meta_section_fields1:
+            fields:
+
+              credits:
+                label: Credits
+                help: People who helped creating this file
+
+              copyright: fields/files/copyright
+
+              allowDownload: fields/files/allow_download
+
+              licence:
+                extends: fields/files/licence
+                when:
+                  allowDownload: true

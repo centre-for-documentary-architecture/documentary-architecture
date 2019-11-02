@@ -1,0 +1,12 @@
+name: Website
+label: "Website: {{title}}"
+translate: false
+fields:
+  title:
+    label: Title
+    type: text
+    translate: false
+  value:
+    label: URL
+    type: url
+    translate: false

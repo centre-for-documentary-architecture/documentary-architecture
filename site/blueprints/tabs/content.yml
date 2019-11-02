@@ -1,0 +1,123 @@
+# https://getkirby.com/docs/guide/blueprints/tabs
+
+label: Content
+icon: template
+
+columns:
+
+  content_column_left:
+    width: 1/2
+    sections:
+      content_left_fields:
+        type: fields
+        fields:
+
+          represents_entity_switch:
+            label: Represents another entity
+            type: toggle
+            translate: false
+            text:
+              - Not connected
+              - This directly represents another entity
+
+          topic:
+            extends: fields/topic
+            when:
+              represents_entity_switch: false
+
+          represents_entity:
+            extends: fields/pages
+            type: entities
+            max: 1
+            help: Select an entity this collection is about, e.g. Max Liebling House
+            when:
+              represents_entity_switch: true
+
+          line3: fields/line
+
+          content_text:
+            extends: fields/body
+            label: Text content
+
+          line2: fields/line
+
+          content_presentation:
+            extends: fields/presentation
+
+  content_column_right:
+    width: 1/2
+    sections:
+
+      content_right_fields:
+        type: fields
+        fields:
+
+          content_collection:
+            type: select
+            label: Type of content
+            translate: false
+            options:
+              children: Create sub collections
+              pages: Curate a list of Entities
+              contextualized: Use contextualized as content
+              contexts: Use Contexts as content
+
+          content_layout:
+            type: select
+            label: Content Layout
+            width: 1/2
+            translate: false
+            options:
+              list: List
+              cards: Cards
+              gallery: Gallery
+
+          include_thumbnail:
+            label: Include Thumbnails
+            type: toggle
+            translate: false
+            width: 1/2
+            text:
+              - No
+              - Yes
+
+          content_headline: 
+            type: text
+            translate: false
+            label: Content Headline
+            placeholder: Content
+
+          line1: fields/line
+
+      section_content_children:
+        extends: sections/pages
+        headline: Sub collections
+        when:
+          content_collection: children
+        templates:
+          - collection
+          - default
+
+      section_content_pages:
+        when:
+          content_collection: pages
+        type: fields
+        fields:
+          content_pages:
+            extends: fields/pages
+            label: Entities
+            help: If you want to include all elements of one specific data type, the parent pool can be selected. E.g. select "Images" to include all images as content of this collection.
+
+      section_content_contextualized:
+        type: info
+        headline: Contextualized entities
+        text: Entities that are listed under "Contextualized" are used as content
+        when:
+          content_collection: contextualized
+      
+      section_content_contexts:
+        type: info
+        headline: Context entities
+        text: Entities that are listed under "Contexts" are used as content
+        when:
+          content_collection: contexts

@@ -1,0 +1,11 @@
+type: tags
+# https://getkirby.com/docs/reference/panel/fields/tags
+
+label: Tags
+# https://schema.org/keywords
+
+max: 10
+translate: false
+help: Keywords for enhanced search integration
+options: query
+query: site.index.pluck( "tags", ",", true )

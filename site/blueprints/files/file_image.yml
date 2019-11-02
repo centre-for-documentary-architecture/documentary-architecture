@@ -1,0 +1,107 @@
+title: Image entity
+# https://getkirby.com/docs/reference/panel/blueprints/file
+
+accept: image/*
+
+num: zero
+
+options:
+  changeName: true
+  delete: true
+  replace: true
+  update: true
+
+tabs:
+
+  tab_info:
+    extends: tabs/info
+    columns:
+      column_left:
+        sections:
+
+          info_section_fields2: false
+                
+          info_section_uploads: false
+
+      column_right:
+        sections:
+          info_section_fields5:
+            type: fields
+            fields:
+
+              date_start:
+                extends: fields/date_historical
+                label: Date of recording
+
+              location_start:
+                extends: fields/location/location
+                label: Location of recording
+                # select building
+
+              starring:
+                type: tags
+                label: Starring
+                help: People, Objects, Buildings, ...
+                options: query
+                translate: false
+                query:
+                  fetch: site.archive.items.children
+                  text: '{{ page.title }}'
+                  value: '{{ page.id }}'
+
+  tab_content:
+    label: Transcript
+    icon: text
+    fields:
+
+      transcript: fields/files/transcript
+
+  tab_contexts:
+    extends: tabs/contexts
+  
+  tab_meta:
+    extends: tabs/meta
+    columns:
+      meta_column_left:
+        sections:
+          meta_section_fields1:
+            fields:
+
+              category:
+                query:
+                  fetch: file.parent.type_categories.toStructure
+
+              credits:
+                label: Credits
+                help: People who helped creating this file
+                fields:
+                  title:
+                    query:
+                      fetch: file.parent.credit_roles.toStructure
+
+              copyright: fields/files/copyright
+
+              allowDownload: fields/files/allow_download
+
+              licence:
+                extends: fields/files/licence
+                when:
+                  allowDownload: true
+
+              is_360:
+                label: Panorama photo
+                type: toggle
+                translate: false
+                help: Panoramas will be cropped to 4096 x 2048 pixels
+                text:
+                    - Normal
+                    - 'This is a 360° panorama'
+
+      meta_column_right:
+        sections:
+          meta_section_fields3:
+            fields:
+              signature:
+                text: |
+                  **{{ file.id }}**
+                  `(-link: {{ file.id }})`

@@ -1,0 +1,27 @@
+# https://getkirby.com/docs/guide/blueprints/tabs
+
+label: Contexts
+icon: refresh
+
+columns:
+
+  context_column_left:
+    width: 1/2
+    sections:
+      context_column_left_fields:
+        type: fields
+        fields:
+
+          contexts:
+            extends: fields/contexts
+
+  context_column_right:
+    width: 1/2
+    sections:
+
+      context_column_right_fields:
+        type: fields
+        fields:
+
+          contextualized:
+            extends: fields/contextualized

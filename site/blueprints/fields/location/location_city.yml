@@ -1,0 +1,24 @@
+type: structure
+# https://getkirby.com/docs/reference/panel/fields/structure
+
+label: Location
+
+multiple: false
+translate: false
+
+columns:
+  addressLocality:
+    width: 2/3
+  addressCountry:
+    width: 1/3
+
+fields:
+
+  addressLocality:
+    extends: fields/location/city
+
+  addressCountry:
+    extends: fields/location/country
+
+  addressCountryHistoric:
+    extends: fields/location/country_historic

@@ -1,0 +1,47 @@
+name: Mixed Property
+label: "Property: {{title}}"
+translate: false
+fields:
+
+  title:
+    type: text
+    label: Title
+
+  kombi:
+    type: builder
+    label: Fields
+    columns: 1
+    fieldsets:
+
+      text:
+        label: Text
+        fields:
+          value:
+            type: textarea
+            label: Text
+            buttons: false 
+
+      pages:
+        label: Entity
+        fields:
+          value:
+            label: Entity
+            type: entities
+
+      location:
+        label: Location
+        fields:
+          value:
+            extends: fields/location/location
+
+      date:
+        label: Date
+        fields:
+          value:
+            extends: fields/date_historical
+
+      website:
+        label: Website
+        fields:
+          value:
+            extends: fields/url

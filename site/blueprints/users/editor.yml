@@ -1,0 +1,47 @@
+title: Editor
+description: Editors with limited permissions
+permissions:
+
+  access:
+    panel: true
+    site: true
+    settings: false
+    users: false
+  files:
+    create: true
+    changeName: true
+    delete: true
+    replace: true
+    update: true
+  site:
+    update: false
+  pages:
+    create: true
+    changeTemplate: false
+    changeTitle: true
+    changeSlug: true
+    delete: true
+    hide: true
+    sort: true
+    update: true
+  user:
+    create: false
+    changeName: false
+    changeEmail: false
+    changeLanguage: true
+    changePassword: true
+    changeRole: false
+    delete: false
+    update: true
+  users: false
+
+fields:
+
+  website:
+    extends: fields/url
+
+  info:
+    type: info
+    label: Info
+    text: |
+      Also a user can be linked to using a tag `(-user: email@web.com)`

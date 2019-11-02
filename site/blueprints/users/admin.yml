@@ -1,0 +1,13 @@
+title: Admin
+description: Everything is possible
+
+fields:
+
+  website:
+    extends: fields/url
+
+  info:
+    type: info
+    label: Info
+    text: |
+      Also a user can be linked to using a tag `(-user: email@web.com)`

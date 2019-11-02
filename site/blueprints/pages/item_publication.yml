@@ -1,0 +1,68 @@
+title: Publication
+icon: document
+
+num: zero
+
+extends: pages/item
+
+tabs:
+  tab_info:
+    columns:
+
+      column_left:
+        sections:
+          info_section_fields1:
+            fields:
+              additional_title:
+                type: textarea
+                buttons: false
+
+      column_right:
+        sections:
+
+          info_section_fields5:
+            fields:
+
+              date_start:
+                label: Release date
+
+              location_start: false
+
+              credits:
+                extends: fields/credits
+                label: Authors and Editors
+
+              publisher:
+                label: Publisher
+                type: text
+
+              declaration_help:
+                type: info
+                label: Auto-suggested declaration (Save and reload)
+                text: |
+                  {{ page.autoDeclaration }}
+
+              declaration:
+                extends: fields/description
+                label: Source decleration
+                help: "Author (ed), Author: Title. Subtitle, Publisher, Year". Leave empty, save, reload to use auto generated declaration.
+
+  tab_meta:
+    columns:
+      meta_column_left:
+        width: 1/2
+        sections:
+
+          meta_section_fields1:
+            type: fields
+            fields:
+
+              category:
+                extends: fields/category
+
+              credits: false
+
+              sources: false
+
+              tags:
+                extends: fields/tags

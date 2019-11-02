@@ -1,0 +1,154 @@
+//
+// general layout
+//
+
+html,
+body {
+	width: 100%;
+	min-height: 100%;
+}
+
+body {
+	// flex between cda bar and main page content
+	> .page-wrapper {
+		flex-direction: column;
+		height: 100%;
+		height: 100vh;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	// specifics for small screens
+
+	.panel.presentation {
+		.section--content {
+			height: 400px;
+		}
+	}
+
+}
+
+@media screen and (min-width: 768px){
+	// specifics for large screens
+
+	// multipanel view, where grid adjust to screen height and can be scrolled seperately
+	body.multipanel {
+
+		height: 100%;
+		max-height: 100vh;
+
+		> .page-wrapper {
+
+			display: flex;
+
+			> nav {
+				flex-grow: 0;
+			}
+
+			.panels {
+
+				width: 100%;
+				overflow: hidden;
+
+				flex-grow: 1;
+				flex-shrink: 1;
+				flex-basis: 1px;
+
+				.panel {
+
+					// panel should be reduced to screen height and scrollable
+					// height: unset works in safari
+					// height: 100% works in ff
+					// max-height: 100% works in s && ff, bot not in chrome
+					height: 100%;
+					overflow-y: auto;
+
+				}
+
+				/* .presentation {
+					overflow: hidden;
+				} */
+
+			}
+
+		}
+
+		// overlapping layout, with one non-scrollable panel in the background and the other free floating above
+		// this layout needs to switched on and off seamlessly
+		&.tourstop,
+		&.overlap {
+
+			.panels {
+				position: relative;
+
+				main {
+					position: relative;
+					top: 0;
+					left: 0;
+					z-index: 10;
+					padding: 0;
+					width: 100%;
+					height: 100%;
+					background-color: transparent !important;
+					> div {
+						position: absolute;
+						top: 3rem;
+						left: 3rem;
+						width: 33vw;
+						padding-bottom: 5.5rem;
+						background-color: $light;
+					}
+				}
+
+				.panel.presentation {
+					width: 100%;
+					position: absolute;
+					height: 100%;
+					// border-right: $border;
+				}
+
+			}
+
+		}
+
+	}
+
+	/*
+	.panel.card {
+		// border-top: none;
+	}
+	*/
+
+	.presentation {
+
+		/* .section--header {
+			// display: none;
+		} */
+		.section--content {
+			flex: 1;
+			// display: flex;
+		}
+
+	}
+
+	/*
+	// legacy?
+	.presentation.view-results {
+		.section--content {
+			overflow-y: auto;
+		}
+	}
+	*/
+
+}
+
+.preview .section--header {
+	display: none;
+}
+
+.grid [class*="col"].panel {
+
+	// top: $barWidth;
+	position: sticky;
+
+}

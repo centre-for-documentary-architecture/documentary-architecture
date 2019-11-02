@@ -1,0 +1,10 @@
+type: textarea
+# https://getkirby.com/docs/reference/panel/fields/textarea
+
+label: Description
+# https://schema.org/description
+
+buttons: false
+maxlength: 400
+translate: true
+help: Unformatted short description of this entity

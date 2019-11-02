@@ -1,0 +1,42 @@
+label: Settings
+icon: cog
+columns:
+
+  settings_column_left:
+    width: 1/2
+    sections:
+      settings_left_fields:
+        type: fields
+        fields:
+
+          type_categories:
+            type: structure
+            label: Type Categories
+            translate: false
+            help: Define categories that entities of this type can be assigned to.
+            fields:
+              title:
+                type: text
+                label: Category
+
+          credit_roles:
+            type: structure
+            label: Credit roles
+            translate: false
+            help: Define fields of activity that can be chosen from when editing credits. Instead of "Photographer" use "Photography".
+            fields:
+              title:
+                type: text
+                label: Role
+              
+  settings_column_right:
+    width: 1/2
+    sections:
+      settings_right_fields:
+        type: fields
+        fields:
+
+          type_properties:
+            extends: fields/properties
+            label: Type Properties and default values
+

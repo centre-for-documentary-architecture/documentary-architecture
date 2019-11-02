@@ -1,0 +1,9 @@
+type: entities
+# https://getkirby.com/docs/reference/panel/fields/pages
+
+label: Contextualized entities
+empty: No contexts yet
+translate: false
+help: Other entities that this entity provides context to
+# image: icon
+image: page.thumbnail

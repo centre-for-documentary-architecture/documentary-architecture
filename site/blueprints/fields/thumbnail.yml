@@ -1,0 +1,14 @@
+type: files
+# https://getkirby.com/docs/reference/panel/fields/files
+
+label: Thumbnail
+# https://schema.org/photo
+
+translate: false
+multiple: false
+layout: cards
+query: site.find('archive/images').images.add( page.images )
+help: Select image from archive or upload directly to this entity
+image:
+  back: white
+  ratio: 1/1

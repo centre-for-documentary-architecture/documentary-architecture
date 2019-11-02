@@ -1,0 +1,42 @@
+# https://getkirby.com/docs/guide/blueprints/tabs
+
+label: Info
+icon: dashboard
+
+columns:
+  column_left:
+    width: 1/2
+    sections:
+
+      info_section_fields1:
+        type: fields
+        fields:
+
+          additional_title:
+            extends: fields/title
+
+          description:
+            extends: fields/description
+
+      info_section_fields2:
+        type: fields
+        fields:
+
+          thumbnail:
+            extends: fields/thumbnail
+
+      info_section_uploads:
+        extends: sections/files_upload
+
+  column_right:
+    width: 1/2
+    sections:
+
+      info_section_fields5: false
+
+      info_section_fields3:
+        type: fields
+        fields:
+
+          properties:
+            extends: fields/properties

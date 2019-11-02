@@ -1,0 +1,20 @@
+title: Material
+icon: circle
+
+num: zero
+
+extends: pages/item
+
+tabs:
+  tab_info:
+    columns:
+      column_right:
+        sections:
+          info_section_fields5:
+            fields:
+
+              date_start: false
+
+              location_start:
+                extends: fields/location/location_city
+                label: Origin

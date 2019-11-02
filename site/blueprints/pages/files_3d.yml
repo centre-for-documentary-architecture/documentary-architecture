@@ -1,0 +1,38 @@
+title: Pool of 3D Objects
+icon: file-word
+
+num: zero
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  # only allow some users
+  changeTemplate: false
+  update: true
+  changeSlug: false
+  changeStatus: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+
+extends: pages/files
+
+tabs:
+
+  tab_archive:
+    columns:
+      column_left:
+        sections:
+          section_pool:
+            templates:
+              - file_3d
+
+      column_right:
+        sections:
+          
+          section_info1:
+            type: info
+            headline: About uploading 3D files
+            text: | 
+              3D files should be uploaded as **Fbx**. Please also upload the texture image and a thumbnail of the object.

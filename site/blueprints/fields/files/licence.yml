@@ -1,0 +1,10 @@
+type: select
+# https://getkirby.com/docs/reference/panel/fields/select
+
+label: Licence
+default: cc04
+translate: false
+options:
+  - value: "CC BY-NC-SA 4.0"
+    text: "CC BY-NC-SA 4.0"
+help: Show under which conditions this may be used by others

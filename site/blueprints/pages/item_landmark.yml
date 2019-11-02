@@ -1,0 +1,29 @@
+title: Landmark
+icon: globe
+
+num: zero
+
+extends: pages/item
+
+tabs:
+  tab_info:
+    columns:
+      column_right:
+        sections:
+          info_section_fields5:
+            fields:
+
+              date_start:
+                label: Contruction date
+
+              location_start:
+                extends: fields/location/location
+
+              architects:
+                extends: fields/tags
+                label: Architects
+                options: query
+                query:
+                  fetch: site.find('archive/persons').children
+                  text: '{{ page.title }}'
+                  value: '{{ page.id }}'

@@ -1,0 +1,133 @@
+title: Collection Liebling House
+icon: list-bullet
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  update: true
+  # only allow some users
+  changeTemplate: true
+    *: false
+    super: true
+    admin: true
+  changeStatus: true
+    *: false
+    super: true
+    admin: true
+  changeSlug: true
+    *: false
+    super: true
+    admin: true
+  changeTitle: true
+    *: false
+    super: true
+    admin: true
+  delete: true
+    *: false
+    super: true
+    admin: true
+
+tabs:
+
+  tab_content:
+    label: Content
+    icon: template
+    columns:
+
+      content_column_left:
+        width: 1/2
+        sections:
+
+          content_left_fields:
+            type: fields
+            fields:
+
+              category:
+                type: select
+                label: Category
+                translate: false
+                options:
+                  overview: Liebling House Overview
+                  tour: Tour
+                  tourstop: Tourstop
+
+              info_contextualized:
+                type: info
+                label: Contextualized entities for Tourstops
+                text: "Contextualized" are used as content
+                when:
+                  category: tourstop
+
+      content_column_right:
+        width: 1/2
+        sections:
+
+          section_content_children:
+            extends: sections/pages
+            headline: Sub collections
+            templates:
+              - collection_liebling-house
+
+  tab_info:
+    extends: tabs/info
+    columns:
+      column_right:
+        sections:
+
+          info_section_fields5:
+            type: fields
+            fields:
+
+              represents_entity_switch:
+                label: Represents another entity
+                type: toggle
+                translate: false
+                text:
+                  - Not connected
+                  - This directly represents another entity
+
+              topic:
+                extends: fields/topic
+                when:
+                  represents_entity_switch: false
+
+              represents_entity:
+                extends: fields/pages
+                max: 1
+                help: Select an entity this collection is about, e.g. Max Liebling House
+                when:
+                  represents_entity_switch: true
+
+              content_text:
+                extends: fields/body
+                label: Text content
+
+          info_section_fields3:
+            type: fields
+            fields:
+
+              properties:
+                extends: fields/properties           
+
+  tab_contexts:
+    extends: tabs/contexts
+
+  tab_meta:
+    extends: tabs/meta
+    columns:
+      meta_column_left:
+        sections:
+          meta_section_fields1:
+            fields:
+
+              category: false
+
+              credits:
+                fields:
+                  title:
+                    type: text
+                    help: false
+
+              # worlditem:
+                # required: true

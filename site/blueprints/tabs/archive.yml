@@ -1,0 +1,33 @@
+label: Archive
+icon: menu
+columns:
+
+  column_left:
+    width: 1/2
+    sections:
+
+      section_pool: false
+
+  column_right:
+    width: 1/2
+    sections:
+
+      section_fields:
+        type: fields
+        fields:
+         
+          highlights:
+            type: entities
+            label: Highlights
+            query: page.children.listed
+            max: 4
+
+      section_upload: false
+
+      section_info1: false
+
+      section_info:
+        type: info
+        headline: About creating entities
+        text: |
+          Click on the "Add" Button to create a new entity of this type. Note that all newly created entities are 🌚 "unlisted", meaning that they are not visible on the website.

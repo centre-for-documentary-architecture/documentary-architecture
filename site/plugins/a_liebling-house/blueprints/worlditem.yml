@@ -1,0 +1,10 @@
+type: select
+label: Corresponding world item
+help: If this entitiy is located in the Liebeling House 3D World
+options: api
+translate: false
+api:
+  url: https://mod.documentary-architecture.org/assets/apps/liebling-house/worlditems.json
+  fetch: worlditems
+  text: "{{ item.type.after(': ') }}{{ item.name }}{{ item.floor.before(' (Floor ').after(')') }}"
+  value: "{{ item.name }}"

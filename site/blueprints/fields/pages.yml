@@ -1,0 +1,8 @@
+type: pages
+# https://getkirby.com/docs/reference/panel/fields/pages
+
+label: Entity
+
+translate: false
+multiple: true
+image: page.thumbnail

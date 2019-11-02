@@ -1,0 +1,13 @@
+type: select
+# https://getkirby.com/docs/reference/panel/fields/text
+
+label: Category
+
+translate: false
+help: Optional categorization within this type. Define options at parent page.
+# disabled: true
+options: query
+query:
+  fetch: page.parent.type_categories.toStructure
+  text: "{{ structureItem.title }}"
+  value: "{{ structureItem.title }}"

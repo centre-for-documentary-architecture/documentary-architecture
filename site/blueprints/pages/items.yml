@@ -1,0 +1,50 @@
+title: Pool of other items
+icon: draft
+
+num: zero
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  duplicate: false
+  changeTemplate: false
+  update: true
+  changeStatus: true
+  # only allow some users
+  changeSlug:
+    *: false
+    super: true
+    admin: true
+  changeTitle:
+    *: false
+    super: true
+    admin: true
+  delete:
+    *: false
+    super: true
+    admin: true
+
+tabs:
+
+  tab_archive:
+    extends: tabs/archive
+    columns:
+
+      column_left:
+        sections:
+
+          section_pool:
+            extends: sections/pages_pool
+            headline: Items
+            limit: 40
+            templates:
+              - item
+
+      column_right:
+        sections:
+          section_info:
+            headline: About creating items
+
+  tab_settings:
+    extends: tabs/settings

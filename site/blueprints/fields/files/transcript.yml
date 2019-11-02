@@ -1,0 +1,9 @@
+label: Transcript
+type: textarea
+translate: true
+buttons:
+  - italic
+  - link
+  - ul
+  - ol
+  - code

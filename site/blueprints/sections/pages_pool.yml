@@ -1,0 +1,15 @@
+type: pages
+# https://getkirby.com/docs/reference/panel/sections/pages
+
+headline: Elements
+status: all
+empty: Empty
+sortable: false
+sortBy: title asc
+info: "{{ page.uid }}"
+image:
+  query: page.thumbnail
+  back: white
+  cover: false
+templates:
+  - item

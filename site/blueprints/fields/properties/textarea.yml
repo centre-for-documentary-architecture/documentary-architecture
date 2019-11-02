@@ -1,0 +1,16 @@
+name: Text
+label: "Text: {{title}}"
+translate: false
+fields:
+  title:
+    label: Title
+    type: text
+    translate: false
+  value:
+    label: Value
+    type: textarea
+    maxlength: 800
+    buttons:
+      - italic
+      - link
+    translate: false

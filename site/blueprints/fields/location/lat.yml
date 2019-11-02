@@ -1,0 +1,7 @@
+type: number
+label: Latitude
+width: 1/2
+step: .0001
+min: -90
+max: 90
+translate: false

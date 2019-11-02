@@ -1,0 +1,68 @@
+title: Site
+
+tabs:
+
+  tab1:
+    label: Website
+    icon: globe
+    columns:
+
+      column_left:
+        width: 1/2
+        sections:
+
+          section_collections:
+            extends: sections/pages
+            headline: Projects (Collections)
+            text: "{{ page.title }}"
+            image:
+              query: false
+              back: white
+            sortable: true
+            templates:
+              - collection
+              - collection_liebling-house
+        
+      column_right:
+        width: 1/2
+        sections:
+
+          section_archive:
+            extends: sections/pages
+            headline: Archive
+            create: false
+            text: "{{ page.title }}"
+            status: listed
+            image:
+              query: false
+              back: white
+            sortable: false
+            templates:
+              - archive
+
+          section_pages:
+            extends: sections/pages
+            headline: Other pages
+            templates:
+              - default
+              - about
+              - imprint
+            create:
+              - default
+            
+
+  tab2:
+    label: Activity
+    icon: users
+    columns:
+    
+    sections:
+
+      latest_activity:
+        type: pagesdisplay
+        headline: Recent activity
+        query: site.archive.recentActivity(true).limit(20)
+        info: "{{ page.user_modified.toUser.name }} {{ page.date_modified }}"
+        limit: 20
+
+  tab3: tabs/help

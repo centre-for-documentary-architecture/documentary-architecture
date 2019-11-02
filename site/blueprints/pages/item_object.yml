@@ -1,0 +1,48 @@
+title: Object
+icon: copy
+
+num: zero
+
+extends: pages/item
+
+tabs:
+  tab_info:
+    columns:
+
+      column_left:
+        sections:
+          info_section_fields1:
+            fields:
+
+              3d_object:
+                extends: fields/pages
+                label: 3D Object
+                query: site.find('archive/3d-objects').children
+
+      column_right:
+        sections:
+          info_section_fields5:
+            fields:
+
+              date_start:
+                label: Manufacturing date
+
+              location_start: false
+
+              material:
+                extends: fields/tags
+                label: Material
+                options: query
+                query:
+                  fetch: site.find('archive/materials').children
+                  text: '{{ page.title }}'
+                  value: '{{ page.id }}'
+
+              manufacturer:
+                extends: fields/tags
+                label: Manufacturer
+                options: query
+                query:
+                  fetch: site.find('archive/organisations').children
+                  text: '{{ page.title }}'
+                  value: '{{ page.id }}'

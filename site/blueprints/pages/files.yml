@@ -1,0 +1,56 @@
+title: Pool of other files
+icon: file
+
+num: zero
+
+options:
+  # valid for all users
+  preview: true
+  read: true
+  # only allow some users
+  changeTemplate: false
+  update: true
+  changeSlug: false
+  changeStatus: false
+  changeTitle: false
+  delete: false
+  duplicate: false
+  
+tabs:
+
+  tab_archive:
+    extends: tabs/archive
+    columns:
+
+      column_left:
+        sections:
+
+          section_pool:
+            extends: sections/pages_pool
+            headline: Files
+            info: false
+            sortBy: title desc
+            limit: 40
+            templates:
+              - file
+
+      column_right:
+        sections:
+          section_info:
+            headline: About creating files
+            text: |
+              Click on the "Add" Button to create a new file entity of this type. You should name it after the file that you want to upload. After creating the file entity, you can upload the actual file to it.
+              
+              The name of the file entity and the name of its actual file are not technically connected, you can change one without changing the other. However, it is recommended to have them both carry the same name to keep consistency.
+              It is also possible to change the name after creating/uploading the file, but it’s best to (batch) rename files on your computer before uploading them.
+
+              **Naming convention:**
+              ```
+              {YYYY}{-MM}{-DD}\-{title-or-name}\-{category-or-specification-or-number}.{ext}
+              ```
+              
+              Only the following characters are allowed within filenames: `0-9` `a-z` `-`.
+              Please avoid punctuation, spaces, umlauts, underscores and any other weird characters in filenames!
+
+  tab_settings:
+    extends: tabs/settings

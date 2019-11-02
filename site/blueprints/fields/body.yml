@@ -1,0 +1,11 @@
+type: textarea
+# https://getkirby.com/docs/reference/panel/fields/textarea
+
+label: Content
+buttons: true
+translate: true
+buttons:
+  - italic
+  - link
+help: >
+  Use Tags to place Keywords or Links

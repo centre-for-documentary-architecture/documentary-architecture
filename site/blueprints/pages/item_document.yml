@@ -1,0 +1,6 @@
+title: Document
+icon: document
+
+num: zero
+
+extends: pages/item

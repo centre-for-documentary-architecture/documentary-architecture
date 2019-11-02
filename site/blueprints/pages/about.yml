@@ -1,0 +1,82 @@
+title: About
+
+options:
+  # valid for all users
+  preview: true
+  read:	true
+  duplicate: false
+  changeStatus: false
+  changeTemplate: false
+  delete: false
+  # only allow some users
+  update:
+    *: false
+    super: true
+    admin: true
+  changeSlug:
+    *: false
+    super: true
+    admin: true
+  changeTitle:
+    *: false
+    super: true
+    admin: true
+
+columns:
+
+  column_left:
+    width: 1/2
+    sections:
+
+      left_fields:
+        type: fields
+        fields:
+
+          about:
+            extends: fields/body
+            label: About
+            help: false
+
+          social_media:
+            type: structure
+            label: Social Media Links
+            translate: false
+            fields:
+              link: fields/url
+
+          contact:
+            extends: fields/body
+            label: Contact info
+            help: false
+            translate: false
+            buttons:
+              - link
+              - email
+
+  column_right:
+    width: 1/2
+    sections:
+
+      right_fields:
+        type: fields
+        fields:
+
+          team:
+            type: users
+            label: Team
+            help: Team members have to be created first
+            translate: false
+
+          supporter_logos:
+            type: files
+            label: Supporter Logos
+            help: SVG, white fill, transparent background
+            query: page.images.filterBy('extension','svg')
+            translate: false
+            image:
+              back: black
+
+      section_uploads:
+        extends: sections/files_upload
+        image:
+          back: black

@@ -1,0 +1,13 @@
+type: files
+# https://getkirby.com/docs/reference/panel/sections/files
+
+headline: Image entities
+info: false
+image:
+  cover: false
+  back: white
+  ratio: 1/1
+sortBy: filename desc
+limit: 60
+sortable: false
+template: file_image

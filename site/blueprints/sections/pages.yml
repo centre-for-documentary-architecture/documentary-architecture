@@ -1,0 +1,13 @@
+type: pages
+# https://getkirby.com/docs/reference/panel/sections/pages
+
+headline: Pages
+status: all
+empty: Empty
+sortable: true
+templates:
+  - default
+image:
+  query: page.thumbnail
+  back: white
+  cover: false

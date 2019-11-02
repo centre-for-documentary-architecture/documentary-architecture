@@ -1,0 +1,59 @@
+title: Default
+
+options:
+  # valid for all users
+  preview: true
+  read:	true
+  update: true
+  # only allow some users
+  changeTemplate:
+    *: false
+    super: true
+    admin: true
+  changeSlug:
+    *: false
+    super: true
+    admin: true
+  changeStatus:
+    *: true
+    super: true
+    admin: true
+  changeTitle:
+    *: false
+    super: true
+    admin: true
+  delete:
+    *: false
+    super: true
+    admin: true
+
+tabs:
+
+  tab_info:
+    extends: tabs/info
+    columns:
+      column_left:
+        sections:
+
+          info_section_fields1: false
+
+      column_right:
+        sections:
+
+          info_section_fields3:
+            fields:
+
+              body: fields/body
+
+              properties: false
+  
+  tab_meta:
+    extends: tabs/meta
+    columns:
+      meta_column_left:
+        sections:
+          meta_section_fields1:
+            fields:
+
+              category: false
+              credits: false
