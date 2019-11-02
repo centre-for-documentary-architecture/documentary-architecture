@@ -1,3 +1,6 @@
+# On Nov 2nd, we moved here from Bitbucket ⚠️
+This is a shallow clone of [https://bitbucket.org/cdaweimar/the-matter-of-data](https://bitbucket.org/cdaweimar/the-matter-of-data). This repo is missing the history of the 600+ commits made already.
+
 # CDA Archive Website
 
 ## Stack
