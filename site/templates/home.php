@@ -30,7 +30,8 @@ snippet('navigation/history');
 				<li class="card"><a href="<?= $item->url() ?>">
 					<div class="content">
 						<h5>
-							Online Collection, 2019
+							Online Collection,
+							<?= $item->date_created()->toDate('Y') ?>
 						</h5>
 						<h1><?= $item->title() ?></h1>
 						<div class="highlight"><?= $item->description()->kirbytext() ?></div>
