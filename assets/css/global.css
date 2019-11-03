@@ -229,7 +229,7 @@ h6 {
 }
 
 .content h2 {
-  padding-right: 20%;
+  padding-right: 5%;
 }
 
 .content p {
@@ -1630,8 +1630,8 @@ body.home section.on-display .content {
 			} */
 }
 
-body.home section.on-display .content h5 + h3 {
-  margin-top: 0.25em;
+body.home section.on-display .content h5 + h2 {
+  margin-top: 0.125em;
 }
 
 body.home #archive-preview {
