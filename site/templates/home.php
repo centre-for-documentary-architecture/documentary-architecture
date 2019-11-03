@@ -57,7 +57,7 @@ snippet('navigation/history');
 					<div class="content">
 						<h5>
 							<?php
-								if( $item->category() ){
+								if( $item->category() !== null ){
 									echo ucwords( $item->category() );
 								} else {
 									echo ucwords( $item->type() );
