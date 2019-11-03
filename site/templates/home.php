@@ -57,7 +57,11 @@ snippet('navigation/history');
 					<div class="content">
 						<h5>
 							<?php
-								echo ucwords( $item->type() );
+								if( $item->category() ){
+									echo ucwords( $item->category() );
+								} else {
+									echo ucwords( $item->type() );
+								}
 								if( $item->date_start()->exists() && $item->date_start()->isNotEmpty() ){
 
 									echo ', '.$item->date_start()->value();
