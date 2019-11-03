@@ -122,7 +122,7 @@ snippet('navigation/history');
 		$previews = ['videos','3d-objects','images','audios'];
 		foreach( $previews as $preview ):
 			$archive = $site->archive( $preview );
-			if( $preview == 'images' ){
+			if( $preview === 'images' ){
 				$highlights = $archive->highlights()->toEntities();
 			} else {
 				$highlights = $archive->highlights()->toPages();
