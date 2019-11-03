@@ -229,7 +229,7 @@ h6 {
 }
 
 .content h2 {
-  padding-right: 20%;
+  padding-right: 5%;
 }
 
 .content p {
@@ -402,7 +402,7 @@ body {
 
 .bar.cda a.logo {
   display: block;
-  padding: 0.65rem 0.3rem;
+  padding: 0.65rem 0.25rem;
   -webkit-transform: translateX(0);
           transform: translateX(0);
   -webkit-transition: -webkit-transform 400ms ease;
@@ -670,6 +670,11 @@ body > .page-wrapper {
           flex-direction: column;
   height: 100%;
   height: 100vh;
+}
+
+body.home > .page-wrapper {
+  height: unset;
+  min-height: 100vh;
 }
 
 @media screen and (max-width: 767px) {
@@ -1537,6 +1542,7 @@ body.home header#top h1 {
   font-size: 6rem;
   z-index: 10;
   margin: 0.5rem 0.5rem;
+  margin-left: 0.75rem;
 }
 
 body.home header#top video {
@@ -1575,6 +1581,7 @@ body.home .archive-bar h1 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  margin-left: 0.75rem;
 }
 
 body.home .activity {
@@ -1630,8 +1637,8 @@ body.home section.on-display .content {
 			} */
 }
 
-body.home section.on-display .content h5 + h3 {
-  margin-top: 0.25em;
+body.home section.on-display .content h5 + h2 {
+  margin-top: 0.125em;
 }
 
 body.home #archive-preview {
