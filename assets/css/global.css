@@ -672,6 +672,11 @@ body > .page-wrapper {
   height: 100vh;
 }
 
+body.home > .page-wrapper {
+  height: unset;
+  min-height: 100vh;
+}
+
 @media screen and (max-width: 767px) {
   .panel.presentation .section--content {
     height: 400px;
