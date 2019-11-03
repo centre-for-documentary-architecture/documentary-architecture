@@ -1537,6 +1537,7 @@ body.home header#top h1 {
   font-size: 6rem;
   z-index: 10;
   margin: 0.5rem 0.5rem;
+  margin-left: 0.75rem;
 }
 
 body.home header#top video {
@@ -1575,6 +1576,7 @@ body.home .archive-bar h1 {
   -webkit-box-flex: 1;
       -ms-flex: 1;
           flex: 1;
+  margin-left: 0.75rem;
 }
 
 body.home .activity {
