@@ -18,6 +18,8 @@
 
 	let mediaElement = false;
 
+	let videoWidth = 0;
+
 </script>
 
 <style>
@@ -28,19 +30,21 @@
 
 {#if view.content.srcset.length > 0}
 
-<section class="{classname} {view.type}">
+<section class="{classname} {view.type}" bind:offsetWidth={videoWidth}>
 
-	<h3 class="section--header">
+	<h3 class="section--header" bind:offsetWidth={videoWidth}>
 		{ view.headline || 'Video' }
 	</h3>
 
 	<div class="section--content">
-		<video width="100%" height="auto" controls poster="{ view.content.poster }" bind:this={mediaElement}>
+		<video width="100%" height="auto" controls poster="{ view.content.poster }" bind:this={mediaElement} preload="metadata" >
+
 			{#each view.content.srcset as source}
-
-				<source type="{source.mime}" media="{source.media}" src="{source.url}" >
-
+				{#if videoWidth < source.width }
+					<source type="{source.mime}" media="{source.media}" src="{source.url}" >
+				{/if}
 			{/each}
+
 		</video>
 	</div>
 

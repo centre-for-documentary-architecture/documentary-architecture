@@ -221,12 +221,13 @@ class EntityFileVideo extends EntityFile
 
             foreach( $sizes as $size ){
 
-                // $extension = $video->extension();
                 if( $first === true ){
                     $first = false;
                     $media = '';
+                    $width = 9999999;
                 } else {
-                    $media = 'all and (max-width:'.ceil( $size / 9 * 16 ).'px)';
+                    $width = ceil( $size / 9 * 16 );
+                    $media = 'all and (max-width:'.$width.'px)';
                 }
 
                 $url = option('centre-for-documentary-architecture.matter-of-data.cdn') . 'archive/videos/' . $source['filename'] .'/'. $source['filename'] .'-'. $size.'.mp4';
@@ -234,7 +235,8 @@ class EntityFileVideo extends EntityFile
                 $srcset[] = [
                     'mime' => 'video/mp4',
                     'url' => $url,
-                    'media' => $media
+                    'media' => $media,
+                    'width' => $width
                 ];
 
             }
