@@ -402,7 +402,7 @@ body {
 
 .bar.cda a.logo {
   display: block;
-  padding: 0.65rem 0.3rem;
+  padding: 0.65rem 0.25rem;
   -webkit-transform: translateX(0);
           transform: translateX(0);
   -webkit-transition: -webkit-transform 400ms ease;
