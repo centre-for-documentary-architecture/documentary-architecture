@@ -52,10 +52,10 @@
 
 	function contentWidth( type ){
 		console.log( type );
-		if( type == 'item' ){
-			return 8;
+		if( type == 'file' ){
+			return 3;
 		}
-		return 4;
+		return 6;
 	}
 
 </script>
