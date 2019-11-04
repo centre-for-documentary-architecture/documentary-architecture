@@ -42,10 +42,11 @@
 
 		.section--content {
 			align-self: center;
+			padding: $padding-double;
 		}
 
 		.transcript {
-			padding: $padding-double $padding-double $padding-double 0;
+			// padding: $padding-double $padding-double $padding-double 0;
 		}
 	}
 
