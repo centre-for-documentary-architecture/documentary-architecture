@@ -36,9 +36,13 @@
 
 	&.video,
 	&.audio {
-		display: block;
+		display: flex;
 		overflow: auto;
 		height: 100%;
+
+		.section--content {
+			align-self: center;
+		}
 
 		.transcript {
 			padding: $padding-double $padding-double $padding-double 0;
