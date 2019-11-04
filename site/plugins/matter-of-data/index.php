@@ -22,7 +22,11 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 
 	'options' => [
 		'pagination' => 40,
-		'cdn' => 'https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda/'
+		'space' => 'https://documentary-architecture.fra1.digitaloceanspaces.com/cda/',
+		// alias as placeholder
+		'cdn' => 'https://documentary-architecture.fra1.digitaloceanspaces.com/cda/',
+		// tru edge cdn address:
+		// 'cdn' => 'https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda/',
 	],
 
 	'routes' => [

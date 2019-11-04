@@ -10,12 +10,12 @@ snippet('navigation/history');
 
 	<h1><?= $site->title() ?></h1>
 
-	<?php $root = site()->url().'/assets/videos'; ?>
+	<?php $root = option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/videos/'; ?>
 	<video autoplay loop muted preload="auto">
-		<source src="<?= $root ?>/CDA-intro-short-360.mp4" type='video/mp4' media="all and (max-width: 768px)" />
-		<source src="<?= $root ?>/CDA-intro-short-540.mp4" type='video/mp4' media="all and (max-width: 1152px)" />
-		<source src="<?= $root ?>/CDA-intro-short-720.mp4" type='video/mp4' media="all and (max-width: 1536px)" />
-		<source src="<?= $root ?>/CDA-intro-short-900.mp4" type='video/mp4'/>
+		<source src="<?= $root ?>CDA-intro-short-360.mp4" type='video/mp4' media="all and (max-width: 640px)" />
+		<source src="<?= $root ?>CDA-intro-short-480.mp4" type='video/mp4' media="all and (max-width: 854px)" />
+		<source src="<?= $root ?>CDA-intro-short-720.mp4" type='video/mp4' media="all and (max-width: 1280px)" />
+		<source src="<?= $root ?>CDA-intro-short-1080.mp4" type='video/mp4'/>
 	</video>
 
 </header>
@@ -30,7 +30,8 @@ snippet('navigation/history');
 				<li class="card"><a href="<?= $item->url() ?>">
 					<div class="content">
 						<h5>
-							Online Collection, 2019
+							Online Collection,
+							<?= $item->date_created()->toDate('Y') ?>
 						</h5>
 						<h1><?= $item->title() ?></h1>
 						<div class="highlight"><?= $item->description()->kirbytext() ?></div>
@@ -56,7 +57,11 @@ snippet('navigation/history');
 					<div class="content">
 						<h5>
 							<?php
-								echo ucwords( $item->type() );
+								if( $item->category() !== null ){
+									echo ucwords( $item->category() );
+								} else {
+									echo ucwords( $item->type() );
+								}
 								if( $item->date_start()->exists() && $item->date_start()->isNotEmpty() ){
 
 									echo ', '.$item->date_start()->value();
@@ -117,7 +122,7 @@ snippet('navigation/history');
 		$previews = ['videos','3d-objects','images','audios'];
 		foreach( $previews as $preview ):
 			$archive = $site->archive( $preview );
-			if( $preview == 'images' ){
+			if( $preview === 'images' ){
 				$highlights = $archive->highlights()->toEntities();
 			} else {
 				$highlights = $archive->highlights()->toPages();

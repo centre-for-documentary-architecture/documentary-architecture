@@ -56,6 +56,8 @@ Options -Indexes
 Options +FollowSymlinks
 
 # allow CORS
+Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.digitaloceanspaces.com"
+Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.cdn.digitaloceanspaces.com"
 Header Set Access-Control-Allow-Origin "https://mod.documentary-architecture.org"
 Header Set Access-Control-Allow-Origin "https://documentary-architecture.org"
 Header Set Access-Control-Allow-Origin "http://localhost:8000"

@@ -10,6 +10,7 @@ body.home {
 			font-size: 6rem;
 			z-index: 10;
 			margin: $padding-box;
+			margin-left: 0.75rem;
 		}
 		// border-top: $border;
 		min-height: 65vh;
@@ -45,6 +46,7 @@ body.home {
 		padding: 0 $padding;
 		h1 {
 			flex: 1;
+			margin-left: 0.75rem;
 		}
 	}
 
@@ -108,8 +110,8 @@ body.home {
 				// padding-top: 0;
 			} */
 			// padding: $padding;
-			h5 + h3 {
-				margin-top: $padding-text-top / 2;
+			h5 + h2 {
+				margin-top: $padding-text-top / 4;
 			}
 		}
 	}
