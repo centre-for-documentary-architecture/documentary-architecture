@@ -25,7 +25,7 @@
 	&.image {
 		figure {
 			width: 100%;
-			padding: $padding-double;
+			padding: $border-width;
 			img {
 				display: inline-block;
 				width: 100%;
@@ -42,7 +42,7 @@
 
 		.section--content {
 			align-self: center;
-			padding: $padding-double;
+			padding: $border-width;
 		}
 
 		.transcript {
