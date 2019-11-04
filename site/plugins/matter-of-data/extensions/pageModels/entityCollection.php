@@ -290,15 +290,15 @@ class LieblingHouseCollection extends EntityCollection
 	{
 
         $url = $this->kirby()->site()->url();
-        $asset = $url.'/assets/apps/liebling-house';
+        $asset = option('centre-for-documentary-architecture.matter-of-data.cdn').option('centre-for-documentary-architecture.liebling-house.path');
         return [
             'type' => 'liebling-house',
             'headline' => 'Virtual 3D World',
             'content' => [
                 'worlditemStart' => $this->worlditem(),
                 'worlditemsList' => url( $url.'/i/liebling-house/worlditems.json' ),
-                'unityLoader' => url( $asset.'/Build/UnityLoader.js'),
-                'unityJson' => url( $asset.'/Build/liebling-house-world.json' )
+                'unityLoader' => url( $asset.'Build/UnityLoader.js'),
+                'unityJson' => url( $asset.'Build/liebling-house-world.json' )
             ]
         ];
 

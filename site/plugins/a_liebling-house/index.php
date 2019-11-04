@@ -16,6 +16,11 @@ require_once __DIR__.'/functions.php';
 
 Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
 
+    'options' => [
+        'cache.worlditems' => true,
+        'path' => 'assets/liebling-house/'
+    ],
+
     'blueprints' => [
         'liebling-house/fields/worlditem' => __DIR__ . '/blueprints/worlditem.yml',
         'pages/collection_liebling-house' => __DIR__ . '/blueprints/collection.yml',
@@ -25,10 +30,6 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
         'lieblingHouse' => function () {
             return $this->page('1937-doka-32-073-34-770');
         }
-    ],
-
-    'options' => [
-        'cache.worlditems' => true
     ],
 
     'controllers' => [
