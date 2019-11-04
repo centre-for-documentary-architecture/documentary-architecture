@@ -1,0 +1,14 @@
+@font-face {
+	font-family: "Favorit";
+    src: url("FavoritStd-Book.woff2") format("woff2"),
+         url("FavoritStd-Book.woff2") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: "Favorit Mono";
+    src: url("FavoritMonoStd-Book.woff2") format("woff2"),
+         url("FavoritMonoStd-Book.woff") format("woff");
+	font-weight: normal;
+	font-style: normal;
+}

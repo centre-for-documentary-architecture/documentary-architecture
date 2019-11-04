@@ -1,25 +1,7 @@
 // https://sass-lang.com/documentation
 
 // reset
-@import '0-reset';
-
-//
-// fonts
-//
-@font-face {
-	font-family: "Favorit";
-    src: url("../fonts/FavoritStd-Book.woff2") format("woff2"),
-         url("../fonts/FavoritStd-Book.woff2") format("woff");
-	font-weight: normal;
-	font-style: normal;
-}
-@font-face {
-	font-family: "Favorit Mono";
-    src: url("../fonts/FavoritMonoStd-Book.woff2") format("woff2"),
-         url("../fonts/FavoritMonoStd-Book.woff") format("woff");
-	font-weight: normal;
-	font-style: normal;
-}
+@import 'global/0-reset';
 
 //
 // variables
@@ -89,16 +71,16 @@ $padding-text-inside: $padding-text-inside-top $padding-text-inside-side;
 // modules
 //
 
-@import '1-typography';
+@import 'global/1-typography';
 
-@import '2-navigation';
+@import 'global/2-navigation';
 
-@import '3-layout';
+@import 'global/3-layout';
 
-@import '4-components';
+@import 'global/4-components';
 
-@import '5-theme';
+@import 'global/5-theme';
 
-@import '6-media';
+@import 'global/6-media';
 
-@import '7-content';
+@import 'global/7-content';
