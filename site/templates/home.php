@@ -12,11 +12,10 @@ snippet('navigation/history');
 
 	<?php $root = option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/videos/'; ?>
 	<video autoplay loop muted preload="auto">
-		<?php // this is absolutely the wrong order ?>
-		<source src="<?= $root ?>CDA-intro-short-900.mp4" type='video/mp4'/>
-		<source src="<?= $root ?>CDA-intro-short-720.mp4" type='video/mp4' media="all and (max-width: 1536px)" />
-		<source src="<?= $root ?>CDA-intro-short-540.mp4" type='video/mp4' media="all and (max-width: 1152px)" />
-		<source src="<?= $root ?>CDA-intro-short-360.mp4" type='video/mp4' media="all and (max-width: 768px)" />
+		<source src="<?= $root ?>CDA-intro-short-360.mp4" type='video/mp4' media="all and (max-width: 640px)" />
+		<source src="<?= $root ?>CDA-intro-short-480.mp4" type='video/mp4' media="all and (max-width: 854px)" />
+		<source src="<?= $root ?>CDA-intro-short-720.mp4" type='video/mp4' media="all and (max-width: 1280px)" />
+		<source src="<?= $root ?>CDA-intro-short-1080.mp4" type='video/mp4'/>
 	</video>
 
 </header>
