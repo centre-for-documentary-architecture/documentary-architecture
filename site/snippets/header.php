@@ -68,7 +68,7 @@ if( isset( $class ) ){
 
 		</script>
 
-		<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').option('centre-for-documentary-architecture.liebling-house.path').'Build/UnityLoader.js' ); ?>
+		<?= js( option('centre-for-documentary-architecture.liebling-house.path').'Build/UnityLoader.js' ); ?>
 
 	<?php endif; ?>
 

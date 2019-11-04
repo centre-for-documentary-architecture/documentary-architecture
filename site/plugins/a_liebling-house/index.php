@@ -2,23 +2,20 @@
 
 /**
  * liebling-house 3d world
+ *
+ * is called a_liebling-hosue to be loaded before the framework plugin
+ * unfortunately it is not possible to move the EntityCollectionLieblingHouse class in here as well
+ * it deosn’t seem to be possible to consume the .unityweb files from the cdn :(
  */
 
- /*
- * is called a_liebling-hosue to be loaded before the framework plugin
- * */
-
 require_once __DIR__.'/functions.php';
-
-/*
-* unfortunately it is not possible to move the EntityCollectionLieblingHouse class in here as well
-*/
 
 Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
 
     'options' => [
         'cache.worlditems' => true,
-        'path' => 'assets/liebling-house/'
+        // https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda/
+        'path' => 'assets/apps/liebling-house/'
     ],
 
     'blueprints' => [
