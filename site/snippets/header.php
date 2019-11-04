@@ -42,6 +42,7 @@ if( isset( $class ) ){
 
 	<?= js('assets/es6/global.js') ?>
 
+	<?= css( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/fonts/fonts.css' ) ?>
 	<?= css('assets/css/normalize.css') ?>
 	<?= css('assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
