@@ -51,7 +51,7 @@ body.home {
 	}
 
 	.activity {
-		padding: $padding / 2;
+		padding: $padding;
 		background-color: $light;
 		// border-top: $border;
 	}
@@ -62,8 +62,7 @@ body.home {
 			position: sticky;
 			top: $barWidth * 1.2;
 			.card {
-				width: 100%;
-				padding: $padding / 2;
+				padding: $padding;
 			}
 		}
 		.content {
@@ -86,12 +85,14 @@ body.home {
 			}
 		}
 	}
-	/*
 	section.projects {
-		.title {
-			padding: $padding-text;
+		.cards {
+			.card {
+				width: 100%;
+			}
 		}
 	}
+	/*
 	section.on-display {
 		.title {
 			padding: $padding-text;

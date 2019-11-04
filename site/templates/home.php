@@ -22,7 +22,7 @@ snippet('navigation/history');
 
 <div class="grid white activity">
 
-	<section class="col-sm-8 projects whites">
+	<section class="col-sm-6 projects whites">
 
 		<ul class="cards">
 
@@ -48,12 +48,12 @@ snippet('navigation/history');
 
 	</section>
 
-	<section class="col-sm-4 on-display whites">
+	<section class="col-sm-6 on-display whites">
 
-		<ul class="cards">
+		<ul class="cards grid">
 
 			<?php foreach( $site->archive('publications')->highlights()->toPages() as $item ): ?>
-				<li class="card"><a href="<?= $item->url() ?>">
+				<li class="card col-sm-6"><a href="<?= $item->url() ?>">
 					<div class="content">
 						<h5>
 							<?php
