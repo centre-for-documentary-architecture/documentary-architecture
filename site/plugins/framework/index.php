@@ -5,7 +5,7 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
 
     'options' => [
         'cache.json' => true,
-        'expires' => 60
+        'expires' => 5
     ],
 
     'routes' => [
