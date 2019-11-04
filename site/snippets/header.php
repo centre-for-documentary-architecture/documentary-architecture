@@ -54,10 +54,10 @@ if( isset( $class ) ){
 		echo js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js');
 		echo css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css');
 
-		echo js('assets/js/three.min.js');
-		echo js('assets/js/inflate.min.js');
-		echo js('assets/js/FBXLoader.js');
-		echo js('assets/js/OrbitControls.js');
+		echo js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/three.min.js');
+		echo js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/inflate.min.js');
+		echo js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/FBXLoader.js');
+		echo js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/OrbitControls.js');
 
 		?>
 		<script>
