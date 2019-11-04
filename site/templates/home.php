@@ -10,7 +10,7 @@ snippet('navigation/history');
 
 	<h1><?= $site->title() ?></h1>
 
-	<?php $root = option('centre-for-documentary-architecture.matter-of-data.space').'assets/videos/'; ?>
+	<?php $root = option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/videos/'; ?>
 	<video autoplay loop muted preload="auto">
 		<source src="<?= $root ?>CDA-intro-short-360.mp4" type='video/mp4' media="all and (max-width: 640px)" />
 		<source src="<?= $root ?>CDA-intro-short-480.mp4" type='video/mp4' media="all and (max-width: 854px)" />
