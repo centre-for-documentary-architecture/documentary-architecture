@@ -20,7 +20,7 @@ columns:
             type: entities
             label: Highlights
             query: page.children.listed
-            max: 10
+            max: 4
 
       section_upload: false
 
