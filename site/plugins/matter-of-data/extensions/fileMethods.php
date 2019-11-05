@@ -78,7 +78,7 @@ return [
 			$this->thumb(['width' => 80])->url(),
 			[
 				'alt' => $alt,
-				'class' => "lazyload",
+				'class' => 'lazyload',
 				'data-sizes' => 'auto',
 				'data-src' => $this->url(),
 				'data-srcset' => $this->srcset( $srcset ),
@@ -96,7 +96,7 @@ return [
 		if( $this->type() != 'image' ){
 			return null;
 		}
-		
+
 		$content = [
 			'url' => $this->url(),
 			'title' => $this->title(),
