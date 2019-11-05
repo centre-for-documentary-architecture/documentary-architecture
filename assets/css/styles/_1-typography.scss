@@ -80,10 +80,11 @@ dl,
 	a {
 		text-decoration: underline;
 		text-decoration-color: $grey-light;
-		// not supported yet text-underline-offset: 1em;
-		transition: color 200ms ease, text-decoration 200ms ease;
+		// not supported yet
+		text-underline-offset: 3px;
+		transition: color 200ms ease, text-decoration-color 200ms ease;
 		&:hover {
-			text-decoration-color: $blue;
+			text-decoration-color: $blue !important;
 			color: $blue;
 		}
 	}
