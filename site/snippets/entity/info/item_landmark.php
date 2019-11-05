@@ -10,7 +10,7 @@
 
 <?php
 $architects = $page->architects()->split();
-if( count( $architects ) > 0 ): ?>
+if( isset( $architects ) > 0 ): ?>
     <dt>Architects</dt>
     <dd>
     <?php

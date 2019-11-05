@@ -5,7 +5,7 @@
 
 <?php
 $location_start = $page->location_start()->yaml();
-if( count( $location_start ) > 0 ): ?>
+if( isset( $location_start ) > 0 ): ?>
     <dt class="fullwidth">Locations of Recording</dt>
     <dd class="fullwidth">
     <?php
