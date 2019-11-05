@@ -143,7 +143,7 @@ snippet('navigation/history');
 
 		<div>
 			<?php $count = $site->archive()->index()->listed()->count(); ?>
-			<h1><a href="<?= $site->archive()->url() ?>">Explore all <?= $count; ?> archived elements →</a></h1>
+			<h2><a href="<?= $site->archive()->url() ?>">Explore all <?= $count; ?> archived elements&nbsp;→</a></h2>
 
 			<form id="search" action="archive" autocomplete="off">
 				<input class="input" type="search" name="research" placeholder="Keyword" autocomplete="off">
