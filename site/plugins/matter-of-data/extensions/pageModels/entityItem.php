@@ -96,7 +96,7 @@ class EntityItemPerson extends EntityItem
             $values = [];
             foreach( $this->education()->toStructure() as $stop ){
                 $ed = $stop->date_start()->toDateKeyword().'. ';
-                if( $ed == '. ' ){ $ed = ''; }
+                if( $ed === '. ' ){ $ed = ''; }
                 $ed .= $stop->text()->kirbytextinline().', ';
                 $ed .= $stop->location()->toLocation();
                 $values[] = $ed;

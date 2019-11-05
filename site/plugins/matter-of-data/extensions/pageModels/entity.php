@@ -140,7 +140,7 @@ class Entity extends Page
 		$siblings = $this->siblings()->listed();
 		$length = $siblings->count();
 
-		if( $includeAllSiblings == 0 ){
+		if( $includeAllSiblings === 0 ){
 			$siblings = false;
 		} else {
 			$siblings = $siblings->dataAbstract('');
@@ -312,7 +312,7 @@ class Entity extends Page
         }
         */
 
-        if( $this->entity() == 'file' && $fileinfo = $this->fileinfo() ){
+        if( $this->entity() === 'file' && $fileinfo = $this->fileinfo() ){
             $content[] = [
                 'key' => 'File',
                 'value' => $fileinfo
@@ -398,7 +398,7 @@ class Entity extends Page
                     }
 
                 }
-                if( count( $line['value'] ) == 1 ){
+                if( count( $line['value'] ) === 1 ){
                     $line['value'] = $line['value'][0];
                 }
                 $content[] = $line;
@@ -513,7 +513,7 @@ class EntitySource extends Page
 
         }
 
-        if( $category == 'website' ){
+        if( $category === 'website' ){
 
             if( $content->website()->isNotEmpty() ) {
                 $declaration .= $content->website()->toLink().'. ';
@@ -521,7 +521,7 @@ class EntitySource extends Page
 
         } else {
 
-            if( $category == 'archive' ){
+            if( $category === 'archive' ){
 
                 $declaration .= $this->title().' ';
 
@@ -550,7 +550,7 @@ class EntitySource extends Page
             $declaration .= $content->date();
         }
 
-        if( $category == 'archive' ){
+        if( $category === 'archive' ){
 
             $declaration .= ', ';
 

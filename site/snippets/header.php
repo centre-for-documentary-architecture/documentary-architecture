@@ -49,7 +49,7 @@ if( isset( $class ) ){
 
 	<?php
 
-	if( $page->template() == 'entity' ):
+	if( $page->template() === 'entity' ):
 
 		echo js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js');
 		echo css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css');

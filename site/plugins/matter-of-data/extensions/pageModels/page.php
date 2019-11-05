@@ -49,7 +49,7 @@ class PageArchive extends Page
     */
     public function results( string $query = '' ){
 
-        if( $query == '' ){
+        if( $query === '' ){
             return $this->recentActivity();
         }
 
