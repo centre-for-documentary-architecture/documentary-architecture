@@ -19,7 +19,7 @@ options:
   changeTitle:
     *: false
     admin: true
-    
+
 extends: pages/items
 
 tabs:
@@ -32,3 +32,10 @@ tabs:
             templates:
               - item_publication
               - item_event
+
+      column_right:
+        sections:
+          section_fields:
+            fields:
+              highlights:
+                max: 16
