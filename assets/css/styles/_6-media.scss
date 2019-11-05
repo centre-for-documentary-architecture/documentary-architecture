@@ -37,6 +37,7 @@
 	&.video,
 	&.audio {
 		display: flex;
+		flex-direction: column;
 		overflow: auto;
 		height: 100%;
 
@@ -46,7 +47,7 @@
 		}
 
 		.transcript {
-			// padding: $padding-double $padding-double $padding-double 0;
+			padding: $padding-double;
 		}
 	}
 

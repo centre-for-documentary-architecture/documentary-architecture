@@ -147,8 +147,8 @@ body.entity.black main {
 	user-select: none;
 	transition: background-color 150ms ease;
 	&:hover {
-		color: $white;
-		background-color: $blue;
+		color: $white !important;
+		background-color: $blue !important;
 		img {
 			mix-blend-mode: screen;
 			filter: contrast(115%);

@@ -33,12 +33,12 @@ snippet('navigation/history');
 							Online Collection,
 							<?= $item->date_created()->toDate('Y') ?>
 						</h5>
-						<h1><?= $item->title() ?></h1>
 						<?php if($image = $item->thumbnail()): ?>
 							<figure>
 								<?= $image->responsiveImage('large') ?>
 							</figure>
 						<?php endif ?>
+						<h1><?= $item->title() ?></h1>
 						<div class="highlight"><?= $item->description()->kirbytext() ?></div>
 					</a>
 				</li>
