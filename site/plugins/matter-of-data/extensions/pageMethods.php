@@ -201,6 +201,6 @@ return [
 		/*
 		* inserts word break hints <wbr> into filenames
 		*/
-		return preg_replace('/[-_.]/', '<wbr>$0', $this->title());
+		return wbr( $this->title() );
 	},
 ];

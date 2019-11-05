@@ -23,7 +23,7 @@ return [
 		/*
 		* returns the filename as title, making $file mor compatible to $page templates
 		*/
-		return preg_replace('/[-_.]/', '<wbr>$0', $this->filename());
+		return wbr( $this->filename() );
 	},
 	'downloadLink' => function(){
 		/*
