@@ -27,21 +27,21 @@ snippet('navigation/history');
 		<ul class="cards">
 
 			<?php foreach( $projects as $item ): ?>
-				<li class="card"><a href="<?= $item->url() ?>">
-					<div class="content">
+				<li class="card">
+					<a href="<?= $item->url() ?>">
 						<h5>
 							Online Collection,
 							<?= $item->date_created()->toDate('Y') ?>
 						</h5>
 						<h1><?= $item->title() ?></h1>
+						<?php if($image = $item->thumbnail()): ?>
+							<figure>
+								<?= $image->responsiveImage('large') ?>
+							</figure>
+						<?php endif ?>
 						<div class="highlight"><?= $item->description()->kirbytext() ?></div>
-					</div>
-					<?php if($image = $item->thumbnail()): ?>
-						<figure>
-							<?= $image->responsiveImage('large') ?>
-						</figure>
-					<?php endif ?>
-				</a></li>
+					</a>
+				</li>
 			<?php endforeach ?>
 
 		</ul>
@@ -54,32 +54,30 @@ snippet('navigation/history');
 
 			<?php foreach( $site->archive('publications')->highlights()->toPages() as $item ): ?>
 				<li class="card col-sm-6"><a href="<?= $item->url() ?>">
-					<div class="content">
-						<h5>
-							<?php
-								if( $item->category() !== null ){
-									echo ucwords( $item->category() );
-								} else {
-									echo ucwords( $item->type() );
+					<h5>
+						<?php
+							if( $item->category() !== null ){
+								echo ucwords( $item->category() );
+							} else {
+								echo ucwords( $item->type() );
+							}
+							if( $item->date_start()->exists() && $item->date_start()->isNotEmpty() ){
+
+								echo ', '.$item->date_start()->value();
+
+								if( $item->date_end()->exists() && $item->date_end()->isNotEmpty() ){
+									echo ' – '.$item->date_end()->value();
 								}
-								if( $item->date_start()->exists() && $item->date_start()->isNotEmpty() ){
 
-									echo ', '.$item->date_start()->value();
-
-									if( $item->date_end()->exists() && $item->date_end()->isNotEmpty() ){
-										echo ' – '.$item->date_end()->value();
-									}
-
-								}
-							?>
-						</h5>
-						<h2><?= $item->title() ?></h2>
-					</div>
+							}
+						?>
+					</h5>
 					<?php if($image = $item->thumbnail()): ?>
 						<figure>
 							<?= $image->responsiveImage('large') ?>
 						</figure>
 					<?php endif ?>
+					<h2><?= $item->title() ?></h2>
 				</a></li>
 			<?php endforeach ?>
 

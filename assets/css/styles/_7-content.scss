@@ -51,32 +51,28 @@ body.home {
 	}
 
 	.activity {
-		padding: $padding;
+		padding: $padding-half;
 		background-color: $light;
 		// border-top: $border;
 	}
 
 	section.projects,
 	section.on-display {
+		.grid {
+			padding: 0;
+		}
 		.cards {
 			position: sticky;
 			top: $barWidth * 1.2;
 			.card {
-				padding: $padding;
-			}
-		}
-		.content {
-			padding-top: $padding;
-			h5 {
-				font-size: $font-small;
-				// padding: $padding-text;
-			}
-			h3 {
-				padding: 0;
+				padding: $padding-half;
+				a {
+					padding: 0 $padding;
+				}
 			}
 		}
 		figure {
-			background-color: $black;
+			margin: $padding 0;
 			display: block;
 			img {
 				object-fit: unset;
@@ -105,17 +101,6 @@ body.home {
 		}
 	}
 	*/
-	section.on-display {
-		.content {
-			/* h5 {
-				// padding-top: 0;
-			} */
-			// padding: $padding;
-			h5 + h2 {
-				margin-top: $padding-text-top / 4;
-			}
-		}
-	}
 
 	#archive-preview {
 
