@@ -52,10 +52,6 @@ body.black {
 	}
 }
 
-.card > a {
-	transition: background-color 100ms ease;
-	user-select: none;
-}
 
 //
 // text selection
@@ -111,9 +107,6 @@ body.entity.white,
 		// border-color: $light;
 		a {
 			background-color: $white;
-			&:hover {
-				background-color: $white-active;
-			}
 		}
 	}
 }
@@ -123,9 +116,6 @@ body.entity.white,
 		// border-color: $white;
 		a {
 			background-color: $light;
-			&:hover {
-				background-color: $light-active;
-			}
 		}
 	}
 }
@@ -139,9 +129,6 @@ body.entity.black {
 		// border-color: $black;
 		a {
 			background-color: $dark;
-			&:hover {
-				background-color: $dark-active;
-			}
 		}
 	}
 }
@@ -152,10 +139,19 @@ body.entity.black main {
 		// border-color: $white;
 		a {
 			background-color: $white;
-			&:hover {
-				color: $white;
-				background-color: $blue;
-			}
+		}
+	}
+}
+
+.card > a {
+	user-select: none;
+	transition: background-color 150ms ease;
+	&:hover {
+		color: $white;
+		background-color: $blue;
+		img {
+			mix-blend-mode: screen;
+			filter: contrast(115%);
 		}
 	}
 }
