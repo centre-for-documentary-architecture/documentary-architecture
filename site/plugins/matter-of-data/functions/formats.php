@@ -51,55 +51,54 @@ function toLocation( $location ){
 	*/
 	$return = [];
 
+	if( isset( $location['title'] ) ){
+		$return[] = $location['title'];
+	}
+
 	if( isset( $location['streetaddress']) ){
 		$return[] = toKeyword( $location['streetaddress'] );
 	}
 
 	if( isset( $location['addresslocality']) ){
-		$zip = '';
+
+		$address = '';
 		if( isset( $location['postalcode'] ) ){
-			$zip .= toKeyword( $location['postalcode'] ).' ';
+			$address .= toKeyword( $location['postalcode'] ).' ';
 		}
-		$return[] = $zip . toKeyword( $location['addresslocality'] );
+		$return[] = $address . toKeyword( $location['addresslocality'] );
 
 	}
 
 	if( isset( $location['addresscountry']) ){
-		$return[] = toKeyword( strtoupper( $location['addresscountry'] ) );
-	}
 
-	$return = implode(', ', array_filter($return) ).' ';
+		$country = toKeyword( strtoupper( $location['addresscountry'] ) );
 
-	if( isset( $location['addresscountryhistoric'] )){
-		if( $location['addresscountryhistoric'] ){
-			$return .= '(formerly '.toKeyword( $location['addresscountryhistoric'] ).')';
+		if( isset( $location['addresscountryhistoric'] )){
+			$country .= ' (formerly '.toKeyword( $location['addresscountryhistoric'] ).')';
 		}
-	}
 
-	if( isset( $location['title'] ) ){
-		$title = toKeyword( $location['title'] );
-		if( $title != '' ){
-			$return = $title.'. '.$return;
-		}
-	}
+		$return[] = $country;
 
+	}
 
 	if( isset($location['lat']) && isset($location['lon']) ){
 		// http://www.google.com/maps/place/lat,lng
 
 		$geo = strtr( strval( $location['lat'] ), ',', '.' ).','.strtr( strval( $location['lon'] ), ',', '.' );
 
-		$return .= ' '.Html::a(
-				'http://www.google.com/maps/place/'.$geo,
-				'('.$geo.')',
-				$attr = [
-					'target' => '_blank',
-					'title' => 'Show on map',
-					'rel' => 'nofollow'
-				]
+		$return[] = ' '.Html::a(
+			'http://www.google.com/maps/place/'.$geo,
+			'('.$geo.')',
+			$attr = [
+				'target' => '_blank',
+				'title' => 'Show on map',
+				'rel' => 'nofollow'
+			]
 		);
 
 	}
+
+	$return = implode('<br />', array_filter($return) ).' ';
 
 	return $return;
 }
