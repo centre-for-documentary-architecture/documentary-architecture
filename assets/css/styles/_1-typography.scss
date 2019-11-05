@@ -36,16 +36,15 @@ h3 {
 }
 body,
 h3,
-h4,
-h5 {
+h4 {
 	font-size: $font-size;
 	line-height: 1.2;
 }
 h3,
-h4,
-h5 {
+h4 {
 	margin: $padding-text;
 }
+h5,
 h6 {
 	font-size: $font-small;
 	margin: $padding-text;
@@ -82,6 +81,11 @@ dl,
 		text-decoration: underline;
 		text-decoration-color: $grey-light;
 		// not supported yet text-underline-offset: 1em;
+		transition: color 200ms ease, text-decoration 200ms ease;
+		&:hover {
+			text-decoration-color: $blue;
+			color: $blue;
+		}
 	}
 }
 .black {
@@ -90,10 +94,6 @@ dl,
 	.text {
 		a {
 			text-decoration-color: $grey-dark;
-			&:hover {
-				text-decoration-color: $blue;
-				color: $blue;
-			}
 		}
 	}
 }

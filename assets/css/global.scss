@@ -1,7 +1,7 @@
 // https://sass-lang.com/documentation
 
 // reset
-@import 'global/0-reset';
+@import 'styles/0-reset';
 
 //
 // variables
@@ -52,6 +52,7 @@ $border-white: $border-width $border-style $white;
 
 // paddings
 $padding: 0.5rem;
+$padding-half: $padding / 2;
 $padding-double: $padding * 2;
 
 $padding-box-top: $padding;
@@ -71,16 +72,16 @@ $padding-text-inside: $padding-text-inside-top $padding-text-inside-side;
 // modules
 //
 
-@import 'global/1-typography';
+@import 'styles/1-typography';
 
-@import 'global/2-navigation';
+@import 'styles/2-navigation';
 
-@import 'global/3-layout';
+@import 'styles/3-layout';
 
-@import 'global/4-components';
+@import 'styles/4-components';
 
-@import 'global/5-theme';
+@import 'styles/5-theme';
 
-@import 'global/6-media';
+@import 'styles/6-media';
 
-@import 'global/7-content';
+@import 'styles/7-content';

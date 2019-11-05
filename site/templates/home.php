@@ -22,64 +22,62 @@ snippet('navigation/history');
 
 <div class="grid white activity">
 
-	<section class="col-sm-8 projects whites">
+	<section class="col-sm-6 projects whites">
 
 		<ul class="cards">
 
 			<?php foreach( $projects as $item ): ?>
-				<li class="card"><a href="<?= $item->url() ?>">
-					<div class="content">
+				<li class="card">
+					<a href="<?= $item->url() ?>">
 						<h5>
 							Online Collection,
 							<?= $item->date_created()->toDate('Y') ?>
 						</h5>
 						<h1><?= $item->title() ?></h1>
+						<?php if($image = $item->thumbnail()): ?>
+							<figure>
+								<?= $image->responsiveImage('large') ?>
+							</figure>
+						<?php endif ?>
 						<div class="highlight"><?= $item->description()->kirbytext() ?></div>
-					</div>
-					<?php if($image = $item->thumbnail()): ?>
-						<figure>
-							<?= $image->responsiveImage('large') ?>
-						</figure>
-					<?php endif ?>
-				</a></li>
+					</a>
+				</li>
 			<?php endforeach ?>
 
 		</ul>
 
 	</section>
 
-	<section class="col-sm-4 on-display whites">
+	<section class="col-sm-6 on-display whites">
 
-		<ul class="cards">
+		<ul class="cards grid">
 
 			<?php foreach( $site->archive('publications')->highlights()->toPages() as $item ): ?>
-				<li class="card"><a href="<?= $item->url() ?>">
-					<div class="content">
-						<h5>
-							<?php
-								if( $item->category() !== null ){
-									echo ucwords( $item->category() );
-								} else {
-									echo ucwords( $item->type() );
+				<li class="card col-sm-6"><a href="<?= $item->url() ?>">
+					<h5>
+						<?php
+							if( $item->category() !== null ){
+								echo ucwords( $item->category() );
+							} else {
+								echo ucwords( $item->type() );
+							}
+							if( $item->date_start()->exists() && $item->date_start()->isNotEmpty() ){
+
+								echo ', '.$item->date_start()->value();
+
+								if( $item->date_end()->exists() && $item->date_end()->isNotEmpty() ){
+									echo ' – '.$item->date_end()->value();
 								}
-								if( $item->date_start()->exists() && $item->date_start()->isNotEmpty() ){
 
-									echo ', '.$item->date_start()->value();
-
-									if( $item->date_end()->exists() && $item->date_end()->isNotEmpty() ){
-										echo ' – '.$item->date_end()->value();
-									}
-
-								}
-							?>
-						</h5>
-						<h2><?= $item->title() ?></h2>
-					</div>
+							}
+						?>
+					</h5>
 					<?php if($image = $item->thumbnail()): ?>
 						<figure>
 							<?= $image->responsiveImage('large') ?>
 						</figure>
 					<?php endif ?>
+					<h2><?= $item->title() ?></h2>
 				</a></li>
 			<?php endforeach ?>
 
@@ -145,7 +143,7 @@ snippet('navigation/history');
 
 		<div>
 			<?php $count = $site->archive()->index()->listed()->count(); ?>
-			<h1><a href="<?= $site->archive()->url() ?>">Explore all <?= $count; ?> archived elements →</a></h1>
+			<h2><a href="<?= $site->archive()->url() ?>">Explore all <?= $count; ?> archived elements&nbsp;→</a></h2>
 
 			<form id="search" action="archive" autocomplete="off">
 				<input class="input" type="search" name="research" placeholder="Keyword" autocomplete="off">

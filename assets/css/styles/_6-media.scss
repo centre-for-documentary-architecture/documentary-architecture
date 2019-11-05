@@ -25,6 +25,7 @@
 	&.image {
 		figure {
 			width: 100%;
+			padding: $border-width;
 			img {
 				display: inline-block;
 				width: 100%;
@@ -35,12 +36,17 @@
 
 	&.video,
 	&.audio {
-		display: block;
+		display: flex;
 		overflow: auto;
 		height: 100%;
 
+		.section--content {
+			align-self: center;
+			padding: $border-width;
+		}
+
 		.transcript {
-			padding: $padding-double $padding-double $padding-double 0;
+			// padding: $padding-double $padding-double $padding-double 0;
 		}
 	}
 
@@ -123,6 +129,7 @@ main .content {
 */
 
 
+/*
 // lazyloading
 // https://github.com/aFarkas/lazysizes
 img.lazyload,
@@ -130,5 +137,6 @@ img.lazyloading {
 	filter: blur(8px);
 }
 img.lazyloaded {
-	filter: none;
+	filter: blur(0);
 }
+*/
