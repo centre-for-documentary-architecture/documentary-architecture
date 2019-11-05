@@ -7,7 +7,7 @@ function toKeyword( string $keyword, $text = false, $title = false ){
 	/*
 	* create a archive query link of any string
 	*/
-	$keyword = trim( $keyword, ' -,.;+\t\n\r\0\x0B');
+	$keyword = trim( $keyword, " -,.;+\t\n\r\0\x0B");
 	if( !$keyword ){
 		return;
 	}
