@@ -74,7 +74,9 @@ function toLocation( $location ){
 		$country = toKeyword( strtoupper( $location['addresscountry'] ) );
 
 		if( isset( $location['addresscountryhistoric'] )){
-			$country .= ' (formerly '.toKeyword( $location['addresscountryhistoric'] ).')';
+			if( $historic = toKeyword( $location['addresscountryhistoric'] ) ){
+				$country .= ' (formerly '.$historic.')';
+			}
 		}
 
 		$return[] = $country;
