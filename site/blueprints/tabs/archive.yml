@@ -15,12 +15,12 @@ columns:
       section_fields:
         type: fields
         fields:
-         
+
           highlights:
             type: entities
             label: Highlights
             query: page.children.listed
-            max: 4
+            max: 10
 
       section_upload: false
 
