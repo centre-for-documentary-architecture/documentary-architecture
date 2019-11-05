@@ -87,7 +87,7 @@ function toLocation( $location ){
 	if( isset($location['lat']) && isset($location['lon']) ){
 		// http://www.google.com/maps/place/lat,lng
 
-		$geo = str_replace(',','.',strval( $location['lat'] )).','.str_replace(',','.',strval( $location['lon'] ));
+		$geo = strtr( strval( $location['lat'] ), ',', '.' ).','.strtr( strval( $location['lon'] ), ',', '.' );
 
 		$return .= ' '.Html::a(
 				'http://www.google.com/maps/place/'.$geo,
