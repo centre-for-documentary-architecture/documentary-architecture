@@ -134,7 +134,7 @@ class EntityFileImage extends EntityFile
     public function dataView()
 	{
 
-        if ( $this->view() == 'panorama' ) {
+        if ( $this->view() === 'panorama' ) {
 
             $return = [
                 'type' => 'panorama',
@@ -290,7 +290,7 @@ class EntityFile3d extends EntityFile
     {
 
         if( $file = $this->content()->content_files()->toFile() ){
-            if( $file->extension() == 'fbx' ){
+            if( $file->extension() === 'fbx' ){
 
                 return '3d';
 
@@ -302,7 +302,7 @@ class EntityFile3d extends EntityFile
     public function dataView(): ?array
 	{
 
-        if( $this->view() == 'image' ){
+        if( $this->view() === 'image' ){
 
             return [
                 'type' => 'image',

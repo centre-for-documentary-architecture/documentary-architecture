@@ -38,7 +38,7 @@ return [
 		/*
 		* tests if this page matches the given type
 		*/
-		return ( $type == 'file' || $type == $this->type() );
+		return ( $type === 'file' || $type === $this->type() );
 	},
 	'toLink' => function( $text = false ){
 		/*

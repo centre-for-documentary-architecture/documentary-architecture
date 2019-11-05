@@ -33,7 +33,7 @@ class EntityCollection extends Entity
 
                 case 'pages':
                     $collection = $page->content_pages()->toPages()->listed();
-                    if( $collection->count() == 1 && $collection->first()->template('archive') ){
+                    if( $collection->count() === 1 && $collection->first()->template('archive') ){
 
                         // if 1 archive was selected, return all child entities
                         return $collection->first()->children()->listed();
@@ -355,7 +355,7 @@ class LieblingHouseCollection extends EntityCollection
         $content = $this->dataGeneral();
         $content['content'] = $this->dataContent();
         $content['view'] = $this->dataView();
-        if( $this->category() == 'tourstop' ){
+        if( $this->category() === 'tourstop' ){
             $content['pagination'] = $this->dataPagination( 1 );
         }
 		return $content;
@@ -366,7 +366,7 @@ class LieblingHouseCollection extends EntityCollection
 
         /*
         if the tour should start right away
-        if( $this->category() == 'tour' && $this->hasListedChildren() ){
+        if( $this->category() === 'tour' && $this->hasListedChildren() ){
             $page = $this->children()->first();
         } else {
             $page = $this;

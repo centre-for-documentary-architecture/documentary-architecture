@@ -122,7 +122,7 @@ switch ($type[0]){
 			</dd>
 		<?php endif ?>
 
-		<?php if( $type[0] == 'file' && $file ): ?>
+		<?php if( $type[0] === 'file' && $file ): ?>
 			<dt>File</dt>
 			<dd><?php
 			$echo = [];
