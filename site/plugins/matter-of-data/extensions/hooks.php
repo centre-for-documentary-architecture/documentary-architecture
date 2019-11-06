@@ -102,7 +102,7 @@ return [
 			$page->update( $update, 'en');
 		}
 
-		if( $page->intendedTemplate() === 'item_source' || $page->intendedTemplate() === 'item_publication' ){
+		if( $page->intendedTemplate() === 'item_publication' ){
 			if ( $page->content('en')->declaration()->isEmpty() ){
 				$page->update([
 					'declaration' => $page->autoDeclaration()

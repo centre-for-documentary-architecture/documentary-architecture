@@ -108,46 +108,15 @@ function toLocation( $location ){
 
 
 
-function toSource( $source ){
+function toSource( $source, $website ){
 	/*
 	* recieves $source[
-	*   title, author, date, publisher, website, country
+	*   declaration, website
 	* ];
 	*/
-	return Html::a(
-		$source['website'],
-		'[1]',
-		$attr = [
-			'title' => $source['title'],
-			'class' => 'inline-source'
-		]
-	);
 
-	$return = [];
-
-	if( $source['author'] ){
-		$return[] = toKeywords( $source['author'] );
+	if( $website ){
+		return toLink( $website, $source );
 	}
-
-	if( $source['title'] ){
-		$return[] = toKeyword( $source['title'] );
-	}
-
-	if( $source['date'] ){
-		$return[] = toDateKeyword( $source['date'] );
-	}
-
-	if( $source['publisher'] ){
-		$return[] = toKeyword( $source['publisher'] );
-	}
-
-	if( $source['country'] ){
-		$return[] = toKeyword( $source['country'] );
-	}
-
-	if( $source['website'] ){
-		$return[] = toKeyword( $source['website'] );
-	}
-
-	return implode( ', ', $return );
+	return toKeyword( $source );
 }
