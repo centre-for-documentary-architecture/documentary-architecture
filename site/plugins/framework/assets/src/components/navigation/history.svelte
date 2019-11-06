@@ -15,13 +15,13 @@
 
             {#if item.url == entity.url}
                 <li class="current">
-                    <a title="{item.title}" href="#top" data-template="{item.template}" class="smooth">
+                    <a title="{item.title}" href="#top" class="smooth">
                         {item.title}
                     </a>
                 </li>
             {:else}
                 <li>
-                    <a title="{item.title}" href="{item.url}" data-template="{item.template}">
+                    <a on:click={navi} title="{item.title}" href="{item.url}" data-template="{item.template}"></a>
                         {item.title}
                     </a>
                 </li>
