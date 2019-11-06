@@ -47,31 +47,24 @@ if( isset( $class ) ){
 	<?= css( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
 
-	<?php
+	<?= js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'); ?>
+	<?= css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css'); ?>
 
-	if( $page->template() === 'entity' ):
+	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/three.min.js'); ?>
+	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/inflate.min.js'); ?>
+	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/FBXLoader.js'); ?>
+	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/OrbitControls.js'); ?>
 
-		echo js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js');
-		echo css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css');
+	<script>
 
-		echo js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/three.min.js');
-		echo js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/inflate.min.js');
-		echo js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/FBXLoader.js');
-		echo js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/OrbitControls.js');
+		var lieblingHouseWorldContainer;
+		var lieblingHouseWorldInstance;
+		var mapboxgl;
+		mapboxgl.accessToken = 'pk.eyJ1IjoibW9yaXdhYW4iLCJhIjoiY2l4cnIxNTFvMDAzZjJ3cGJ6MmpiY2ZmciJ9.KnmjmhWCBzMm-D30JdnnXg';
 
-		?>
-		<script>
+	</script>
 
-			var lieblingHouseWorldContainer;
-			var lieblingHouseWorldInstance;
-			var mapboxgl;
-			mapboxgl.accessToken = 'pk.eyJ1IjoibW9yaXdhYW4iLCJhIjoiY2l4cnIxNTFvMDAzZjJ3cGJ6MmpiY2ZmciJ9.KnmjmhWCBzMm-D30JdnnXg';
-
-		</script>
-
-		<?= js( option('centre-for-documentary-architecture.liebling-house.path').'Build/UnityLoader.js' ); ?>
-
-	<?php endif; ?>
+	<?= js( option('centre-for-documentary-architecture.liebling-house.path').'Build/UnityLoader.js' ); ?>
 
 </head>
 <body class="<?= implode(' ', array_unique($classlist) ) ?>">
