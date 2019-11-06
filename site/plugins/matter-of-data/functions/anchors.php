@@ -43,7 +43,7 @@ function toLink( $url, $text = false ){
 	*/
 	if( !$text ){
 		$host = parse_url( $url );
-		if( isset( $host['host'] ) ){
+		if( $host = $host['host'] ){
 			$text = $host;
 		} else {
 			$text = $url;
