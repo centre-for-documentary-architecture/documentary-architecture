@@ -122,6 +122,8 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 
 		'item_source'        => 'EntitySource',
 
+		'home' => 'HomePage'
+
 	],
 	'pageMethods'  => require_once __DIR__.'/extensions/pageMethods.php',
 	'pagesMethods' => require_once __DIR__.'/extensions/pagesMethods.php',
