@@ -15,9 +15,12 @@ body {
 		height: 100%;
 		height: 100vh;
 	}
-	&.home > .page-wrapper {
-		height: unset;
-		min-height: 100vh;
+	&.home,
+	&.regular {
+		.page-wrapper {
+			height: unset;
+			min-height: 100vh;
+		}
 	}
 }
 
