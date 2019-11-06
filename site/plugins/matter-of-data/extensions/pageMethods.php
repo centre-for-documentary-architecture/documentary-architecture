@@ -147,7 +147,7 @@ return [
 		$crumbs = $this->parents()->flip();
 
         // add the home page
-		$crumbs->prepend( $this->homePage()->id(), $this->homePage() );
+		$crumbs->prepend( $this->site()->homePage() );
 
 		return $crumbs->dataAbstract();
 	},

@@ -1,6 +1,8 @@
 <script>
 	import { onMount } from 'svelte';
 
+	import NavHistory from './components/navigation/history.svelte';
+	import NavArchive from './components/navigation/archive.svelte';
 	import Entity from './components/entity.svelte';
 	import Archive from './components/archive.svelte';
 
@@ -62,7 +64,7 @@
 		}
 
 		event.preventDefault();
-		
+
 		replaceEntityData( await load( target.href ) );
 
 		console.log( 'navi', entity );
@@ -122,14 +124,22 @@
 
 {#if entity !== undefined }
 
-	{#if entity.template == 'entity' }
+	<NavHistory entity={entity} />
 
-		<Entity entity={entity} />
+	<div class="grid panels">
 
-	{:else if entity.template == 'archive'}
+		{#if entity.template == 'entity' }
 
-		<Archive archive={entity} />
+			<Entity entity={entity} />
 
-	{/if}
+		{:else if entity.template == 'archive'}
+
+			<Archive archive={entity} />
+
+		{/if}
+
+	</div>
+
+	<NavArchive entity={entity} />
 
 {/if}
