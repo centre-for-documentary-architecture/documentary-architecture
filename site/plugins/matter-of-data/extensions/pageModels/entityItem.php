@@ -358,7 +358,9 @@ class EntityItemEvent extends EntityItem
                 if( isset( $event['date_start'] ) ){
                     $date = toDateKeyword( $event['date_start'] );
                     if( isset( $event['date_end'] ) ){
-                        $date .= ' &minus; ' . toDateKeyword( $event['date_end'] );
+                        if( $end = toDateKeyword( $event['date_end'] ) ){
+                            $date .= ' &minus; ' . $end;
+                        }
                     }
                 }
 

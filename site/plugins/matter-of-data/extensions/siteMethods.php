@@ -18,4 +18,12 @@ return [
 			return $this->page('archive');
 		}
 	},
+	'dataAbstract' => function( string $srcset = 'medium' ){
+
+		$content = $this->homePage()->dataAbstract();
+		$content['title'] = $this->title()->value();
+
+		return $content;
+
+	},
 ];
