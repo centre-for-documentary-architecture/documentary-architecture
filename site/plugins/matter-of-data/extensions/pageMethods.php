@@ -149,7 +149,9 @@ return [
         // add the home page
 		$crumbs->prepend( $this->site()->homePage() );
 
-		return $crumbs->dataAbstract();
+		$crumbs->add( $this );
+
+		return $crumbs->dataAbstract( false );
 	},
 	'collection' => function()
 	{
