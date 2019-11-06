@@ -46,7 +46,7 @@ return [
 	'toSources' => function ($field) {
 		$sources = [];
 		foreach( $field->toPages() as $source ){
-			$sources[] = toKeyword( $source->title() );
+			$sources[] = toSource( $source->content('en')->declaration()->value(), $source->content('en')->website()->value() );
 		}
 		return $sources;
 	},

@@ -58,6 +58,13 @@ function toLink( $url, $text = false ){
 	]);
 }
 
+function toLinkOrKeyword( string $text, $url = '' ){
+	if( $url ){
+		return toLink( $url, $text );
+	}
+	return toKeyword( $text );
+}
+
 function toPageOrKeyword( string $id ){
 
 	$kirby = kirby();
