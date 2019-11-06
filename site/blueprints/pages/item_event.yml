@@ -42,7 +42,7 @@ tabs:
                     width: 1/2
 
                   location:
-                    extends: fields/location/location_city
+                    extends: fields/location/location
                     multiple: false
 
               credits:
