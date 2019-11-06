@@ -51,8 +51,8 @@ body.home {
 	}
 
 	.activity {
-		padding: $padding-half;
-		background-color: $light;
+		padding: 1px;
+		// background-color: $light;
 		// border-top: $border;
 	}
 
@@ -65,7 +65,7 @@ body.home {
 			position: sticky;
 			top: $barWidth * 1.2;
 			.card {
-				padding: $padding-half;
+				// padding: $padding-half;
 				a {
 					padding: 0 $padding;
 				}
@@ -192,21 +192,28 @@ body.entity {
 	main {
 		header {
 			margin-bottom: 1rem;
+			.subtitle + div {
+				border-top: $border-thin;
+			}
 		}
 		section {
 			// border-top: 1px solid $white;
-			margin-top: 2rem;
+			// margin-top: 1rem;
 			ul {
 				margin-bottom: 1rem;
 			}
 		}
 	}
+	.tab + .tab {
+		border-top: $border-thin;
+	}
 	.tab.info {
-		border: none;
+		border-top: none;
 		.section--header {
 			display: none;
 		}
 	}
+
 	.tab.meta dl.table {
 		font-size: $font-small;
 	}
@@ -216,13 +223,16 @@ body.entity {
 			font-family: $mono;
 		}
 	}
-	.tab .table {
-		border-bottom: 1px solid $white;
-	}
 }
 body.entity.black {
+	.subtitle + div {
+		border-color: $white;
+	}
 	.tab .table {
 		border-color: $dark;
+	}
+	.tab + .tab {
+		border-color: $white;
 	}
 }
 

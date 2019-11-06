@@ -307,7 +307,7 @@ body.black {
 
 dl.table {
 	> div {
-		border-top: 1px $border-style $white;
+		border-top: $border-thin;
 		padding: $padding 0;
 		display: flex;
 		flex-wrap: wrap;
@@ -360,7 +360,7 @@ dl.table {
 }
 .black {
 	dl.table > div {
-		border-color: $black;
+		border-color: $white;
 	}
 }
 

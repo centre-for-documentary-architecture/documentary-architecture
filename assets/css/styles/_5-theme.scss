@@ -18,9 +18,6 @@ body {
 }
 
 body.white {
-	.bar.history {
-		border-color: $light;
-	}
 	.presentation {
 		background-color: $light;
 	}
@@ -101,12 +98,11 @@ body.black {
 */
 body.entity.white,
 .whites {
-	background-color: $light;
 	.card {
 		color: $black;
 		// border-color: $light;
 		a {
-			background-color: $white;
+			background-color: $light;
 		}
 	}
 }
@@ -118,9 +114,6 @@ body.entity.white,
 			background-color: $light;
 		}
 	}
-}
-body.entity.black main {
-	background-color: $dark;
 }
 .darks,
 body.entity.black {
@@ -135,10 +128,10 @@ body.entity.black {
 .blacks,
 body.entity.black main {
 	.card {
-		color: $black;
+		color: $white;
 		// border-color: $white;
 		a {
-			background-color: $white;
+			background-color: $dark;
 		}
 	}
 }

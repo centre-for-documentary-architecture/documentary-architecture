@@ -43,8 +43,8 @@ $font-large: 2.8rem;
 // borders
 $border-style: solid;
 $border-width: 2px;
-$border-half: $border-width / 2;
 
+$border-thin: 1px solid $black;
 $border: $border-width $border-style $black;
 $border-dark: $border-width $border-style $dark;
 $border-light: $border-width $border-style $light;
