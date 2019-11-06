@@ -53,7 +53,7 @@
 	function contentWidth( type ){
 		console.log( type );
 		if( type == 'file' ){
-			return 4;
+			return 3;
 		}
 		return 6;
 	}
