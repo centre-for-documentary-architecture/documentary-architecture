@@ -58,11 +58,33 @@
 		return 6;
 	}
 
+	var isScrolled = false;
+	var isScrolledPrev = false;
+	function scrolling(){
+		if( glass.scrollTop > 100 ){
+			isScrolled = true;
+		} else {
+			isScrolled = false;
+		}
+		if( isScrolled === isScrolledPrev ){
+			return;
+		}
+		isScrolledPrev = isScrolled;
+
+		if( isScrolledPrev === true ){
+			document.body.classList.add('scrolled');
+			console.log('scrolled');
+		} else {
+			document.body.classList.remove('scrolled');
+			console.log('top');
+		}
+	}
+
 </script>
 
 {#if entity.content}
 
-    <main class="panel col-sm-{contentWidth(entity.entity)}" on:click={touchGlass} bind:this={glass}>
+    <main class="panel col-sm-{contentWidth(entity.entity)}" on:click={touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
 
         <div class="content">
 
