@@ -200,8 +200,14 @@ class Entity extends Page
     }
     public function tabInfo(): ?array
 	{
-
-        $info = array_merge( $this->dataIndividualFields(), $this->dataProperties() );
+        $sources;
+        if( $this->content()->sources()->isNotEmpty() ){
+            $sources = [
+                'key' => 'Sources',
+                'value' => $this->content()->sources()->toSources()
+            ];
+        }
+        $info = array_merge( $this->dataIndividualFields(), $this->dataProperties(), [$sources] );
         if( empty($info) ){
             return null;
         }
@@ -233,7 +239,7 @@ class Entity extends Page
         type
         tags
         credits
-        sources
+        sources (moved to info)
         signature
         created
         modified
@@ -266,13 +272,6 @@ class Entity extends Page
                     'value' => $credit['person']
                 ];
             }
-        }
-
-        if( $this->content()->sources()->isNotEmpty() ){
-            $content[] = [
-                'key' => 'Sources',
-                'value' => $this->content()->sources()->toSources()
-            ];
         }
 
         if( $this->content()->date_modified()->isNotEmpty() ){
