@@ -243,10 +243,10 @@ class Entity extends Page
         $type = $this->entity();
         $typ = $this->type();
         if( $typ != $type ){
-            $type .= '/' . $typ;
+            $type .= ' <wbr>→' . $typ;
         }
         if( $cat = $this->category() ){
-            $type .= '/' . $cat;
+            $type .= ' <wbr>→' . $cat;
         }
 		$content = [
             [
