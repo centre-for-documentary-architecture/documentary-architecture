@@ -21,7 +21,7 @@
                 </li>
             {:else}
                 <li>
-                    <a on:click={navi} title="{item.title}" href="{item.url}" data-template="{item.template}"></a>
+                    <a on:click={navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
                         {item.title}
                     </a>
                 </li>
