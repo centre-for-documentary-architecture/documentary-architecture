@@ -36,17 +36,6 @@ tabs:
                 label: Publisher
                 type: text
 
-              declaration_help:
-                type: info
-                label: Auto-suggested declaration (Save and reload)
-                text: |
-                  {{ page.autoDeclaration }}
-
-              declaration:
-                extends: fields/description
-                label: Source decleration
-                help: "Author (ed), Author: Title. Subtitle, Publisher, Year". Leave empty, save, reload to use auto generated declaration.
-
   tab_meta:
     columns:
       meta_column_left:
