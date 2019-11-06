@@ -494,84 +494,8 @@ class Entity extends Page
 
 class EntitySource extends Page
 {
-    public function autoDeclaration()
+    public function declaration(): Kirby\Cms\Field
     {
-        $content = $this->content('en');
-
-        $category = $content->category();
-        $declaration = '';
-
-        // Publikation: Author, Author: Title. Subtitle, Publisher, Year
-        // Website: Author, Author: Website. Year
-        // Archiv: Subtitle( Title ), Year, Signature, Archive
-
-        if( $category != 'archive' ){
-
-            if( $content->authors()->isNotEmpty() ) {
-                $declaration .= $content->authors()->after(': ');
-            }
-
-        }
-
-        if( $category === 'website' ){
-
-            if( $content->website()->isNotEmpty() ) {
-                $declaration .= $content->website()->toLink().'. ';
-            }
-
-        } else {
-
-            if( $category === 'archive' ){
-
-                $declaration .= $this->title().' ';
-
-                if( $content->additional_title()->isNotEmpty() ) {
-                    $declaration .= '('.$content->additional_title()->after('), ');
-                }
-
-            } else {
-
-                // publication
-                $declaration .= $this->title().'. ';
-
-                if( $content->additional_title()->isNotEmpty() ) {
-                    $declaration .= $content->additional_title()->after(', ');
-                }
-
-                if( $content->publisher()->isNotEmpty() ) {
-                    $declaration .= $content->publisher()->after(', ');
-                }
-
-            }
-
-        }
-
-        if( $content->date()->isNotEmpty() ) {
-            $declaration .= $content->date();
-        }
-
-        if( $category === 'archive' ){
-
-            $declaration .= ', ';
-
-            if( $content->archive_signature()->isNotEmpty() ) {
-                $declaration .= $content->archive_signature()->after(', ');
-            }
-
-            if( $content->archive()->isNotEmpty() ) {
-                $declaration .= $content->archive();
-            }
-
-        }
-
-        return $declaration;
-    }
-    public function declaration()
-    {
-        if( $this->content('en')->declaration()->isNotEmpty() ){
-            return $this->content('en')->declaration()->value();
-        } else {
-            return $this->autoDeclaration();
-        }
+        return $this->content('en')->declaration()->or( $this->title() );
     }
 }
