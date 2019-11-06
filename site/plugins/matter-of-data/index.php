@@ -7,6 +7,7 @@ use Kirby\Cms\PluginAssets;
 */
 
 // import functions
+require_once __DIR__.'/functions/helpers.php';
 require_once __DIR__.'/functions/anchors.php';
 require_once __DIR__.'/functions/formats.php';
 require_once __DIR__.'/functions/searchReplaceFields.php';
@@ -59,7 +60,7 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 		[
             'pattern' => 'media/plugins/(:any)/(:any)/(:all).(json|map|unityweb)',
             'env'     => 'media',
-            'action'  => function (string $provider, string $pluginName, string $filename, string $extension) use ($kirby) {
+            'action'  => function (string $provider, string $pluginName, string $filename, string $extension) {
                 return PluginAssets::resolve($provider . '/' . $pluginName, $filename . '.' . $extension);
             }
         ],
