@@ -86,7 +86,8 @@ return [
 		if ($field->isEmpty()) {
             return null;
         }
-		$field->value = preg_replace( '/[-_.]/', '$0<wbr>', $field->value() );
+		// $field->value = preg_replace( '/[-_.]/', '$0<wbr>', $field->value() );
+		$field->value = wbr( $field->value() );
 		return $field;
 
 	},

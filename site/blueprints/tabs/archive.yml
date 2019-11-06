@@ -15,7 +15,7 @@ columns:
       section_fields:
         type: fields
         fields:
-         
+
           highlights:
             type: entities
             label: Highlights

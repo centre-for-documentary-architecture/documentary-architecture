@@ -19,7 +19,7 @@ return [
         $query = get('q');
 
         if( $query ){
-            if( $page->depth() == 1 ) {
+            if( $page->depth() === 1 ) {
                 /*
                 /archive?query
                 queries the whole page
@@ -37,7 +37,7 @@ return [
             */
             $collection = $collection->index()->listed()->search( $query );
         } else {
-            if( $page->depth() == 1 ) {
+            if( $page->depth() === 1 ) {
                 /*
                 /archive
                 shows all entities
@@ -51,12 +51,12 @@ return [
                 $collection = $page->children()->listed();
             }
         }
-      
+
         return [
           'query'   => $query,
           'collection' => $collection->limit(40),
         ];
-      
+
     },
 
 

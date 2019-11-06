@@ -55,14 +55,20 @@ Options -Indexes
 
 Options +FollowSymlinks
 
-# allow CORS
-Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.digitaloceanspaces.com"
-Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.cdn.digitaloceanspaces.com"
-Header Set Access-Control-Allow-Origin "https://mod.documentary-architecture.org"
-Header Set Access-Control-Allow-Origin "https://documentary-architecture.org"
-Header Set Access-Control-Allow-Origin "http://localhost:8000"
-Header Set Access-Control-Allow-Origin "http://localhost:80"
-Header Set Access-Control-Allow-Origin "http://localhost"
+<IfModule mod_headers.c>
+  # allow CORS
+  Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.digitaloceanspaces.com"
+  Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.cdn.digitaloceanspaces.com"
+  Header Set Access-Control-Allow-Origin "https://mod.documentary-architecture.org"
+  Header Set Access-Control-Allow-Origin "https://documentary-architecture.org"
+  Header Set Access-Control-Allow-Origin "http://localhost:8000"
+  Header Set Access-Control-Allow-Origin "http://localhost:80"
+  Header Set Access-Control-Allow-Origin "http://localhost"
+
+  <FilesMatch "\.map">
+    Header set Cache-Control "no-cache, no-store, must-revalidate, max-age=0, proxy-revalidate, no-transform"
+  </FilesMatch>
+</IfModule>
 
 # add types
 <IfModule mod_mime.c>
@@ -93,6 +99,8 @@ Header Set Access-Control-Allow-Origin "http://localhost"
   AddType video/webm .webm
 
   AddType text/map .map
+  AddType text/map .scss
+  AddType text/map .svelte
 </IfModule>
 
 # compress
@@ -136,7 +144,9 @@ Header Set Access-Control-Allow-Origin "http://localhost"
   ExpiresByType application/x-shockwave-flash "access 1 month"
   ExpiresByType application/x-font-woff "access 1 year"
 
-  ExpiresByType text/map "access 5 minutes"
-
   ExpiresDefault "access 1 month"
+
+  <FilesMatch (\.map)$>
+     Header set Expires "0"
+  </FilesMatch>
 </IfModule>

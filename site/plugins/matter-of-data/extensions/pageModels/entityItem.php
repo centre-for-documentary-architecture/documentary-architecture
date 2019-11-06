@@ -96,7 +96,7 @@ class EntityItemPerson extends EntityItem
             $values = [];
             foreach( $this->education()->toStructure() as $stop ){
                 $ed = $stop->date_start()->toDateKeyword().'. ';
-                if( $ed == '. ' ){ $ed = ''; }
+                if( $ed === '. ' ){ $ed = ''; }
                 $ed .= $stop->text()->kirbytextinline().', ';
                 $ed .= $stop->location()->toLocation();
                 $values[] = $ed;
@@ -342,10 +342,39 @@ class EntityItemEvent extends EntityItem
                 'value' => $date
             ];
         }
+
         if( $this->location_start()->isNotEmpty() ){
             $content[] = [
                 'key' => 'Location',
                 'value' => $this->content()->location_start()->toLocation()
+            ];
+        }
+
+        if( $this->timeline()->isNotEmpty() ){
+            $timeline = [];
+            foreach( $this->timeline()->yaml() as $event ){
+
+                $date = false;
+                if( isset( $event['date_start'] ) ){
+                    $date = toDateKeyword( $event['date_start'] );
+                    if( isset( $event['date_end'] ) ){
+                        if( $end = toDateKeyword( $event['date_end'] ) ){
+                            $date .= ' &minus; ' . $end;
+                        }
+                    }
+                }
+
+                $location = false;
+                if( isset( $event['location'] ) ){
+                    $location = toLocation( $event['location'][0] );
+                }
+
+                $timeline[] = implode('<br />', [$date, $location]);
+
+            }
+            $content[] = [
+                'key' => 'Timeline',
+                'value' => $timeline
             ];
         }
 

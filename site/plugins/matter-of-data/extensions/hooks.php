@@ -69,7 +69,7 @@ return [
 				'comment' => 'Update'
 			];
 
-			if( $last['user'][0] == $this->user()->email() ){
+			if( $last['user'][0] === $this->user()->email() ){
 				/*
 				* same user as last update
 				*/
@@ -102,7 +102,7 @@ return [
 			$page->update( $update, 'en');
 		}
 
-		if( $page->intendedTemplate() == 'item_source' || $page->intendedTemplate() == 'item_publication' ){
+		if( $page->intendedTemplate() === 'item_source' || $page->intendedTemplate() === 'item_publication' ){
 			if ( $page->content('en')->declaration()->isEmpty() ){
 				$page->update([
 					'declaration' => $page->autoDeclaration()
@@ -141,7 +141,7 @@ return [
 		$newTitle = $newPage->content( $currentLang )->title()->value();
 
 		foreach( $newPage->kirby()->languages()->codes() as $lang ){
-			if( $currentLang == $lang ){
+			if( $currentLang === $lang ){
 				continue;
 			}
 			$newPage->update( [
@@ -205,7 +205,7 @@ return [
 		* update fields
 		*/
 		$file->changeName( $name )->update( $update, 'en' );
-		
+
 	},
 	'file.update:after' => function ( $file, $oldFile ) {
 		if( $file->template() != 'file_image' ){
@@ -217,7 +217,7 @@ return [
 			'user_modified' => Yaml::encode( $this->user()->email() ),
 		];
 
-		
+
 		$protocol = $file->protocol()->yaml();
 		$last = array_pop( $protocol );
 		$new = [
@@ -225,7 +225,7 @@ return [
 			'user' => $update['user_modified'],
 			'comment' => 'Update'
 		];
-		if( $last['user'][0] == $this->user()->email() ){
+		if( $last['user'][0] === $this->user()->email() ){
 			/*
 			* same user as last update
 			*/
@@ -251,7 +251,7 @@ return [
 		}
 		$protocol[] = $new;
 		$update['protocol'] = Yaml::encode( $protocol );
-		
+
 
 		$file->update( $update, 'en');
 

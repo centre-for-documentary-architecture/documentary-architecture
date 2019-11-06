@@ -41,7 +41,7 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
             'action'  => function ( $any ) {
 
 				$user = kirby()->users()->filter(function($user) use ($any){
-					return Str::slug( $user->name() ) == $any;
+					return Str::slug( $user->name() ) === $any;
 				})->first();
 
 				$content = $user->content()->toArray();
@@ -121,6 +121,8 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 		'file_image'         => 'EntityFileImage',
 
 		'item_source'        => 'EntitySource',
+
+		'home' => 'HomePage'
 
 	],
 	'pageMethods'  => require_once __DIR__.'/extensions/pageMethods.php',

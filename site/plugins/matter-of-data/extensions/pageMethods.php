@@ -147,7 +147,7 @@ return [
 		$crumbs = $this->parents()->flip();
 
         // add the home page
-		$crumbs->prepend( $this->homePage()->id(), $this->homePage() );
+		$crumbs->prepend( $this->site()->homePage() );
 
 		return $crumbs->dataAbstract();
 	},
@@ -201,6 +201,6 @@ return [
 		/*
 		* inserts word break hints <wbr> into filenames
 		*/
-		return preg_replace('/[-_.]/', '<wbr>$0', $this->title());
+		return wbr( $this->title() );
 	},
 ];

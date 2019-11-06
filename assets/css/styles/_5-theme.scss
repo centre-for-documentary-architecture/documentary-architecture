@@ -52,10 +52,6 @@ body.black {
 	}
 }
 
-.card > a {
-	transition: background-color 100ms ease;
-	user-select: none;
-}
 
 //
 // text selection
@@ -111,9 +107,6 @@ body.entity.white,
 		// border-color: $light;
 		a {
 			background-color: $white;
-			&:hover {
-				background-color: $white-active;
-			}
 		}
 	}
 }
@@ -123,35 +116,42 @@ body.entity.white,
 		// border-color: $white;
 		a {
 			background-color: $light;
-			&:hover {
-				background-color: $light-active;
-			}
 		}
 	}
 }
-body.entity.black,
-.darks {
+body.entity.black main {
+	background-color: $dark;
+}
+.darks,
+body.entity.black {
 	.card {
 		color: $white;
 		// border-color: $black;
 		a {
 			background-color: $dark;
-			&:hover {
-				background-color: $dark-active;
-			}
 		}
 	}
-
 }
-.blacks {
+.blacks,
+body.entity.black main {
 	.card {
-		color: $white;
+		color: $black;
 		// border-color: $white;
 		a {
-			background-color: $dark;
-			&:hover {
-				background-color: $dark-active;
-			}
+			background-color: $white;
+		}
+	}
+}
+
+.card > a {
+	user-select: none;
+	transition: background-color 150ms ease;
+	&:hover {
+		color: $white !important;
+		background-color: $blue !important;
+		img {
+			mix-blend-mode: screen;
+			filter: contrast(115%);
 		}
 	}
 }

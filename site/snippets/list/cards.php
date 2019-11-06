@@ -10,7 +10,7 @@ $count = $collection->count();
 if( $count < 1 ){
 	return;
 }
-if( $count == 1 || $count == 3 ){
+if( $count === 1 || $count === 3 ){
 	$classlist[] = 'count-'.$count;
 }
 
@@ -49,7 +49,7 @@ if( !isset( $srcset ) ){
 	<?php foreach( $collection as $item ): ?>
 
 		<li class="card <?= implode(' ',$itemClasslist); ?> <?= $item->type(); ?>"><a href="<?= $item->url() ?>">
-			
+
 			<?php if( $image = $item->thumbnail() ): ?>
 				<figure><?= $image->responsiveImage( $srcset ) ?></figure>
 			<?php endif ?>

@@ -49,7 +49,7 @@ class PageArchive extends Page
     */
     public function results( string $query = '' ){
 
-        if( $query == '' ){
+        if( $query === '' ){
             return $this->recentActivity();
         }
 
@@ -79,4 +79,19 @@ class PageArchiveImages extends PageArchive
 
         return Pages::factory($images, $this);
     }
+}
+
+class HomePage extends Page
+{
+    public function title(): Kirby\Cms\Field
+    {
+        // return $this->site()->title();
+        return new Field( $this, 'title', 'Start');
+    }
+    public function dataBreadcrumbs(): array
+	{
+
+        return [ $this->site()->dataAbstract() ];
+
+	}
 }

@@ -8,7 +8,7 @@
             $class = '';
         }
         echo Html::a( $sibling->url(), $i, [
-            'title' => "Tourstop ".$i.": ".$sibling->title()->html(),
+            'title' => 'Tourstop '.$i.': '.$sibling->title()->html(),
             'class' => $class.' ajax'
         ]);
         $i++;
@@ -17,9 +17,9 @@
 
     <?php if( $page->hasNextListed() ):
         echo Html::a( $page->nextListed()->url(), 'Next', [
-            'rel' => "next",
+            'rel' => 'next',
             'class' => 'ajax'
         ]);
     endif ?>
-        
+
 </nav>

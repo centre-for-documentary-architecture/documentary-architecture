@@ -211,6 +211,15 @@ nav.bar.history {
 				transition: opacity 300ms ease, transform 300ms ease;
 			}
 		}
+		li ~ li {
+			a {
+				&:before {
+					content: '→';
+					display: inline-block;
+					margin-right: 0.8rem;
+				}
+			}
+		}
 	}
 
 }
