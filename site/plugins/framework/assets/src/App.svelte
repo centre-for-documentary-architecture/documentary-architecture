@@ -126,15 +126,19 @@
 
 	<NavHistory entity={entity} />
 
-	{#if entity.template == 'entity' }
+	<div class="grid panels">
 
-		<Entity entity={entity} />
+		{#if entity.template == 'entity' }
 
-	{:else if entity.template == 'archive'}
+			<Entity entity={entity} />
 
-		<Archive archive={entity} />
+		{:else if entity.template == 'archive'}
 
-	{/if}
+			<Archive archive={entity} />
+
+		{/if}
+
+	</div>
 
 	<NavArchive entity={entity} />
 
