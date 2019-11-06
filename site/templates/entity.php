@@ -2,7 +2,7 @@
 
 snippet('header');
 
-snippet('navigation/history');
+// snippet('navigation/history');
 
 ?>
 
@@ -10,7 +10,7 @@ snippet('navigation/history');
 
 <?php
 
-snippet('navigation/archive');
+// snippet('navigation/archive');
 
 snippet('footer', [
     'include' => [
