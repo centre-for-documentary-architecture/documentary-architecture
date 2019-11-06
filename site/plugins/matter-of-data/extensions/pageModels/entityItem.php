@@ -274,51 +274,33 @@ class EntityItemPublication extends EntityItem
     public function dataIndividualFields(): array
 	{
 
-        $content = [
-            [
-                'key' => '',
-                'value' => $this->declaration()
-            ]
-        ];
+        $content = [];
+
+        if( $this->date_start()->isNotEmpty() ){
+            $content[] = [
+                'key' => 'Release',
+                'value' => $this->content()->date_start()->toDateKeyword()
+            ];
+        }
+
+        if( $this->content()->credits()->isNotEmpty() ){
+            foreach( $this->content()->credits()->yaml() as $credit ){
+                $content[] = [
+                    'key' => $credit['title'],
+                    'value' => $credit['person']
+                ];
+            }
+        }
+
+        if( $this->publisher()->isNotEmpty() ){
+            $content[] = [
+                'key' => 'Published by',
+                'value' => $this->publisher()->value()
+            ];
+        }
 
 		return $content;
 
-    }
-    public function autoDeclaration()
-    {
-        $content = $this->content('en');
-
-        $declaration = '';
-
-        // Publikation: Author, Author: Title. Subtitle, Publisher, Year
-
-        if( $content->authors()->isNotEmpty() ) {
-            $declaration .= $content->authors()->after(': ');
-        }
-
-        $declaration .= $this->title().'. ';
-
-        if( $content->additional_title()->isNotEmpty() ) {
-            $declaration .= $content->additional_title()->after(', ');
-        }
-
-        if( $content->publisher()->isNotEmpty() ) {
-            $declaration .= $content->publisher()->after(', ');
-        }
-
-        if( $content->date_start()->isNotEmpty() ) {
-            $declaration .= $content->date_start();
-        }
-
-        return $declaration;
-    }
-    public function declaration()
-    {
-        if( $this->content('en')->declaration()->isNotEmpty() ){
-            return $this->content('en')->declaration()->value();
-        } else {
-            return $this->autoDeclaration();
-        }
     }
 }
 
@@ -338,7 +320,7 @@ class EntityItemEvent extends EntityItem
                 $date .= ' &minus; '.$this->date_end()->toDateKeyword();
             }
             $content[] = [
-                'key' => 'Opening',
+                'key' => 'Dates',
                 'value' => $date
             ];
         }
