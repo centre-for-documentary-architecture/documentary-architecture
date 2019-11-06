@@ -255,8 +255,8 @@ return [
 
 		$file->update( $update, 'en');
 
-		// require_once __DIR__.'/../syncContexts.php';
-		// syncContexts( $file, $oldFile );
+		require_once __DIR__.'/../functions/syncContexts.php';
+		syncContexts( $file, $oldFile );
 	},
 	'file.changeName:after' => function ($file, $oldFile) {
 		if( $file->template() != 'file_image' ){
