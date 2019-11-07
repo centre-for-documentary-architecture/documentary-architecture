@@ -30,6 +30,11 @@
 		text-align: right;
 	}
 
+	div > span {
+		display: inline-block;
+		padding: 0.4rem 0.4rem;
+	}
+
 	&.vertical{
 		display: block;
 		width: $barWidth;
