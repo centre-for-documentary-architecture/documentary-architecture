@@ -87,44 +87,35 @@
 
 <svelte:window on:scroll|passive={scrollTrigger} bind:outerHeight={ pageHeight } bind:scrollY={scrollPos} />
 
-<header class="card col-3" id="top">
-	<h1>Archive</h1>
+<main class="panel col-sm-3">
+	<div class="content">
 
-	<form id="search" on:click="{() => searchInput.focus() }" autocomplete="off">
-		<input class="input" type="search" name="research" value=""
-			autocomplete="off"
-			autofocus
-			bind:value={searchTerms}
-			placeholder="Type here to research the archive ..."
-			bind:this={searchInput}
-			on:keyup={startSearch} >
-		<button class="button" value="Search" title="Research {searchTerms}">Research</button>
-	</form>
+		<header id="top" class="tab">
+			<h1>Archive</h1>
 
-	<div class="options">
+			<form id="search" on:click="{() => searchInput.focus() }" autocomplete="off">
+				<input class="input" type="search" name="research" value=""
+					autocomplete="off"
+					autofocus
+					bind:value={searchTerms}
+					placeholder="Type here to research the archive ..."
+					bind:this={searchInput}
+					on:keyup={startSearch} >
+				<button class="button" value="Search" title="Research {searchTerms}">Research</button>
+			</form>
 
+			<div class="options">
+				Filters and Options
+			</div>
 
+		</header>
 
 	</div>
+</main>
 
-</header>
-
-<section class="darks col-9 {archive.type}">
+<section class="darks col-sm-9 {archive.type}">
 
 	<div class="section--content">
-
-		<div class="options bar">
-
-			<div class="display">
-				<button on:click="{() => layout = 'cards'}">Cards</button>
-				<button on:click="{() => layout = 'list'}">List</button>
-			</div>
-
-			<div class="info">
-				<span>{archive.results.total} Results</span>
-			</div>
-
-		</div>
 
 		<svelte:component this={layouts[layout]} list={archive.results.content} columns=3/>
 
@@ -135,6 +126,20 @@
 		{:else if archive.next}
 			<button class="card" on:click={loadNext}>Load more</button>
 		{/if}
+
+	</div>
+
+	<div class="bar">
+
+		<div class="left display">
+			<span>Display as: </span>
+			<button on:click="{() => layout = 'cards'}">Cards</button>
+			<button on:click="{() => layout = 'list'}">List</button>
+		</div>
+
+		<div class="right info">
+			<span>{archive.results.total} Results</span>
+		</div>
 
 	</div>
 
