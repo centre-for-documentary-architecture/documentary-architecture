@@ -89,7 +89,6 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                         'type' => 'collection',
                         'headline' => 'Results',
                         'total' => $count,
-                        'layout' => 'cards',
                         'page' => 1,
                         'next' => $next,
                         'content' => $results->limit( $pagination )->dataAbstract()

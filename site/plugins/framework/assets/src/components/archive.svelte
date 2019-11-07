@@ -4,13 +4,12 @@
 
 	import CollectionCards from './collection/cards.svelte';
 	import CollectionList from './collection/list.svelte';
-	import CollectionsGallery from './collection/gallery.svelte';
-	let layout = {
+	let layouts = {
 		cards: CollectionCards,
-		list: CollectionList,
-		gallery: CollectionsGallery
+		list: CollectionList
 	}
-	
+	let layout = 'list';
+
 	let loading = false;
 
 	async function loadNext(){
@@ -83,12 +82,12 @@
 	let searchInput;
 	let searchTerms = '';
 	let previouslySearched = false;
-	
+
 </script>
 
 <svelte:window on:scroll|passive={scrollTrigger} bind:outerHeight={ pageHeight } bind:scrollY={scrollPos} />
 
-<header class="card col-12" id="top">
+<header class="card col-3" id="top">
 	<h1>Archive</h1>
 
 	<form id="search" on:click="{() => searchInput.focus() }" autocomplete="off">
@@ -102,13 +101,32 @@
 		<button class="button" value="Search" title="Research {searchTerms}">Research</button>
 	</form>
 
+	<div class="options">
+
+
+
+	</div>
+
 </header>
 
-<section class="darks col-12 {archive.type}">
+<section class="darks col-9 {archive.type}">
 
 	<div class="section--content">
-		
-		<svelte:component this={layout[archive.results.layout]} list={archive.results.content} columns=4/>
+
+		<div class="options bar">
+
+			<div class="display">
+				<button on:click="{() => layout = 'cards'}">Cards</button>
+				<button on:click="{() => layout = 'list'}">List</button>
+			</div>
+
+			<div class="info">
+				<span>{archive.results.total} Results</span>
+			</div>
+
+		</div>
+
+		<svelte:component this={layouts[layout]} list={archive.results.content} columns=3/>
 
 		{#if loading === true}
 			<div class="bar mono">
