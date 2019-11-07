@@ -1,8 +1,8 @@
 <?php
 
-function archivePath( string $base, string $research = '', array $query = [] ): string
+function archivePath( string $base, string $filter = '', string $research = '', array $query = [] ): string
 {
-    $url = trim( implode( '/', [ $base, $research ] ), "/" );
+    $url = implode( '/', array_filter([ $base, $filter, $research ]) );
     if( $query !== [] ){
         return $url .'?'. http_build_query($query);
     }
@@ -28,14 +28,15 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 // https://getkirby.com/docs/reference/objects/request
                 $query = get();
 
-                if( isset( $query['filter'] ) && $filter !== 'all' ){
+                if( isset( $query['filter'] ) && $filter === 'all' ){
                     $filter = $query['filter'];
-                    unset( $query['filter'] );
                 }
-                if( isset( $query['research'] ) && $research !== '' ){
+                unset( $query['filter'] );
+
+                if( isset( $query['research'] ) && $research === '' ){
                     $research = $query['research'];
-                    unset( $query['research'] );
                 }
+                unset( $query['research'] );
 
                 if( isset( $query['page'] ) ){
                     $page = $query['page'];
@@ -43,53 +44,36 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                     $page = 1;
                 }
 
+                $archive = kirby()->site()->archive();
+                if( $archiveFiltered = $archive->find( $filter ) ){
+                    $archive = $archiveFiltered;
+                    $archiveFiltered = '';
+                } else {
+                    $archiveFiltered = 'all';
+                }
+
                 $archive = kirby()->site()->archive()->filter( $filter );
                 $results = $archive->results( $research );
 
                 $count = $results->count();
                 $pagination = option('centre-for-documentary-architecture.matter-of-data.pagination');
+                $offset = ( $page * $pagination ) - $pagination;
 
-                if( $page > 1 ){
-
-                    // nth page of a existing query
-                    $offset = ( $page * $pagination ) - $pagination;
-
-                    if( $offset + $pagination < $count ){
-
-                        $nextQuery = $query;
-                        $nextQuery['page'] = $page + 1;
-                        $next = archivePath( $archive->archive()->url(), $research, $nextQuery );
-
-                    } else {
-                        $next = false;
-                    }
-
-                    $data = [
-                        'total' => $count,
-                        'page' => $page,
-                        'next' => $next,
-                        'content' => $results->offset( $offset )->limit( $pagination )->dataAbstract()
-                    ];
-
+                if( $offset + $pagination > $count ){
+                    $next = false;
                 } else {
+                    $nextQuery = $query;
+                    $nextQuery['page'] = $page + 1;
+                    $next = archivePath( $archive->url(), $archiveFiltered, $research, $nextQuery );
+                }
 
+                if( $page == 1 ){
                     // new query
+
                     $data = $archive->dataGeneral();
 
-                    $data['url'] = archivePath( $archive->archive()->url(), $research, $query );
-
-                    if( $pagination < $count ){
-
-                        $nextQuery = $query;
-                        $nextQuery['page'] = $page + 1;
-                        $next = archivePath( $archive->archive()->url(), $research, $nextQuery );
-
-                    } else {
-                        $next = false;
-                    }
-
-                    // $data['options'] = $archive->dataOptions();
-
+                    $data['url'] = archivePath( $archive->url(), $archiveFiltered, $research, $query );
+                    $data['options'] = $archive->dataOptions();
                     $data['results'] = [
                         'type' => 'collection',
                         'headline' => 'Results',
@@ -97,6 +81,15 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                         'page' => 1,
                         'next' => $next,
                         'content' => $results->limit( $pagination )->dataAbstract()
+                    ];
+
+                } else {
+
+                    $data = [
+                        'total' => $count,
+                        'page' => $page,
+                        'next' => $next,
+                        'content' => $results->offset( $offset )->limit( $pagination )->dataAbstract()
                     ];
 
                 }

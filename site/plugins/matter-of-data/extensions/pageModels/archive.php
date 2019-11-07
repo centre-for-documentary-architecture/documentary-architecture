@@ -69,19 +69,13 @@ class PageArchive extends Page
     /*
     * results
     */
-    public function results( string $query = '', string $filter = '' ){
+    public function results( string $query = '' ){
 
-        if( $filter === '' && $query === '' ){
+        if( $query === '' ){
             return $this->recentActivity();
         }
 
-        if( $filter !== '' ){
-            $archive = $this->filter( $filter );
-        } else {
-            $archive = $this;
-        }
-
-        return $archive->search( $query );
+        return $this->search( $query );
 
     }
 }
