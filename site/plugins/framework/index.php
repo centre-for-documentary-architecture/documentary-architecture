@@ -83,6 +83,8 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                         $next = false;
                     }
 
+                    $data['options'] = $archive->dataOptions();
+
                     $data['results'] = [
                         'type' => 'collection',
                         'headline' => 'Results',

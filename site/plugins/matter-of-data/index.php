@@ -14,6 +14,7 @@ require_once __DIR__.'/functions/searchReplaceFields.php';
 
 // import models
 require_once __DIR__.'/extensions/pageModels/page.php';
+require_once __DIR__.'/extensions/pageModels/archive.php';
 require_once __DIR__.'/extensions/pageModels/entity.php';
 require_once __DIR__.'/extensions/pageModels/entityCollection.php';
 require_once __DIR__.'/extensions/pageModels/entityItem.php';
@@ -79,23 +80,24 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 	'pageModels'   => [
 
 		// archive
-		'items'              => 'PageArchive',
-		'items_document'     => 'PageArchive',
-		'items_landmark'     => 'PageArchive',
-		'items_material'     => 'PageArchive',
-		'items_object'       => 'PageArchive',
-		'items_organisation' => 'PageArchive',
-		'items_person'       => 'PageArchive',
-		'items_publication'  => 'PageArchive',
-
 		'archive'            => 'PageArchive',
-		'files'              => 'PageArchive',
-		'files_3d'           => 'PageArchive',
-		'files_audio'        => 'PageArchive',
-		'files_video'        => 'PageArchive',
+
+		'items'              => 'PageArchiveFilter',
+		'items_document'     => 'PageArchiveFilter',
+		'items_landmark'     => 'PageArchiveFilter',
+		'items_material'     => 'PageArchiveFilter',
+		'items_object'       => 'PageArchiveFilter',
+		'items_organisation' => 'PageArchiveFilter',
+		'items_person'       => 'PageArchiveFilter',
+		'items_publication'  => 'PageArchiveFilter',
+
+		'files'              => 'PageArchiveFilter',
+		'files_3d'           => 'PageArchiveFilter',
+		'files_audio'        => 'PageArchiveFilter',
+		'files_video'        => 'PageArchiveFilter',
 		'files_image'        => 'PageArchiveImages',
 
-		'author'             => 'PageArchive',
+		'author'             => 'PageArchiveFilter',
 
 		// entity
 
