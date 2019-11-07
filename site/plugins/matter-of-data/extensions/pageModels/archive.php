@@ -55,45 +55,67 @@ class PageArchive extends Page
 
         return $options;
     }
+    public function filter( string $filter = '' )
+    {
+        if( $found = $this->find( $filter ) ){
+            return $found;
+        }
+        return $this;
+    }
+    public function archive()
+    {
+        return $this->site()->archive();
+    }
     /*
     * results
     */
-    public function results( string $query = '' ){
+    public function results( string $query = '', string $filter = '' ){
 
-        if( $query === '' ){
+        if( $filter === '' && $query === '' ){
             return $this->recentActivity();
         }
 
-        return $this->index()->listed()->search( $query );
+        if( $filter !== '' ){
+            $archive = $this->filter( $filter );
+        } else {
+            $archive = $this;
+        }
+
+        return $archive->search( $query );
 
     }
 }
 
-class PageArchiveFilter extends Page
+class PageArchiveFilter extends PageArchive
 {
-    public function archive()
+    public function template(): Kirby\Cms\Template
     {
-
-        return $this->parent();
-
-	}
+        if ($this->template !== null) {
+            return $this->template;
+        }
+        $intended = $this->kirby()->template('archive');
+        if ($intended->exists() === true) {
+            return $this->template = $intended;
+        }
+        return $this->template = $this->kirby()->template('default');
+    }
     public function dataAbstract( string $srcset = '' ): array
     {
 
         $content = [
             'url' => $this->url(),
             'filter' => $this->slug(),
-			'title' => $this->title()->value()
+            'title' => $this->title()->value(),
+            'template' => $this->template()->name()
 		];
 
         return $content;
 
-	}
+    }
 }
 
 class PageArchiveImages extends PageArchiveFilter
 {
-
     public function children()
     {
         $images = [];

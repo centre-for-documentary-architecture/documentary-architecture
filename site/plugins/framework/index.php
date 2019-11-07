@@ -1,5 +1,13 @@
 <?php
 
+function archivePath( string $base, string $research = '', array $query = [] ): string
+{
+    $url = trim( implode( '/', [ $base, $research ] ), "/" );
+    if( $query !== [] ){
+        return $url .'?'. http_build_query($query);
+    }
+    return  $url;
+}
 
 Kirby::plugin('centre-for-documentary-architecture/framework', [
 
@@ -12,30 +20,33 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
         [
             'pattern' => [
                 'archive.json',
-                'archive/(:any).json'
+                'archive/(:any).json',
+                'archive/(:any)/(:any).json'
             ],
-            'action'  => function ( $any = false ) {
-
-                $archive = kirby()->site()->archive( $any );
+            'action'  => function ( $filter = 'all', $research = '' ) {
 
                 // https://getkirby.com/docs/reference/objects/request
                 $query = get();
 
-                if( isset( $query['research'] ) ){
+                if( isset( $query['filter'] ) && $filter !== 'all' ){
+                    $filter = $query['filter'];
+                    unset( $query['filter'] );
+                }
+                if( isset( $query['research'] ) && $research !== '' ){
                     $research = $query['research'];
-                } else {
-                    $research = '';
+                    unset( $query['research'] );
                 }
 
-                $results = $archive->results( $research );
-                $count = $results->count();
-
-                if( !isset( $query['page'] ) ){
-                    $page = 1;
-                } else {
+                if( isset( $query['page'] ) ){
                     $page = $query['page'];
+                } else {
+                    $page = 1;
                 }
 
+                $archive = kirby()->site()->archive()->filter( $filter );
+                $results = $archive->results( $research );
+
+                $count = $results->count();
                 $pagination = option('centre-for-documentary-architecture.matter-of-data.pagination');
 
                 if( $page > 1 ){
@@ -45,11 +56,9 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
 
                     if( $offset + $pagination < $count ){
 
-                        $query['page']++;
-                        if( $querystring = http_build_query($query) ){
-                            $querystring = '?' . $querystring;
-                        }
-                        $next = $archive->url().$querystring;
+                        $nextQuery = $query;
+                        $nextQuery['page'] = $page + 1;
+                        $next = archivePath( $archive->archive()->url(), $research, $nextQuery );
 
                     } else {
                         $next = false;
@@ -67,23 +76,19 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                     // new query
                     $data = $archive->dataGeneral();
 
-                    if( $querystring = http_build_query($query) ){
-                        $data['url'] = $data['url'] . '?' . $querystring;
-                    }
+                    $data['url'] = archivePath( $archive->archive()->url(), $research, $query );
 
                     if( $pagination < $count ){
 
-                        $query['page'] = 2;
-                        if( $querystring = http_build_query($query) ){
-                            $querystring = '?' . $querystring;
-                        }
-                        $next = $archive->url().$querystring;
+                        $nextQuery = $query;
+                        $nextQuery['page'] = $page + 1;
+                        $next = archivePath( $archive->archive()->url(), $research, $nextQuery );
 
                     } else {
                         $next = false;
                     }
 
-                    $data['options'] = $archive->dataOptions();
+                    // $data['options'] = $archive->dataOptions();
 
                     $data['results'] = [
                         'type' => 'collection',
@@ -98,6 +103,8 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
 
 				return [
                     'status' => 'ok',
+                    'filter' => $filter,
+                    'research' => $research,
                     'query'  => $query,
                     'data'   => $data,
 				];
