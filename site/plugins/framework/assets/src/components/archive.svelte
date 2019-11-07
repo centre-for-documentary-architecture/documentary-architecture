@@ -80,7 +80,7 @@
 	}
 
 	let searchInput;
-	let searchTerms = '';
+	let searchTerms = archive.archive.query;
 	let previouslySearched = false;
 
 </script>
@@ -94,7 +94,7 @@
 			<h1>Archive</h1>
 
 			<form id="search" on:click="{() => searchInput.focus() }" autocomplete="off">
-				<input class="input" type="search" name="research" value=""
+				<input class="input" type="search" name="research"
 					autocomplete="off"
 					autofocus
 					bind:value={searchTerms}
@@ -105,7 +105,9 @@
 			</form>
 
 			<div class="options">
-				Filters and Options
+				{#each archive.archive.filters.filters as filter}
+					<button>{filter.title}</button>
+				{/each}
 			</div>
 
 		</header>

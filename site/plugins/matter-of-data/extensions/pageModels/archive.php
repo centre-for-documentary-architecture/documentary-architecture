@@ -48,16 +48,13 @@ class PageArchive extends Page
     {
         return '';
     }
-    public function dataOptions( string $query = '' ){
+    public function dataFilters( string $query = '' ){
 
-        $options = [];
-
-        $options[] = [
+        return [
             'headline' => 'Filters',
-            'content' => $this->site()->archive()->children()->listed()->dataAbstract()
+            'filters' => $this->site()->archive()->children()->listed()->dataAbstract()
         ];
 
-        return $options;
     }
     public function filter( string $filter = '' )
     {
