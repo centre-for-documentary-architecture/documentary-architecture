@@ -5,6 +5,10 @@
 // archive
 class PageArchive extends Page
 {
+    public function layout(): string
+    {
+        return 'multipanel';
+    }
     public function template()
     {
         if ($this->template !== null) {
@@ -99,8 +103,7 @@ class PageArchiveFilter extends PageArchive
         $content = [
             'url' => $this->url(),
             'filter' => $this->slug(),
-            'title' => $this->title()->value(),
-            'template' => $this->template()->name()
+            'title' => $this->title()->value()
 		];
 
         return $content;
