@@ -8,19 +8,16 @@ body {
 }
 
 .bar.history {
-	border-bottom: $border;
+	border-bottom: $border-thin;
 }
 .bar.cda {
-	border-right: $border-dark;
+	border-right: $border-thin;
+	border-color: $white;
 }
-.bar.archive {
-	border-top: $border-dark;
-}
-
-body.white {
-	.presentation {
-		background-color: $light;
-	}
+.bar.archive,
+body.home .archive-bar {
+	border-top: $border-thin;
+	border-color: $white;
 }
 
 body.black {
