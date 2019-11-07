@@ -11,9 +11,11 @@ body {
 	border-bottom: $border;
 }
 .bar.cda {
+	border-right: $border-thin;
 	border-color: $white;
 }
 .bar.archive {
+	border-top: $border-thin;
 	border-color: $white;
 }
 
