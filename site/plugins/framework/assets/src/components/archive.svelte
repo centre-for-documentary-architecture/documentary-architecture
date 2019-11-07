@@ -1,7 +1,10 @@
 <script>
 
-    export let archive;
+	export let archive;
 
+	import ViewCollection from './views/collection.svelte';
+
+	/*
 	import CollectionCards from './collection/cards.svelte';
 	import CollectionList from './collection/list.svelte';
 	let layouts = {
@@ -9,49 +12,9 @@
 		list: CollectionList
 	}
 	let layout = 'list';
+	*/
 
 	let loading = false;
-
-	async function loadNext(){
-		console.log('load next chunk of collections '+archive.results.next);
-
-		loading = true;
-		console.log('please wait...');
-
-		let newData = await load( archive.results.next );
-
-		if( newData ){
-
-			loading = false;
-			console.log('loading finished');
-
-			console.log( newData );
-
-			archive.results.next = newData.next;
-
-			archive.results.content = archive.results.content.concat( newData.content );
-
-		}
-	}
-
-	let pageHeight = 100;
-	let offset = 4000;
-	let container = 0;
-	let scrollPos = 0;
-
-	function scrollTrigger(){
-		// console.log('scroll');
-		if( archive.results.next === false || loading === true ){
-			console.log('no more');
-			return;
-		}
-		// console.log( scrollPos );
-		if( scrollPos > ( pageHeight - offset ) ){
-
-			loadNext();
-
-		}
-	}
 
 	async function startSearch(){
 		if( searchTerms == previouslySearched ){
@@ -85,8 +48,6 @@
 
 </script>
 
-<svelte:window on:scroll|passive={scrollTrigger} bind:outerHeight={ pageHeight } bind:scrollY={scrollPos} />
-
 <main class="panel col-sm-3">
 	<div class="content">
 
@@ -115,34 +76,4 @@
 	</div>
 </main>
 
-<section class="darks col-sm-9 {archive.type}">
-
-	<div class="section--content">
-
-		<svelte:component this={layouts[layout]} list={archive.results.content} columns=3/>
-
-		{#if loading === true}
-			<div class="bar mono">
-				<span class="message">Please wait...</span>
-			</div>
-		{:else if archive.next}
-			<button class="card" on:click={loadNext}>Load more</button>
-		{/if}
-
-	</div>
-
-	<div class="bar">
-
-		<div class="left display">
-			<span>Display as: </span>
-			<button on:click="{() => layout = 'cards'}">Cards</button>
-			<button on:click="{() => layout = 'list'}">List</button>
-		</div>
-
-		<div class="right info">
-			<span>{archive.results.total} Results</span>
-		</div>
-
-	</div>
-
-</section>
+<ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true}/>
