@@ -14,7 +14,8 @@ body {
 	border-right: $border-thin;
 	border-color: $white;
 }
-.bar.archive {
+.bar.archive,
+body.home .archive-bar {
 	border-top: $border-thin;
 	border-color: $white;
 }
