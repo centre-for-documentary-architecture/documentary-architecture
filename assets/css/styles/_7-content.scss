@@ -12,11 +12,9 @@ body.home {
 			margin: $padding-box;
 			margin-left: 0.75rem;
 		}
-		// border-top: $border;
 		min-height: 65vh;
 		position: relative;
 		display: flex;
-		// border-bottom: none;
 		video {
 			position: absolute;
 			object-fit: cover;
@@ -52,8 +50,6 @@ body.home {
 
 	.activity {
 		padding: 1px;
-		// background-color: $light;
-		// border-top: $border;
 	}
 
 	section.projects,
@@ -88,19 +84,6 @@ body.home {
 			}
 		}
 	}
-	/*
-	section.on-display {
-		.title {
-			padding: $padding-text;
-		}
-		h5 + .title {
-			padding-top: 0;
-		}
-		.card {
-			// border-color: $black;
-		}
-	}
-	*/
 
 	#archive-preview {
 
@@ -212,21 +195,12 @@ main {
 		padding: $padding $padding-double;
 	}
 	header {
-		// margin-bottom: 1rem;
 		.subtitle + div {
 			border-top: $border-thin;
 		}
 	}
 	.tab + .tab {
 		margin-top: 1rem;
-	}
-	section {
-		// border-top: 1px solid $white;
-		// margin-top: 1rem;
-		/*
-		ul {
-			margin-bottom: 1rem;
-		} */
 	}
 }
 

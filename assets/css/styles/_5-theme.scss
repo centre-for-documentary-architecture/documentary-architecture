@@ -1,159 +1,108 @@
-//
-// light and dark theme
-//
 
 body {
 	background-color: $black;
 	color: $black;
 }
 
-.bar.history {
-	border-bottom: $border-thin;
-}
-.bar.cda {
-	border-right: $border-thin;
-	border-color: $white;
-}
-.bar.archive,
-body.home .archive-bar {
-	border-top: $border-thin;
-	border-color: $white;
-}
-
-body.black {
-	/*
-	.presentation {
-		background-color: $black;
-	}
-	*/
-	.presentation.collection .grid {
-		padding-top: 1px;
-	}
-}
-
-.cards.grid {
-	padding: 2px;
-}
-.cards,
-.gallery {
-	.card {
-		padding: 2px;
-	}
-}
-.list {
-	.card + .card {
-		margin-top: 4px;
-	}
-}
-
-
 //
 // text selection
 //
+
 ::selection {
 	background-color: $blue;
 }
 
+//
+// bars
+//
 
+.bar.history {
+	border-bottom: $border;
+}
+body.home,
+body.white {
+	> .page-wrapper {
+		> nav.archive,
+		> div {
+			border-left: $border;
+			border-left-color: $white;
+		}
+	}
+}
+body.black > .page-wrapper {
+	border-left: $border;
+	border-left-color: $white;
+}
+
+.bar.archive,
+body.home .archive-bar {
+	border-top: $border;
+	border-color: $white;
+}
 
 //
 // light theme
 //
 .white {
 	background-color: $white;
-	color: $black;
-	// border-color: $black;
 }
 .light {
 	background-color: $light;
-	color: $black;
-	// border-color: $white;
 }
 .dark {
 	background-color: $dark;
-	color: $white;
-	// border-color: $black;
 }
 .black {
 	background-color: $black;
-	color: $white;
-	// border-color: $white;
 }
 
-/*
-.whites {
+.white,
+.whites,
+.light,
+.lights {
+	color: $black;
 	.card {
-		color: $black;
 		a {
-			background-color: $white;
-			&:hover {
-				background-color: $white-active;
+			background-color: $light;
+			figure {
+				background-color: $light-active;
 			}
 		}
 	}
 }
-*/
-.white,
-.whites {
-	.card {
-		color: $black;
-		// border-color: $light;
-		a {
-			background-color: $light;
-		}
-	}
-}
-.lights {
-	.card {
-		color: $black;
-		// border-color: $white;
-		a {
-			background-color: $light;
-		}
-	}
-}
-.darks,
-.black {
-	.card {
-		color: $white;
-		// border-color: $black;
-		a {
-			background-color: $dark;
-		}
-	}
-}
+.black,
 .blacks,
-.black main {
+.dark,
+.darks {
+	color: $white;
 	.card {
-		color: $white;
-		// border-color: $white;
 		a {
 			background-color: $dark;
+			figure {
+				background-color: $dark-active;
+			}
 		}
 	}
 }
 
+.card > a,
+.card > a figure {
+	transition: background-color 150ms ease;
+}
 .card > a {
 	user-select: none;
-	transition: background-color 150ms ease;
+	figure {
+		background-color: $blue-active;
+	}
 	&:hover {
 		color: $white !important;
 		background-color: $blue !important;
+		figure {
+			background-color: $blue-active;
+		}
 		img {
 			mix-blend-mode: screen;
 			filter: contrast(115%);
 		}
 	}
 }
-
-/*
-.border-bottom-white {
-	border-bottom: $border-width $border-style $white;
-}
-.border-bottom-none {
-	border-bottom: none;
-}
-.border-right-none {
-	border-right: none;
-}
-*/

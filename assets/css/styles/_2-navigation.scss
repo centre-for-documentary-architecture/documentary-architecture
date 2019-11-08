@@ -75,13 +75,11 @@ body {
 	background-color: $black;
 	padding: 0;
 
-	// border-right: $border-white;
-
 	transition: width 400ms ease;
 
 	a.logo {
 		display: block;
-		padding: 0.65rem 0.25rem;
+		padding: 0.66rem 0.21rem;
 		transform: translateX(0);
 		transition: transform 400ms ease;
 		svg {
@@ -202,9 +200,6 @@ nav.bar.history {
 	top: -1px;
 	color: $black;
 	display: flex;
-	// border-bottom: $border;
-	// border-right: $border;
-	// border-top: none;
 	z-index: 2000;
 
 	ol {
@@ -245,8 +240,6 @@ nav.bar.archive {
 	z-index: 1000;
 	background-color: $black;
 	color: $white;
-	// border-right: $border;
-	// border-top: $border;
 
 }
 body {
@@ -345,17 +338,3 @@ nav.pagination {
 		}
 	}
 }
-
-/*
-.tourstop {
-
-	nav.pagination {
-
-		border: $border;
-		border-color: $light;
-		border-bottom: none;
-
-	}
-
-}
-*/
