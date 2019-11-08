@@ -45,16 +45,19 @@
 	border-color: $white;
 }
 
-.tourstop .accordion {
-	.section--header {
-		&:after {
-			top: 0.8em;
-			right: 0.7rem;
+.tour,
+.tourstop {
+	.accordion {
+		.section--header {
+			&:after {
+				top: 0.8em;
+				right: 0.7rem;
+			}
 		}
-	}
-	&.open {
-		.section--header:after {
-			top: 1em;
+		&.open {
+			.section--header:after {
+				top: 1em;
+			}
 		}
 	}
 }
