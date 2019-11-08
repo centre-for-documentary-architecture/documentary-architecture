@@ -6,7 +6,7 @@
     import CollectionCards from '../collection/cards.svelte';
 	import CollectionList from '../collection/list.svelte';
 	import CollectionsGallery from '../collection/gallery.svelte';
-	// import CollectionsTourstop from '../collection/tourstop.svelte';
+
 	let layout = {
 		cards: CollectionCards,
 		list: CollectionList,
@@ -19,7 +19,9 @@
 
 <section class="tab {tab.layout}">
 
-    <h3 class="section--header">{ tab.headline || 'Collection' }</h3>
+	{#if tab.headline}
+    	<h3 class="section--header">{tab.headline}</h3>
+	{/if}
 
     <div class="section--content">
 

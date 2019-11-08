@@ -343,7 +343,7 @@ class LieblingHouseCollection extends EntityCollection
                 return new Field( $this, 'content_headline', 'Promenades');
                 break;
             case 2:
-                return new Field( $this, 'content_headline', 'Hotspots');
+                return new Field( $this, 'content_headline', '');
                 break;
         }
         return new Field( $this, 'content_headline', 'Collection');
