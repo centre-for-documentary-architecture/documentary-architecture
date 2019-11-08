@@ -15,5 +15,9 @@ class HomePage extends Page
 
         return [ $this->site()->dataAbstract() ];
 
+    }
+    public function theme(): string
+	{
+		return '';
 	}
 }
