@@ -14,7 +14,7 @@ function toKeyword( string $keyword, $text = false, $title = false ){
 	$text = ucfirst( r( $text, $text, $keyword ) );
 	$title = ucfirst( r( $title, $title, $keyword ) );
 	return Html::a(
-		kirby()->page('archive')->url().'?q='.Str::slug( $keyword ),
+		kirby()->page('archive')->url().'?research='.Str::slug( $keyword ),
 		$text,
 		$attr = [
 			'title' => 'Research "'.$title.'"',
