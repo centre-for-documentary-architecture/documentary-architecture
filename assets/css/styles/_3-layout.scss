@@ -149,7 +149,6 @@ body {
 					width: 100%;
 					position: absolute;
 					height: 100%;
-					// border-right: $border;
 				}
 
 			}
@@ -158,32 +157,13 @@ body {
 
 	}
 
-	/*
-	.panel.card {
-		// border-top: none;
-	}
-	*/
-
 	.presentation {
 
-		/* .section--header {
-			// display: none;
-		} */
 		.section--content {
 			flex: 1;
-			// display: flex;
 		}
 
 	}
-
-	/*
-	// legacy?
-	.presentation.view-results {
-		.section--content {
-			overflow-y: auto;
-		}
-	}
-	*/
 
 }
 
@@ -192,8 +172,5 @@ body {
 }
 
 .grid [class*="col"].panel {
-
-	// top: $barWidth;
 	position: sticky;
-
 }

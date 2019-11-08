@@ -63,9 +63,6 @@ h6 {
 	p {
 		margin: $padding-text;
 	}
-	.highlight:last-child p {
-		// margin-bottom: 0;
-	}
 }
 
 
@@ -143,9 +140,6 @@ p {
 .section--header {
 	user-select: none;
 	font-family: $mono;
-	// text-transform: uppercase;
-	// letter-spacing: 0.2em;
-	// font-size: $font-medium;
 }
 
 .cards,

@@ -5,7 +5,6 @@
 	.section--header {
 		cursor: pointer;
 		position: relative;
-		// padding-bottom: $padding-box-top;
 
 		&:after {
 			content: '';
@@ -68,19 +67,14 @@
 	flex-wrap: wrap;
 	li {
 		display: flex;
-		// width: 100%;
 		box-sizing: border-box;
 		a {
-			// flex-direction: column;
 			width: 100%;
 			height: 100%;
-			// padding: $border-width;
 			figure {
 				flex: 1;
 				align-content: center;
 				justify-content: center;
-				// display: block;
-				// background-color: $black;
 				display: flex;
 				overflow: hidden;
 				img {
@@ -92,7 +86,6 @@
 				}
 			}
 			.title {
-				// flex: 1;
 				width: 100%;
 			}
 		}
@@ -104,14 +97,6 @@
 		li {
 			width: 50%;
 		}
-		/*
-		li:nth-child(odd){
-			border-right: $border;
-		}
-		li:nth-last-child(2):nth-child(even) {
-			border-bottom: $border !important;
-		}
-		*/
 	}
 	&.columns-3 li {
 		width: 33.3%;
@@ -314,9 +299,6 @@ $thumbnailSize: 2.3em;
 		}
 	}
 }
-
-
-
 
 
 .presentation .list {

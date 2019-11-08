@@ -75,8 +75,6 @@ body {
 	background-color: $black;
 	padding: 0;
 
-	// border-right: $border-white;
-
 	transition: width 400ms ease;
 
 	a.logo {
@@ -242,8 +240,6 @@ nav.bar.archive {
 	z-index: 1000;
 	background-color: $black;
 	color: $white;
-	// border-right: $border;
-	// border-top: $border;
 
 }
 body {
@@ -342,17 +338,3 @@ nav.pagination {
 		}
 	}
 }
-
-/*
-.tourstop {
-
-	nav.pagination {
-
-		border: $border;
-		border-color: $light;
-		border-bottom: none;
-
-	}
-
-}
-*/
