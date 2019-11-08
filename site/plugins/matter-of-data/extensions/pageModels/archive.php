@@ -91,7 +91,7 @@ class PageArchive extends Page
 		$content = [
 			'url' => $this->url(),
 			'title' => $this->title()->value(),
-			'template' => $this->template()->name(),
+			'template' => 'archive',
             'classlist' => $this->classlist(),
             'filter' => false,
 			'worlditem' => null
@@ -121,6 +121,7 @@ class PageArchiveFilter extends PageArchive
         $content = [
             'url' => $this->url(),
             'filter' => $this->slug(),
+            'template' => 'archive',
             'title' => $this->title()->value()
 		];
 
