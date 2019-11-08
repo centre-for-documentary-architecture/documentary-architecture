@@ -57,7 +57,7 @@ snippet('navigation/history');
 					<h5>
 						<?php
 							if( $item->category() !== null ){
-								echo ucwords( $item->category() );
+								echo ucwords( $item->content()->category() );
 							} else {
 								echo ucwords( $item->type() );
 							}
@@ -78,6 +78,9 @@ snippet('navigation/history');
 						</figure>
 					<?php endif ?>
 					<h2><?= $item->title() ?></h2>
+					<?php if( $item->additional_title()->isNotEmpty() ): ?>
+						<h4><?= $item->additional_title()->html(); ?></h4>
+					<?php endif; ?>
 				</a></li>
 			<?php endforeach ?>
 
