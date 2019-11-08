@@ -90,4 +90,4 @@
 	</div>
 </main>
 
-<ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true}/>
+<ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
