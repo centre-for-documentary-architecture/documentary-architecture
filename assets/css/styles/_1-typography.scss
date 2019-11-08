@@ -14,6 +14,10 @@ h5,
 	font-family: $mono;
 }
 
+.bar, button, .button {
+	font-family: $mono;
+}
+
 //
 // font sizes
 //
@@ -64,9 +68,6 @@ h6 {
 		// margin-bottom: 0;
 	}
 	*/
-}
-body.entity main .content {
-	padding: $padding $padding-double;
 }
 
 

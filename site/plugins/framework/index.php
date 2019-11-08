@@ -1,5 +1,13 @@
 <?php
 
+function archivePath( string $base, string $filter = '', array $query = [] ): string
+{
+    $url = implode( '/', array_filter([ $base, $filter ]) );
+    if( $query = http_build_query( array_filter($query) ) ){
+        return $url .'?'. $query ;
+    }
+    return  $url;
+}
 
 Kirby::plugin('centre-for-documentary-architecture/framework', [
 
@@ -14,83 +22,77 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 'archive.json',
                 'archive/(:any).json'
             ],
-            'action'  => function ( $any = false ) {
-
-                $archive = kirby()->site()->archive( $any );
+            'action'  => function ( $filter = '' ) {
 
                 // https://getkirby.com/docs/reference/objects/request
                 $query = get();
 
-                if( isset( $query['research'] ) ){
-                    $research = $query['research'];
-                } else {
-                    $research = '';
+                if( isset( $query['filter'] ) && $filter === '' ){
+                    $filter = $query['filter'];
                 }
+                unset( $query['filter'] );
 
-                $results = $archive->results( $research );
-                $count = $results->count();
+                if( !isset( $query['research'] ) ){
+                    $query['research'] = '';
+                }
+                $research = $query['research'];
 
-                if( !isset( $query['page'] ) ){
-                    $page = 1;
-                } else {
+                if( isset( $query['page'] ) ){
                     $page = $query['page'];
+                } else {
+                    $page = 1;
                 }
 
+                $mainArchive = kirby()->site()->archive();
+                if( $archiveFiltered = $mainArchive->find( $filter ) ){
+                    $archive = $archiveFiltered;
+                } else {
+                    $archive = $mainArchive;
+                    $filter = '';
+                }
+
+                // $archive = kirby()->site()->archive()->filter( $filter );
+                $results = $archive->results( $research );
+
+                $count = $results->count();
                 $pagination = option('centre-for-documentary-architecture.matter-of-data.pagination');
+                $offset = ( $page * $pagination ) - $pagination;
 
-                if( $page > 1 ){
+                if( $offset + $pagination > $count ){
+                    $next = false;
+                } else {
+                    $nextQuery = $query;
+                    $nextQuery['page'] = $page + 1;
+                    $next = archivePath( $mainArchive->url(), $filter, $nextQuery );
+                }
 
-                    // nth page of a existing query
-                    $offset = ( $page * $pagination ) - $pagination;
+                if( $page == 1 ){
+                    // new query
 
-                    if( $offset + $pagination < $count ){
+                    $data = $archive->dataGeneral();
 
-                        $query['page']++;
-                        if( $querystring = http_build_query($query) ){
-                            $querystring = '?' . $querystring;
-                        }
-                        $next = $archive->url().$querystring;
+                    $data['url'] = archivePath( $mainArchive->url(), $filter, $query );
+                    $data['archive'] = [
+                        'filters' => $mainArchive->dataFilters(),
+                        'filter' => $filter,
+                        'query' => $query['research']
+                    ];
+                    $data['results'] = [
+                        'type' => 'collection',
+                        'headline' => 'Results',
+                        'total' => $count,
+                        'page' => 1,
+                        'next' => $next,
+                        'content' => $results->limit( $pagination )->dataAbstract()
+                    ];
 
-                    } else {
-                        $next = false;
-                    }
+                } else {
 
                     $data = [
                         'total' => $count,
                         'page' => $page,
                         'next' => $next,
                         'content' => $results->offset( $offset )->limit( $pagination )->dataAbstract()
-                    ];
-
-                } else {
-
-                    // new query
-                    $data = $archive->dataGeneral();
-
-                    if( $querystring = http_build_query($query) ){
-                        $data['url'] = $data['url'] . '?' . $querystring;
-                    }
-
-                    if( $pagination < $count ){
-
-                        $query['page'] = 2;
-                        if( $querystring = http_build_query($query) ){
-                            $querystring = '?' . $querystring;
-                        }
-                        $next = $archive->url().$querystring;
-
-                    } else {
-                        $next = false;
-                    }
-
-                    $data['results'] = [
-                        'type' => 'collection',
-                        'headline' => 'Results',
-                        'total' => $count,
-                        'layout' => 'cards',
-                        'page' => 1,
-                        'next' => $next,
-                        'content' => $results->limit( $pagination )->dataAbstract()
                     ];
 
                 }

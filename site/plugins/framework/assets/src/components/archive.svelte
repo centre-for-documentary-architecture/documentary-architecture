@@ -1,58 +1,21 @@
 <script>
 
-    export let archive;
+	export let archive;
 
+	import ViewCollection from './views/collection.svelte';
+	import CollectionList from './collection/list.svelte';
+
+	/*
 	import CollectionCards from './collection/cards.svelte';
 	import CollectionList from './collection/list.svelte';
-	import CollectionsGallery from './collection/gallery.svelte';
-	let layout = {
+	let layouts = {
 		cards: CollectionCards,
-		list: CollectionList,
-		gallery: CollectionsGallery
+		list: CollectionList
 	}
-	
+	let layout = 'list';
+	*/
+
 	let loading = false;
-
-	async function loadNext(){
-		console.log('load next chunk of collections '+archive.results.next);
-
-		loading = true;
-		console.log('please wait...');
-
-		let newData = await load( archive.results.next );
-
-		if( newData ){
-
-			loading = false;
-			console.log('loading finished');
-
-			console.log( newData );
-
-			archive.results.next = newData.next;
-
-			archive.results.content = archive.results.content.concat( newData.content );
-
-		}
-	}
-
-	let pageHeight = 100;
-	let offset = 4000;
-	let container = 0;
-	let scrollPos = 0;
-
-	function scrollTrigger(){
-		// console.log('scroll');
-		if( archive.results.next === false || loading === true ){
-			console.log('no more');
-			return;
-		}
-		// console.log( scrollPos );
-		if( scrollPos > ( pageHeight - offset ) ){
-
-			loadNext();
-
-		}
-	}
 
 	async function startSearch(){
 		if( searchTerms == previouslySearched ){
@@ -81,43 +44,50 @@
 	}
 
 	let searchInput;
-	let searchTerms = '';
+	let searchTerms = archive.archive.query;
 	let previouslySearched = false;
-	
+
+	let filter = archive.archive.filter;
+
 </script>
 
-<svelte:window on:scroll|passive={scrollTrigger} bind:outerHeight={ pageHeight } bind:scrollY={scrollPos} />
+<main class="panel col-sm-3">
+	<div class="content">
 
-<header class="card col-12" id="top">
-	<h1>Archive</h1>
+		<header id="top" class="tab">
+			<h1>Archive</h1>
 
-	<form id="search" on:click="{() => searchInput.focus() }" autocomplete="off">
-		<input class="input" type="search" name="research" value=""
-			autocomplete="off"
-			autofocus
-			bind:value={searchTerms}
-			placeholder="Type here to research the archive ..."
-			bind:this={searchInput}
-			on:keyup={startSearch} >
-		<button class="button" value="Search" title="Research {searchTerms}">Research</button>
-	</form>
+			<form id="search" on:click="{() => searchInput.focus() }" autocomplete="off">
+				<input class="input" type="search" name="research"
+					autocomplete="off"
+					spellcheck="false"
+					autocorrect="off"
+					bind:value={searchTerms}
+					aria-label="Search the archive ..."
+					placeholder="Search the archive ..."
+					bind:this={searchInput}
+					on:keyup={startSearch} >
+				<!-- {#if searchTerms}
+					<button class="button" value="Search" title="Search {searchTerms}">Start search</button>
+				{/if} -->
+			</form>
 
-</header>
+		</header>
 
-<section class="darks col-12 {archive.type}">
-
-	<div class="section--content">
-		
-		<svelte:component this={layout[archive.results.layout]} list={archive.results.content} columns=4/>
-
-		{#if loading === true}
-			<div class="bar mono">
-				<span class="message">Please wait...</span>
-			</div>
-		{:else if archive.next}
-			<button class="card" on:click={loadNext}>Load more</button>
-		{/if}
+		<section class="filters tab">
+			<h2>Filter</h2>
+			<ul class="list">
+				{#each archive.archive.filters.content as item}
+					<li class="card">
+						<a class="button {filter == item.filter ? 'active' : ''}" on:click={navi} on:click={() => filter = item.filter} href={item.url} data-template="archive">
+							<h4 class="title">{item.title}</h4>
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</section>
 
 	</div>
+</main>
 
-</section>
+<ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true}/>

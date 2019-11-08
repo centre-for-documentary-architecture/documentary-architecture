@@ -42,7 +42,7 @@ body.black {
 }
 .list {
 	.card {
-		margin: 2px 0;
+		margin: 4px 0;
 	}
 }
 
@@ -93,7 +93,7 @@ body.black {
 	}
 }
 */
-body.entity.white,
+body.white,
 .whites {
 	.card {
 		color: $black;
@@ -113,7 +113,7 @@ body.entity.white,
 	}
 }
 .darks,
-body.entity.black {
+body.black {
 	.card {
 		color: $white;
 		// border-color: $black;
@@ -123,7 +123,7 @@ body.entity.black {
 	}
 }
 .blacks,
-body.entity.black main {
+body.black main {
 	.card {
 		color: $white;
 		// border-color: $white;

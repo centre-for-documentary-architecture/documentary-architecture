@@ -58,8 +58,10 @@
 	window.navi = async event => {
 
 		let target = event.target.closest('a');
+		let template = target.dataset.template;
 
-		if( target.dataset.template != 'entity' ){
+		if( template != 'entity' && template != 'archive' ){
+			console.log('Unload and follow link');
 			return;
 		}
 
@@ -67,7 +69,7 @@
 
 		replaceEntityData( await load( target.href ) );
 
-		console.log( 'navi', entity );
+		console.log( 'N A V I', entity );
 
 		naviWorld( entity.worlditem );
 

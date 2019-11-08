@@ -154,26 +154,45 @@ body.home {
 //
 body.archive {
 
-	form {
-		padding-top: 4rem;
-		padding-bottom: 0.3rem;
-		display: flex;
-		.input {
-			flex: 1;
+	main {
+		input {
+			width: 100%;
 			outline: none;
-		}
-		.button {
 			background-color: $dark;
-			padding: 0.5rem 1em;
-			font-family: $mono;
-			text-transform: uppercase;
+			&:focus {
+				background-color: $blue;
+			}
+			&::placeholder {
+				color: $black;
+			}
+		}
+		button {
+			width: 100%;
+			background-color: $dark;
 			&:hover {
 				background-color: $blue;
 			}
 		}
-		::placeholder {
-			color: $grey;
+		form {
+			margin-top: 1rem;
+			.input {
+				margin-bottom: 2px;
+			}
 		}
+		.filters {
+			.card {
+				background-color: $dark;
+			}
+			.active {
+				background-color: $blue;
+			}
+		}
+	}
+
+	.collection .bar {
+		position: sticky;
+		bottom: 0;
+		background-color: $blue;
 	}
 
 }
@@ -188,22 +207,27 @@ body.file {
 	}
 }
 
-body.entity {
-	main {
-		header {
-			margin-bottom: 1rem;
-			.subtitle + div {
-				border-top: $border-thin;
-			}
-		}
-		section {
-			// border-top: 1px solid $white;
-			// margin-top: 1rem;
-			ul {
-				margin-bottom: 1rem;
-			}
+main {
+	> .content {
+		padding: $padding $padding-double;
+	}
+	header {
+		margin-bottom: 1rem;
+		.subtitle + div {
+			border-top: $border-thin;
 		}
 	}
+	section {
+		// border-top: 1px solid $white;
+		// margin-top: 1rem;
+		ul {
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+body.entity {
+
 	.tab + .tab {
 		border-top: $border-thin;
 	}

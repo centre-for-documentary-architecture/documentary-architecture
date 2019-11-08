@@ -105,10 +105,6 @@
 {/if}
 {#if entity.view}
 
-	{#if entity.transcript}
-    	<svelte:component this={views[ entity.view.type ]} view={entity.view} classname="presentation panel col-sm-{12 - contentWidth(entity.entity)}" transcript={entity.transcript}/>
-	{:else}
-		<svelte:component this={views[ entity.view.type ]} view={entity.view} classname="presentation panel col-sm-{12 - contentWidth(entity.entity)}"/>
-	{/if}
+	<svelte:component this={views[ entity.view.type ]} view={entity.view} classname="presentation panel col-sm-{12 - contentWidth(entity.entity)}" transcript={entity.transcript || false}/>
 
 {/if}

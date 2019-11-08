@@ -1,18 +1,26 @@
 <script>
+	import { afterUpdate } from 'svelte';
 
 	export let view;
 	export let classname;
 
+	export let controls = false;
 	export let columns = 2;
 
 	import CollectionCards from '../collection/cards.svelte';
 	import CollectionList from '../collection/list.svelte';
 	import CollectionsGallery from '../collection/gallery.svelte';
-	let layout = {
+	let layouts = {
 		cards: CollectionCards,
 		list: CollectionList,
 		gallery: CollectionsGallery
 	}
+	export let layout = 'cards';
+	afterUpdate(() => {
+		if( "layout" in view ){
+			layout = view.layout;
+		}
+	});
 
 	let loading = false;
 
@@ -64,9 +72,6 @@
 	.section--content {
 		display: block;
 	}
-	button {
-		width: 100%;
-	}
 </style>
 
 <section class="{classname} {view.type}" on:scroll|passive={scrollTrigger} bind:this={container}>
@@ -77,7 +82,7 @@
 
 	<div class="section--content" bind:clientHeight={ pageHeight }>
 
-		<svelte:component this={layout[view.layout]} list={view.content} {columns}/>
+		<svelte:component this={layouts[layout]} list={view.content} {columns}/>
 
 		{#if loading === true}
 			<div class="bar mono">
@@ -88,5 +93,21 @@
 		{/if}
 
 	</div>
+
+	{#if controls }
+		<div class="bar">
+
+			<div class="left display">
+				<span>Display as: </span>
+				<button on:click="{() => layout = 'cards'}">Cards</button>
+				<button on:click="{() => layout = 'list'}">List</button>
+			</div>
+
+			<div class="right info">
+				<span>{view.total} Results</span>
+			</div>
+
+		</div>
+	{/if}
 
 </section>
