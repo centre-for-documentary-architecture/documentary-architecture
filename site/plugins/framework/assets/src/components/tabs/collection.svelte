@@ -17,7 +17,7 @@
 
 </script>
 
-<section class="tab">
+<section class="tab {tab.layout}">
 
     <h3 class="section--header">{ tab.headline || 'Collection' }</h3>
 

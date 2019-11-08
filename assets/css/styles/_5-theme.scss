@@ -41,8 +41,8 @@ body.black {
 	}
 }
 .list {
-	.card {
-		margin: 4px 0;
+	.card + .card {
+		margin-top: 4px;
 	}
 }
 

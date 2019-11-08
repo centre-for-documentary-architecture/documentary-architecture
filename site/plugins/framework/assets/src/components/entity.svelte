@@ -87,17 +87,17 @@
     <main class="panel col-sm-{contentWidth(entity.entity)}" on:click={touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
 
         <div class="content">
+			<div class="tabs">
+				{#if entity.pagination}
+					<Pagination pagination={entity.pagination} />
+				{/if}
 
-            {#if entity.pagination}
-                <Pagination pagination={entity.pagination} />
-            {/if}
+				{#each entity.content as tab}
 
-            {#each entity.content as tab}
+					<svelte:component this={tabs[ tab.type ]} {tab} category="{entity.category}" entity="{entity.entity}"/>
 
-                <svelte:component this={tabs[ tab.type ]} {tab} category="{entity.category}" entity="{entity.entity}"/>
-
-            {/each}
-
+				{/each}
+			</div>
         </div>
 
     </main>
