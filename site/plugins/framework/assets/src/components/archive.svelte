@@ -79,7 +79,7 @@
 			<ul class="list">
 				{#each archive.archive.filters.content as item}
 					<li class="card">
-						<a class="button {filter == item.filter ? 'active' : ''}" on:click={navi} href={item.url} data-template="archive">
+						<a class="button {filter == item.filter ? 'active' : ''}" on:click={navi} on:click={() => filter = item.filter} href={item.url} data-template="archive">
 							<h4 class="title">{item.title}</h4>
 						</a>
 					</li>
