@@ -59,7 +59,7 @@
 
 		let target = event.target.closest('a');
 
-		if( target.dataset.template != 'entity' ){
+		if( target.dataset.template != 'entity' || target.dataset.template != 'archive' ){
 			return;
 		}
 
