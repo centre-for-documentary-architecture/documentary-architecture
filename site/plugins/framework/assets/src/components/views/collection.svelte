@@ -76,9 +76,9 @@
 
 <section class="{classname} {view.type}" on:scroll|passive={scrollTrigger} bind:this={container}>
 
-	<h3 class="section--header">
+	<!--<h3 class="section--header">
 		{ view.headline }
-	</h3>
+	</h3>-->
 
 	<div class="section--content" bind:clientHeight={ pageHeight }>
 

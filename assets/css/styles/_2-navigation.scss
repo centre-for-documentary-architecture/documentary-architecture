@@ -331,6 +331,9 @@ nav.pagination {
 	}
 	li.current {
 		color: transparent;
+		a:hover {
+			color: transparent;
+		}
 		a:after {
 			content: '';
 			display: block;
@@ -343,6 +346,7 @@ nav.pagination {
 	}
 }
 
+/*
 .tourstop {
 
 	nav.pagination {
@@ -354,3 +358,4 @@ nav.pagination {
 	}
 
 }
+*/

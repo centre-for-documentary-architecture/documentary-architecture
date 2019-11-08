@@ -33,9 +33,9 @@
 
 <section class="{classname} {view.type}">
 
-	<h3 class="section--header">
+	<!--<h3 class="section--header">
 		{ view.headline || 'Audio' }
-	</h3>
+	</h3>-->
 
 	<div class="section--content">
 

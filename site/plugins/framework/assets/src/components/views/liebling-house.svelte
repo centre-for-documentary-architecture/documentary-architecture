@@ -191,7 +191,7 @@
 	.loader {
 		width: 100%;
 		height: 100%;
-		background-color: #eee;
+		background-color: #000;
 		/* z-index: 30; */
 		position: absolute;
 		top: 0;
@@ -231,9 +231,9 @@
 
 <section class="{classname} {view.type}">
 
-	<h3 class="section--header">
+	<!--<h3 class="section--header">
 		{ view.headline || 'Virtual 3D World' }
-	</h3>
+	</h3>-->
 
 	<div class="section--content" id="view-liebling-house">
 		<div id="worldContainer" class="presentation-container"></div>

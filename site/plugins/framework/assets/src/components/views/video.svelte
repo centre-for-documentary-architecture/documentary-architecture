@@ -32,9 +32,9 @@
 
 <section class="{classname} {view.type}" bind:offsetWidth={videoWidth}>
 
-	<h3 class="section--header" bind:offsetWidth={videoWidth}>
+	<!--<h3 class="section--header" bind:offsetWidth={videoWidth}>
 		{ view.headline || 'Video' }
-	</h3>
+	</h3>-->
 
 	<div class="section--content">
 		<video width="100%" height="auto" controls poster="{ view.content.poster }" bind:this={mediaElement} preload="metadata" >

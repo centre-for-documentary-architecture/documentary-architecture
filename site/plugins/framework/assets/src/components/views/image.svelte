@@ -7,9 +7,9 @@
 
 <section class="{classname} {view.type}">
 
-	<h2 class="section--header">
+	<!--<h3 class="section--header">
 		{ view.headline || 'Preview' }
-	</h2>
+	</h3>-->
 
 	<div class="section--content">
 		<figure>

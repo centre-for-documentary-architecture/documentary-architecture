@@ -82,6 +82,7 @@ body {
 
 		// overlapping layout, with one non-scrollable panel in the background and the other free floating above
 		// this layout needs to switched on and off seamlessly
+		&.tour,
 		&.tourstop,
 		&.overlap {
 
@@ -97,13 +98,50 @@ body {
 					width: 100%;
 					height: 100%;
 					background-color: transparent !important;
-					> div {
+					> .content {
 						position: absolute;
 						top: 3rem;
 						left: 3rem;
-						width: 33vw;
+						width: 28vw;
 						padding-bottom: 5.5rem;
-						background-color: $light;
+						.tab {
+							margin-top: 4px;
+							border-top: none;
+							h3 {
+								margin: 0;
+								padding: $padding;
+								background-color: $white;
+							}
+							&.gallery {
+								h3 {
+									margin-bottom: 4px;
+								}
+							}
+							&.list {
+								background-color: $white;
+								.list {
+									padding: 0 $padding $padding;
+								}
+							}
+							&.meta {
+								background-color: $white;
+								.section--content {
+									padding: 0 $padding;
+								}
+							}
+						}
+						header {
+							background-color: $white;
+							padding: 0 $padding;
+							display: inline-block;
+						}
+						.gallery {
+							padding: 0;
+							.card {
+								padding: 0;
+								margin-bottom: 4px;
+							}
+						}
 					}
 				}
 
