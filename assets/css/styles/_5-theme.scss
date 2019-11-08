@@ -1,3 +1,4 @@
+
 body {
 	background-color: $black;
 	color: $black;
@@ -64,9 +65,9 @@ body.home .archive-bar {
 	.card {
 		a {
 			background-color: $light;
-		}
-		figure {
-			background-color: $light-active;
+			figure {
+				background-color: $light-active;
+			}
 		}
 	}
 }
@@ -79,19 +80,28 @@ body.home .archive-bar {
 	.card {
 		a {
 			background-color: $dark;
-		}
-		figure {
-			background-color: $dark-active;
+			figure {
+				background-color: $dark-active;
+			}
 		}
 	}
 }
 
+.card > a,
+.card > a figure {
+	transition: background-color 150ms ease;
+}
 .card > a {
 	user-select: none;
-	transition: background-color 150ms ease;
+	figure {
+		background-color: $blue-active;
+	}
 	&:hover {
 		color: $white !important;
 		background-color: $blue !important;
+		figure {
+			background-color: $blue-active;
+		}
 		img {
 			mix-blend-mode: screen;
 			filter: contrast(115%);
