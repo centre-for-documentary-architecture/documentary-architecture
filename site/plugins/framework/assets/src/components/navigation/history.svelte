@@ -13,19 +13,11 @@
     <ol>
         {#each entity.breadcrumbs as item}
 
-            {#if item.url == entity.url}
-                <li class="current">
-                    <a title="{item.title}" href="#top" class="smooth">
-                        {item.title}
-                    </a>
-                </li>
-            {:else}
-                <li>
-                    <a on:click={navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
-                        {item.title}
-                    </a>
-                </li>
-            {/if}
+            <li class="{ item.url == entity.url ? 'current' : ''}">
+                <a on:click={navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
+                    {item.title}
+                </a>
+            </li>
 
         {/each}
     </ol>
