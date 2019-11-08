@@ -3,6 +3,7 @@
 	export let archive;
 
 	import ViewCollection from './views/collection.svelte';
+	import CollectionList from './collection/list.svelte';
 
 	/*
 	import CollectionCards from './collection/cards.svelte';
@@ -46,6 +47,8 @@
 	let searchTerms = archive.archive.query;
 	let previouslySearched = false;
 
+	let filter = archive.archive.filter;
+
 </script>
 
 <main class="panel col-sm-3">
@@ -57,21 +60,32 @@
 			<form id="search" on:click="{() => searchInput.focus() }" autocomplete="off">
 				<input class="input" type="search" name="research"
 					autocomplete="off"
-					autofocus
+					spellcheck="false"
+					autocorrect="off"
 					bind:value={searchTerms}
-					placeholder="Type here to research the archive ..."
+					aria-label="Search the archive ..."
+					placeholder="Search the archive ..."
 					bind:this={searchInput}
 					on:keyup={startSearch} >
-				<button class="button" value="Search" title="Research {searchTerms}">Research</button>
+				<!-- {#if searchTerms}
+					<button class="button" value="Search" title="Search {searchTerms}">Start search</button>
+				{/if} -->
 			</form>
 
-			<div class="options">
-				{#each archive.archive.filters.filters as filter}
-					<button>{filter.title}</button>
-				{/each}
-			</div>
-
 		</header>
+
+		<section class="filters tab">
+			<h2>Filter</h2>
+			<ul class="list">
+				{#each archive.archive.filters.content as item}
+					<li class="card">
+						<a class="button {filter == item.filter ? 'active' : ''}" on:click={navi} href={item.url}>
+							<h4 class="title">{item.title}</h4>
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</section>
 
 	</div>
 </main>

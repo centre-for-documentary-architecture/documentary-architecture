@@ -48,11 +48,17 @@ class PageArchive extends Page
     {
         return '';
     }
-    public function dataFilters( string $query = '' ){
+    public function dataFilters( string $query = '' ): array
+    {
+        $filters = $this->site()->archive()->children()->listed()->dataAbstract();
+
+        $all = $this->dataAbstract();
+        $all['title'] = 'Search all';
+        array_unshift( $filters, $all );
 
         return [
             'headline' => 'Filters',
-            'filters' => $this->site()->archive()->children()->listed()->dataAbstract()
+            'content' => $filters
         ];
 
     }
@@ -79,6 +85,21 @@ class PageArchive extends Page
         return $this->search( $query );
 
     }
+    public function dataAbstract( string $srcset = 'medium' )
+    {
+
+		$content = [
+			'url' => $this->url(),
+			'title' => $this->title()->value(),
+			'template' => $this->template()->name(),
+            'classlist' => $this->classlist(),
+            'filter' => false,
+			'worlditem' => null
+		];
+
+		return $content;
+
+	}
 }
 
 class PageArchiveFilter extends PageArchive
