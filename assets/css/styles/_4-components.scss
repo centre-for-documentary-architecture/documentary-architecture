@@ -340,6 +340,10 @@ dl.table {
 		div {
 			flex: 1 0 50%;
 		}
+		dt + div {
+			flex-basis: 100%;
+			margin-top: $padding-text-top;
+		}
 	}
 	a {
 		display: inline;
