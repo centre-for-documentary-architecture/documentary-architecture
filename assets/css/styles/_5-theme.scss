@@ -1,11 +1,19 @@
-//
-// light and dark theme
-//
-
 body {
 	background-color: $black;
 	color: $black;
 }
+
+//
+// text selection
+//
+
+::selection {
+	background-color: $blue;
+}
+
+//
+// bars
+//
 
 .bar.history {
 	border-bottom: $border-thin;
@@ -20,115 +28,49 @@ body.home .archive-bar {
 	border-color: $white;
 }
 
-body.black {
-	/*
-	.presentation {
-		background-color: $black;
-	}
-	*/
-	.presentation.collection .grid {
-		padding-top: 1px;
-	}
-}
-
-.cards.grid {
-	padding: 2px;
-}
-.cards,
-.gallery {
-	.card {
-		padding: 2px;
-	}
-}
-.list {
-	.card + .card {
-		margin-top: 4px;
-	}
-}
-
-
-//
-// text selection
-//
-::selection {
-	background-color: $blue;
-}
-
-
-
 //
 // light theme
 //
 .white {
 	background-color: $white;
-	color: $black;
-	// border-color: $black;
 }
 .light {
 	background-color: $light;
-	color: $black;
-	// border-color: $white;
 }
 .dark {
 	background-color: $dark;
-	color: $white;
-	// border-color: $black;
 }
 .black {
 	background-color: $black;
-	color: $white;
-	// border-color: $white;
 }
 
-/*
-.whites {
-	.card {
-		color: $black;
-		a {
-			background-color: $white;
-			&:hover {
-				background-color: $white-active;
-			}
-		}
-	}
-}
-*/
 .white,
-.whites {
+.whites,
+.light,
+.lights,
+.white main {
+	color: $black;
 	.card {
-		color: $black;
-		// border-color: $light;
 		a {
 			background-color: $light;
 		}
-	}
-}
-.lights {
-	.card {
-		color: $black;
-		// border-color: $white;
-		a {
-			background-color: $light;
+		figure {
+			background-color: $light-active;
 		}
 	}
 }
-.darks,
-.black {
-	.card {
-		color: $white;
-		// border-color: $black;
-		a {
-			background-color: $dark;
-		}
-	}
-}
+.black,
 .blacks,
+.dark,
+.darks,
 .black main {
+	color: $white;
 	.card {
-		color: $white;
-		// border-color: $white;
 		a {
 			background-color: $dark;
+		}
+		figure {
+			background-color: $dark-active;
 		}
 	}
 }
@@ -145,15 +87,3 @@ body.black {
 		}
 	}
 }
-
-/*
-.border-bottom-white {
-	border-bottom: $border-width $border-style $white;
-}
-.border-bottom-none {
-	border-bottom: none;
-}
-.border-right-none {
-	border-right: none;
-}
-*/
