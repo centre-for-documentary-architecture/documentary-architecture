@@ -273,8 +273,8 @@ body.black .cards {
 		}
 		figure {
 			order: -1;
-			width: 2.2em;
-			height: 2.2em;
+			width: 2.7em;
+			height: 2.7em;
 			display: flex;
 			overflow: hidden;
 			img {
@@ -283,6 +283,9 @@ body.black .cards {
 			}
 		}
 	}
+}
+.presentation .list {
+	padding-right: 4px;
 }
 
 
