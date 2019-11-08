@@ -191,7 +191,7 @@
 	.loader {
 		width: 100%;
 		height: 100%;
-		background-color: #eee;
+		background-color: #000;
 		/* z-index: 30; */
 		position: absolute;
 		top: 0;
