@@ -16,15 +16,26 @@ body {
 //
 
 .bar.history {
-	border-bottom: $border-thin;
+	border-bottom: $border;
 }
-.bar.cda {
-	border-right: $border-thin;
-	border-color: $white;
+body.home,
+body.white {
+	> .page-wrapper {
+		> nav.archive,
+		> div {
+			border-left: $border;
+			border-left-color: $white;
+		}
+	}
 }
+body.black > .page-wrapper {
+	border-left: $border;
+	border-left-color: $white;
+}
+
 .bar.archive,
 body.home .archive-bar {
-	border-top: $border-thin;
+	border-top: $border;
 	border-color: $white;
 }
 

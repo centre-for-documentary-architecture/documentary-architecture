@@ -7,7 +7,7 @@
         <?= svg('assets/img/cda-logo-full.svg'); ?>
     </a>
 
-    <aside class="about black">
+    <aside class="about">
         <?php snippet('about'); ?>
     </aside>
 

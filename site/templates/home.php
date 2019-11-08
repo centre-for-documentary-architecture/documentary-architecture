@@ -12,10 +12,10 @@ snippet('navigation/history');
 
 	<?php $root = option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/videos/'; ?>
 	<video autoplay loop muted preload="auto">
-		<source src="<?= $root ?>CDA-intro-short-360.mp4" type='video/mp4' media="all and (max-width: 640px)" />
-		<source src="<?= $root ?>CDA-intro-short-480.mp4" type='video/mp4' media="all and (max-width: 854px)" />
-		<source src="<?= $root ?>CDA-intro-short-720.mp4" type='video/mp4' media="all and (max-width: 1280px)" />
 		<source src="<?= $root ?>CDA-intro-short-1080.mp4" type='video/mp4'/>
+		<source src="<?= $root ?>CDA-intro-short-720.mp4" type='video/mp4' media="all and (max-width: 1280px)" />
+		<source src="<?= $root ?>CDA-intro-short-480.mp4" type='video/mp4' media="all and (max-width: 854px)" />
+		<source src="<?= $root ?>CDA-intro-short-360.mp4" type='video/mp4' media="all and (max-width: 640px)" />
 	</video>
 
 </header>
@@ -57,7 +57,7 @@ snippet('navigation/history');
 					<h5>
 						<?php
 							if( $item->category() !== null ){
-								echo ucwords( $item->category() );
+								echo ucwords( $item->content()->category() );
 							} else {
 								echo ucwords( $item->type() );
 							}
@@ -78,6 +78,9 @@ snippet('navigation/history');
 						</figure>
 					<?php endif ?>
 					<h2><?= $item->title() ?></h2>
+					<?php if( $item->additional_title()->isNotEmpty() ): ?>
+						<h4><?= $item->additional_title()->html(); ?></h4>
+					<?php endif; ?>
 				</a></li>
 			<?php endforeach ?>
 
