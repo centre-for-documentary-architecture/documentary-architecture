@@ -15,21 +15,12 @@
         <ol>
             {#each pagination.siblings as item, i}
 
-                {#if item.url == pagination.current.url }
-                    <li class="current">
-                        <a title="{item.title}" href="{item.url}" data-template="{item.template}">
-                            <span class="num">{i+1}</span>
-                            <span class="title">{item.title}</span>
-                        </a>
-                    </li>
-                {:else}
-                    <li>
-                        <a on:click={navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
-                            <span class="num">{i+1}</span>
-                            <span class="title">{item.title}</span>
-                        </a>
-                    </li>
-                {/if}
+                <li class="{ item.url == pagination.current.url ? 'current' : ''}">
+                    <a on:click={navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
+                        <span class="num">{i+1}</span>
+                        <span class="title">{item.title}</span>
+                    </a>
+                </li>
 
             {/each}
         </ol>
