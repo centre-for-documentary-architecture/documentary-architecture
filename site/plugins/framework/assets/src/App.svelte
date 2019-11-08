@@ -85,7 +85,7 @@
 
 		var worlditemContent = await load( href );
 
-		entity.theme = worlditemContent.theme;
+		// entity.theme = worlditemContent.theme;
 		entity.content = worlditemContent.content;
 
 		console.log( 'showWorlditemContent', entity );

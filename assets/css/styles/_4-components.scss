@@ -33,6 +33,7 @@
 			-webkit-transform: rotate(-135deg);
 		}
 		.section--content {
+			display: block;
 			max-height: 10000px;
 		}
 	}
@@ -322,7 +323,7 @@ body.black {
 }
 .list {
 	.card + .card {
-		margin-top: 4px;
+		margin-top: 2px;
 	}
 }
 

@@ -40,9 +40,7 @@ body.home .archive-bar {
 	border-color: $white;
 }
 
-//
-// light theme
-//
+
 .white {
 	background-color: $white;
 }
@@ -56,20 +54,6 @@ body.home .archive-bar {
 	background-color: $black;
 }
 
-.white,
-.whites,
-.light,
-.lights {
-	color: $black;
-	.card {
-		a {
-			background-color: $light;
-			figure {
-				background-color: $light-active;
-			}
-		}
-	}
-}
 .black,
 .blacks,
 .dark,
@@ -80,6 +64,22 @@ body.home .archive-bar {
 			background-color: $dark;
 			figure {
 				background-color: $dark-active;
+			}
+		}
+	}
+}
+
+.white,
+.whites,
+.light,
+.lights,
+.liebling-house {
+	color: $black;
+	.card {
+		a {
+			background-color: $light;
+			figure {
+				background-color: $light-active;
 			}
 		}
 	}
