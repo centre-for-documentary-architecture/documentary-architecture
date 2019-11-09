@@ -13,7 +13,6 @@ require_once __DIR__.'/functions.php';
 Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
 
     'options' => [
-        'cache.worlditems' => true,
         // https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda/
         'path' => 'assets/apps/liebling-house/'
     ],
@@ -57,7 +56,7 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
             'pattern' => 'i/liebling-house/worlditems.json',
             'action'  => function () {
 
-                $kirbyCache = kirby()->cache('centre-for-documentary-architecture.liebling-house.worlditems');
+                $kirbyCache = kirby()->cache('worlditems');
                 $cacheContent  = $kirbyCache->get('liste4');
 
                 // there's nothing in the cache, so let's fetch it
@@ -68,8 +67,7 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
                         'tours' => getTourData()
                     ];
 
-                    $duration = 30; // minutes
-                    $kirbyCache->set('liste4', $cacheContent, $duration);
+                    $kirbyCache->set('liste4', $cacheContent, option('cache-expires', 30) );
 
                 }
 

@@ -21,6 +21,7 @@ return [
 	'cache.abstract' => true,
 	'cache.collection' => true,
 	'cache.general' => true,
+	'cache.worlditems' => true,
 
 	// other configuration
 	'thumbs' => [
