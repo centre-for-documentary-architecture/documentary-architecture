@@ -342,7 +342,7 @@ class LieblingHouseCollection extends EntityCollection
 
         switch ( $this->depth() ) {
             case 1:
-                return new Field( $this, 'content_headline', 'Promenades');
+                return new Field( $this, 'content_headline', 'Follow a guided Promenade');
                 break;
             case 2:
                 return new Field( $this, 'content_headline', '');
