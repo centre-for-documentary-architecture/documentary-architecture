@@ -17,7 +17,7 @@ return [
 
 	// cache
 	// https://getkirby.com/docs/guide/cache
-	'cache-expires' => 10,
+	'cache-expires' => 30,
 	'cache.abstract' => true,
 	'cache.jsonRequest' => true,
 	'cache.worlditems' => true,
