@@ -86,7 +86,9 @@ body.home .archive-bar {
 }
 
 .card > a,
-.card > a figure {
+.card > a figure,
+button,
+.button {
 	transition: background-color 150ms ease;
 }
 .card > a {
@@ -103,6 +105,17 @@ body.home .archive-bar {
 		img {
 			mix-blend-mode: screen;
 			filter: contrast(115%);
+		}
+	}
+}
+
+button,
+.button {
+	&.blue {
+		color: $white;
+		background-color: $blue;
+		&:hover {
+			background-color: $blue-active;
 		}
 	}
 }
