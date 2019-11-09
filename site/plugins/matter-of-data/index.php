@@ -20,6 +20,26 @@ require_once __DIR__.'/extensions/pageModels/entityCollection.php';
 require_once __DIR__.'/extensions/pageModels/entityItem.php';
 require_once __DIR__.'/extensions/pageModels/entityFile.php';
 
+/*
+function instantCache( $id ){
+
+	$kirby = kirby();
+
+	$cache = $kirby->cache('json');
+	$data  = $cache->get( $id );
+
+	if ($data === null) {
+
+		$data = $new;
+		$cache->set($id, $data, option('centre-for-documentary-architecture.matter-of-data.expires') );
+
+	}
+
+	return $data;
+
+}
+*/
+
 Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 
 	'options' => [
@@ -29,6 +49,8 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 		'cdn' => 'https://documentary-architecture.fra1.digitaloceanspaces.com/cda/',
 		// tru edge cdn address:
 		// 'cdn' => 'https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda/',
+
+		'expires' => 5
 	],
 
 	'routes' => [

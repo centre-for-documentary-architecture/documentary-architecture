@@ -18,6 +18,7 @@ return [
 	// cache
 	// https://getkirby.com/docs/guide/cache
 	'cache.json' => true,
+	'cache.dataAbstract' => true,
 
 	// other configuration
 	'thumbs' => [
