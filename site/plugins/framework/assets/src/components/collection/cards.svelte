@@ -11,7 +11,7 @@
 </script>
 
 <ul class="cards grid">
-    {#each list as item, i}
+    {#each list as item}
 
         <li class="card col-{col} {item.classlist}">
 
@@ -19,7 +19,7 @@
                 <figure>
                     {#if item.thumbnail}{@html item.thumbnail}{/if}
                 </figure>
-                <span class="count">{i}</span>
+                {#if item.count}<span class="count">{item.count}</span>{/if}
                 <h4 class="title">{item.title}</h4>
             </a>
 

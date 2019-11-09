@@ -7,7 +7,7 @@
 </script>
 
 <ul class="list">
-    {#each list as item, i}
+    {#each list as item}
 
         <li class="card {item.classlist}">
 
@@ -16,7 +16,7 @@
                     {#if item.thumbnail}{@html item.thumbnail}{/if}
                 </figure>
                 <h4 class="title">{item.title}</h4>
-                <span class="count">{i}</span>
+                {#if item.count}<span class="count">{item.count}</span>{/if}
             </a>
 
         </li>
