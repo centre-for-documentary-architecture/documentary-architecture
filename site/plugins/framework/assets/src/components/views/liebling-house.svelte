@@ -3,6 +3,7 @@
 
 	export let view;
 	export let classname;
+	export let transcript;
 
 	/*
 

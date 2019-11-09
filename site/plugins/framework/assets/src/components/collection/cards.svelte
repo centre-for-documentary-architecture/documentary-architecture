@@ -1,6 +1,7 @@
 <script>
 
     export let list;
+    export let category;
 
     export let columns = 2;
     let col = 12 / columns;

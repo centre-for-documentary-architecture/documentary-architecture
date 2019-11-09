@@ -84,7 +84,7 @@
 
 {#if entity.content}
 
-    <main class="panel col-sm-{contentWidth(entity.entity)}" on:click={touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
+    <main class="panel col-sm-{contentWidth(entity.entity)}" on:click={window.touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
 
         <div class="content">
 			<div class="tabs">
