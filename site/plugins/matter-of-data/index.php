@@ -40,6 +40,21 @@ function instantCache( $id ){
 }
 */
 
+function flushCache( $id, $cache = true ){
+
+	$kirby = kirby();
+	if( $cache === true ){
+
+		$kirby->cache('abstract')->remove( $id );
+		$kirby->cache('general')->remove( $id );
+		// $kirby->cache('worlditems')->remove( $id );
+		return;
+
+	}
+	$kirby->cache($cache)->remove( $id );
+
+}
+
 Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 
 	'options' => [
