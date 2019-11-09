@@ -7,6 +7,9 @@
 	import Archive from './components/archive.svelte';
 
 	function naviWorld( worlditem ){
+		if( lieblingHouseWorldInstance === undefined ){
+			return;
+		}
 		if( !worlditem ){
 			console.log('naviWorld() no world item to navigate to');
 			return;
