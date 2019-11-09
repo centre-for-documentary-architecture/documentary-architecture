@@ -221,11 +221,9 @@ body.black .cards {
 	}
 }
 
-
 //
 // table layout
 //
-
 dl.table {
 	> div {
 		border-top: $border-thin;
@@ -283,11 +281,7 @@ $thumbnailSize: 2.3em;
 		flex: 1;
 		display: flex;
 	}
-	.title {
-		flex: 1;
-		align-self: center;
-		padding: $padding-text-inside;
-	}
+
 	figure {
 		order: -1;
 		width: $thumbnailSize;
@@ -299,8 +293,38 @@ $thumbnailSize: 2.3em;
 			object-fit: cover;
 		}
 	}
+	.title {
+		flex: 1;
+		align-self: center;
+		padding: $padding-text-inside;
+	}
 }
 
+//
+// list count
+//
+.card {
+	.count {
+		display: inline-block;
+		color: $grey;
+		font-size: $font-small;
+		padding: $padding-text-inside;
+		align-self: center;
+		text-align: right;
+		&:after {
+			content: '→';
+			padding-left: 0.2em;
+		}
+	}
+}
+.cards .card {
+	.count {
+		float: right;
+	}
+	.count > .title {
+		clear: both;
+	}
+}
 
 .presentation .list {
 	padding-right: 4px;
