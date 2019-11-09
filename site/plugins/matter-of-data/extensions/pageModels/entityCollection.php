@@ -134,7 +134,7 @@ class EntityCollection extends Entity
                     $thumbs = '';
                 }
 
-                $output = $output->dataAbstract($thumbs, true);
+                $output = $output->dataAbstract($thumbs);
                 break;
 
             case 'gallery':
@@ -150,7 +150,7 @@ class EntityCollection extends Entity
                     $thumbs = '';
                 }
 
-                $output = $output->dataAbstract($thumbs, true);
+                $output = $output->dataAbstract($thumbs);
                 break;
         }
 
@@ -167,7 +167,7 @@ class EntityCollection extends Entity
             'headline' => $this->content_headline()->html()->value(),
             'layout' => $this->content_layout()->or('cards')->value(),
             'columns' => 1,
-			'content' => $this->collection()->dataAbstract( $srcset, true )
+			'content' => $this->collection()->dataAbstract( $srcset )
 		];
         */
 
@@ -363,7 +363,7 @@ class LieblingHouseCollection extends EntityCollection
 		return $content;
 
     }
-    public function dataAbstract( string $srcset = '', boolean $count = null ): array
+    public function dataAbstract( string $srcset = '' ): array
     {
 
         $id = $this->id();

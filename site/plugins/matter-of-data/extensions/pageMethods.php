@@ -105,7 +105,7 @@ return [
 	/*
 	* general data representations on the current page
 	*/
-	'dataAbstract' => function( string $srcset = 'medium', $count = null, $flush = false ){
+	'dataAbstract' => function( string $srcset = 'medium', $flush = false ){
 
 		$id = $this->id();
 		$cache = $this->kirby()->cache('dataAbstract');
