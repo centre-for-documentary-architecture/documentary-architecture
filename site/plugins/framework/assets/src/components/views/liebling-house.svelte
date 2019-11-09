@@ -56,7 +56,7 @@
 			FreeRoaming: {
 				roaming: false,
 				dollhouse: true,
-				help: "Use ← ↑ ↓ → to navigate"
+				help: "Use ← ↑ ↓ → to navigate, ESC to leave"
 			},
 			MovingToItem: {
 				roaming: "Stop",
@@ -271,7 +271,7 @@
 			</span>
 
 			<span class="right">
-				<span class="hover" on:mouseenter={()=> world.tooltips.help = true } on:mouseleave={()=> world.tooltips.help = false }>Info</span>
+				<span class="hover" on:mouseenter={()=> world.tooltips.help = true } on:mouseleave={()=> world.tooltips.help = false }>{world.help}</span>
 			</span>
 
 		{/if}
