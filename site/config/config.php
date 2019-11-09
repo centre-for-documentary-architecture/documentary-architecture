@@ -19,7 +19,7 @@ return [
 	// https://getkirby.com/docs/guide/cache
 	'cache-expires' => 10,
 	'cache.abstract' => true,
-	'cache.general' => true,
+	'cache.jsonRequest' => true,
 	'cache.worlditems' => true,
 
 	// other configuration

@@ -46,7 +46,7 @@ function flushCache( $id, $cache = true ){
 	if( $cache === true ){
 
 		$kirby->cache('abstract')->remove( $id );
-		$kirby->cache('general')->remove( $id );
+		$kirby->cache('jsonRequest')->remove( $id );
 		// $kirby->cache('worlditems')->remove( $id );
 		return;
 
