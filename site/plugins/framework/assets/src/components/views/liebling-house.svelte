@@ -60,7 +60,7 @@
 			MovingToItem: {
 				roaming: "Stop",
 				dollhouse: false,
-				help: "Klick on th builing to start exploring"
+				help: "Klick on the builing to start exploring"
 			}
 		}
 	};
@@ -80,7 +80,6 @@
 			view.content.unityJson,
 			{ onProgress: UnityProgress }
 		);
-
 
 	});
 

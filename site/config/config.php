@@ -34,4 +34,6 @@ return [
 	// archive shall render all 404, using the request path as query input
 	'error' => 'archive',
 
+	'smartypants' => true,
+
 ];
