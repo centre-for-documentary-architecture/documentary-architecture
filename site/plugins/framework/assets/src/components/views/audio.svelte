@@ -22,7 +22,7 @@
 
 <style>
 	.section--content {
-		padding: 2rem;
+		padding: 1rem;
 		align-items: flex-end;
 	}
 	audio {
