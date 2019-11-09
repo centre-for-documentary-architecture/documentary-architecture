@@ -214,6 +214,9 @@ body.multipanel {
 		.section--header {
 			display: none;
 		}
+		div:first-child {
+			border-top: none;
+		}
 	}
 
 	.tab .cards {

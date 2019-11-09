@@ -42,8 +42,7 @@
 	border-color: $white;
 }
 
-.tour,
-.tourstop {
+body.liebling-house {
 	.accordion {
 		.section--header {
 			&:after {
@@ -263,6 +262,7 @@ dl.table {
 		margin-top: 0;
 	}
 }
+
 .black {
 	dl.table > div {
 		border-color: $white;
