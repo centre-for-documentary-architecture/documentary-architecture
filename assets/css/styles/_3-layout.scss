@@ -78,6 +78,7 @@ body {
 
 	}
 
+	body.liebling-house,
 	body.tour,
 	body.tourstop {
 		// overlapping layout, with one non-scrollable panel in the background and the other free floating above
@@ -107,6 +108,7 @@ body {
 			.tab {
 				margin-top: 4px;
 				border-top: none;
+				width: 100%;
 				h3 {
 					margin: 0;
 					padding: $padding;
@@ -117,6 +119,10 @@ body {
 					h3 {
 						margin-bottom: 4px;
 					}
+				}
+				&.collection,
+				&.cards {
+					display: block;
 				}
 				&.info,
 				&.meta,

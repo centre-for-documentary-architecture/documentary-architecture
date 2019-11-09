@@ -293,13 +293,27 @@ body.about,
 
 
 
-body.tour,
-body.tourstop {
+body.liebling-house {
 	main {
-		header {
-			.invitation {
-				margin-top: 2rem;
-				margin-bottom: 0.5rem;
+		.invitation {
+			border-top: none !important;
+			button,
+			.button {
+				display: block;
+				width: 100%;
+			}
+		}
+		.tab.cards .cards {
+			padding: 0;
+			.card {
+				padding: 0;
+				margin-top: 4px;
+				&:nth-child(odd){
+					padding-right:2px;
+				}
+				&:nth-child(even){
+					padding-left:2px;
+				}
 			}
 		}
 	}

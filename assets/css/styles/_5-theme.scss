@@ -106,6 +106,9 @@ button,
 			mix-blend-mode: screen;
 			filter: contrast(115%);
 		}
+		.count {
+			color: $blue-active;
+		}
 	}
 }
 
