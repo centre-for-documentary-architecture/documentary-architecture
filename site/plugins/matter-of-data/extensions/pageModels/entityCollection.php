@@ -376,14 +376,13 @@ class LieblingHouseCollection extends EntityCollection
                 'url' => $this->url(),
                 'title' => $this->title()->value(),
                 'template' => $this->template()->name(),
-                'worlditem' => $this->worlditem()
+                'worlditem' => $this->worlditem(),
+                'count' => $this->countCollection()
             ];
 
             if( $srcset && $thumbnail = $this->thumbnail() ){
                 $data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
             }
-
-            $data['count'] = $this->collection()->count();
 
             return $data;
 

@@ -90,11 +90,22 @@ return [
 		return null;
 
 	},
+	'countCollection' => function(): int
+	{
+
+		if( $c = $this->collection() ){
+
+			return $c->count();
+
+		}
+		return 0;
+
+	},
 
 	/*
 	* general data representations on the current page
 	*/
-	'dataAbstract' => function( string $srcset = 'medium', $count = null ){
+	'dataAbstract' => function( string $srcset = 'medium', $count = null, $flush = false ){
 
 		$id = $this->id();
 		$cache = $this->kirby()->cache('dataAbstract');
@@ -107,17 +118,12 @@ return [
 				'title' => $this->title()->value(),
 				'template' => $this->template()->name(),
 				'classlist' => $this->classlist(),
-				'worlditem' => $this->worlditem()
+				'worlditem' => $this->worlditem(),
+				'count' => $this->countCollection(),
 			];
 
 			if( $srcset && $thumbnail = $this->thumbnail() ){
 				$data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
-			}
-
-			if( $c = $this->collection() ){
-				$data['count'] = $c->count();
-			} else {
-				$data['count'] = 0;
 			}
 
 			$cache->set($id, $data, option('centre-for-documentary-architecture.matter-of-data.expires') );
@@ -177,7 +183,7 @@ return [
             return $this->children()->listed();
 
 		}
-		return null;
+		return [];
 
 	},
 	'worlditem' => function(): ?string
