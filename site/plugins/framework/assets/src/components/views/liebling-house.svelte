@@ -95,7 +95,7 @@
 			lieblingHouseWorldInstance.removeTimeout = setTimeout(function() {
 
 				world.loaded = true;
-				console.log('loaded');
+				// console.log('Unity loaded');
 
 			}, 3000);
 		}
@@ -124,10 +124,10 @@
 
 	window.worldHoverItem = worlditemId => {
 		if( worlditemId == '' ){
-			console.log('worldHoverItem() mouse leave');
+			// console.log('worldHoverItem() mouse leave');
 			world.tooltips.item = false;
 		} else {
-			console.log( 'worldHoverItem( ' + worlditemId + ' )' );
+			// console.log( 'worldHoverItem( ' + worlditemId + ' )' );
 			world.tooltips.item = worlditemId;
 		}
 		// maybe highlight collection elements by id?

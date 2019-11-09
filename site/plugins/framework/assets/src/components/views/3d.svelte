@@ -39,7 +39,7 @@
 
 	function init() {
 
-		console.log('init');
+		// console.log('init');
 
 		// camera
 		camera = new THREE.PerspectiveCamera( 45, containerWidth / containerHeight, 1, 10000 );
@@ -125,12 +125,12 @@
 	}
 
 	function startRotation(){
-		console.log('start');
+		console.log('start 3d rotation');
 		autoRotate = true;
 		controls.autoRotate = true;
 	}
 	function stopRotation(){
-		console.log('stop');
+		console.log('stop 3d rotation');
 		autoRotate = false;
 		controls.autoRotate = false;
 	}

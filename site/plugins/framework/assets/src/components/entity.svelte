@@ -46,12 +46,12 @@
 		if( event.target !== glass ){
 			return false;
 		}
-		console.log('clicked on glass');
+		// console.log('clicked on glass');
 		window.goThroughGlass();
 	}
 
 	function contentWidth( type ){
-		console.log( type );
+		// console.log( type );
 		if( type == 'file' ){
 			return 3;
 		}
@@ -73,10 +73,10 @@
 
 		if( isScrolledPrev === true ){
 			document.body.classList.add('scrolled');
-			console.log('scrolled');
+			// console.log('scrolled');
 		} else {
 			document.body.classList.remove('scrolled');
-			console.log('top');
+			// console.log('top');
 		}
 	}
 

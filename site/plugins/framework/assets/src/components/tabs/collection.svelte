@@ -13,7 +13,7 @@
 		gallery: CollectionsGallery
 	}
 
-	console.log( category );
+	// console.log( category );
 
 </script>
 

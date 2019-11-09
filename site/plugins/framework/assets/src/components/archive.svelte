@@ -21,7 +21,7 @@
 		if( searchTerms == previouslySearched ){
 			return;
 		}
-		console.log('research '+searchTerms);
+		// console.log('research '+searchTerms);
 
 		loading = true;
 		// console.log('please wait...');
@@ -31,7 +31,7 @@
 		if( newData ){
 
 			loading = false;
-			console.log('loading finished from '+newData.url);
+			// console.log('loading finished from '+newData.url);
 
 			// console.log( newData );
 

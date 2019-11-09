@@ -8,10 +8,10 @@
 
 	function naviWorld( worlditem ){
 		if( !worlditem ){
-			console.log('no world item to navigate to');
+			console.log('naviWorld() no world item to navigate to');
 			return;
 		}
-		console.log('GameInstance goToItem: '+worlditem);
+		console.log('naviWorld() GameInstance goToItem: '+worlditem);
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'GoToItem', worlditem);
 	}
 
@@ -43,7 +43,7 @@
 		const location = new URL( url );
 		url = location.origin + location.pathname + '.json' + location.search;
 
-		console.log( url );
+		console.log( 'load() '+ url );
 		const response = await fetch( url );
 		let data;
 		if (response.ok) { // if HTTP-status is 200-299
@@ -61,7 +61,7 @@
 		let template = target.dataset.template;
 
 		if( template != 'entity' && template != 'archive' ){
-			console.log('Unload and follow link');
+			console.log('navi() Unload and follow link');
 			return;
 		}
 
@@ -69,7 +69,7 @@
 
 		replaceEntityData( await load( target.href ) );
 
-		console.log( 'N A V I', entity );
+		console.log( 'navi() ', entity );
 
 		naviWorld( entity.worlditem );
 
@@ -81,14 +81,17 @@
 	window.showWorlditemContent = async worlditemId => {
 
 		var href = window.location.origin + '/' + worlditemId;
-		console.log( 'showWorlditemContent', href );
+		console.log( 'showWorlditemContent()', href );
 
 		var worlditemContent = await load( href );
 
-		// entity.theme = worlditemContent.theme;
-		entity.content = worlditemContent.content;
+		// replaceEntityData( await load( href ) );
 
-		console.log( 'showWorlditemContent', entity );
+		entity.theme = worlditemContent.theme;
+		entity.content = worlditemContent.content;
+		// entity = worlditemContent;
+
+		console.log( 'showWorlditemContent()', entity );
 
 		relocate();
 
