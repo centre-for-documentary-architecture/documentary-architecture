@@ -166,7 +166,7 @@ class EntityCollection extends Entity
             'headline' => $this->content_headline()->html()->value(),
             'layout' => $this->content_layout()->or('cards')->value(),
             'columns' => 1,
-			'content' => $this->collection()->dataAbstract( $srcset )
+			'content' => $this->collection()->dataAbstract( $srcset, true )
 		];
 
     }

@@ -94,7 +94,7 @@ return [
 	/*
 	* general data representations on the current page
 	*/
-	'dataAbstract' => function( string $srcset = 'medium' ){
+	'dataAbstract' => function( string $srcset = 'medium', boolean $count = null ){
 
 		$content = [
 			'url' => $this->url(),
@@ -106,6 +106,10 @@ return [
 
 		if( $srcset && $thumbnail = $this->thumbnail() ){
 			$content['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
+		}
+
+		if( $content['template'] === 'entity' ){
+			$content['count'] = $this->collection()->count();
 		}
 
 		return $content;
