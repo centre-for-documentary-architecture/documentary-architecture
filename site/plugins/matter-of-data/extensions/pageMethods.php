@@ -114,12 +114,10 @@ return [
 				$data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
 			}
 
-			if( $count !== null ){
-				if( $c = $this->collection() ){
-					$data['count'] = $c->count();
-				} else {
-					$data['count'] = 0;
-				}
+			if( $c = $this->collection() ){
+				$data['count'] = $c->count();
+			} else {
+				$data['count'] = 0;
 			}
 
 			$cache->set($id, $data, option('centre-for-documentary-architecture.matter-of-data.expires') );
