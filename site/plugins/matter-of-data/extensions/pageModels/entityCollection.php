@@ -386,7 +386,7 @@ class LieblingHouseCollection extends EntityCollection
 
             return $data;
 
-			$cache->set($id, $data, option('centre-for-documentary-architecture.matter-of-data.expires') );
+			$cache->set($id, $data, option('cache-expires',30) );
 
 		}
 

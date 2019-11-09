@@ -126,7 +126,7 @@ return [
 				$data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
 			}
 
-			$cache->set($id, $data, option('centre-for-documentary-architecture.matter-of-data.expires') );
+			$cache->set($id, $data, option('cache-expires',30) );
 
 		}
 
