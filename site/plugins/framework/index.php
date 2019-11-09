@@ -116,8 +116,10 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 if( isset( $query['flush'] ) ){
                     $jsonCacheData = null;
                 }
+                $cached = true;
 
                 if ($jsonCacheData === null) {
+                    $cached = false;
 
                     if( !$all ){
 
@@ -180,6 +182,7 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
 				return [
                     'status' => 'ok',
                     'query'  => $query,
+                    'cache' => $cached,
                     'data'   => $jsonCacheData
                 ];
 

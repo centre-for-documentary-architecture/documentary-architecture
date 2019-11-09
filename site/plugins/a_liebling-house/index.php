@@ -56,6 +56,7 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
             'pattern' => 'i/liebling-house/worlditems.json',
             'action'  => function () {
 
+                $cached = true;
                 $kirbyCache = kirby()->cache('worlditems');
                 $cacheContent  = $kirbyCache->get('liste4');
 
@@ -68,11 +69,13 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
                     ];
 
                     $kirbyCache->set('liste4', $cacheContent, option('cache-expires', 30) );
+                    $cached = false;
 
                 }
 
                 return [
                     'status' => 'ok',
+                    'cache' => $cached,
                     'data'   => $cacheContent
                 ];
 
