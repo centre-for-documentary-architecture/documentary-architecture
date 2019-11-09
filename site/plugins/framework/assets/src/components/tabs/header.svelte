@@ -17,4 +17,15 @@
         <div class="highlight">{@html tab.content.p}</div>
     {/if}
 
+    {#if category == 'overview'}
+        <div class="invitation">
+            <button class="blue" on:click={window.worldSetRoaming}>Start exploring →</button>
+        </div>
+    {/if}
+    {#if category == 'tour'}
+        <div class="invitation">
+            <button class="blue" on:click={window.worldSetRoaming}>Start promenade →</button>
+        </div>
+    {/if}
+
 </header>
