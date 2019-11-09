@@ -19,7 +19,6 @@ return [
 	// https://getkirby.com/docs/guide/cache
 	'cache-expires' => 10,
 	'cache.abstract' => true,
-	'cache.collection' => true,
 	'cache.general' => true,
 	'cache.worlditems' => true,
 
