@@ -134,7 +134,7 @@ class EntityCollection extends Entity
                     $thumbs = '';
                 }
 
-                $output = $output->dataAbstract($thumbs);
+                $output = $output->dataAbstract($thumbs, true);
                 break;
 
             case 'gallery':
@@ -150,7 +150,7 @@ class EntityCollection extends Entity
                     $thumbs = '';
                 }
 
-                $output = $output->dataAbstract($thumbs);
+                $output = $output->dataAbstract($thumbs, true);
                 break;
         }
 
@@ -161,6 +161,7 @@ class EntityCollection extends Entity
             'content' => $output
         ];
 
+        /*
 		return [
             'type' => 'collection',
             'headline' => $this->content_headline()->html()->value(),
@@ -168,6 +169,7 @@ class EntityCollection extends Entity
             'columns' => 1,
 			'content' => $this->collection()->dataAbstract( $srcset, true )
 		];
+        */
 
     }
     public function view(): ?string
