@@ -367,7 +367,7 @@ class LieblingHouseCollection extends EntityCollection
     {
 
         $id = $this->id();
-		$cache = $this->kirby()->cache('dataAbstract');
+		$cache = $this->kirby()->cache('abstract');
 		$data  = $cache->get( $id );
 
 		if ($data === null) {
