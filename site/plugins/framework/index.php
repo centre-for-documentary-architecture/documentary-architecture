@@ -11,11 +11,6 @@ function archivePath( string $base, string $filter = '', array $query = [] ): st
 
 Kirby::plugin('centre-for-documentary-architecture/framework', [
 
-    'options' => [
-        'cache.json' => true,
-        'expires' => 5
-    ],
-
     'routes' => [
         [
             'pattern' => [
@@ -112,7 +107,7 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 $kirby = kirby();
                 $query = get();
 
-                $jsonCache = $kirby->cache('json');
+                $jsonCache = $kirby->cache('jsonRequest');
                 $jsonCacheId = $all;
                 if( http_build_query($query) != '' ){
                     $jsonCacheId .= '-' . http_build_query($query);
@@ -121,8 +116,10 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 if( isset( $query['flush'] ) ){
                     $jsonCacheData = null;
                 }
+                $cached = true;
 
                 if ($jsonCacheData === null) {
+                    $cached = false;
 
                     if( !$all ){
 
@@ -178,13 +175,14 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                     }
 
                     $jsonCacheData = $return;
-                    $jsonCache->set($jsonCacheId, $jsonCacheData, option('centre-for-documentary-architecture.framework.expires'));
+                    $jsonCache->set($jsonCacheId, $jsonCacheData, option('cache-expires',30) );
 
                 }
 
 				return [
                     'status' => 'ok',
                     'query'  => $query,
+                    'cache' => $cached,
                     'data'   => $jsonCacheData
                 ];
 

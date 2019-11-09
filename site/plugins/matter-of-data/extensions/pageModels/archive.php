@@ -94,7 +94,8 @@ class PageArchive extends Page
 			'template' => 'archive',
             'classlist' => $this->classlist(),
             'filter' => false,
-			'worlditem' => null
+            'worlditem' => null,
+            'count' => $this->countCollection()
 		];
 
 		return $content;
@@ -122,7 +123,8 @@ class PageArchiveFilter extends PageArchive
             'url' => $this->url(),
             'filter' => $this->slug(),
             'template' => 'archive',
-            'title' => $this->title()->value()
+            'title' => $this->title()->value(),
+            'count' => $this->countCollection()
 		];
 
         return $content;

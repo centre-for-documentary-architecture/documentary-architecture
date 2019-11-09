@@ -6,11 +6,11 @@
 */
 class Entities extends Collection
 {
-    public function dataAbstract( string $srcset = 'medium', $count = null ): array
+    public function dataAbstract( string $srcset = 'medium' ): array
     {
         $array = [];
         foreach( $this as $page ){
-            $array[] = $page->dataAbstract( $srcset, $count );
+            $array[] = $page->dataAbstract( $srcset );
         }
         return $array;
     }

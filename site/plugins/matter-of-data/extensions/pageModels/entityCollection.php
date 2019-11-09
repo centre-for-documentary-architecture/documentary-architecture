@@ -134,7 +134,7 @@ class EntityCollection extends Entity
                     $thumbs = '';
                 }
 
-                $output = $output->dataAbstract($thumbs, true);
+                $output = $output->dataAbstract($thumbs);
                 break;
 
             case 'gallery':
@@ -150,7 +150,7 @@ class EntityCollection extends Entity
                     $thumbs = '';
                 }
 
-                $output = $output->dataAbstract($thumbs, true);
+                $output = $output->dataAbstract($thumbs);
                 break;
         }
 
@@ -167,7 +167,7 @@ class EntityCollection extends Entity
             'headline' => $this->content_headline()->html()->value(),
             'layout' => $this->content_layout()->or('cards')->value(),
             'columns' => 1,
-			'content' => $this->collection()->dataAbstract( $srcset, true )
+			'content' => $this->collection()->dataAbstract( $srcset )
 		];
         */
 
@@ -363,11 +363,11 @@ class LieblingHouseCollection extends EntityCollection
 		return $content;
 
     }
-    public function dataAbstract( string $srcset = '', boolean $count = null ): array
+    public function dataAbstract( string $srcset = '' ): array
     {
 
         $id = $this->id();
-		$cache = $this->kirby()->cache('dataAbstract');
+		$cache = $this->kirby()->cache('abstract');
 		$data  = $cache->get( $id );
 
 		if ($data === null) {
@@ -376,18 +376,17 @@ class LieblingHouseCollection extends EntityCollection
                 'url' => $this->url(),
                 'title' => $this->title()->value(),
                 'template' => $this->template()->name(),
-                'worlditem' => $this->worlditem()
+                'worlditem' => $this->worlditem(),
+                'count' => $this->countCollection()
             ];
 
             if( $srcset && $thumbnail = $this->thumbnail() ){
                 $data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
             }
 
-            $data['count'] = $this->collection()->count();
-
             return $data;
 
-			$cache->set($id, $data, option('centre-for-documentary-architecture.matter-of-data.expires') );
+			$cache->set($id, $data, option('cache-expires',30) );
 
 		}
 

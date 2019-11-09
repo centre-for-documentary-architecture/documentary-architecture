@@ -105,6 +105,8 @@ return [
 		require_once __DIR__.'/../functions/syncContexts.php';
 		syncContexts( $page, $oldPage );
 
+		flushCache( $page->id() );
+		$abstract = $page->dataAbstract();
 	},
 	'page.duplicate:after' => function ( $page, $oldPage ) {
 		$update = [];
