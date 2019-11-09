@@ -94,21 +94,39 @@ return [
 	/*
 	* general data representations on the current page
 	*/
-	'dataAbstract' => function( string $srcset = 'medium' ){
+	'dataAbstract' => function( string $srcset = 'medium', $count = null ){
 
-		$content = [
-			'url' => $this->url(),
-			'title' => $this->title()->value(),
-			'template' => $this->template()->name(),
-			'classlist' => $this->classlist(),
-			'worlditem' => $this->worlditem()
-		];
+		$id = $this->id();
+		$cache = $this->kirby()->cache('dataAbstract');
+		$data  = $cache->get( $id );
 
-		if( $srcset && $thumbnail = $this->thumbnail() ){
-			$content['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
+		if ($data === null) {
+
+			$data = [
+				'url' => $this->url(),
+				'title' => $this->title()->value(),
+				'template' => $this->template()->name(),
+				'classlist' => $this->classlist(),
+				'worlditem' => $this->worlditem()
+			];
+
+			if( $srcset && $thumbnail = $this->thumbnail() ){
+				$data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
+			}
+
+			if( $count !== null ){
+				if( $c = $this->collection() ){
+					$data['count'] = $c->count();
+				} else {
+					$data['count'] = 0;
+				}
+			}
+
+			$cache->set($id, $data, option('centre-for-documentary-architecture.matter-of-data.expires') );
+
 		}
 
-		return $content;
+		return $data;
 
 	},
 	'dataGeneral' => function(): array

@@ -134,7 +134,7 @@ class EntityCollection extends Entity
                     $thumbs = '';
                 }
 
-                $output = $output->dataAbstract($thumbs);
+                $output = $output->dataAbstract($thumbs, true);
                 break;
 
             case 'gallery':
@@ -150,7 +150,7 @@ class EntityCollection extends Entity
                     $thumbs = '';
                 }
 
-                $output = $output->dataAbstract($thumbs);
+                $output = $output->dataAbstract($thumbs, true);
                 break;
         }
 
@@ -161,13 +161,15 @@ class EntityCollection extends Entity
             'content' => $output
         ];
 
+        /*
 		return [
             'type' => 'collection',
             'headline' => $this->content_headline()->html()->value(),
             'layout' => $this->content_layout()->or('cards')->value(),
             'columns' => 1,
-			'content' => $this->collection()->dataAbstract( $srcset )
+			'content' => $this->collection()->dataAbstract( $srcset, true )
 		];
+        */
 
     }
     public function view(): ?string
@@ -361,31 +363,35 @@ class LieblingHouseCollection extends EntityCollection
 		return $content;
 
     }
-    public function dataAbstract( string $srcset = '' ): array
+    public function dataAbstract( string $srcset = '', boolean $count = null ): array
     {
 
-        /*
-        if the tour should start right away
-        if( $this->category() === 'tour' && $this->hasListedChildren() ){
-            $page = $this->children()->first();
-        } else {
-            $page = $this;
-        }
-        */
+        $id = $this->id();
+		$cache = $this->kirby()->cache('dataAbstract');
+		$data  = $cache->get( $id );
 
-        $page = $this;
+		if ($data === null) {
 
-        $content = [
-            'url' => $page->url(),
-			'title' => $this->title()->value(),
-			'template' => $page->template()->name(),
-			'worlditem' => $page->worlditem()
-		];
+			$data = [
+                'url' => $this->url(),
+                'title' => $this->title()->value(),
+                'template' => $this->template()->name(),
+                'worlditem' => $this->worlditem()
+            ];
 
-		if( $srcset && $thumbnail = $this->thumbnail() ){
-			$content['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
+            if( $srcset && $thumbnail = $this->thumbnail() ){
+                $data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
+            }
+
+            $data['count'] = $this->collection()->count();
+
+            return $data;
+
+			$cache->set($id, $data, option('centre-for-documentary-architecture.matter-of-data.expires') );
+
 		}
 
-		return $content;
+        return $data;
+
 	}
 }

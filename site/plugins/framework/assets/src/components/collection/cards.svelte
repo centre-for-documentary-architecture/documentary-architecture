@@ -19,6 +19,7 @@
                 <figure>
                     {#if item.thumbnail}{@html item.thumbnail}{/if}
                 </figure>
+                {#if item.count}<span class="count">{item.count}</span>{/if}
                 <h4 class="title">{item.title}</h4>
             </a>
 
