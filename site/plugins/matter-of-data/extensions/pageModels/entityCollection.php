@@ -63,7 +63,7 @@ class EntityCollection extends Entity
 		return [
 			'type' => 'header',
 			'content' => [
-                'h1' => $this->title()->value(),
+                'h1' => $this->title()->wbr()->value(),
                 'h2' => $this->content()->additional_title()->html()->value(),
                 'p' => $text
             ]
