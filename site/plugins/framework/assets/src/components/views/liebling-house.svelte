@@ -160,7 +160,14 @@
 	* control website -> world
 	*/
 
-	function worldSetRoaming(){
+	window.worldSetRoaming = option => {
+
+		console.log('WorldUpdateState( FreeRoaming )');
+		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'FreeRoaming');
+
+	}
+
+	function worldSetRoaming2(){
 
 		console.log('WorldUpdateState( FreeRoaming )');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'FreeRoaming');
@@ -250,7 +257,7 @@
 
 				{#if world.roaming }
 
-					<button on:click={worldSetRoaming}>{world.roaming}</button>
+					<button on:click={window.worldSetRoaming}>{world.roaming}</button>
 
 				{/if}
 
