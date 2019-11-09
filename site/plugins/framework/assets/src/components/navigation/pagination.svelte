@@ -6,7 +6,6 @@
 </script>
 
 <nav class="pagination bar controls">
-
     {#if pagination.prev }
         <a on:click={window.navi} title="Previous: {pagination.prev.title}" href={pagination.prev.url} data-template={pagination.prev.template}>←</a>
     {/if}
@@ -26,11 +25,9 @@
         </ol>
     {/if}
 
-
     {#if pagination.next }
         <a on:click={window.navi} title="Next: {pagination.next.title}" href="{pagination.next.url}" data-template="{pagination.next.template}">→</a>
     {:else}
         <a on:click={window.navi} title="Back to start" href="{pagination.parent.url}" data-template="{pagination.parent.template}">Back</a>
     {/if}
-
 </nav>

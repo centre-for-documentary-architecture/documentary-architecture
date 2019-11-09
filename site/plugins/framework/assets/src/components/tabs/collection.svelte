@@ -18,19 +18,6 @@
 
 </script>
 
-{#if category == 'overview' || category == 'tour'}
-	<section class="tab invitation">
-		{#if category == 'overview'}
-			<button class="blue" on:click={window.worldSetRoaming}>Start exploring →</button>
-		{:else if category == 'tour'}
-			<a class="button blue" on:click={window.navi} href="{tab.content[0].url}" data-template="{tab.content[0].template}">Start promenade →</a>
-		<!-- {:else if category == 'tourstop'}
-			<button class="blue" on:click={window.worldSetRoaming}>See next →</button>
-			-->
-		{/if}
-	</section>
-{/if}
-
 <section class="tab {tab.layout}">
 
 	{#if tab.headline}

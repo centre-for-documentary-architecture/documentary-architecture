@@ -5,6 +5,7 @@
     */
 
     import Pagination from './navigation/pagination.svelte';
+    import TourNavigation from './navigation/tourNavigation.svelte';
 
     import TabHeader from './tabs/header.svelte';
 	import TabTable from './tabs/table.svelte';
@@ -88,7 +89,15 @@
 
         <div class="content">
 			<div class="tabs">
-				{#if entity.pagination}
+				{#if entity.category == 'overview'}
+					<TourNavigation>
+						<button class="blue" on:click={window.worldSetRoaming}>Start exploring →</button>
+					</TourNavigation>
+				{:else if entity.category == 'tour'}
+					<TourNavigation>
+						<a class="button blue" on:click={window.navi} href="{entity.content[1].content[0].url}" data-template="{entity.content[1].content[0].template}">Start promenade →</a>
+					</TourNavigation>
+				{:else if entity.category == 'tourstop' && entity.pagination }
 					<Pagination pagination={entity.pagination} />
 				{/if}
 
