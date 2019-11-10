@@ -386,7 +386,7 @@ class LieblingHouseCollection extends EntityCollection
 
             return $data;
 
-			$cache->set($id, $data, option('cache-expires',30) );
+			$cache->set($id, $data, option('cache-expires',1440) );
 
 		}
 

@@ -69,7 +69,7 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
                         'tours' => getTourData()
                     ];
 
-                    $kirbyCache->set('liste4', $cacheContent, option('cache-expires', 30) );
+                    $kirbyCache->set('liste4', $cacheContent, option('cache-expires', 1440) );
                     $cached = false;
 
                 }
