@@ -57,15 +57,38 @@
 					'circle-radius': {
 						// make circles larger as the user zooms from z12 to z22
 						'base': 5,
-						'stops': [ [2, 14], [6, 10], [8, 5], [10, 4], [13, 4], [16, 8], [22, 180] ]
+						'stops': [ [2, 20], [6, 12], [8, 5], [10, 4], [13, 4], [16, 8], [22, 180] ]
 					},
 					'circle-color': '#00f'
 				},
 			});
 
+			/*
+			map.addLayer({
+				"id": "label",
+				"type": "symbol",
+				"source": "buildings",
+				// "filter": ["!=", "cluster", true],
+				"layout": {
+					// "text-field": ["number-format", ["get", "mag"], {"min-fraction-digits": 1, "max-fraction-digits": 1}],
+					// "text-field": "yoy",
+					"text-field": ["format",
+						["get", "title"], { "font-scale": 1.2 },
+						"bar", { "font-scale": 0.8 }
+					],
+					"text-size": 40
+				},
+				"paint": {
+					"text-color": "#fff"
+				}
+			});
+			*/
+
 			loaded = true;
 
 		});
+
+
 
 		map.on('move', function (e) {
 			var center = map.getCenter();
@@ -76,14 +99,6 @@
 		map.on('zoom', function (e) {
 			var zoom = map.getZoom();
 			mapPositions.zoom = round( zoom, 0 );
-
-			/*
-			if( zoom > 15 && markers === false ){
-				createMarkers();
-			} else if ( zoom < 15 ){
-				removeMarkers();
-			}
-			*/
 
 		});
 
@@ -96,6 +111,7 @@
 
 		map.on('click', 'dots', function (e) {
 			var features = map.queryRenderedFeatures(e.point, { layers: ['dots'] });
+			console.log( features[0] );
 			var cluster_id = features[0].properties.cluster_id;
 			if( cluster_id !== undefined ){
 				map.getSource('buildings').getClusterExpansionZoom(cluster_id, function (err, zoom) {
@@ -110,8 +126,22 @@
 					center: features[0].geometry.coordinates,
 					zoom: map.getZoom()+3
 				});
+				createPopUp( features[0] );
 			}
 		});
+
+		function createPopUp(currentFeature) {
+			var popUps = document.getElementsByClassName('mapboxgl-popup');
+			// Check if there is already a popup on the map and if so, remove it
+			if (popUps[0]) popUps[0].remove();
+
+			var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'top' })
+				.setLngLat(currentFeature.geometry.coordinates)
+				.setHTML(
+					'<h4>' + currentFeature.properties.title + '</h4>'
+				)
+				.addTo(map);
+		}
 
 	});
 
@@ -126,6 +156,69 @@
 	#map {
 		height: 100%;
 	}
+
+	/* Marker tweaks */
+	#map :global(.mapboxgl-popup) {
+		width: 25vw;
+	}
+
+	#map :global(.mapboxgl-popup-content) {
+		font-family: "Favorit Mono", "Favorit", Roboto Mono, Roboto, Helvetica, Arial, sans-serif;
+		background-color: #fff;
+		color: #000;
+		border-radius: 0;
+		padding: 0;
+	}
+
+	#map :global(.mapboxgl-popup-content:hover) {
+		background-color: #00f;
+		color: #fff;
+		cursor: pointer;
+	}
+
+	#map :global(.mapboxgl-popup-content h4) {
+		padding: 0 0.5rem;
+		margin: 0.5rem 0;
+	}
+
+	#map :global(.mapboxgl-popup > .mapboxgl-popup-tip) {
+		display: none;
+	}
+
+	/*
+	#map :global(.mapboxgl-popup-content-wrapper) {
+		padding: 1%;
+	}
+
+	#map :global(.mapboxgl-popup-content h3) {
+		background: #91c949;
+		color: #fff;
+		margin: 0;
+		display: block;
+		padding: 10px;
+		font-weight: 700;
+		margin-top: -15px;
+	}
+
+	#map :global(.mapboxgl-popup-close-button) {
+		display: none;
+	}
+
+
+
+	#map :global(.mapboxgl-popup-content div) {
+		padding: 10px;
+	}
+
+	#map :global(.mapboxgl-container .leaflet-marker-icon) {
+		cursor: pointer;
+	}
+
+	#map :global(.mapboxgl-popup-anchor-top > .mapboxgl-popup-content) {
+		margin-top: 15px;
+	}
+
+	*/
 </style>
 
 <section class="{classname} {view.type}">
