@@ -33,7 +33,7 @@
 			view.content.forEach(function(marker) {
 				let item = marker.properties;
 				let html = '<li class="card">'+
-					'<a onclick="window.navi" href="'+item.url+'" data-template="'+item.template+'">'+
+					'<a onclick="navi(event)" href="'+item.url+'" data-template="'+item.template+'">'+
 						'<figure>';
 							if(item.thumbnail){
 								html += item.thumbnail;
