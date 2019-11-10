@@ -3,6 +3,7 @@
 
 	export let view;
 	export let classname;
+	export let transcript;
 
 	/*
 	* mapbox api
@@ -43,8 +44,8 @@
 					"features": view.content
 				},
 				cluster: true,
-				clusterMaxZoom: 6, // Max zoom to cluster points on
-				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
+				clusterMaxZoom: 7, // Max zoom to cluster points on
+				clusterRadius: 24 // Radius of each cluster when clustering points (defaults to 50)
 			});
 
 			map.addLayer({
@@ -56,7 +57,7 @@
 					'circle-radius': {
 						// make circles larger as the user zooms from z12 to z22
 						'base': 5,
-						'stops': [ [2, 10], [6, 8], [8, 5], [10, 4], [13, 4], [16, 8], [22, 180] ]
+						'stops': [ [2, 14], [6, 10], [8, 5], [10, 4], [13, 4], [16, 8], [22, 180] ]
 					},
 					'circle-color': '#00f'
 				},
@@ -93,6 +94,25 @@
 			map.getCanvas().style.cursor = '';
 		});
 
+		map.on('click', 'dots', function (e) {
+			var features = map.queryRenderedFeatures(e.point, { layers: ['dots'] });
+			var cluster_id = features[0].properties.cluster_id;
+			if( cluster_id !== undefined ){
+				map.getSource('buildings').getClusterExpansionZoom(cluster_id, function (err, zoom) {
+						if (err){ return; }
+					map.easeTo({
+						center: features[0].geometry.coordinates,
+						zoom: zoom
+					});
+				});
+			} else {
+				map.easeTo({
+					center: features[0].geometry.coordinates,
+					zoom: map.getZoom()+3
+				});
+			}
+		});
+
 	});
 
 	function round( f, d = 2 ){
@@ -105,11 +125,6 @@
 <style>
 	#map {
 		height: 100%;
-	}
-	:global(.marker){
-
-		background-color: #ff0;
-
 	}
 </style>
 
