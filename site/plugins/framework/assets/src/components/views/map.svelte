@@ -75,7 +75,7 @@
 				},
 				cluster: true,
 				clusterMaxZoom: 7, // Max zoom to cluster points on
-				clusterRadius: 24 // Radius of each cluster when clustering points (defaults to 50)
+				clusterRadius: 24 // Radius of each cluster when clustering points
 			});
 
 			map.addLayer({
@@ -85,8 +85,8 @@
 				"filter": ["==", "$type", "Point"],
 				"paint": {
 					'circle-radius': {
-						// make circles larger as the user zooms from z12 to z22
 						'base': 5,
+						// adjust radius to zoom level [[zoom, radius],...]
 						'stops': [ [2, 20], [6, 12], [8, 5], [10, 4], [13, 4], [16, 8], [22, 180] ]
 					},
 					'circle-color': '#00f'
@@ -96,8 +96,6 @@
 			loaded = true;
 
 		});
-
-
 
 		map.on('move', function (e) {
 			var center = map.getCenter();
@@ -187,40 +185,6 @@
 		display: none;
 	}
 
-	/*
-	#map :global(.mapboxgl-popup-content-wrapper) {
-		padding: 1%;
-	}
-
-	#map :global(.mapboxgl-popup-content h3) {
-		background: #91c949;
-		color: #fff;
-		margin: 0;
-		display: block;
-		padding: 10px;
-		font-weight: 700;
-		margin-top: -15px;
-	}
-
-	#map :global(.mapboxgl-popup-close-button) {
-		display: none;
-	}
-
-
-
-	#map :global(.mapboxgl-popup-content div) {
-		padding: 10px;
-	}
-
-	#map :global(.mapboxgl-container .leaflet-marker-icon) {
-		cursor: pointer;
-	}
-
-	#map :global(.mapboxgl-popup-anchor-top > .mapboxgl-popup-content) {
-		margin-top: 15px;
-	}
-
-	*/
 </style>
 
 <section class="{classname} {view.type}">
