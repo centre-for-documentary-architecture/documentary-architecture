@@ -149,26 +149,24 @@ body.black .cards {
 			}
 		}
 	}
+	/*
 	.card.\33 d,
 	.card.image.object {
-		/*
 		> a {
 			display: flex;
 			flex-direction: column;
 		}
-		*/
 		figure {
 			padding: 5px;
-			/*
 			flex: 1;
 			img {
 				align-self: unset;
 				object-fit: contain;
 				object-position: center;
 			}
-			*/
 		}
 	}
+	*/
 }
 
 .fixed-card-height {
