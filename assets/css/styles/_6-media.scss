@@ -41,9 +41,9 @@
 		overflow: auto;
 		height: 100%;
 
-		.section--content {
-			align-self: center;
-			// padding: $border-width;
+		.section--content.center {
+			align-items: center;
+			display: flex;
 		}
 
 		.transcript {

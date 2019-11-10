@@ -37,7 +37,7 @@
 		{ view.headline || 'Audio' }
 	</h3>-->
 
-	<div class="section--content">
+	<div class="section--content {transcript ? '' : 'center'}">
 
 		<audio width="100%" height="auto" controls bind:this={mediaElement}>
 

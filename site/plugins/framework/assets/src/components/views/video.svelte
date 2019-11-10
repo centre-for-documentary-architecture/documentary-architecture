@@ -22,12 +22,6 @@
 
 </script>
 
-<style>
-	video {
-		display: flex;
-	}
-</style>
-
 {#if view.content.srcset.length > 0}
 
 <section class="{classname} {view.type}" bind:offsetWidth={videoWidth}>
@@ -36,7 +30,7 @@
 		{ view.headline || 'Video' }
 	</h3>-->
 
-	<div class="section--content">
+	<div class="section--content {transcript ? '' : 'center'}">
 		<video width="100%" height="auto" controls poster="{ view.content.poster }" bind:this={mediaElement} preload="metadata" >
 
 			{#each view.content.srcset as source}
