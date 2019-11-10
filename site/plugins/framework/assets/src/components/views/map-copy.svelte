@@ -36,7 +36,7 @@
 
 		map.on('load', function() {
 
-			map.addSource("buildings", {
+			map.addSource("national-park", {
 				"type": "geojson",
 				"data": {
 					"type": "FeatureCollection",
@@ -45,9 +45,9 @@
 			});
 
 			map.addLayer({
-				"id": "dots",
+				"id": "park-volcanoes",
 				"type": "circle",
-				"source": "buildings",
+				"source": "national-park",
 				"paint": {
 					'circle-radius': {
 						// make circles larger as the user zooms from z12 to z22
@@ -84,6 +84,36 @@
 		});
 
 	});
+
+	/*
+	function createMarkers(){
+		markers = [];
+		for (const marker of view.content) {
+
+			var el = document.createElement('div');
+			el.className = 'mpa-marker';
+			el.innerHTML = 'yo';
+
+			new mapboxgl.Marker(el)
+				.setLngLat(marker.geometry.coordinates)
+				.addTo(map)
+				.setOffset([0,-20]);
+
+		}
+	}
+
+	function removeMarkers(){
+		if( markers === false ){
+			return;
+		}
+		for (const marker of markers) {
+
+			marker.remove();
+
+		}
+		markers = false;
+	}
+	*/
 
 	function round( f, d = 2 ){
 		// round coords
