@@ -310,6 +310,7 @@ $thumbnailSize: 2.3em;
 	}
 }
 
+
 //
 // list count
 //
@@ -327,7 +328,8 @@ $thumbnailSize: 2.3em;
 		}
 	}
 }
-.cards .card {
+.cards .card,
+.mapboxgl-popup-content .card {
 	.count {
 		float: right;
 	}

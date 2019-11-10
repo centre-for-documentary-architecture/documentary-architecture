@@ -31,12 +31,24 @@
 			let els = this.elements;
 
 			view.content.forEach(function(marker) {
-				var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'top' })
-					.setLngLat(marker.geometry.coordinates)
-					.setHTML(
-						'<h4 class="title">' + marker.properties.title + '</h4>'
-					)
-					.addTo(map);
+				let item = marker.properties;
+				let html = '<li class="card">'+
+					'<a onclick="window.navi" href="'+item.url+'" data-template="'+item.template+'">'+
+						'<figure>';
+							if(item.thumbnail){
+								html += item.thumbnail;
+							}
+						html += '</figure>';
+						if(item.count){
+							html += '<span class="count">'+item.count+'</span>';
+						}
+						html += '<h4 class="title">'+item.title+'</h4>'+
+					'</a>'+
+				'</li>';
+				var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'bottom-left' })
+					.setLngLat( marker.geometry.coordinates )
+					.setHTML( html )
+					.addTo( map );
 				els.push( popup );
 			});
 			this.visible = true;
@@ -50,7 +62,6 @@
 			this.visible = false;
 		}
 	};
-
 
 	/*
 	* someone mixed up lat <-> lon, i dont know, just try, error, fix
@@ -158,12 +169,13 @@
 
 	/* Marker tweaks */
 	#map :global(.mapboxgl-popup) {
-		width: 25vw;
+		width: 20vw;
+		font-size: 0.8rem;
 		font-family: "Favorit Mono", "Favorit", Roboto Mono, Roboto, Helvetica, Arial, sans-serif;
 	}
 
 	#map :global(.mapboxgl-popup-content) {
-		background-color: #fff;
+		background-color: transparent;
 		color: #000;
 		border-radius: 0;
 		padding: 0;
@@ -175,10 +187,14 @@
 		cursor: pointer;
 	}
 
+	#map :global(.mapboxgl-popup-content .count) {
+		padding-bottom: 0;
+	}
+
 	#map :global(.mapboxgl-popup-content h4) {
+		padding: 0.5rem 0.5rem;
+		margin: 0;
 		font-size: 0.8rem;
-		padding: 0 0.5rem;
-		margin: 0.5rem 0;
 	}
 
 	#map :global(.mapboxgl-popup > .mapboxgl-popup-tip) {
