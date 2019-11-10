@@ -16,6 +16,9 @@ function syncContexts( $page, $oldPage ){
 
 	$pageId = $page->id();
 	$pageContent = $page->content('en');
+	if( !$pageContent ){
+		return;
+	}
 
 	// check if this page has contexts at all
 	if( $pageContent->contexts()->exists() ){
