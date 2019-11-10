@@ -3,6 +3,7 @@
 
 	export let view;
 	export let classname;
+	export let transcript;
 
 	/*
 	* this code should best be outsourced, babelized and embedded here

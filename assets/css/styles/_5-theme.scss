@@ -94,13 +94,13 @@ button,
 .card > a {
 	user-select: none;
 	figure {
-		background-color: $blue-active;
+		background-color: $dark-active;
 	}
 	&:hover {
 		color: $white !important;
 		background-color: $blue !important;
 		figure {
-			background-color: $blue-active;
+			background-color: #33f;
 		}
 		img {
 			mix-blend-mode: screen;
@@ -119,6 +119,18 @@ button,
 		background-color: $blue;
 		&:hover {
 			background-color: $blue-active;
+		}
+	}
+}
+
+body.entity.file {
+	main.panel {
+		border-right: $border;
+		border-color: $white;
+		header {
+			h1 {
+				font-size: $font-medium;
+			}
 		}
 	}
 }

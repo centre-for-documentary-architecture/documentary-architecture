@@ -3,6 +3,7 @@
     export let entity;
     export let tab;
     export let category;
+    export let entity;
 
 </script>
 
