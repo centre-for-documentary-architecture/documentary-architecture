@@ -2,6 +2,7 @@
 
     export let list;
     export let category;
+    export let entity;
 
     export let columns = 2;
     let col = 12 / columns;
