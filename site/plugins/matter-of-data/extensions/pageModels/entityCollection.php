@@ -127,6 +127,7 @@ class EntityCollection extends Entity
 
         switch ($layout) {
             case 'list':
+            case 'entityinfo':
 
                 if( $this->include_thumbnail()->or(true)->isTrue() ){
                     $thumbs = 'small';
