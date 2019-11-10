@@ -22,21 +22,32 @@
 
 	let popups = {
 		visible: false,
-		threshold: 13,
+		threshold: 15,
 		elements: [],
 		show: function(){
+
 			console.log('show()');
-			for (let popup of this.elements) {
-				popup.open();
-			}
-			this.vivible = true;
+
+			let els = this.elements;
+
+			view.content.forEach(function(marker) {
+				var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'top' })
+					.setLngLat(marker.geometry.coordinates)
+					.setHTML(
+						'<h4 class="title">' + marker.properties.title + '</h4>'
+					)
+					.addTo(map);
+				els.push( popup );
+			});
+			this.visible = true;
+
 		},
 		hide: function(){
-			console.log('hide()');
-			for (let popup of this.elements) {
-				popup.close();
+			for (const popup of this.elements) {
+				popup.remove();
 			}
-			this.vivible = false;
+			this.elements = [];
+			this.visible = false;
 		}
 	};
 
@@ -130,53 +141,8 @@
 					center: features[0].geometry.coordinates,
 					zoom: map.getZoom()+3
 				});
-				// createPopUp( features[0] );
 			}
 		});
-
-		view.content.forEach(function(marker) {
-
-			/*
-			// create a DOM element for the marker
-			var el = document.createElement('div');
-			el.className = 'marker';
-			el.style.backgroundImage = 'url(https://placekitten.com/g/' + marker.properties.iconSize.join('/') + '/)';
-			el.style.width = marker.properties.iconSize[0] + 'px';
-			el.style.height = marker.properties.iconSize[1] + 'px';
-
-			el.addEventListener('click', function() {
-				window.alert(marker.properties.message);
-			});
-			*/
-
-			var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'top' })
-				.setLngLat(marker.geometry.coordinates)
-				.setHTML(
-					'<h4 class="title">' + marker.properties.title + '</h4>'
-				)
-				.addTo(map);
-
-
-			popups.elements.push( popup );
-			/*
-			// add marker to map
-			new mapboxgl.Marker(el)
-				.setLngLat(marker.geometry.coordinates)
-				.addTo(map);
-			*/
-		});
-
-		/*
-		function createPopUp(currentFeature) {
-
-			var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'top' })
-				.setLngLat(currentFeature.geometry.coordinates)
-				.setHTML(
-					'<h4>' + currentFeature.properties.title + '</h4>'
-				)
-				.addTo(map);
-		}
-		*/
 
 	});
 
