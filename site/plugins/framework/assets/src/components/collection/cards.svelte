@@ -13,7 +13,7 @@
 <ul class="cards grid">
     {#each list as item}
 
-        <li class="card col-{col} {item.classlist}">
+        <li class="card col-{col} {item.classlist} {item.thumbnail ? '' : 'no-thumb'}">
 
             <a on:click={navi} href={item.url} data-template={item.template}>
                 <figure>

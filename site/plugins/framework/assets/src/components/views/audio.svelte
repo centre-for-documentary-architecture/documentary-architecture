@@ -31,7 +31,7 @@
 	}
 </style>
 
-<section class="{classname} {view.type}">
+<section class="{classname} {view.type} {transcript ? '' : 'center'}">
 
 	<!--<h3 class="section--header">
 		{ view.headline || 'Audio' }

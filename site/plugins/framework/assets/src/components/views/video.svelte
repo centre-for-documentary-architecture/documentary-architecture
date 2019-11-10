@@ -22,15 +22,9 @@
 
 </script>
 
-<style>
-	video {
-		display: flex;
-	}
-</style>
-
 {#if view.content.srcset.length > 0}
 
-<section class="{classname} {view.type}" bind:offsetWidth={videoWidth}>
+<section class="{classname} {view.type} {transcript ? '' : 'center'}" bind:offsetWidth={videoWidth}>
 
 	<!--<h3 class="section--header" bind:offsetWidth={videoWidth}>
 		{ view.headline || 'Video' }

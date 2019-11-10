@@ -149,6 +149,7 @@ body.black .cards {
 			}
 		}
 	}
+	/*
 	.card.\33 d,
 	.card.image.object {
 		> a {
@@ -156,6 +157,7 @@ body.black .cards {
 			flex-direction: column;
 		}
 		figure {
+			padding: 5px;
 			flex: 1;
 			img {
 				align-self: unset;
@@ -164,6 +166,7 @@ body.black .cards {
 			}
 		}
 	}
+	*/
 }
 
 .fixed-card-height {
@@ -189,6 +192,13 @@ body.black .cards {
 			text-overflow: ellipsis;
 			overflow: hidden;
 		}
+	}
+}
+
+.cards .card.no-thumb {
+	min-height: 160px;
+	figure {
+		height: 50%;
 	}
 }
 
