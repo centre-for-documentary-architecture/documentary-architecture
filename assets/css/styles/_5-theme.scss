@@ -92,13 +92,13 @@ body.home .archive-bar {
 .card > a {
 	user-select: none;
 	figure {
-		background-color: $blue-active;
+		background-color: $dark-active;
 	}
 	&:hover {
 		color: $white !important;
 		background-color: $blue !important;
 		figure {
-			background-color: $blue-active;
+			background-color: #33f;
 		}
 		img {
 			mix-blend-mode: screen;
@@ -106,7 +106,6 @@ body.home .archive-bar {
 		}
 	}
 }
-
 
 body.entity.file {
 	main.panel {
