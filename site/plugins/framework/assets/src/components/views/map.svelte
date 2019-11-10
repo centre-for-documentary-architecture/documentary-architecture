@@ -22,7 +22,7 @@
 
 	let popups = {
 		visible: false,
-		threshold: 15,
+		threshold: 16,
 		elements: [],
 		show: function(){
 
