@@ -106,3 +106,16 @@ body.home .archive-bar {
 		}
 	}
 }
+
+
+body.entity.file {
+	main.panel {
+		border-right: $border;
+		border-color: $white;
+		header {
+			h1 {
+				font-size: $font-medium;
+			}
+		}
+	}
+}
