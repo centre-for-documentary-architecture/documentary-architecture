@@ -148,6 +148,37 @@ class EntityItemLandmark extends EntityItem
 		return $content;
 
     }
+    public function entityInfo(): string
+    {
+        $info = [];
+
+        if( $this->architects()->isNotEmpty() ){
+            $architects = [];
+            foreach( $this->content()->architects()->split() as $architect ){
+                if( $page = $this->kirby()->page( $architect )){
+                    $architects[] = $page->title();
+                } else {
+                    $architects[] = $architect;
+                }
+            }
+            $info[] = implode(', ', $architects );
+        }
+
+        if( $this->location_start()->isNotEmpty() ){
+            $loc = $this->content()->location_start()->yaml()[0];
+            $info[] = implode(', ', array_filter([
+                $loc['streetaddress'],
+                trim( $loc['postalcode'] .' '. $loc['addresslocality'] ),
+                strtoupper( $loc['addresscountry'] )
+            ]));
+        }
+
+        if( $this->date_start()->isNotEmpty() ){
+            $info[] = $this->content()->date_start()->value();
+        }
+
+        return implode( '<br />', $info );
+    }
 }
 
 /*

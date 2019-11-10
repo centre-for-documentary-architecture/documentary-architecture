@@ -101,6 +101,12 @@ return [
 		return 0;
 
 	},
+	'entityInfo' => function(): string
+	{
+
+		return '';
+
+	},
 
 	/*
 	* general data representations on the current page
@@ -120,6 +126,7 @@ return [
 				'classlist' => $this->classlist(),
 				'worlditem' => $this->worlditem(),
 				'count' => $this->countCollection(),
+				'info' => $this->entityInfo(),
 			];
 
 			if( $srcset && $thumbnail = $this->thumbnail() ){
