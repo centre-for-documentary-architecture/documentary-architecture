@@ -41,13 +41,17 @@
 				"data": {
 					"type": "FeatureCollection",
 					"features": view.content
-				}
+				},
+				cluster: true,
+				clusterMaxZoom: 6, // Max zoom to cluster points on
+				clusterRadius: 15 // Radius of each cluster when clustering points (defaults to 50)
 			});
 
 			map.addLayer({
 				"id": "dots",
 				"type": "circle",
 				"source": "buildings",
+				"filter": ["==", "$type", "Point"],
 				"paint": {
 					'circle-radius': {
 						// make circles larger as the user zooms from z12 to z22
@@ -56,7 +60,6 @@
 					},
 					'circle-color': '#00f'
 				},
-				"filter": ["==", "$type", "Point"],
 			});
 
 			loaded = true;
