@@ -98,7 +98,7 @@
 					'circle-radius': {
 						'base': 5,
 						// adjust radius to zoom level [[zoom, radius],...]
-						'stops': [ [2, 20], [6, 12], [8, 5], [10, 4], [13, 4], [16, 8], [22, 180] ]
+						'stops': [ [2, 18], [6, 12], [8, 5], [10, 4], [13, 4], [16, 8], [22, 180] ]
 					},
 					'circle-color': '#00f'
 				},
@@ -146,9 +146,13 @@
 					});
 				});
 			} else {
+				let zoomTo = map.getZoom() + 3;
+				if( zoomTo > 10 ){
+					zoomTo = popups.threshold + 0.2;
+				}
 				map.easeTo({
 					center: features[0].geometry.coordinates,
-					zoom: map.getZoom()+3
+					zoom: zoomTo
 				});
 			}
 		});
