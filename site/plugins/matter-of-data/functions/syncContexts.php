@@ -37,8 +37,11 @@ function syncContexts( $page, $oldPage ){
 		}
 
 		// loop all pages that are listed now
-		foreach( $pageContent->contexts()->yaml() as $e ){
+		$addTo = array_diff($newContexts, $oldContexts);
+		foreach( $addTo as $e ){
 			$addToEntity = entity( $e );
+			if( !$addToEntity ){ continue; }
+
 			$contextualized = $addToEntity->content('en')->contextualized()->yaml();
 			if( !in_array( $pageId, $contextualized ) ){
 				// add to other page, if not listed already
@@ -66,8 +69,11 @@ function syncContexts( $page, $oldPage ){
 			$removeFromEntity->update([ 'contexts' => Yaml::encode( $contexts ) ],'en');
 		}
 
-		foreach( $pageContent->contextualized()->yaml() as $e ){
+		$addTo = array_diff($newContextualized, $oldContextualized);
+		foreach( $addTo as $e ){
 			$addToEntity = entity( $e );
+			if( !$addToEntity ){ continue; }
+
 			$contexts = $addToEntity->content('en')->contexts()->yaml();
 			if( !in_array( $pageId, $contexts ) ){
 				$contexts[] = $pageId;
