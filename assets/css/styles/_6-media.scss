@@ -48,10 +48,11 @@
 	}
 
 	&.video.center,
-	&.audio.center {
+	&.audio.center,
+	&.panorama {
 		display: flex;
 		flex-direction: column;
-		overflow: auto;
+		overflow: hidden !important;
 		height: 100%;
 
 		.section--content {
