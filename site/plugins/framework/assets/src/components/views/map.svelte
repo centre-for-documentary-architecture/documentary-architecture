@@ -18,9 +18,28 @@
 		zoom: 3
 	};
 
-	var loaded = false;
+	let loaded = false;
 
-	// var markers = false;
+	let popups = {
+		visible: false,
+		threshold: 13,
+		elements: [],
+		show: function(){
+			console.log('show()');
+			for (let popup of this.elements) {
+				popup.open();
+			}
+			this.vivible = true;
+		},
+		hide: function(){
+			console.log('hide()');
+			for (let popup of this.elements) {
+				popup.close();
+			}
+			this.vivible = false;
+		}
+	};
+
 
 	/*
 	* someone mixed up lat <-> lon, i dont know, just try, error, fix
@@ -63,27 +82,6 @@
 				},
 			});
 
-			/*
-			map.addLayer({
-				"id": "label",
-				"type": "symbol",
-				"source": "buildings",
-				// "filter": ["!=", "cluster", true],
-				"layout": {
-					// "text-field": ["number-format", ["get", "mag"], {"min-fraction-digits": 1, "max-fraction-digits": 1}],
-					// "text-field": "yoy",
-					"text-field": ["format",
-						["get", "title"], { "font-scale": 1.2 },
-						"bar", { "font-scale": 0.8 }
-					],
-					"text-size": 40
-				},
-				"paint": {
-					"text-color": "#fff"
-				}
-			});
-			*/
-
 			loaded = true;
 
 		});
@@ -99,6 +97,12 @@
 		map.on('zoom', function (e) {
 			var zoom = map.getZoom();
 			mapPositions.zoom = round( zoom, 0 );
+
+			if( zoom > popups.threshold && popups.visible === false ){
+				popups.show();
+			} else if( zoom < popups.threshold && popups.visible === true ){
+				popups.hide();
+			}
 
 		});
 
@@ -126,14 +130,44 @@
 					center: features[0].geometry.coordinates,
 					zoom: map.getZoom()+3
 				});
-				createPopUp( features[0] );
+				// createPopUp( features[0] );
 			}
 		});
 
+		view.content.forEach(function(marker) {
+
+			/*
+			// create a DOM element for the marker
+			var el = document.createElement('div');
+			el.className = 'marker';
+			el.style.backgroundImage = 'url(https://placekitten.com/g/' + marker.properties.iconSize.join('/') + '/)';
+			el.style.width = marker.properties.iconSize[0] + 'px';
+			el.style.height = marker.properties.iconSize[1] + 'px';
+
+			el.addEventListener('click', function() {
+				window.alert(marker.properties.message);
+			});
+			*/
+
+			var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'top' })
+				.setLngLat(marker.geometry.coordinates)
+				.setHTML(
+					'<h4 class="title">' + marker.properties.title + '</h4>'
+				)
+				.addTo(map);
+
+
+			popups.elements.push( popup );
+			/*
+			// add marker to map
+			new mapboxgl.Marker(el)
+				.setLngLat(marker.geometry.coordinates)
+				.addTo(map);
+			*/
+		});
+
+		/*
 		function createPopUp(currentFeature) {
-			var popUps = document.getElementsByClassName('mapboxgl-popup');
-			// Check if there is already a popup on the map and if so, remove it
-			if (popUps[0]) popUps[0].remove();
 
 			var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'top' })
 				.setLngLat(currentFeature.geometry.coordinates)
@@ -142,6 +176,7 @@
 				)
 				.addTo(map);
 		}
+		*/
 
 	});
 
@@ -160,10 +195,10 @@
 	/* Marker tweaks */
 	#map :global(.mapboxgl-popup) {
 		width: 25vw;
+		font-family: "Favorit Mono", "Favorit", Roboto Mono, Roboto, Helvetica, Arial, sans-serif;
 	}
 
 	#map :global(.mapboxgl-popup-content) {
-		font-family: "Favorit Mono", "Favorit", Roboto Mono, Roboto, Helvetica, Arial, sans-serif;
 		background-color: #fff;
 		color: #000;
 		border-radius: 0;
@@ -177,6 +212,7 @@
 	}
 
 	#map :global(.mapboxgl-popup-content h4) {
+		font-size: 0.8rem;
 		padding: 0 0.5rem;
 		margin: 0.5rem 0;
 	}
