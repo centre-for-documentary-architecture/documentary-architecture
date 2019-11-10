@@ -44,7 +44,7 @@
 				},
 				cluster: true,
 				clusterMaxZoom: 6, // Max zoom to cluster points on
-				clusterRadius: 15 // Radius of each cluster when clustering points (defaults to 50)
+				clusterRadius: 20 // Radius of each cluster when clustering points (defaults to 50)
 			});
 
 			map.addLayer({
@@ -56,7 +56,7 @@
 					'circle-radius': {
 						// make circles larger as the user zooms from z12 to z22
 						'base': 5,
-						'stops': [ [2, 10], [7, 5], [10, 3], [13, 5], [16, 8], [22, 180] ]
+						'stops': [ [2, 10], [6, 8], [8, 5], [10, 4], [13, 4], [16, 8], [22, 180] ]
 					},
 					'circle-color': '#00f'
 				},
@@ -84,6 +84,13 @@
 			}
 			*/
 
+		});
+
+		map.on('mouseenter', 'dots', function () {
+			map.getCanvas().style.cursor = 'pointer';
+		});
+		map.on('mouseleave', 'dots', function () {
+			map.getCanvas().style.cursor = '';
 		});
 
 	});
