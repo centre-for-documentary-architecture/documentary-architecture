@@ -1,6 +1,7 @@
 <script>
 	import { afterUpdate } from 'svelte';
 
+	export let transcript;
 	export let view;
 	export let classname;
 
@@ -25,19 +26,19 @@
 	let loading = false;
 
 	async function loadNext(){
-		console.log('load next chunk of collections '+view.next);
+		// console.log('load next chunk of collections '+view.next);
 
 		loading = true;
-		console.log('please wait...');
+		// console.log('please wait...');
 
 		let newData = await load( view.next );
 
 		if( newData ){
 
 			loading = false;
-			console.log('loading finished');
+			// console.log('loading finished');
 
-			console.log( newData );
+			// console.log( newData );
 
 			view.next = newData.next;
 
@@ -54,7 +55,7 @@
 	function scrollTrigger(){
 		// console.log('scroll');
 		if( view.next === false || loading === true ){
-			console.log('no more');
+			// console.log('no more');
 			return;
 		}
 		// console.log('scrollll');

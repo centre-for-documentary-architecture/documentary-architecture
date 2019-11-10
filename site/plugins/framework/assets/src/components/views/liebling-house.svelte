@@ -3,6 +3,7 @@
 
 	export let view;
 	export let classname;
+	export let transcript;
 
 	/*
 
@@ -55,7 +56,7 @@
 			FreeRoaming: {
 				roaming: false,
 				dollhouse: true,
-				help: "Use ← ↑ ↓ → to navigate"
+				help: "Use ← ↑ ↓ → to navigate, ESC to leave"
 			},
 			MovingToItem: {
 				roaming: "Stop",
@@ -95,7 +96,7 @@
 			lieblingHouseWorldInstance.removeTimeout = setTimeout(function() {
 
 				world.loaded = true;
-				console.log('loaded');
+				// console.log('Unity loaded');
 
 			}, 3000);
 		}
@@ -124,10 +125,10 @@
 
 	window.worldHoverItem = worlditemId => {
 		if( worlditemId == '' ){
-			console.log('worldHoverItem() mouse leave');
+			// console.log('worldHoverItem() mouse leave');
 			world.tooltips.item = false;
 		} else {
-			console.log( 'worldHoverItem( ' + worlditemId + ' )' );
+			// console.log( 'worldHoverItem( ' + worlditemId + ' )' );
 			world.tooltips.item = worlditemId;
 		}
 		// maybe highlight collection elements by id?
@@ -160,7 +161,14 @@
 	* control website -> world
 	*/
 
-	function worldSetRoaming(){
+	window.worldSetRoaming = option => {
+
+		console.log('WorldUpdateState( FreeRoaming )');
+		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'FreeRoaming');
+
+	}
+
+	function worldSetRoaming2(){
 
 		console.log('WorldUpdateState( FreeRoaming )');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'FreeRoaming');
@@ -250,7 +258,7 @@
 
 				{#if world.roaming }
 
-					<button on:click={worldSetRoaming}>{world.roaming}</button>
+					<button on:click={window.worldSetRoaming}>{world.roaming}</button>
 
 				{/if}
 
@@ -263,7 +271,7 @@
 			</span>
 
 			<span class="right">
-				<span class="hover" on:mouseenter={()=> world.tooltips.help = true } on:mouseleave={()=> world.tooltips.help = false }>Info</span>
+				<span class="hover" on:mouseenter={()=> world.tooltips.help = true } on:mouseleave={()=> world.tooltips.help = false }>{world.help}</span>
 			</span>
 
 		{/if}

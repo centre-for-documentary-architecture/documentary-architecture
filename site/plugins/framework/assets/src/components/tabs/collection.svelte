@@ -1,5 +1,6 @@
 <script>
 
+	export let entity;
 	export let tab;
 	export let category;
 	export let entity;
@@ -14,7 +15,7 @@
 		gallery: CollectionsGallery
 	}
 
-	console.log( category );
+	console.log( tab.content[0] );
 
 </script>
 

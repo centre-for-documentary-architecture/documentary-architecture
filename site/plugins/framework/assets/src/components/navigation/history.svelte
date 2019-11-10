@@ -14,7 +14,7 @@
         {#each entity.breadcrumbs as item}
 
             <li class="{ item.url == entity.url ? 'current' : ''}">
-                <a on:click={navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
+                <a on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
                     {item.title}
                 </a>
             </li>

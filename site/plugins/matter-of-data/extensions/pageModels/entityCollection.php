@@ -63,7 +63,7 @@ class EntityCollection extends Entity
 		return [
 			'type' => 'header',
 			'content' => [
-                'h1' => $this->title()->value(),
+                'h1' => $this->title()->wbr()->value(),
                 'h2' => $this->content()->additional_title()->html()->value(),
                 'p' => $text
             ]
@@ -342,7 +342,7 @@ class LieblingHouseCollection extends EntityCollection
 
         switch ( $this->depth() ) {
             case 1:
-                return new Field( $this, 'content_headline', 'Promenades');
+                return new Field( $this, 'content_headline', 'Follow a guided Promenade');
                 break;
             case 2:
                 return new Field( $this, 'content_headline', '');

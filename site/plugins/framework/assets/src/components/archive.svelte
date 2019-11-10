@@ -21,7 +21,7 @@
 		if( searchTerms == previouslySearched ){
 			return;
 		}
-		console.log('research '+searchTerms);
+		// console.log('research '+searchTerms);
 
 		loading = true;
 		// console.log('please wait...');
@@ -31,7 +31,7 @@
 		if( newData ){
 
 			loading = false;
-			console.log('loading finished from '+newData.url);
+			// console.log('loading finished from '+newData.url);
 
 			// console.log( newData );
 
@@ -79,7 +79,7 @@
 			<ul class="list">
 				{#each archive.archive.filters.content as item}
 					<li class="card">
-						<a class="button {filter == item.filter ? 'active' : ''}" on:click={navi} on:click={() => filter = item.filter} href={item.url} data-template="archive">
+						<a class="button {filter == item.filter ? 'active' : ''}" on:click={window.navi} on:click={() => filter = item.filter} href={item.url} data-template="archive">
 							<h4 class="title">{item.title}</h4>
 						</a>
 					</li>

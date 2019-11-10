@@ -14,8 +14,17 @@ h5,
 	font-family: $mono;
 }
 
-.bar, button, .button {
+.bar.history,
+.bar.archive,
+.bar.controls,
+.bar.pagination {
 	font-family: $mono;
+}
+button, .button {
+	font-family: $mono;
+	// text-transform: uppercase;
+	padding: 0.3em 0.6em;
+	// letter-spacing: 0.05em;
 }
 
 //

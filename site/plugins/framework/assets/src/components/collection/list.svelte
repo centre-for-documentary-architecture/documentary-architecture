@@ -11,7 +11,7 @@
 
         <li class="card {item.classlist}">
 
-            <a on:click={navi} href={item.url} data-template={item.template}>
+            <a on:click={window.navi} href={item.url} data-template={item.template}>
                 <figure>
                     {#if item.thumbnail}{@html item.thumbnail}{/if}
                 </figure>

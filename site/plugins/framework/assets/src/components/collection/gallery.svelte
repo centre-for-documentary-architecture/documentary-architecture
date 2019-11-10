@@ -23,7 +23,7 @@
 		// 'panorama': ViewPanorama
 	}
 
-	console.log( category );
+	// console.log( category );
 
 </script>
 
@@ -34,7 +34,7 @@
 
 			<!-- show only as small thumbnails -->
 			<li class="card worlditem {item.classlist}">
-				<a on:click={navi} href={item.url} data-template={item.template}>
+				<a on:click={window.navi} href={item.url} data-template={item.template}>
 					{#if item.thumbnail}
 						<figure>{@html item.thumbnail}</figure>
 					{/if}
@@ -57,7 +57,7 @@
 
 			<!-- big image -->
 			<li class="card {item.classlist}">
-				<a on:click={navi} href={item.url} data-template={item.template}>
+				<a on:click={window.navi} href={item.url} data-template={item.template}>
 					{#if item.thumbnail}
 						<figure>{@html item.thumbnail}</figure>
 					{/if}

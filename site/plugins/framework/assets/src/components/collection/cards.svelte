@@ -1,6 +1,7 @@
 <script>
 
     export let list;
+    export let category;
 
     export let columns = 2;
     let col = 12 / columns;
@@ -15,7 +16,7 @@
 
         <li class="card col-{col} {item.classlist} {item.thumbnail ? '' : 'no-thumb'}">
 
-            <a on:click={navi} href={item.url} data-template={item.template}>
+            <a on:click={window.navi} href={item.url} data-template={item.template}>
                 <figure>
                     {#if item.thumbnail}{@html item.thumbnail}{/if}
                 </figure>

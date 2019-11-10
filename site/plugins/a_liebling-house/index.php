@@ -14,7 +14,8 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
 
     'options' => [
         // https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda/
-        'path' => 'assets/apps/liebling-house/'
+        // 'path' => 'assets/apps/liebling-house/'
+        'path' => 'https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/liebling-house/'
     ],
 
     'blueprints' => [

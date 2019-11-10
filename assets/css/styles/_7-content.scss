@@ -214,6 +214,9 @@ body.multipanel {
 		.section--header {
 			display: none;
 		}
+		div:first-child {
+			border-top: none;
+		}
 	}
 
 	.tab .cards {
@@ -289,4 +292,32 @@ body.about,
 		margin: $padding-text;
 	}
 
+}
+
+
+
+body.liebling-house {
+	main {
+		.invitation {
+			border-top: none !important;
+			button,
+			.button {
+				display: block;
+				width: 100%;
+			}
+		}
+		.tab.cards .cards {
+			padding: 0;
+			.card {
+				padding: 0;
+				margin-top: 4px;
+				&:nth-child(odd){
+					padding-right:2px;
+				}
+				&:nth-child(even){
+					padding-left:2px;
+				}
+			}
+		}
+	}
 }
