@@ -13,9 +13,9 @@
 	var map;
 
 	let mapPositions = {
-		lat: 32.07,
-		lon: 34.77,
-		zoom: 13
+		lat: 44,
+		lon: 23,
+		zoom: 3
 	};
 
 	var loaded = false;
