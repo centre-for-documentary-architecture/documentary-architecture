@@ -133,7 +133,7 @@ return [
 				$data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
 			}
 
-			$cache->set($id, $data, option('cache-expires',1440) );
+			$cache->set($id, $data, 10000 );
 
 		}
 
