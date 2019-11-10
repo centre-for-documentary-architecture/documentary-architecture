@@ -30,10 +30,12 @@ function syncContexts( $page, $oldPage ){
 			// convert to page object
 			$removeFromEntity = entity( $e );
 			if( !$removeFromEntity ){ continue; }
+
 			// get other pages contextualized entities and remove this
-			$contextualized_old = $removeFromEntity->content('en')->contextualized()->yaml();
-			$contextualized = array_diff( $contextualized_old, [ $pageId ] );
-			$removeFromEntity->update([ 'contextualized' => Yaml::encode( $contextualized ) ],'en');
+			if( $contextualized_old = $removeFromEntity->content('en')->contextualized()->yaml() ){
+				$contextualized = array_diff( $contextualized_old, [ $pageId ] );
+				$removeFromEntity->update([ 'contextualized' => Yaml::encode( $contextualized ) ],'en');
+			}
 		}
 
 		// loop all pages that are listed now
@@ -63,10 +65,10 @@ function syncContexts( $page, $oldPage ){
 			$removeFromEntity = entity( $e );
 			if( !$removeFromEntity ){ continue; }
 
-			$contexts_old = $removeFromEntity->content('en')->contexts()->yaml();
-			$contexts = array_diff( $contexts_old, [ $pageId ] );
-
-			$removeFromEntity->update([ 'contexts' => Yaml::encode( $contexts ) ],'en');
+			if( $contexts_old = $removeFromEntity->content('en')->contexts()->yaml() ){
+				$contexts = array_diff( $contexts_old, [ $pageId ] );
+				$removeFromEntity->update([ 'contexts' => Yaml::encode( $contexts ) ],'en');
+			}
 		}
 
 		$addTo = array_diff($newContextualized, $oldContextualized);
