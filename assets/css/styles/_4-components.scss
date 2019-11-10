@@ -192,6 +192,13 @@ body.black .cards {
 	}
 }
 
+.cards .card.no-thumb {
+	min-height: 160px;
+	figure {
+		height: 50%;
+	}
+}
+
 //
 // gallery
 //
