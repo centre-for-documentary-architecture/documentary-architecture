@@ -31,13 +31,13 @@
 	}
 </style>
 
-<section class="{classname} {view.type}">
+<section class="{classname} {view.type} {transcript ? '' : 'center'}">
 
 	<!--<h3 class="section--header">
 		{ view.headline || 'Audio' }
 	</h3>-->
 
-	<div class="section--content {transcript ? '' : 'center'}">
+	<div class="section--content">
 
 		<audio width="100%" height="auto" controls bind:this={mediaElement}>
 

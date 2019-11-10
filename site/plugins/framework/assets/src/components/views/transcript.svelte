@@ -4,4 +4,4 @@
 
 </script>
 
-<div class="transcript highlight">{@html transcript.html}</div>
+<div class="transcript">{@html transcript.html}</div>

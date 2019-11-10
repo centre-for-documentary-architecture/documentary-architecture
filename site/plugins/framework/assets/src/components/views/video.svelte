@@ -24,13 +24,13 @@
 
 {#if view.content.srcset.length > 0}
 
-<section class="{classname} {view.type}" bind:offsetWidth={videoWidth}>
+<section class="{classname} {view.type} {transcript ? '' : 'center'}" bind:offsetWidth={videoWidth}>
 
 	<!--<h3 class="section--header" bind:offsetWidth={videoWidth}>
 		{ view.headline || 'Video' }
 	</h3>-->
 
-	<div class="section--content {transcript ? '' : 'center'}">
+	<div class="section--content">
 		<video width="100%" height="auto" controls poster="{ view.content.poster }" bind:this={mediaElement} preload="metadata" >
 
 			{#each view.content.srcset as source}
