@@ -101,6 +101,12 @@ return [
 		return 0;
 
 	},
+	'entityInfo' => function(): string
+	{
+
+		return '';
+
+	},
 
 	/*
 	* general data representations on the current page
@@ -120,13 +126,14 @@ return [
 				'classlist' => $this->classlist(),
 				'worlditem' => $this->worlditem(),
 				'count' => $this->countCollection(),
+				'info' => $this->entityInfo(),
 			];
 
 			if( $srcset && $thumbnail = $this->thumbnail() ){
 				$data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
 			}
 
-			$cache->set($id, $data, option('cache-expires',1440) );
+			$cache->set($id, $data, 10000 );
 
 		}
 
