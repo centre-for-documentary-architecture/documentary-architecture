@@ -86,12 +86,6 @@ class EntityItemPerson extends EntityItem
                 'value' => implode(', ', $projects)
             ];
         }
-        if( $this->bio()->isNotEmpty() ){
-            $content[] = [
-                'key' => 'Bio',
-                'value' => $this->content()->bio()->kirbytext()->value()
-            ];
-        }
         if( $this->education()->isNotEmpty() ){
             $values = [];
             foreach( $this->education()->toStructure() as $stop ){
@@ -104,6 +98,12 @@ class EntityItemPerson extends EntityItem
             $content[] = [
                 'key' => 'Education',
                 'value' => $values
+            ];
+        }
+        if( $this->bio()->isNotEmpty() ){
+            $content[] = [
+                'key' => 'Bio',
+                'value' => $this->content()->bio()->kirbytext()->value()
             ];
         }
 
