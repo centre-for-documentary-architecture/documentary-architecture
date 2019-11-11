@@ -174,7 +174,7 @@ dl.table {
 	}
 	figure {
 		width: 5rem;
-		min-height: 5rem;
+		height: 5rem;
 		display: flex;
 		overflow: hidden;
 		img {
@@ -365,7 +365,7 @@ $thumbnailSize: 2.5em;
 .card.list-element {
 	figure {
 		width: $thumbnailSize;
-		min-height: $thumbnailSize;
+		height: $thumbnailSize;
 		display: flex;
 		overflow: hidden;
 		img {
