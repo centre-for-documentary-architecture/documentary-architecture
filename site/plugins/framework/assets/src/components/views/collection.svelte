@@ -85,21 +85,23 @@
 
 		<svelte:component this={layouts[layout]} list={view.content} {columns}/>
 
-		{#if loading === true}
-			<div class="bar mono">
-				<span class="message">Please wait...</span>
+		{#if view.next || loading === true}
+			<div class="bar load-more">
+				{#if loading === true}
+					<span class="pleas-wait">Please wait...</span>
+				{:else}
+					<button class="card" on:click={loadNext}>Load more</button>
+				{/if}
 			</div>
-		{:else if view.next}
-			<button class="card" on:click={loadNext}>Load more</button>
 		{/if}
 
 	</div>
 
 	{#if controls }
-		<div class="bar">
+		<div class="bar controls">
 
 			<div class="left display">
-				<span>Display as: </span>
+				<span>Display as:</span>
 				<button on:click="{() => layout = 'cards'}">Cards</button>
 				<button on:click="{() => layout = 'list'}">List</button>
 			</div>
