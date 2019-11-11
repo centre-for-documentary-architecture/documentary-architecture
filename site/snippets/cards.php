@@ -1,35 +1,44 @@
 <?php
-$classlist = [];
 
 // $collection
 if( !isset( $collection ) ){
 	return;
 }
 
-$count = $collection->count();
-if( $count === 1 || $count === 3 ){
-	$classlist[] = 'count-'.$count;
-}
+$classlist = [
+	'card',
+	'col-6'
+];
 
 ?>
-<ul class="cards grid">
+<ul class="cards grid fixed-heights">
 
-	<?php foreach( $collection as $item ): ?>
+	<?php foreach( $collection as $item ):
 
-		<li class="card col-6 <?= $item->type(); ?>"><a href="<?= $item->url() ?>" title="<?= $item->title()->html() ?>">
+		$classlist[] = $item->type();
+		if( $image = $item->thumbnail() ){
 
-			<figure>
-				<?php if( $image = $item->thumbnail() ): ?>
-					<?= $image->responsiveImage( 'medium' ) ?>
-				<?php endif; ?>
-			</figure>
+		} else {
+			$classlist[] = 'no-thumb';
+		}
+		?>
+
+		<li class="<?= implode(' ', $classlist) ?>">
+			<a href="<?= $item->url() ?>" title="<?= $item->title()->html() ?>">
+
+				<figure>
+					<?php if( $image ): ?>
+						<?= $image->responsiveImage( 'medium' ) ?>
+					<?php endif; ?>
+				</figure>
 
 
-			<div class="title">
-				<h4><?= $item->title()->html() ?></h4>
-			</div>
+				<div class="title">
+					<h4><?= $item->title()->html() ?></h4>
+				</div>
 
-		</a></li>
+			</a>
+		</li>
 
 	<?php endforeach ?>
 
