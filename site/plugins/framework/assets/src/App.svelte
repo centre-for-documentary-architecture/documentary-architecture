@@ -148,6 +148,6 @@
 
 	</div>
 
-	<NavArchive entity={entity} />
+	<NavArchive />
 
 {/if}
