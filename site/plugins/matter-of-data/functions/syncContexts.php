@@ -26,24 +26,29 @@ function syncContexts( $page, $oldPage ){
 
 		// check for those that were listed previously but are not anymore
 		$removeFrom = array_diff($oldContexts, $newContexts);
-		foreach( $removeFrom as $r ){
+		foreach( $removeFrom as $e ){
 			// convert to page object
-			$removeFromPage = entity( $r );
-			if( !$removeFromPage ){ continue; }
+			$removeFromEntity = entity( $e );
+			if( !$removeFromEntity ){ continue; }
+
 			// get other pages contextualized entities and remove this
-			$contextualized_old = $removeFromPage->content('en')->contextualized()->yaml();
-			$contextualized = array_diff( $contextualized_old, [ $pageId ] );
-			$removeFromPage->update([ 'contextualized' => Yaml::encode( $contextualized ) ],'en');
+			if( $contextualized_old = $removeFromEntity->content('en')->contextualized()->yaml() ){
+				$contextualized = array_diff( $contextualized_old, [ $pageId ] );
+				$removeFromEntity->update([ 'contextualized' => Yaml::encode( $contextualized ) ],'en');
+			}
 		}
 
 		// loop all pages that are listed now
-		foreach( $pageContent->contexts()->yaml() as $p ){
-			$addToPage = entity( $p );
-			$contextualized = $addToPage->content('en')->contextualized()->yaml();
+		$addTo = array_diff($newContexts, $oldContexts);
+		foreach( $addTo as $e ){
+			$addToEntity = entity( $e );
+			if( !$addToEntity ){ continue; }
+
+			$contextualized = $addToEntity->content('en')->contextualized()->yaml();
 			if( !in_array( $pageId, $contextualized ) ){
 				// add to other page, if not listed already
 				$contextualized[] = $pageId;
-				$addToPage->update([ 'contextualized' => Yaml::encode( $contextualized ) ],'en');
+				$addToEntity->update([ 'contextualized' => Yaml::encode( $contextualized ) ],'en');
 			}
 		}
 
@@ -56,22 +61,25 @@ function syncContexts( $page, $oldPage ){
 		$newContextualized = $pageContent->contextualized()->yaml();
 
 		$removeFrom = array_diff($oldContextualized, $newContextualized);
-		foreach( $removeFrom as $r ){
-			$removeFromPage = entity( $r );
-			if( !$removeFromPage ){ continue; }
+		foreach( $removeFrom as $e ){
+			$removeFromEntity = entity( $e );
+			if( !$removeFromEntity ){ continue; }
 
-			$contexts_old = $removeFromPage->content('en')->contexts()->yaml();
-			$contexts = array_diff( $contexts_old, [ $pageId ] );
-
-			$removeFromPage->update([ 'contexts' => Yaml::encode( $contexts ) ],'en');
+			if( $contexts_old = $removeFromEntity->content('en')->contexts()->yaml() ){
+				$contexts = array_diff( $contexts_old, [ $pageId ] );
+				$removeFromEntity->update([ 'contexts' => Yaml::encode( $contexts ) ],'en');
+			}
 		}
 
-		foreach( $pageContent->contextualized()->yaml() as $p ){
-			$addToPage = entity( $p );
-			$contexts = $addToPage->content('en')->contexts()->yaml();
+		$addTo = array_diff($newContextualized, $oldContextualized);
+		foreach( $addTo as $e ){
+			$addToEntity = entity( $e );
+			if( !$addToEntity ){ continue; }
+
+			$contexts = $addToEntity->content('en')->contexts()->yaml();
 			if( !in_array( $pageId, $contexts ) ){
 				$contexts[] = $pageId;
-				$addToPage->update([ 'contexts' => Yaml::encode( $contexts ) ],'en');
+				$addToEntity->update([ 'contexts' => Yaml::encode( $contexts ) ],'en');
 			}
 		}
 

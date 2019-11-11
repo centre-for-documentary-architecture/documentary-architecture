@@ -3,12 +3,13 @@
 
 	export let view;
 	export let classname;
+	export let transcript;
 
 	/*
 	* this code should best be outsourced, babelized and embedded here
 	*/
 
-	console.log( view.content.url )
+	// console.log( view.content.url )
 
 	var windowHalfX = window.innerWidth / 2;
 	var windowHalfY = window.innerHeight / 2;
@@ -52,7 +53,7 @@
 
 	function init() {
 
-		console.log('init');
+		// console.log('init');
 
 		// camera
 		camera = new THREE.PerspectiveCamera( 100, containerWidth / containerHeight, 1, 1100 );
@@ -75,7 +76,7 @@
 				},
 				undefined,
 				function(err){
-					console.log('error');
+					console.log('panorama loading error');
 				} )
 		} );
 

@@ -71,6 +71,7 @@ columns:
               list: List
               cards: Cards
               gallery: Gallery
+              entityinfo: Entity Info
 
           include_thumbnail:
             label: Include Thumbnails
@@ -81,7 +82,7 @@ columns:
               - No
               - Yes
 
-          content_headline: 
+          content_headline:
             type: text
             translate: false
             label: Content Headline
@@ -114,7 +115,7 @@ columns:
         text: Entities that are listed under "Contextualized" are used as content
         when:
           content_collection: contextualized
-      
+
       section_content_contexts:
         type: info
         headline: Context entities

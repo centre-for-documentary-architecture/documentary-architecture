@@ -32,7 +32,7 @@ class EntityCollection extends Entity
                     return $this->contexts();
 
                 case 'pages':
-                    $collection = $page->content_pages()->toPages()->listed();
+                    $collection = $this->content_pages()->toPages()->listed();
                     if( $collection->count() === 1 && $collection->first()->template('archive') ){
 
                         // if 1 archive was selected, return all child entities
@@ -63,7 +63,7 @@ class EntityCollection extends Entity
 		return [
 			'type' => 'header',
 			'content' => [
-                'h1' => $this->title()->value(),
+                'h1' => $this->title()->wbr()->value(),
                 'h2' => $this->content()->additional_title()->html()->value(),
                 'p' => $text
             ]
@@ -127,6 +127,7 @@ class EntityCollection extends Entity
 
         switch ($layout) {
             case 'list':
+            case 'entityinfo':
 
                 if( $this->include_thumbnail()->or(true)->isTrue() ){
                     $thumbs = 'small';
@@ -342,7 +343,7 @@ class LieblingHouseCollection extends EntityCollection
 
         switch ( $this->depth() ) {
             case 1:
-                return new Field( $this, 'content_headline', 'Promenades');
+                return new Field( $this, 'content_headline', 'Follow a guided Promenade');
                 break;
             case 2:
                 return new Field( $this, 'content_headline', '');
@@ -386,7 +387,7 @@ class LieblingHouseCollection extends EntityCollection
 
             return $data;
 
-			$cache->set($id, $data, option('cache-expires',30) );
+			$cache->set($id, $data, option('cache-expires',1440) );
 
 		}
 

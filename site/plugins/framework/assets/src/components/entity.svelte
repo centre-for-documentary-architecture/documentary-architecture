@@ -5,6 +5,7 @@
     */
 
     import Pagination from './navigation/pagination.svelte';
+    import TourNavigation from './navigation/tourNavigation.svelte';
 
     import TabHeader from './tabs/header.svelte';
 	import TabTable from './tabs/table.svelte';
@@ -46,12 +47,12 @@
 		if( event.target !== glass ){
 			return false;
 		}
-		console.log('clicked on glass');
+		// console.log('clicked on glass');
 		window.goThroughGlass();
 	}
 
 	function contentWidth( type ){
-		console.log( type );
+		// console.log( type );
 		if( type == 'file' ){
 			return 3;
 		}
@@ -73,10 +74,10 @@
 
 		if( isScrolledPrev === true ){
 			document.body.classList.add('scrolled');
-			console.log('scrolled');
+			// console.log('scrolled');
 		} else {
 			document.body.classList.remove('scrolled');
-			console.log('top');
+			// console.log('top');
 		}
 	}
 
@@ -84,11 +85,19 @@
 
 {#if entity.content}
 
-    <main class="panel col-sm-{contentWidth(entity.entity)}" on:click={touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
+    <main class="panel col-sm-{contentWidth(entity.entity)}" on:click={window.touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
 
         <div class="content">
 			<div class="tabs">
-				{#if entity.pagination}
+				{#if entity.category == 'overview'}
+					<TourNavigation>
+						<button class="blue" on:click={window.worldSetRoaming}>Start exploring →</button>
+					</TourNavigation>
+				{:else if entity.category == 'tour'}
+					<TourNavigation>
+						<a class="button blue" on:click={window.navi} href="{entity.content[1].content[0].url}" data-template="{entity.content[1].content[0].template}">Start promenade →</a>
+					</TourNavigation>
+				{:else if entity.category == 'tourstop' && entity.pagination }
 					<Pagination pagination={entity.pagination} />
 				{/if}
 

@@ -1,19 +1,22 @@
 <script>
 
+	export let entity;
 	export let tab;
 	export let category;
 
     import CollectionCards from '../collection/cards.svelte';
 	import CollectionList from '../collection/list.svelte';
+	import EntityInfo from '../collection/entityinfo.svelte';
 	import CollectionsGallery from '../collection/gallery.svelte';
 
 	let layout = {
 		cards: CollectionCards,
 		list: CollectionList,
+		entityinfo: EntityInfo,
 		gallery: CollectionsGallery
 	}
 
-	console.log( category );
+	console.log( tab.content[0] );
 
 </script>
 

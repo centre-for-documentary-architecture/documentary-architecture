@@ -22,7 +22,7 @@
 
 <style>
 	.section--content {
-		padding: 2rem;
+		padding: 1rem;
 		align-items: flex-end;
 	}
 	audio {
@@ -31,7 +31,7 @@
 	}
 </style>
 
-<section class="{classname} {view.type}">
+<section class="{classname} {view.type} {transcript ? '' : 'center'}">
 
 	<!--<h3 class="section--header">
 		{ view.headline || 'Audio' }

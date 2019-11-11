@@ -3,6 +3,7 @@
 
 	export let view;
 	export let classname;
+	export let transcript;
 
 	/*
 	* mapbox api
@@ -12,14 +13,56 @@
 	var map;
 
 	let mapPositions = {
-		lat: 32.07,
-		lon: 34.77,
-		zoom: 13
+		lat: 44,
+		lon: 23,
+		zoom: 3
 	};
 
-	var loaded = false;
+	let loaded = false;
 
-	// var markers = false;
+	let popups = {
+		visible: false,
+		threshold: 16,
+		elements: [],
+		show: function(){
+
+			console.log('show()');
+
+			let els = this.elements;
+
+			view.content.forEach(function(marker) {
+
+				let item = marker.properties;
+				let html = '<li class="card">'+
+					'<a onclick="navi(event)" href="'+item.url+'" data-template="'+item.template+'">';
+						if(item.thumbnail){
+							html +='<figure>' + item.thumbnail + '</figure>';
+						}
+						html += '<div class="title">';
+							html += '<span class="count">' + ( item.count || 1 ) + '</span>';
+							html += '<h4>'+item.title+'</h4>';
+						html += '</div>';
+					html += '</a>';
+				html += '</li>';
+
+				var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'bottom-left' })
+					.setLngLat( marker.geometry.coordinates )
+					.setHTML( html )
+					.addTo( map );
+				els.push( popup );
+
+			});
+			this.visible = true;
+
+		},
+		hide: function(){
+			for (const popup of this.elements) {
+				popup.remove();
+			}
+			this.elements = [];
+			this.visible = false;
+		}
+	};
 
 	/*
 	* someone mixed up lat <-> lon, i dont know, just try, error, fix
@@ -36,27 +79,30 @@
 
 		map.on('load', function() {
 
-			map.addSource("national-park", {
+			map.addSource("buildings", {
 				"type": "geojson",
 				"data": {
 					"type": "FeatureCollection",
 					"features": view.content
-				}
+				},
+				cluster: true,
+				clusterMaxZoom: 7, // Max zoom to cluster points on
+				clusterRadius: 24 // Radius of each cluster when clustering points
 			});
 
 			map.addLayer({
-				"id": "park-volcanoes",
+				"id": "dots",
 				"type": "circle",
-				"source": "national-park",
+				"source": "buildings",
+				"filter": ["==", "$type", "Point"],
 				"paint": {
 					'circle-radius': {
-						// make circles larger as the user zooms from z12 to z22
 						'base': 5,
-						'stops': [ [2, 10], [7, 5], [10, 3], [13, 5], [16, 8], [22, 180] ]
+						// adjust radius to zoom level [[zoom, radius],...]
+						'stops': [ [2, 18], [6, 12], [8, 5], [10, 4], [13, 4], [16, 8], [22, 180] ]
 					},
 					'circle-color': '#00f'
 				},
-				"filter": ["==", "$type", "Point"],
 			});
 
 			loaded = true;
@@ -73,47 +119,46 @@
 			var zoom = map.getZoom();
 			mapPositions.zoom = round( zoom, 0 );
 
-			/*
-			if( zoom > 15 && markers === false ){
-				createMarkers();
-			} else if ( zoom < 15 ){
-				removeMarkers();
+			if( zoom > popups.threshold && popups.visible === false ){
+				popups.show();
+			} else if( zoom < popups.threshold && popups.visible === true ){
+				popups.hide();
 			}
-			*/
 
 		});
 
+		map.on('mouseenter', 'dots', function () {
+			map.getCanvas().style.cursor = 'pointer';
+		});
+		map.on('mouseleave', 'dots', function () {
+			map.getCanvas().style.cursor = '';
+		});
+
+		map.on('click', 'dots', function (e) {
+			var features = map.queryRenderedFeatures(e.point, { layers: ['dots'] });
+			console.log( features[0] );
+			var cluster_id = features[0].properties.cluster_id;
+			if( cluster_id !== undefined ){
+				map.getSource('buildings').getClusterExpansionZoom(cluster_id, function (err, zoom) {
+						if (err){ return; }
+					map.easeTo({
+						center: features[0].geometry.coordinates,
+						zoom: zoom
+					});
+				});
+			} else {
+				let zoomTo = map.getZoom() + 3;
+				if( zoomTo > 10 ){
+					zoomTo = popups.threshold + 0.2;
+				}
+				map.easeTo({
+					center: features[0].geometry.coordinates,
+					zoom: zoomTo
+				});
+			}
+		});
+
 	});
-
-	/*
-	function createMarkers(){
-		markers = [];
-		for (const marker of view.content) {
-
-			var el = document.createElement('div');
-			el.className = 'mpa-marker';
-			el.innerHTML = 'yo';
-
-			new mapboxgl.Marker(el)
-				.setLngLat(marker.geometry.coordinates)
-				.addTo(map)
-				.setOffset([0,-20]);
-
-		}
-	}
-
-	function removeMarkers(){
-		if( markers === false ){
-			return;
-		}
-		for (const marker of markers) {
-
-			marker.remove();
-
-		}
-		markers = false;
-	}
-	*/
 
 	function round( f, d = 2 ){
 		// round coords
@@ -126,11 +171,46 @@
 	#map {
 		height: 100%;
 	}
-	:global(.marker){
 
-		background-color: #ff0;
-
+	/* Marker tweaks */
+	#map :global(.mapboxgl-popup) {
+		width: 20vw;
+		/*
+		font-size: 0.8rem;
+		font-family: "Favorit Mono", "Favorit", Roboto Mono, Roboto, Helvetica, Arial, sans-serif;
+		*/
 	}
+
+	#map :global(.mapboxgl-popup-content) {
+		background-color: transparent;
+		border-radius: 0;
+		padding: 0;
+		/* color: #000; */
+	}
+
+	/*
+
+	#map :global(.mapboxgl-popup-content:hover) {
+		background-color: #00f;
+		color: #fff;
+		cursor: pointer;
+	}
+
+	#map :global(.mapboxgl-popup-content .count) {
+		padding-bottom: 0;
+	}
+
+	#map :global(.mapboxgl-popup-content h4) {
+		padding: 0.5rem 0.5rem;
+		margin: 0;
+		font-size: 0.8rem;
+	}
+	*/
+
+	#map :global(.mapboxgl-popup > .mapboxgl-popup-tip) {
+		display: none;
+	}
+
 </style>
 
 <section class="{classname} {view.type}">

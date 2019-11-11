@@ -25,7 +25,7 @@
 	&.image {
 		figure {
 			width: 100%;
-			padding: $border-width;
+			// padding: $border-width;
 			img {
 				display: inline-block;
 				width: 100%;
@@ -36,18 +36,28 @@
 
 	&.video,
 	&.audio {
+		min-height: 100%;
+		.transcript {
+			h4 {
+				font-family: $mono;
+			}
+			padding: $padding-double;
+			font-size: 1.05rem;
+			line-height: 1.3;
+		}
+	}
+
+	&.video.center,
+	&.audio.center,
+	&.panorama {
 		display: flex;
 		flex-direction: column;
-		overflow: auto;
+		overflow: hidden !important;
 		height: 100%;
 
 		.section--content {
-			align-self: center;
-			padding: $border-width;
-		}
-
-		.transcript {
-			padding: $padding-double;
+			align-items: center;
+			display: flex;
 		}
 	}
 
@@ -93,10 +103,7 @@
 
 .controls {
 	z-index: 500;
-	button {
-		text-transform: uppercase;
-		letter-spacing: 0.07em;
-	}
+	font-size: $font-small;
 }
 
 

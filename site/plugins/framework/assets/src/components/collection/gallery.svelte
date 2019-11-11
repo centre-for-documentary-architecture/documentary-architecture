@@ -1,29 +1,17 @@
 <script>
 
+	import Card from './card.svelte';
+	import ViewVideo from '../views/video.svelte';
+	import ViewAudio from '../views/audio.svelte';
+
     export let list;
 	export let columns = 1;
 	export let category = '';
 
-    // import ViewCollection from './views/collection.svelte';
-	// import ViewImage from '../views/image.svelte';
-	import ViewVideo from '../views/video.svelte';
-	import ViewAudio from '../views/audio.svelte';
-	// import ViewMap from '../views/map.svelte';
-	// import View3d from '../views/3d.svelte';
-	// import ViewPanorama from '../views/panorama.svelte';
-	// import ViewLieblingHouse from '../views/liebling-house.svelte';
 	let views = {
-		// 'collection': ViewCollection,
-		// 'image': ViewImage,
-		// 'liebling-house': ViewLieblingHouse,
 		'video': ViewVideo,
 		'audio': ViewAudio,
-		// 'map': ViewMap,
-		// '3d': View3d,
-		// 'panorama': ViewPanorama
 	}
-
-	console.log( category );
 
 </script>
 
@@ -33,40 +21,55 @@
 		{#if category == 'tourstop' && item.worlditem !== null }
 
 			<!-- show only as small thumbnails -->
-			<li class="card worlditem {item.classlist}">
-				<a on:click={navi} href={item.url} data-template={item.template}>
+
+			<Card item={item} classname="list-element"/>
+
+			<!-- <li class="card worlditem {item.classlist}">
+				<a on:click={window.navi} href={item.url} data-template={item.template}>
 					{#if item.thumbnail}
 						<figure>{@html item.thumbnail}</figure>
 					{/if}
-					<h4 class="title">{item.title}</h4>
+					<div class="title">
+						<h4>{item.title}</h4>
+					</div>
 				</a>
-			</li>
+			</li> -->
 
 		{:else if item.view.type == 'audio' || item.view.type == 'video' }
 
 			<!-- play audio or video -->
 			<li class="card preview {item.classlist}">
+
 				<svelte:component this={views[ item.view.type ]} view={item.view}/>
 
 				<a href={item.url}>
-					<h4 class="title">{item.title}</h4>
+					<div class="title">
+
+						<span class="count">{item.count || 1}</span>
+						<h4>{@html item.title}</h4>
+
+					</div>
 				</a>
+
 			</li>
 
 		{:else}
 
+			<Card item={item}/>
+
 			<!-- big image -->
-			<li class="card {item.classlist}">
-				<a on:click={navi} href={item.url} data-template={item.template}>
+			<!-- <li class="card {item.classlist}">
+				<a on:click={window.navi} href={item.url} data-template={item.template}>
 					{#if item.thumbnail}
 						<figure>{@html item.thumbnail}</figure>
 					{/if}
-					<h4 class="title">{item.title}</h4>
+					<div class="title">
+						<h4>{item.title}</h4>
+					</div>
 				</a>
-			</li>
+			</li> -->
 
 		{/if}
-
 
     {/each}
 </ul>

@@ -14,8 +14,17 @@ h5,
 	font-family: $mono;
 }
 
-.bar, button, .button {
+.bar.history,
+.bar.archive,
+.bar.controls,
+.bar.pagination {
 	font-family: $mono;
+}
+button, .button {
+	font-family: $mono;
+	// text-transform: uppercase;
+	padding: 0.3em 0.6em;
+	// letter-spacing: 0.05em;
 }
 
 //
@@ -64,7 +73,6 @@ h6 {
 		margin: $padding-text;
 	}
 }
-
 
 //
 // buttons and links
@@ -140,19 +148,4 @@ p {
 .section--header {
 	user-select: none;
 	font-family: $mono;
-}
-
-.cards,
-.list,
-.gallery {
-	.card {
-		.title {
-			font-family: $mono;
-			font-size: $font-small;
-			hyphens: none;
-			word-break: break-word;
-			margin: 0;
-			padding: $padding-text-inside;
-		}
-	}
 }

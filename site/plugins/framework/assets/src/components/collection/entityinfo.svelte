@@ -6,10 +6,10 @@
 
 </script>
 
-<ul class="list">
+<ul class="entityinfo">
     {#each list as item}
 
-        <Card item={item}/>
+        <Card item={item} info={item.info}/>
 
     {/each}
 </ul>

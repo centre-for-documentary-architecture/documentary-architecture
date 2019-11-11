@@ -1,5 +1,6 @@
 <script>
 
+    export let entity;
     export let tab;
     export let category;
 

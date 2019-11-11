@@ -17,7 +17,6 @@
 		display: inline-block;
 		padding: 0.4rem 0.4rem;
 		&:hover {
-			padding: 0.4rem 0.4rem;
 			margin: 0;
 			border-radius: 0;
 		}
@@ -274,8 +273,9 @@ body {
 		text-align: right;
 	}
 	button {
-		padding: 0.6rem 0.5rem;
 		display: inline-block;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
 	}
 
 	.left span,
@@ -291,7 +291,7 @@ body {
 	.tooltip {
 		position: absolute;
 		left: 0;
-		top: -2rem;
+		bottom: 1.9rem;
 		padding: 0.5rem 0.9rem;
 		background-color: $blue-active;
 	}

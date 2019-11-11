@@ -175,7 +175,7 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                     }
 
                     $jsonCacheData = $return;
-                    $jsonCache->set($jsonCacheId, $jsonCacheData, option('cache-expires',30) );
+                    $jsonCache->set($jsonCacheId, $jsonCacheData, option('cache-expires',1440) );
 
                 }
 

@@ -39,6 +39,25 @@ body.home {
 		}
 	}
 
+	.activity {
+		padding: 1px;
+		padding-bottom: 0;
+		.card {
+			> a > div {
+				padding: 0 $padding;
+			}
+			h5 {
+				margin: $padding 0;
+			}
+		}
+		section {
+			ul {
+				position: sticky;
+				top: $barWidth * 1.15;
+			}
+		}
+	}
+
 	.archive-bar {
 		display: flex;
 		padding: 0 $padding;
@@ -48,18 +67,16 @@ body.home {
 		}
 	}
 
-	.activity {
-		padding: 1px;
-	}
 
+
+	/*
 	section.projects,
 	section.on-display {
 		.grid {
 			padding: 0;
 		}
 		.cards {
-			position: sticky;
-			top: $barWidth * 1.2;
+
 			.card {
 				// padding: $padding-half;
 				a {
@@ -84,6 +101,7 @@ body.home {
 			}
 		}
 	}
+	*/
 
 	#archive-preview {
 
@@ -214,6 +232,9 @@ body.multipanel {
 		.section--header {
 			display: none;
 		}
+		div:first-child {
+			border-top: none;
+		}
 	}
 
 	.tab .cards {
@@ -289,4 +310,32 @@ body.about,
 		margin: $padding-text;
 	}
 
+}
+
+
+
+body.liebling-house {
+	main {
+		.invitation {
+			border-top: none !important;
+			button,
+			.button {
+				display: block;
+				width: 100%;
+			}
+		}
+		.tab.cards .cards {
+			padding: 0;
+			.card {
+				padding: 0;
+				margin-top: 4px;
+				&:nth-child(odd){
+					padding-right:2px;
+				}
+				&:nth-child(even){
+					padding-left:2px;
+				}
+			}
+		}
+	}
 }

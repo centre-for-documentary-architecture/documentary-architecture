@@ -22,24 +22,26 @@ snippet('navigation/history');
 
 <div class="grid white activity">
 
-	<section class="col-sm-6 projects whites">
+	<section class="col-sm-6 projects">
 
-		<ul class="cards">
+		<ul class="gallery">
 
 			<?php foreach( $projects as $item ): ?>
 				<li class="card">
 					<a href="<?= $item->url() ?>">
-						<h5>
-							Online Collection,
-							<?= $item->date_created()->toDate('Y') ?>
-						</h5>
-						<?php if($image = $item->thumbnail()): ?>
-							<figure>
-								<?= $image->responsiveImage('large') ?>
-							</figure>
-						<?php endif ?>
-						<h1><?= $item->title() ?></h1>
-						<div class="highlight"><?= $item->description()->kirbytext() ?></div>
+						<div>
+							<h5>
+								Online Collection,
+								<?= $item->date_created()->toDate('Y') ?>
+							</h5>
+							<?php if($image = $item->thumbnail()): ?>
+								<figure>
+									<?= $image->responsiveImage('large') ?>
+								</figure>
+							<?php endif ?>
+							<h1><?= $item->title() ?></h1>
+							<div class="highlight"><?= $item->description()->kirbytext() ?></div>
+						</div>
 					</a>
 				</li>
 			<?php endforeach ?>
@@ -48,40 +50,44 @@ snippet('navigation/history');
 
 	</section>
 
-	<section class="col-sm-6 on-display whites">
+	<section class="col-sm-6 on-display">
 
-		<ul class="cards grid">
+		<ul class="gallery grid">
 
 			<?php foreach( $site->archive('publications')->highlights()->toPages() as $item ): ?>
-				<li class="card col-sm-6"><a href="<?= $item->url() ?>">
-					<h5>
-						<?php
-							if( $item->category() !== null ){
-								echo ucwords( $item->content()->category() );
-							} else {
-								echo ucwords( $item->type() );
-							}
-							if( $item->date_start()->exists() && $item->date_start()->isNotEmpty() ){
+				<li class="card col-sm-6">
+					<a href="<?= $item->url() ?>">
+						<div>
+							<h5>
+								<?php
+									if( $item->category() !== null ){
+										echo ucwords( $item->content()->category() );
+									} else {
+										echo ucwords( $item->type() );
+									}
+									if( $item->date_start()->exists() && $item->date_start()->isNotEmpty() ){
 
-								echo ', '.$item->date_start()->value();
+										echo ', '.$item->date_start()->value();
 
-								if( $item->date_end()->exists() && $item->date_end()->isNotEmpty() ){
-									echo ' – '.$item->date_end()->value();
-								}
+										if( $item->date_end()->exists() && $item->date_end()->isNotEmpty() ){
+											echo ' – '.$item->date_end()->value();
+										}
 
-							}
-						?>
-					</h5>
-					<?php if($image = $item->thumbnail()): ?>
-						<figure>
-							<?= $image->responsiveImage('large') ?>
-						</figure>
-					<?php endif ?>
-					<h2><?= $item->title() ?></h2>
-					<?php if( $item->additional_title()->isNotEmpty() ): ?>
-						<h4><?= $item->additional_title()->html(); ?></h4>
-					<?php endif; ?>
-				</a></li>
+									}
+								?>
+							</h5>
+							<?php if($image = $item->thumbnail()): ?>
+								<figure>
+									<?= $image->responsiveImage('large') ?>
+								</figure>
+							<?php endif ?>
+							<h2><?= $item->title() ?></h2>
+							<?php if( $item->additional_title()->isNotEmpty() ): ?>
+								<h4><?= $item->additional_title()->html(); ?></h4>
+							<?php endif; ?>
+						</div>
+					</a>
+				</li>
 			<?php endforeach ?>
 
 		</ul>
@@ -96,7 +102,7 @@ snippet('navigation/history');
 	<h1><a href="#archive" class="smooth">Archive</a></h1>
 </div>
 
-<div id="archive-preview" class="black darks grid fixed-card-height">
+<div id="archive-preview" class="black grid">
 
 	<div class="col-sm-6">
 		<?php
@@ -111,7 +117,7 @@ snippet('navigation/history');
 			?>
 			<section>
 				<h2><?= $archive->children()->listed()->count() ?> <?= $archive->toLink() ?> →</h2>
-				<?php snippet('home/cards', [
+				<?php snippet('cards', [
 					'collection' => $highlights->limit(4)
 				]); ?>
 			</section>
@@ -135,7 +141,7 @@ snippet('navigation/history');
 			?>
 			<section>
 				<h2><?= $archive->children()->listed()->count() ?> <?= $archive->toLink() ?> →</h2>
-				<?php snippet('home/cards', [
+				<?php snippet('cards', [
 					'collection' => $highlights->limit(4)
 				]); ?>
 			</section>
