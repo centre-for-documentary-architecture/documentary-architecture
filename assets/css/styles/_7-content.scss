@@ -39,6 +39,25 @@ body.home {
 		}
 	}
 
+	.activity {
+		padding: 1px;
+		padding-bottom: 0;
+		.card {
+			> a > div {
+				padding: 0 $padding;
+			}
+			h5 {
+				margin: $padding 0;
+			}
+		}
+		section {
+			ul {
+				position: sticky;
+				top: $barWidth * 1.15;
+			}
+		}
+	}
+
 	.archive-bar {
 		display: flex;
 		padding: 0 $padding;
@@ -48,18 +67,16 @@ body.home {
 		}
 	}
 
-	.activity {
-		padding: 1px;
-	}
 
+
+	/*
 	section.projects,
 	section.on-display {
 		.grid {
 			padding: 0;
 		}
 		.cards {
-			position: sticky;
-			top: $barWidth * 1.2;
+
 			.card {
 				// padding: $padding-half;
 				a {
@@ -84,6 +101,7 @@ body.home {
 			}
 		}
 	}
+	*/
 
 	#archive-preview {
 
