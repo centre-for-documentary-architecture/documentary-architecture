@@ -204,6 +204,11 @@ body.file {
 		font-family: $mono;
 	}
 }
+body.file {
+	header h1 {
+		font-size: $font-medium;
+	}
+}
 
 main {
 	> .content {
