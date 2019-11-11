@@ -19,8 +19,8 @@ return [
 	'toDateKeyword' => function ($field) {
 		return toDateKeyword( $field->value() );
 	},
-	'toLocation' => function ($field) {
-		return toLocation( $field->yaml()[0] );
+	'toLocation' => function ($field, $glue = "<br>") {
+		return toLocation( $field->yaml()[0], $glue );
 	},
 	'toUserOrKeyword' => function ($field) {
 		return toUserOrKeyword( $field->value() );

@@ -43,7 +43,7 @@ function toDateKeyword( string $date ){
 }
 
 
-function toLocation( $location ){
+function toLocation( $location, $glue = '<br />' ){
 	/*
 	* recieves $location[
 	*   title. streetaddress, postalcode, addresslocality, addresscountry, historic, lat, lon
@@ -105,7 +105,7 @@ function toLocation( $location ){
 
 	}
 
-	$return = implode('<br />', array_filter($return) ).' ';
+	$return = implode($glue, array_filter($return) ).' ';
 
 	return $return;
 }

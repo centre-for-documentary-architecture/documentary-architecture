@@ -86,7 +86,7 @@ class EntityItemPerson extends EntityItem
                 $ed = $stop->date_start()->toDateKeyword().'. ';
                 if( $ed === '. ' ){ $ed = ''; }
                 $ed .= $stop->text()->kirbytextinline().', ';
-                $ed .= $stop->location()->toLocation();
+                $ed .= $stop->location()->toLocation(', ');
                 $values[] = $ed;
             }
             $content[] = [
