@@ -327,3 +327,11 @@ body.liebling-house {
 		}
 	}
 }
+body.liebling-house {
+	&.tour,
+	&.tourstop {
+		h1 {
+			hyphens: auto;
+		}
+	}
+}

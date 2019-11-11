@@ -177,13 +177,14 @@ body {
 		}
 	}
 
-
 	body.liebling-house.tour {
 		main .tab.list {
 			background-color: transparent;
-			.section--content,
-			.list {
+			.section--content {
 				padding: 0;
+				.list {
+					padding: 0;
+				}
 			}
 		}
 	}
