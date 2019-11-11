@@ -27,6 +27,9 @@ body.white {
 			border-left: $border;
 			border-left-color: $white;
 		}
+		.activity {
+			border: none;
+		}
 	}
 }
 body.black > .page-wrapper {
