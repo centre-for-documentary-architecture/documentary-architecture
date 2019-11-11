@@ -183,6 +183,9 @@ body.archive {
 		.filters {
 			.card {
 				background-color: $dark;
+				figure {
+					display: none;
+				}
 			}
 			.active {
 				background-color: $blue;

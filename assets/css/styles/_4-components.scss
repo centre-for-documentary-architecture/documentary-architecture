@@ -368,9 +368,11 @@ dl.table {
 // list layout
 //
 $thumbnailSize: 2.5em;
-
 .list .card,
 .card.list-element {
+	> a {
+		min-height: $thumbnailSize;
+	}
 	figure {
 		width: $thumbnailSize;
 		height: $thumbnailSize;
