@@ -38,6 +38,12 @@ body {
 @media screen and (min-width: 768px){
 	// specifics for large screens
 
+	.presentation {
+		.section--content {
+			flex: 1;
+		}
+	}
+
 	// multipanel view, where grid adjust to screen height and can be scrolled seperately
 	body.multipanel {
 
@@ -78,33 +84,27 @@ body {
 
 	}
 
-	body.liebling-house,
-	body.tour,
-	body.tourstop {
-		// overlapping layout, with one non-scrollable panel in the background and the other free floating above
-		// this layout needs to switched on and off seamlessly
-		.panels {
-			position: relative;
+	// overlapping layout, with one non-scrollable panel in the background and the other free floating above
+	// this layout needs to switched on and off seamlessly
+	.panels.overlap {
+		position: relative;
 
-			main {
-				position: relative;
-				top: 0;
-				left: 0;
-				z-index: 10;
-				padding: 0;
-				width: 100%;
-				height: 100%;
-				background-color: transparent !important;
-				> .content {
-					position: absolute;
-					top: 3rem;
-					left: 3rem;
-					width: 28vw;
-					padding-bottom: 5.5rem;
-				}
-			}
-		}
 		main {
+			position: relative;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			padding: 0;
+			width: 100%;
+			height: 100%;
+			background-color: transparent !important;
+			> .content {
+				position: absolute;
+				top: 2rem;
+				left: 2rem;
+				width: 28vw;
+				padding-bottom: 5.5rem;
+			}
 			.tab {
 				margin-top: 4px;
 				border-top: none !important;
@@ -123,6 +123,19 @@ body {
 				&.collection,
 				&.cards {
 					display: block;
+				}
+				&.cards {
+					padding: 0;
+					.card {
+						padding: 0;
+						margin-top: 4px;
+						&:nth-child(odd){
+							padding-right:2px;
+						}
+						&:nth-child(even){
+							padding-left:2px;
+						}
+					}
 				}
 				&.info,
 				&.meta,
@@ -157,14 +170,14 @@ body {
 				}
 			}
 		}
-
 		.panel.presentation {
 			width: 100%;
 			position: absolute;
 			height: 100%;
 		}
-
 	}
+
+
 	body.liebling-house.tour {
 		main .tab.list {
 			background-color: transparent;
@@ -172,12 +185,6 @@ body {
 			.list {
 				padding: 0;
 			}
-		}
-	}
-
-	.presentation {
-		.section--content {
-			flex: 1;
 		}
 	}
 
