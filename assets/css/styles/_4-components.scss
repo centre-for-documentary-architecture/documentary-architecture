@@ -68,8 +68,11 @@ body.liebling-house {
 	> a {
 		display: flex;
 	}
-	.title {
+	.title,
+	.content {
 		padding: $padding;
+	}
+	.title {
 		font-family: $mono;
 		font-size: $font-small;
 		display: flex;
@@ -253,7 +256,7 @@ body.liebling-house {
 	}
 }
 
-.card {
+.black .card {
 	&.\33 d,
 	&.image.panorama,
 	&.image.object {
@@ -291,7 +294,6 @@ body.liebling-house {
 // gallery
 //
 .gallery {
-	padding: 1px;
 	.card {
 		figure {
 			img {
