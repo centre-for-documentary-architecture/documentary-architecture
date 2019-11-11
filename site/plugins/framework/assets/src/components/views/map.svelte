@@ -31,25 +31,26 @@
 			let els = this.elements;
 
 			view.content.forEach(function(marker) {
+
 				let item = marker.properties;
 				let html = '<li class="card">'+
-					'<a onclick="navi(event)" href="'+item.url+'" data-template="'+item.template+'">'+
-						'<figure>';
-							if(item.thumbnail){
-								html += item.thumbnail;
-							}
-						html += '</figure>';
-						if(item.count){
-							html += '<span class="count">'+item.count+'</span>';
+					'<a onclick="navi(event)" href="'+item.url+'" data-template="'+item.template+'">';
+						if(item.thumbnail){
+							html +='<figure>' + item.thumbnail + '</figure>';
 						}
-						html += '<h4 class="title">'+item.title+'</h4>'+
-					'</a>'+
-				'</li>';
+						html += '<div class="title">';
+							html += '<span class="count">' + ( item.count || 1 ) + '</span>';
+							html += '<h4>'+item.title+'</h4>';
+						html += '</div>';
+					html += '</a>';
+				html += '</li>';
+
 				var popup = new mapboxgl.Popup({ closeOnClick: false, closeButton: false, anchor: 'bottom-left' })
 					.setLngLat( marker.geometry.coordinates )
 					.setHTML( html )
 					.addTo( map );
 				els.push( popup );
+
 			});
 			this.visible = true;
 
@@ -174,16 +175,20 @@
 	/* Marker tweaks */
 	#map :global(.mapboxgl-popup) {
 		width: 20vw;
+		/*
 		font-size: 0.8rem;
 		font-family: "Favorit Mono", "Favorit", Roboto Mono, Roboto, Helvetica, Arial, sans-serif;
+		*/
 	}
 
 	#map :global(.mapboxgl-popup-content) {
 		background-color: transparent;
-		color: #000;
 		border-radius: 0;
 		padding: 0;
+		/* color: #000; */
 	}
+
+	/*
 
 	#map :global(.mapboxgl-popup-content:hover) {
 		background-color: #00f;
@@ -200,6 +205,7 @@
 		margin: 0;
 		font-size: 0.8rem;
 	}
+	*/
 
 	#map :global(.mapboxgl-popup > .mapboxgl-popup-tip) {
 		display: none;
