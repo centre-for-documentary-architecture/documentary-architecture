@@ -1,6 +1,6 @@
 <script>
 
-    import { afterUpdate } from 'svelte';
+    import { beforeUpdate } from 'svelte';
     import Card from './card.svelte';
 
     export let list;
@@ -8,7 +8,7 @@
     export let columns = 2;
     let columnWidth = 12 / columns;
 
-	afterUpdate(() => {
+	beforeUpdate(() => {
         columnWidth = 12 / columns;
         if( list.length < 4 ){
             if( columns == 2 ){
