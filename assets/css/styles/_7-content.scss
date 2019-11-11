@@ -254,6 +254,8 @@ body.multipanel {
 			font-family: $mono;
 		}
 	}
+	.tab.accordion + .tab.list,
+	// .tab.accordion + .tab.meta,
 	.tab.info + .tab.meta {
 		margin-top: 0;
 	}

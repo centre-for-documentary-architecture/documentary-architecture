@@ -93,13 +93,12 @@ dl.table {
 			flex: 1 0 100%;
 		}
 	}
-	dd + dd,
-	dd.long p + p,
-	dt + dd.long p {
-		margin-top: $padding-text-top;
+	p {
+		margin: 0;
 	}
-	dt.empty + dd.long p {
-		margin-top: 0;
+	dd + dd,
+	dd.long p + p {
+		margin-top: $padding-text-top;
 	}
 }
 
