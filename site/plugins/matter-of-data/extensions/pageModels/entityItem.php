@@ -34,39 +34,32 @@ class EntityItemPerson extends EntityItem
 
         $content = [];
 
-        $born = '';
+        $dates = [];
         if( $this->date_start()->isNotEmpty() ){
-            $born .= $this->content()->date_start()->toDateKeyword();
-
+            $dates[] = $this->content()->date_start()->toDateKeyword();
         }
         if( $this->location_start()->isNotEmpty() ){
-            if( $born != '' ){
-                $born .= ', ';
-            }
-            $born .= $this->content()->location_start()->toLocation();
+            $dates[] = $this->content()->location_start()->toLocation();
         }
-        if( $born != '' ){
+        if( $dates !== [] ){
             $content[] = [
                 'key' => 'Born',
-                'value' => $born
+                'value' => implode('<br />', $dates)
             ];
         }
 
-        $died = '';
+        $dates = [];
         if( $this->date_end()->isNotEmpty() ){
-            $died .= $this->content()->date_end()->toDateKeyword();
+            $dates[] = $this->content()->date_end()->toDateKeyword();
 
         }
         if( $this->location_end()->isNotEmpty() ){
-            if( $died != '' ){
-                $died .= ', ';
-            }
-            $died .= $this->content()->location_end()->toLocation();
+            $dates[] = $this->content()->location_end()->toLocation();
         }
-        if( $died != '' ){
+        if( $dates !== [] ){
             $content[] = [
                 'key' => 'Died',
-                'value' => $died
+                'value' => implode('<br />', $dates)
             ];
         }
 
@@ -83,7 +76,8 @@ class EntityItemPerson extends EntityItem
             }
             $content[] = [
                 'key' => 'Projects',
-                'value' => implode(', ', $projects)
+                'type' => 'collection',
+                'value' => $projects
             ];
         }
         if( $this->education()->isNotEmpty() ){
