@@ -186,6 +186,14 @@ dl.table {
 		flex: 1;
 		align-content: flex-start;
 	}
+	h5 {
+		color: $grey;
+	}
+}
+.entityinfo .card a:hover {
+	h5 {
+		color: $blue-active;
+	}
 }
 
 //
