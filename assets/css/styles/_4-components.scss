@@ -58,10 +58,79 @@ body.liebling-house {
 	}
 }
 
+
+
+//
+// card
+//
+
+.card {
+	> a {
+		display: flex;
+	}
+	.title {
+		padding: $padding;
+		font-family: $mono;
+		font-size: $font-small;
+		display: flex;
+		flex-wrap: wrap;
+		.count {
+			display: block;
+			color: $grey;
+			// align-self: center;
+			text-align: right;
+			flex: 0 1 auto;
+			order: 2;
+			&:after {
+				content: '→';
+				padding-left: 0.2em;
+			}
+		}
+		h4,
+		h5 {
+			font-family: inherit;
+			font-size: inherit;
+			margin: 0;
+		}
+		h4 {
+			hyphens: none;
+			word-break: break-word;
+			flex: 1;
+		}
+		h5 {
+			width: 100%;
+			order: 10;
+		}
+	}
+}
+
+.cards,
+.gallery,
+#map {
+	.card > a {
+		flex-direction: column;
+		height: 100%;
+	}
+}
+
+.list,
+.entityinfo {
+	.card .title {
+		flex: 1;
+	}
+}
+
+.list {
+	.card .title {
+		align-items: center;
+	}
+}
+
 //
 // cards layout
 //
 
+/*
 .cards {
 	display: flex;
 	flex-wrap: wrap;
@@ -85,11 +154,14 @@ body.liebling-house {
 					align-self: center;
 				}
 			}
+			/*
 			.title {
 				width: 100%;
 			}
 		}
 	}
+	*/
+	/*
 	&.columns-1 li {
 		width: 100%;
 	}
@@ -125,6 +197,50 @@ body.liebling-house {
 		max-height: 60vw;
 	}
 }
+*/
+
+.cards .card.no-thumb {
+	figure {
+		min-height: 15vw;
+		// height: 50%;
+	}
+}
+
+.cards.fixed-heights {
+	.card {
+		figure {
+			// flex: unset !important;
+			height: 15vw;
+			// min-height: unset;
+			// max-height: unset;
+			overflow: hidden;
+			display: flex;
+			img {
+				/*
+				min-width: 100%;
+				min-height: 100%;
+				width: auto;
+				height: auto;
+				object-fit: unset;
+				*/
+				object-fit: cover;
+				object-position: center;
+			}
+		}
+		&.\33 d {
+			figure {
+				img {
+					object-fit: contain;
+				}
+			}
+		}
+		.title h4 {
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+	}
+}
 
 .card.image.panorama {
 	figure {
@@ -137,10 +253,10 @@ body.liebling-house {
 	}
 }
 
-body.black .cards {
-	.card.\33 d,
-	.card.image.panorama,
-	.card.image.object {
+.card {
+	&.\33 d,
+	&.image.panorama,
+	&.image.object {
 		figure {
 			img {
 				mix-blend-mode: screen;
@@ -148,6 +264,7 @@ body.black .cards {
 			}
 		}
 	}
+}
 	/*
 	.card.\33 d,
 	.card.image.object {
@@ -166,40 +283,9 @@ body.black .cards {
 		}
 	}
 	*/
-}
 
-.fixed-card-height {
-	.card[class*="col"] {
-		figure {
-			flex: unset !important;
-			height: 15vw;
-			min-height: unset;
-			max-height: unset;
-			img {
-				min-width: 100%;
-				min-height: 100%;
-				width: auto;
-				height: auto;
-				object-fit: unset;
-			}
-		}
-		.placeholder {
-			height: 15vw;
-		}
-		.title {
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			overflow: hidden;
-		}
-	}
-}
 
-.cards .card.no-thumb {
-	min-height: 160px;
-	figure {
-		height: 50%;
-	}
-}
+
 
 //
 // gallery
@@ -303,40 +389,12 @@ $thumbnailSize: 2.3em;
 			object-fit: cover;
 		}
 	}
-	.title {
-		flex: 1;
-		align-self: center;
-		padding: $padding-text-inside;
-	}
 }
 
 
 //
 // list count
 //
-.card {
-	.count {
-		display: inline-block;
-		color: $grey;
-		font-size: $font-small;
-		padding: $padding-text-inside;
-		align-self: center;
-		text-align: right;
-		&:after {
-			content: '→';
-			padding-left: 0.2em;
-		}
-	}
-}
-.cards .card,
-.mapboxgl-popup-content .card {
-	.count {
-		float: right;
-	}
-	.count > .title {
-		clear: both;
-	}
-}
 
 .presentation .list {
 	padding-right: 4px;
@@ -364,7 +422,7 @@ body.black {
 }
 
 .card {
-	h1, h2, h3, h4, h5, h6, p {
+	h1, h2, h3, p {
 		margin: $padding 0;
 	}
 }

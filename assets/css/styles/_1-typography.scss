@@ -150,18 +150,3 @@ p {
 	user-select: none;
 	font-family: $mono;
 }
-
-.cards,
-.list,
-.gallery {
-	.card {
-		.title {
-			font-family: $mono;
-			font-size: $font-small;
-			hyphens: none;
-			word-break: break-word;
-			margin: 0;
-			padding: $padding-text-inside;
-		}
-	}
-}
