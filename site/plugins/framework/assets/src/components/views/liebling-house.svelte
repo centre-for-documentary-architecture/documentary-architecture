@@ -34,34 +34,34 @@
 
 		roaming: "Start exploring",
 		dollhouse: false,
-		help: "Klick on the builing to start exploring.",
+		help: "Click on the builing to start exploring.",
 
 		state: 'ViewingKiosk',
 		states: {
 			ViewingKiosk: {
-				roaming: "Start exploring",
+				roaming: false,
 				dollhouse: false,
-				help: "Klick on the builing to start exploring."
+				help: "Click on the builing to start exploring."
 			},
 			ViewingDollhouse: {
-				roaming: "Explore",
+				roaming: "Continue exploring",
 				dollhouse: false,
-				help: "Drag to rotate the building or klick on one of the highlighted spots."
+				help: "Drag to rotate building or click on one of the highlighted spots."
 			},
 			ViewingItem: {
-				roaming: "Continue",
-				dollhouse: false,
-				help: "Klick to continue exploring."
+				roaming: false,
+				dollhouse: true,
+				help: "Click to start exploring."
 			},
 			FreeRoaming: {
 				roaming: false,
 				dollhouse: true,
-				help: "Use ← ↑ ↓ → to navigate, ESC to leave"
+				help: "Use ← ↑ ↓ → to navigate and mouse to rotate camera. ESC to leave."
 			},
 			MovingToItem: {
 				roaming: "Stop",
 				dollhouse: false,
-				help: "Klick on the builing to start exploring"
+				help: false
 			}
 		}
 	};
@@ -190,7 +190,8 @@
 
 <style>
 	.hover {
-		cursor: help;
+		/* cursor: help; */
+		background-color: #66f;
 	}
 	.section--content {
 		position: relative;
@@ -249,38 +250,47 @@
 		{/if}
 	</div>
 
-	<div class="bar controls section--controls" id="view-liebling-house-controls">
+	<div class="bar controls section--controls {world.tooltips.item ? 'hover' : ''}" id="view-liebling-house-controls">
 		{#if world.loaded === false }
 			<span class="message">Loading {world.progress}% ... Please wait.</span>
 		{:else}
 
-			<span class="left">
+			{#if world.tooltips.item !== false}
+				<span class="message">{world.tooltips.item}</span>
+			{:else if world.help !== false }
 
-				{#if world.roaming }
+				<span class="message">{world.help}</span>
 
-					<button on:click={window.worldSetRoaming}>{world.roaming}</button>
+				<span class="right">
+					{#if world.roaming }
 
-				{/if}
+						<button on:click={window.worldSetRoaming}>{world.roaming}</button>
 
-				{#if world.dollhouse }
+					{/if}
+					{#if world.dollhouse }
 
-					<button on:click={worldSetDollhouse}>Overview</button>
+						<button on:click={worldSetDollhouse}>Overview</button>
 
-				{/if}
+					{/if}
+				</span>
 
-			</span>
+			{/if}
 
+			<!--
 			<span class="right">
 				<span class="hover" on:mouseenter={()=> world.tooltips.help = true } on:mouseleave={()=> world.tooltips.help = false }>{world.help}</span>
 			</span>
+			-->
 
 		{/if}
 
+		<!--
 		{#if world.tooltips.item !== false}
 			<div class="bar tooltip left">{world.tooltips.item}</div>
 		{:else if world.tooltips.help !== false}
 			<div class="bar tooltip left">{world.help}</div>
 		{/if}
+		-->
 
 	</div>
 
