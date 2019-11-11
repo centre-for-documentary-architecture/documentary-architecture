@@ -61,6 +61,19 @@
 		}
 	}
 
+	&.panel.collection {
+
+		display: flex;
+		flex-direction: column;
+
+		.bar {
+			position: sticky;
+			bottom: -1px;
+			background-color: $blue;
+		}
+
+	}
+
 }
 
 @media screen and (min-width: 768px){
