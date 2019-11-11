@@ -49,6 +49,7 @@ function toLink( $url, $text = false ){
 			$text = $url;
 		}
 	}
+	$text = str_replace( 'www.' , '', $text );
 	return Html::a(
 		$url,
 		$text,
