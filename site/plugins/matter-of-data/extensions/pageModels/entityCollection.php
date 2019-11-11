@@ -32,7 +32,7 @@ class EntityCollection extends Entity
                     return $this->contexts();
 
                 case 'pages':
-                    $collection = $page->content_pages()->toPages()->listed();
+                    $collection = $this->content_pages()->toPages()->listed();
                     if( $collection->count() === 1 && $collection->first()->template('archive') ){
 
                         // if 1 archive was selected, return all child entities
