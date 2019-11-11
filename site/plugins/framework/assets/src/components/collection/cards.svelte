@@ -1,14 +1,23 @@
 <script>
 
+    import { afterUpdate } from 'svelte';
     import Card from './card.svelte';
 
     export let list;
 
     export let columns = 2;
     let columnWidth = 12 / columns;
-    if( list.length < 4 ){
-        columnWidth = Math.min( columnWidth*2, 12 );
-    }
+
+	afterUpdate(() => {
+        columnWidth = 12 / columns;
+        if( list.length < 4 ){
+            if( columns == 2 ){
+
+                columnWidth = 12;
+
+            }
+        }
+    });
 
 </script>
 
