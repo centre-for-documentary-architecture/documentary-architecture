@@ -234,9 +234,11 @@ body.multipanel {
 		.section--header {
 			display: none;
 		}
+		/*
 		div:first-child {
 			border-top: none;
 		}
+		*/
 	}
 
 	.tab .cards {
@@ -251,6 +253,9 @@ body.multipanel {
 		.section--content {
 			font-family: $mono;
 		}
+	}
+	.tab.info + .tab.meta {
+		margin-top: 0;
 	}
 }
 body.entity.black {
