@@ -183,17 +183,14 @@ body.archive {
 		.filters {
 			.card {
 				background-color: $dark;
+				figure {
+					display: none;
+				}
 			}
 			.active {
 				background-color: $blue;
 			}
 		}
-	}
-
-	.collection .bar {
-		position: sticky;
-		bottom: 0;
-		background-color: $blue;
 	}
 
 }

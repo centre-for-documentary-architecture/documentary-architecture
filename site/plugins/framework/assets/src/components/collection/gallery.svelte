@@ -35,7 +35,7 @@
 				</a>
 			</li> -->
 
-		{:else if item.view.type == 'audio' || item.view.type == 'video' }
+		{:else if item.view && ( item.view.type == 'audio' || item.view.type == 'video' )}
 
 			<!-- play audio or video -->
 			<li class="card preview {item.classlist}">

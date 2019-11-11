@@ -16,8 +16,6 @@
 		gallery: CollectionsGallery
 	}
 
-	console.log( tab.content[0] );
-
 </script>
 
 <section class="tab {tab.layout}">
