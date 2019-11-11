@@ -3,10 +3,11 @@
     export let item;
     export let width;
     export let info;
+    export let classname = '';
 
 </script>
 
-<li class="card {item.classlist} {width ? 'col-'+width : ''} {item.thumbnail ? '' : 'no-thumb'}">
+<li class="card {classname} {item.classlist} {width ? 'col-'+width : ''} {item.thumbnail ? '' : 'no-thumb'}">
     <a on:click={window.navi} href={item.url} data-template={item.template}>
 
         <figure>
