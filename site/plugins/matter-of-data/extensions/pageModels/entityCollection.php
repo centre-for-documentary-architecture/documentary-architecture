@@ -341,15 +341,10 @@ class LieblingHouseCollection extends EntityCollection
     public function content_headline(): Kirby\Cms\Field
     {
 
-        switch ( $this->depth() ) {
-            case 1:
-                return new Field( $this, 'content_headline', 'Follow a guided Promenade');
-                break;
-            case 2:
-                return new Field( $this, 'content_headline', '');
-                break;
+        if( $this->depth() === 1 ){
+            return new Field( $this, 'content_headline', 'Follow a guided Promenade');
         }
-        return new Field( $this, 'content_headline', 'Collection');
+        return new Field( $this, 'content_headline', '');
 
     }
     public function dataSet(): array

@@ -43,7 +43,7 @@ function toDateKeyword( string $date ){
 }
 
 
-function toLocation( $location ){
+function toLocation( $location, $glue = '<br />' ){
 	/*
 	* recieves $location[
 	*   title. streetaddress, postalcode, addresslocality, addresscountry, historic, lat, lon
@@ -51,39 +51,44 @@ function toLocation( $location ){
 	*/
 	$return = [];
 
-	if( isset( $location['title'] ) ){
+	if (!empty( $location['title'] ) ){
 		$return[] = $location['title'];
 	}
 
-	if( isset( $location['streetaddress']) ){
+	if (!empty( $location['streetaddress']) ){
 		$return[] = toKeyword( $location['streetaddress'] );
 	}
 
-	if( isset( $location['addresslocality']) ){
+	$locality = [];
+
+	if (!empty( $location['addresslocality']) ){
 
 		$address = '';
-		if( isset( $location['postalcode'] ) ){
+		if (!empty( $location['postalcode'] ) ){
 			$address .= toKeyword( $location['postalcode'] ).' ';
 		}
-		$return[] = $address . toKeyword( $location['addresslocality'] );
+		$locality[] = $address . toKeyword( $location['addresslocality'] );
 
 	}
 
-	if( isset( $location['addresscountry']) ){
+	if (!empty( $location['addresscountry']) ){
 
 		$country = toKeyword( strtoupper( $location['addresscountry'] ) );
-
-		if( isset( $location['addresscountryhistoric'] )){
-			if( $historic = toKeyword( $location['addresscountryhistoric'] ) ){
-				$country .= ' (formerly '.$historic.')';
-			}
-		}
-
-		$return[] = $country;
+		$locality[] = $country;
 
 	}
 
-	if( isset($location['lat']) && isset($location['lon']) ){
+	if( $locality !== [] ){
+		$return[] = implode(', ', $locality );
+	}
+
+	if (!empty( $location['addresscountryhistoric'] )){
+		if( $historic = toKeyword( $location['addresscountryhistoric'] ) ){
+			$return[] = ' (formerly '.$historic.')';
+		}
+	}
+
+	if (!empty( $location['lat']) && isset($location['lon']) ){
 		// http://www.google.com/maps/place/lat,lng
 
 		$geo = strtr( strval( $location['lat'] ), ',', '.' ).','.strtr( strval( $location['lon'] ), ',', '.' );
@@ -100,7 +105,7 @@ function toLocation( $location ){
 
 	}
 
-	$return = implode('<br />', array_filter($return) ).' ';
+	$return = implode($glue, array_filter($return) ).' ';
 
 	return $return;
 }

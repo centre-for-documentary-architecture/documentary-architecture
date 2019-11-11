@@ -76,7 +76,8 @@ body.home .archive-bar {
 .whites,
 .light,
 .lights,
-.liebling-house {
+.liebling-house,
+.liebling-house.black {
 	color: $black;
 	.card {
 		a {
@@ -131,10 +132,5 @@ body.entity.file {
 	main.panel {
 		border-right: $border;
 		border-color: $white;
-		header {
-			h1 {
-				font-size: $font-medium;
-			}
-		}
 	}
 }

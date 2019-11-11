@@ -42,7 +42,7 @@
 	border-color: $white;
 }
 
-body.liebling-house {
+.panels.overlap {
 	.accordion {
 		.section--header {
 			&:after {
@@ -71,7 +71,7 @@ dl.table {
 		div {
 			flex: 1 0 50%;
 		}
-		dt + div {
+		dt + div.long {
 			flex-basis: 100%;
 			margin-top: $padding-text-top;
 		}
@@ -81,6 +81,7 @@ dl.table {
 	}
 	dt { // key
 		flex: 1 0 50%;
+		padding-right: 0.3em;
 		&.empty {
 			display: none;
 			padding: 0;

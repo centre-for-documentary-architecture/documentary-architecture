@@ -25,12 +25,12 @@
 		entity = data;
 	}
 
-	function relocate( e = false ){
+	function relocate( e = false, className = '' ){
 		if( !e ){
 			e = entity;
 		}
 
-		document.body.className = [ e.theme, e.layout, e.template, e.entity, e.type, e.category, 'dynamic' ].join(' ');
+		document.body.className = [ className, e.theme, e.layout, e.template, e.entity, e.type, e.category, 'dynamic' ].join(' ');
 
 		history.pushState({
 			title: entity.title,
@@ -90,13 +90,14 @@
 
 		// replaceEntityData( await load( href ) );
 
-		entity.theme = worlditemContent.theme;
+		worlditemContent.theme = entity.theme;
+		// entity.theme = worlditemContent.theme;
 		entity.content = worlditemContent.content;
 		// entity = worlditemContent;
 
 		console.log( 'showWorlditemContent()', entity );
 
-		relocate();
+		relocate( worlditemContent, 'liebling-house' );
 
 	}
 
@@ -134,7 +135,7 @@
 
 	<NavHistory entity={entity} />
 
-	<div class="grid panels">
+	<div class="grid panels {entity.type == 'liebling-house' ? 'overlap' : '' }">
 
 		{#if entity.template == 'entity' }
 
