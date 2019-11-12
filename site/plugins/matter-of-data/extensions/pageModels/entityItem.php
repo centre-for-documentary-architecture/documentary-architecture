@@ -34,39 +34,32 @@ class EntityItemPerson extends EntityItem
 
         $content = [];
 
-        $born = '';
+        $dates = [];
         if( $this->date_start()->isNotEmpty() ){
-            $born .= $this->content()->date_start()->toDateKeyword();
-
+            $dates[] = $this->content()->date_start()->toDateKeyword();
         }
         if( $this->location_start()->isNotEmpty() ){
-            if( $born != '' ){
-                $born .= ', ';
-            }
-            $born .= $this->content()->location_start()->toLocation();
+            $dates[] = $this->content()->location_start()->toLocation();
         }
-        if( $born != '' ){
+        if( $dates !== [] ){
             $content[] = [
                 'key' => 'Born',
-                'value' => $born
+                'value' => implode('<br />', $dates)
             ];
         }
 
-        $died = '';
+        $dates = [];
         if( $this->date_end()->isNotEmpty() ){
-            $died .= $this->content()->date_end()->toDateKeyword();
+            $dates[] = $this->content()->date_end()->toDateKeyword();
 
         }
         if( $this->location_end()->isNotEmpty() ){
-            if( $died != '' ){
-                $died .= ', ';
-            }
-            $died .= $this->content()->location_end()->toLocation();
+            $dates[] = $this->content()->location_end()->toLocation();
         }
-        if( $died != '' ){
+        if( $dates !== [] ){
             $content[] = [
                 'key' => 'Died',
-                'value' => $died
+                'value' => implode('<br />', $dates)
             ];
         }
 
@@ -78,13 +71,19 @@ class EntityItemPerson extends EntityItem
         }
         if( $this->projects()->isNotEmpty() ){
             $projects = [];
-            foreach( $this->projects()->split() as $project ){
-                $projects[] = toPageOrKeyword( $project );
+            foreach( $this->content()->projects()->split() as $project ){
+                if( $entity = entity( $project ) ){
+                    $projects[] = $entity->dataAbstract();
+                } else {
+                    $projects[] = $project;
+                }
             }
             $content[] = [
                 'key' => 'Projects',
-                'value' => implode(', ', $projects)
+                'type' => 'collection',
+                'value' => $projects
             ];
+
         }
         if( $this->education()->isNotEmpty() ){
             $values = [];
@@ -92,7 +91,7 @@ class EntityItemPerson extends EntityItem
                 $ed = $stop->date_start()->toDateKeyword().'. ';
                 if( $ed === '. ' ){ $ed = ''; }
                 $ed .= $stop->text()->kirbytextinline().', ';
-                $ed .= $stop->location()->toLocation();
+                $ed .= $stop->location()->toLocation(', ');
                 $values[] = $ed;
             }
             $content[] = [
@@ -137,11 +136,16 @@ class EntityItemLandmark extends EntityItem
         if( $this->architects()->isNotEmpty() ){
             $architects = [];
             foreach( $this->content()->architects()->split() as $architect ){
-                $architects[] = toPageOrKeyword( $architect );
+                if( $entity = entity( $architect ) ){
+                    $architects[] = $entity->dataAbstract();
+                } else {
+                    $architects[] = $architect;
+                }
             }
             $content[] = [
                 'key' => 'Architects',
-                'value' => implode(', ', $architects)
+                'type' => 'collection',
+                'value' => $architects
             ];
         }
 

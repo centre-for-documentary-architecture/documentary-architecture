@@ -76,7 +76,8 @@ body.home .archive-bar {
 .whites,
 .light,
 .lights,
-.liebling-house {
+.liebling-house,
+.liebling-house.black {
 	color: $black;
 	.card {
 		a {
@@ -99,19 +100,20 @@ button,
 	figure {
 		background-color: $dark-active;
 	}
-	&:hover {
-		color: $white !important;
-		background-color: $blue !important;
-		figure {
-			background-color: #33f;
-		}
-		img {
-			mix-blend-mode: screen;
-			filter: contrast(115%);
-		}
-		.count {
-			color: $blue-active;
-		}
+}
+.card > a:hover,
+.card.active a {
+	color: $white !important;
+	background-color: $blue !important;
+	figure {
+		background-color: #33f;
+	}
+	img {
+		mix-blend-mode: screen;
+		filter: contrast(115%);
+	}
+	.count {
+		color: $blue-active;
 	}
 }
 
@@ -130,10 +132,5 @@ body.entity.file {
 	main.panel {
 		border-right: $border;
 		border-color: $white;
-		header {
-			h1 {
-				font-size: $font-medium;
-			}
-		}
 	}
 }

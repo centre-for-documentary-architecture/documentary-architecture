@@ -61,6 +61,25 @@
 		}
 	}
 
+	&.panel.collection {
+
+		display: flex;
+		flex-direction: column;
+
+		.bar.controls {
+			position: sticky;
+			bottom: -1px;
+			background-color: $blue;
+		}
+		.bar.load-more {
+			text-align: center;
+			color: $grey;
+			padding: $padding;
+			font-family: $mono;
+		}
+
+	}
+
 }
 
 @media screen and (min-width: 768px){

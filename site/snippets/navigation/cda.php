@@ -8,7 +8,7 @@
     </a>
 
     <aside class="about">
-        <?php snippet('about'); ?>
+        <?php snippet('about/about'); ?>
     </aside>
 
     <button class="bar-close" onclick="closeAboutBar(event)">&times;</button>

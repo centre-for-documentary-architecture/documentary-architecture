@@ -268,7 +268,7 @@ class EntityFileVideo extends EntityFile
     {
         if( $file = $this->file() ){
             $info = $this->content()->duration()->value(). ', ';
-            return $info . $file->extension() . ', ' . F::nicesize( F::size( $file->root() ));
+            return $info . 'mp4';
         }
         return null;
     }

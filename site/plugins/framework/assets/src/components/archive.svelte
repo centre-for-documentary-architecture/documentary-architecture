@@ -3,6 +3,7 @@
 	export let archive;
 
 	import ViewCollection from './views/collection.svelte';
+	import Card from './collection/card.svelte';
 	import CollectionList from './collection/list.svelte';
 
 	/*
@@ -18,15 +19,15 @@
 	let loading = false;
 
 	async function startSearch(){
-		if( searchTerms == previouslySearched ){
+		if( searchTerm == previouslySearched ){
 			return;
 		}
-		// console.log('research '+searchTerms);
+		// console.log('research '+searchTerm);
 
 		loading = true;
 		// console.log('please wait...');
 
-		let newData = await load( archive.url + '?research='+searchTerms );
+		let newData = await load( archive.url + '?research='+searchTerm );
 
 		if( newData ){
 
@@ -39,12 +40,12 @@
 
 		}
 
-		previouslySearched = searchTerms;
+		previouslySearched = searchTerm;
 
 	}
 
-	let searchInput;
-	let searchTerms = archive.archive.query;
+	let searchField;
+	let searchTerm = archive.archive.query;
 	let previouslySearched = false;
 
 	let filter = archive.archive.filter;
@@ -57,18 +58,18 @@
 		<header id="top" class="tab">
 			<h1>Archive</h1>
 
-			<form id="search" on:click="{() => searchInput.focus() }" autocomplete="off">
+			<form id="search" on:click="{() => searchField.focus() }" autocomplete="off">
 				<input class="input" type="search" name="research"
 					autocomplete="off"
 					spellcheck="false"
 					autocorrect="off"
-					bind:value={searchTerms}
+					bind:value={searchTerm}
 					aria-label="Search the archive ..."
 					placeholder="Search the archive ..."
-					bind:this={searchInput}
+					bind:this={searchField}
 					on:keyup={startSearch} >
-				<!-- {#if searchTerms}
-					<button class="button" value="Search" title="Search {searchTerms}">Start search</button>
+				<!-- {#if searchTerm}
+					<button class="button" value="Search" title="Search {searchTerm}">Start search</button>
 				{/if} -->
 			</form>
 
@@ -78,11 +79,14 @@
 			<h2>Filter</h2>
 			<ul class="list">
 				{#each archive.archive.filters.content as item}
+					<Card item={item} classname={filter == item.filter ? 'active' : ''}/>
+					<!--
 					<li class="card">
 						<a class="button {filter == item.filter ? 'active' : ''}" on:click={window.navi} on:click={() => filter = item.filter} href={item.url} data-template="archive">
 							<h4 class="title">{item.title}</h4>
 						</a>
 					</li>
+					-->
 				{/each}
 			</ul>
 		</section>

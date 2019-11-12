@@ -73,7 +73,14 @@ return [
 			'content' => $this->content()->toArray()
 		]);
 	},
-	'responsiveImage' => function( $srcset = 'medium', $alt = 'CDA' ){
+	'responsiveImage' => function( $srcset = 'medium', $alt = false ){
+		if( $alt === '' ){
+			if( $title = $this->additional_title()->isNotEmpty() ){
+				$alt = $title;
+			} else if( $parent = $this->parent()->title() ){
+				$alt = $parent;
+			}
+		}
 		return Html::img(
 			$this->thumb(['width' => 80])->url(),
 			[

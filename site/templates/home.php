@@ -117,7 +117,7 @@ snippet('navigation/history');
 			?>
 			<section>
 				<h2><?= $archive->children()->listed()->count() ?> <?= $archive->toLink() ?> →</h2>
-				<?php snippet('cards', [
+				<?php snippet('home/cards', [
 					'collection' => $highlights->limit(4)
 				]); ?>
 			</section>
@@ -141,7 +141,7 @@ snippet('navigation/history');
 			?>
 			<section>
 				<h2><?= $archive->children()->listed()->count() ?> <?= $archive->toLink() ?> →</h2>
-				<?php snippet('cards', [
+				<?php snippet('home/cards', [
 					'collection' => $highlights->limit(4)
 				]); ?>
 			</section>

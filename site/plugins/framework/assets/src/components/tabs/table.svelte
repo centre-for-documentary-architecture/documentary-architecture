@@ -3,6 +3,7 @@
     export let tab;
     export let category;
     export let entity;
+    import CollectionList from '../collection/list.svelte';
 
     function accordionToggle( event ){
         let parent = event.target.closest('.accordion');
@@ -49,7 +50,11 @@
                     <dt>{line.key}</dt>
                 {/if}
 
-                {#if Array.isArray( line.value ) }
+                {#if line.type && line.type == 'collection'}
+
+                    <CollectionList list={line.value} />
+
+                {:else if Array.isArray( line.value ) }
                     <div>
                     {#each line.value as bit}
                         <dd class="{cellSize( line.key + line.value )}">{@html bit}</dd>

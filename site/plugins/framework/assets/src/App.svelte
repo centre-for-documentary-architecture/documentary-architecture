@@ -1,5 +1,6 @@
 <script>
 	import { onMount } from 'svelte';
+	import { writable } from 'svelte/store';
 
 	import NavHistory from './components/navigation/history.svelte';
 	import NavArchive from './components/navigation/archive.svelte';
@@ -25,12 +26,14 @@
 		entity = data;
 	}
 
-	function relocate( e = false ){
+	function relocate( e = false, className = '' ){
 		if( !e ){
 			e = entity;
 		}
 
-		document.body.className = [ e.theme, e.layout, e.template, e.entity, e.type, e.category, 'dynamic' ].join(' ');
+		document.body.className = [ className, e.theme, e.layout, e.template, e.entity, e.type, e.category, 'dynamic' ].join(' ');
+
+		document.title = e.title;
 
 		history.pushState({
 			title: entity.title,
@@ -90,13 +93,13 @@
 
 		// replaceEntityData( await load( href ) );
 
-		entity.theme = worlditemContent.theme;
+		worlditemContent.theme = entity.theme;
 		entity.content = worlditemContent.content;
-		// entity = worlditemContent;
+		entity.title = worlditemContent.title;
 
 		console.log( 'showWorlditemContent()', entity );
 
-		relocate();
+		relocate( worlditemContent, 'liebling-house' );
 
 	}
 
@@ -124,17 +127,11 @@
 
 </script>
 
-<svelte:head>
-	{#if entity}
-		<title>{entity.title}</title>
-	{/if}
-</svelte:head>
-
 {#if entity !== undefined }
 
 	<NavHistory entity={entity} />
 
-	<div class="grid panels">
+	<div class="grid panels {entity.type == 'liebling-house' ? 'overlap' : '' }">
 
 		{#if entity.template == 'entity' }
 
@@ -148,6 +145,6 @@
 
 	</div>
 
-	<NavArchive entity={entity} />
+	<NavArchive />
 
 {/if}

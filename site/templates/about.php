@@ -13,7 +13,7 @@ snippet('navigation/history');
 </header>
 
 <main class="black">
-    <?php snippet('about',[ 'about' => $page ]); ?>
+    <?php snippet('about/about',[ 'about' => $page ]); ?>
 </main>
 
 <?php

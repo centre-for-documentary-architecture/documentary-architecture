@@ -42,7 +42,7 @@
 	border-color: $white;
 }
 
-body.liebling-house {
+.panels.overlap {
 	.accordion {
 		.section--header {
 			&:after {
@@ -71,7 +71,7 @@ dl.table {
 		div {
 			flex: 1 0 50%;
 		}
-		dt + div {
+		dt + div.long {
 			flex-basis: 100%;
 			margin-top: $padding-text-top;
 		}
@@ -81,6 +81,7 @@ dl.table {
 	}
 	dt { // key
 		flex: 1 0 50%;
+		padding-right: 0.3em;
 		&.empty {
 			display: none;
 			padding: 0;
@@ -92,19 +93,29 @@ dl.table {
 			flex: 1 0 100%;
 		}
 	}
-	dd + dd,
-	dd.long p + p,
-	dt + dd.long p {
-		margin-top: $padding-text-top;
+	p {
+		margin: 0;
 	}
-	dt.empty + dd.long p {
-		margin-top: 0;
+	dd + dd,
+	dt + dd.long p,
+	dd.long p + p {
+		margin-top: $padding-text-top;
 	}
 }
 
 .black {
 	dl.table > div {
 		border-color: $white;
+	}
+}
+
+dl.table {
+	.list {
+		margin: $padding 0;
+		a {
+			display: flex;
+			text-decoration: none;
+		}
 	}
 }
 
@@ -185,6 +196,14 @@ dl.table {
 	.title {
 		flex: 1;
 		align-content: flex-start;
+	}
+	h5 {
+		color: $grey;
+	}
+}
+.entityinfo .card a:hover {
+	h5 {
+		color: $blue-active;
 	}
 }
 
@@ -360,9 +379,11 @@ dl.table {
 // list layout
 //
 $thumbnailSize: 2.5em;
-
 .list .card,
 .card.list-element {
+	> a {
+		min-height: $thumbnailSize;
+	}
 	figure {
 		width: $thumbnailSize;
 		height: $thumbnailSize;

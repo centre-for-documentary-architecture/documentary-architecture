@@ -183,17 +183,14 @@ body.archive {
 		.filters {
 			.card {
 				background-color: $dark;
+				figure {
+					display: none;
+				}
 			}
 			.active {
 				background-color: $blue;
 			}
 		}
-	}
-
-	.collection .bar {
-		position: sticky;
-		bottom: 0;
-		background-color: $blue;
 	}
 
 }
@@ -205,6 +202,11 @@ body.item.landmark,
 body.file {
 	header h1 {
 		font-family: $mono;
+	}
+}
+body.file {
+	header h1 {
+		font-size: $font-medium;
 	}
 }
 
@@ -232,9 +234,11 @@ body.multipanel {
 		.section--header {
 			display: none;
 		}
+		/*
 		div:first-child {
 			border-top: none;
 		}
+		*/
 	}
 
 	.tab .cards {
@@ -249,6 +253,11 @@ body.multipanel {
 		.section--content {
 			font-family: $mono;
 		}
+	}
+	.tab.accordion + .tab.list,
+	// .tab.accordion + .tab.meta,
+	.tab.info + .tab.meta {
+		margin-top: 0;
 	}
 }
 body.entity.black {
@@ -313,7 +322,6 @@ body.about,
 }
 
 
-
 body.liebling-house {
 	main {
 		.invitation {
@@ -324,18 +332,13 @@ body.liebling-house {
 				width: 100%;
 			}
 		}
-		.tab.cards .cards {
-			padding: 0;
-			.card {
-				padding: 0;
-				margin-top: 4px;
-				&:nth-child(odd){
-					padding-right:2px;
-				}
-				&:nth-child(even){
-					padding-left:2px;
-				}
-			}
+	}
+}
+body.liebling-house {
+	&.tour,
+	&.tourstop {
+		h1 {
+			hyphens: auto;
 		}
 	}
 }
