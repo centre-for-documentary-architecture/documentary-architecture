@@ -71,14 +71,19 @@ class EntityItemPerson extends EntityItem
         }
         if( $this->projects()->isNotEmpty() ){
             $projects = [];
-            foreach( $this->projects()->split() as $project ){
-                $projects[] = toPageOrKeyword( $project );
+            foreach( $this->content()->projects()->split() as $project ){
+                if( $entity = entity( $project ) ){
+                    $projects[] = $entity->dataAbstract();
+                } else {
+                    $projects[] = $project;
+                }
             }
             $content[] = [
                 'key' => 'Projects',
                 'type' => 'collection',
                 'value' => $projects
             ];
+
         }
         if( $this->education()->isNotEmpty() ){
             $values = [];
@@ -131,11 +136,16 @@ class EntityItemLandmark extends EntityItem
         if( $this->architects()->isNotEmpty() ){
             $architects = [];
             foreach( $this->content()->architects()->split() as $architect ){
-                $architects[] = toPageOrKeyword( $architect );
+                if( $entity = entity( $architect ) ){
+                    $architects[] = $entity->dataAbstract();
+                } else {
+                    $architects[] = $architect;
+                }
             }
             $content[] = [
                 'key' => 'Architects',
-                'value' => implode(', ', $architects)
+                'type' => 'collection',
+                'value' => $architects
             ];
         }
 
