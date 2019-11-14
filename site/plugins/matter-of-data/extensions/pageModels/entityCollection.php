@@ -197,31 +197,20 @@ class EntityCollection extends Entity
                 $layout = $this->content_layout()->or('cards')->value();
 
                 switch ($layout) {
-                    case 'list':
-
-                        if( $this->include_thumbnail()->or(true)->isTrue() ){
-                            $thumbs = 'small';
-                        } else {
-                            $thumbs = '';
-                        }
-
-                        $output = $output->dataAbstract($thumbs);
-                        break;
-
                     case 'gallery':
 
                         $output = $output->dataPreview();
-                        break;
 
+                        break;
+                    case 'list':
+
+                        $output = $output->dataAbstract('small');
+
+                        break;
                     default:
 
-                        if( $this->include_thumbnail()->or(true)->isTrue() ){
-                            $thumbs = 'medium';
-                        } else {
-                            $thumbs = '';
-                        }
+                        $output = $output->dataAbstract('medium');
 
-                        $output = $output->dataAbstract($thumbs);
                         break;
                 }
 
