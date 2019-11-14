@@ -53,7 +53,7 @@
 
           <div class="event online">
             <div class="date">
-              <span class="start">11<span class="dot">.</span>11<span class="dot">.</span>19</span>
+              <span class="start">12<span class="dot">.</span>11<span class="dot">.</span>19</span>
             </div>
             <div class="location">
               <span class="city">Website Relaunch</span>
