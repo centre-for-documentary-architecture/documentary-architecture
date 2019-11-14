@@ -204,6 +204,7 @@ class Entity extends Page
         if( $this->content()->sources()->isNotEmpty() ){
             $info[] = [
                 'key' => 'Sources',
+                'class' => 'long',
                 'value' => $this->content()->sources()->toSources()
             ];
         }

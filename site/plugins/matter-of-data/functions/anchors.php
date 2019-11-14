@@ -37,6 +37,20 @@ function toKeywords( $terms, string $delimiter = ',', string $glue = ', ' ){
 	return implode( $glue, $return );
 }
 
+function keywordDataAbstract( string $keyword ){
+
+	$content = [
+		'url' => kirby()->page('archive').'?research='.Str::slug( $keyword ),
+		'title' => $keyword,
+		'template' => 'archive',
+		'classlist' => 'archive',
+		'count' => 0
+	];
+
+	return $content;
+
+}
+
 function toLink( $url, $text = false ){
 	/*
 	* creates an external weblink

@@ -3,18 +3,8 @@
 	export let archive;
 
 	import ViewCollection from './views/collection.svelte';
-	import Card from './collection/card.svelte';
 	import CollectionList from './collection/list.svelte';
 
-	/*
-	import CollectionCards from './collection/cards.svelte';
-	import CollectionList from './collection/list.svelte';
-	let layouts = {
-		cards: CollectionCards,
-		list: CollectionList
-	}
-	let layout = 'list';
-	*/
 
 	let loading = false;
 
@@ -79,14 +69,14 @@
 			<h2>Filter</h2>
 			<ul class="list">
 				{#each archive.archive.filters.content as item}
-					<Card item={item} classname={filter == item.filter ? 'active' : ''}/>
-					<!--
-					<li class="card">
-						<a class="button {filter == item.filter ? 'active' : ''}" on:click={window.navi} on:click={() => filter = item.filter} href={item.url} data-template="archive">
-							<h4 class="title">{item.title}</h4>
+					<li class="card no-thumb {filter == item.filter ? 'active' : ''}">
+						<a on:click={window.navi} on:click={()=> filter = item.filter } href={item.url} data-template={item.template}>
+							<div class="title">
+								<span class="count">{item.count || 0}</span>
+								<h4>{@html item.title}</h4>
+							</div>
 						</a>
 					</li>
-					-->
 				{/each}
 			</ul>
 		</section>
