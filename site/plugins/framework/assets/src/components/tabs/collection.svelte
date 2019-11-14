@@ -18,7 +18,7 @@
 
 </script>
 
-<section class="tab {tab.layout}">
+<section class="tab collection {tab.layout}">
 
 	{#if tab.headline}
     	<h3 class="section--header">{tab.headline}</h3>

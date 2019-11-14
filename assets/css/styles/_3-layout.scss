@@ -152,6 +152,9 @@ body {
 						padding-top: 0;
 					}
 				}
+				&.collection {
+					margin-top: 4px !important;
+				}
 			}
 			header {
 				background-color: $white;
