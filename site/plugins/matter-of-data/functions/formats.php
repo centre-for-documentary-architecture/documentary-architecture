@@ -3,17 +3,6 @@
 * several functions that create html anchor tags
 */
 
-function wbr( string $text ): string
-{
-	$replace = [
-        '-' => '-<wbr>',
-        '_' => '_<wbr>',
-        '/' => '/<wbr>',
-        '.' => '.<wbr>'
-	];
-	return strtr( $text, $replace );
-}
-
 function toDateKeyword( string $date ){
 
 	// Decade YYY0s -> YYY
