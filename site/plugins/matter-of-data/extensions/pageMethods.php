@@ -98,7 +98,7 @@ return [
 			return $c->count();
 
 		}
-		return 1;
+		return 0;
 
 	},
 	'entityInfo' => function(): string
