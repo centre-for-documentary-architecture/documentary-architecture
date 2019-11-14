@@ -75,7 +75,7 @@ class EntityItemPerson extends EntityItem
                 if( $entity = entity( $project ) ){
                     $projects[] = $entity->dataAbstract();
                 } else {
-                    $projects[] = $project;
+                    $projects[] = keywordDataAbstract( $project );
                 }
             }
             $content[] = [

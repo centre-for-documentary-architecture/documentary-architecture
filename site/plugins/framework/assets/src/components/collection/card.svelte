@@ -16,7 +16,7 @@
 
         <div class="title">
 
-            <span class="count">{item.count || 1}</span>
+            <span class="count">{item.count || ''}</span>
             <h4>{@html item.title}</h4>
             {#if info}<h5>{@html info}</h5>{/if}
 
