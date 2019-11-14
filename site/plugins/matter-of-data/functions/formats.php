@@ -8,6 +8,7 @@ function wbr( string $text ): string
 	$replace = [
         '-' => '-<wbr>',
         '_' => '_<wbr>',
+        '/' => '/<wbr>',
         '.' => '.<wbr>'
 	];
 	return strtr( $text, $replace );
