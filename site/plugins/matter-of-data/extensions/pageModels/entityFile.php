@@ -266,9 +266,9 @@ class EntityFileVideo extends EntityFile
     }
     public function fileinfo(): ?string
     {
-        if( $file = $this->file() ){
-            $info = $this->content()->duration()->value(). ', ';
-            return $info . 'mp4';
+        $info = 'mp4';
+        if( $dur = $this->content()->duration()->value() ){
+            $info =  $dur.', '.$info;
         }
         return null;
     }
@@ -325,7 +325,14 @@ class EntityFile3d extends EntityFile
         ];
 
     }
-
+    public function fileinfo(): ?string
+    {
+        $info = 'fbx';
+        if( $file = $this->content_files()->toFile() ){
+            return $info . ', ' . F::nicesize( F::size( $file->root() ));
+        }
+        return $info;
+    }
 }
 
 /*
