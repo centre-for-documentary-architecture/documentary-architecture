@@ -90,6 +90,7 @@ class EntityItemPerson extends EntityItem
             foreach( $this->education()->toStructure() as $stop ){
                 $ed = $stop->date_start()->toDateKeyword().'. ';
                 if( $ed === '. ' ){ $ed = ''; }
+                // $ed .= $stop->text()->kirbytextinline()->toKeyword().', ';
                 $ed .= $stop->text()->kirbytextinline().', ';
                 $ed .= $stop->location()->toLocation(', ');
                 $values[] = $ed;
