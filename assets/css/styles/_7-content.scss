@@ -210,6 +210,14 @@ body.file {
 	}
 }
 
+.tab.meta {
+	i {
+		font-style: inherit;
+		display: inline-block;
+		margin: 0 0.2em;
+	}
+}
+
 main {
 	> .content {
 		padding: $padding $padding-double;
