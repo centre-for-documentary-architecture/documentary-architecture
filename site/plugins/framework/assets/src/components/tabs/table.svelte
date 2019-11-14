@@ -18,10 +18,10 @@
         }
     }
 
-    function cellSize( str, max = 160 ){
+    function cellSize( str ){
 
         str = str.replace(/<[^>]+>/g, '');
-        if ( str.length > max ){
+        if ( str.length > 160 ){
             return 'long';
         }
         return '';
@@ -55,7 +55,7 @@
                     <CollectionList list={line.value} />
 
                 {:else if Array.isArray( line.value ) }
-                    <div class={line.class || ''}>
+                    <div>
                     {#each line.value as bit}
                         <dd class="{cellSize( line.key + line.value )}">{@html bit}</dd>
                     {/each}
