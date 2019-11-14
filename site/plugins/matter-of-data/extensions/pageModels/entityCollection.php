@@ -122,38 +122,27 @@ class EntityCollection extends Entity
     public function tabCollection(): array
 	{
 
-        $output = $this->collection();
         $layout = $this->content_layout()->or('cards')->value();
 
-        switch ($layout) {
-            case 'list':
-            case 'entityinfo':
-
-                if( $this->include_thumbnail()->or(true)->isTrue() ){
-                    $thumbs = 'small';
-                } else {
-                    $thumbs = '';
-                }
-
-                $output = $output->dataAbstract($thumbs);
-                break;
-
+        switch ( $layout ):
             case 'gallery':
 
-                $output = $output->dataPreview();
-                break;
+                $output = $this->collection()->dataPreview();
 
+                break;
+            case 'list':
+
+                $thumbs = 'small';
+
+            case 'entityinfo':
             default:
 
-                if( $this->include_thumbnail()->or(true)->isTrue() ){
-                    $thumbs = 'medium';
-                } else {
-                    $thumbs = '';
-                }
+                $thumbs = 'medium';
 
-                $output = $output->dataAbstract($thumbs);
+                $output = $this->collection()->dataAbstract( $thumbs );
+
                 break;
-        }
+        endswitch;
 
         return [
             'type' => 'collection',
@@ -161,16 +150,6 @@ class EntityCollection extends Entity
             'layout' => $layout,
             'content' => $output
         ];
-
-        /*
-		return [
-            'type' => 'collection',
-            'headline' => $this->content_headline()->html()->value(),
-            'layout' => $this->content_layout()->or('cards')->value(),
-            'columns' => 1,
-			'content' => $this->collection()->dataAbstract( $srcset )
-		];
-        */
 
     }
     public function view(): ?string
@@ -218,31 +197,20 @@ class EntityCollection extends Entity
                 $layout = $this->content_layout()->or('cards')->value();
 
                 switch ($layout) {
-                    case 'list':
-
-                        if( $this->include_thumbnail()->or(true)->isTrue() ){
-                            $thumbs = 'small';
-                        } else {
-                            $thumbs = '';
-                        }
-
-                        $output = $output->dataAbstract($thumbs);
-                        break;
-
                     case 'gallery':
 
                         $output = $output->dataPreview();
-                        break;
 
+                        break;
+                    case 'list':
+
+                        $output = $output->dataAbstract('small');
+
+                        break;
                     default:
 
-                        if( $this->include_thumbnail()->or(true)->isTrue() ){
-                            $thumbs = 'medium';
-                        } else {
-                            $thumbs = '';
-                        }
+                        $output = $output->dataAbstract('medium');
 
-                        $output = $output->dataAbstract($thumbs);
                         break;
                 }
 

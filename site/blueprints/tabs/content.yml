@@ -73,15 +73,6 @@ columns:
               gallery: Gallery
               entityinfo: Entity Info
 
-          include_thumbnail:
-            label: Include Thumbnails
-            type: toggle
-            translate: false
-            width: 1/2
-            text:
-              - No
-              - Yes
-
           content_headline:
             type: text
             translate: false
