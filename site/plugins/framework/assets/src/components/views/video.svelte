@@ -20,6 +20,11 @@
 
 	let videoWidth = 0;
 
+	function stop( e ){
+		e.preventDefault();
+		return false;
+	}
+
 </script>
 
 {#if view.content.srcset.length > 0}
@@ -31,7 +36,7 @@
 	</h3>-->
 
 	<div class="section--content">
-		<video width="100%" height="auto" controls poster="{ view.content.poster }" bind:this={mediaElement} preload="metadata" >
+		<video width="100%" height="auto" on:contextmenu={stop} controls poster="{ view.content.poster }" bind:this={mediaElement} preload="metadata" >
 
 			{#each view.content.srcset as source}
 				{#if videoWidth < source.width }
