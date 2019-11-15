@@ -106,8 +106,12 @@
 	window.onpopstate = async event => {
 		console.log( event );
 		if( event.state ){
+
 			replaceEntityData( await load( event.state.url ) );
-			relocate();
+
+			document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
+			document.title = entity.title;
+
 			console.log( 'history.back', entity );
 		}
 	}
