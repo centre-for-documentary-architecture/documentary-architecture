@@ -4,12 +4,11 @@ return [
 
 	// setting up
 	'panel' =>[
-		'install' => true,
 		'css' => 'assets/css/panel.css'
 	],
 
 	// development
-	'debug'  => true,
+	'debug'  => false,
 
 	// languages
 	'languages' => true,
