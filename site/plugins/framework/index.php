@@ -107,7 +107,7 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 $kirby = kirby();
                 $query = get();
 
-                $jsonCache = $kirby->cache('jsonRequest');
+                $jsonCache = $kirby->cache('json');
                 $jsonCacheId = $all;
                 if( http_build_query($query) != '' ){
                     $jsonCacheId .= '-' . http_build_query($query);
