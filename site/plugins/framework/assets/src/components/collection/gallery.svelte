@@ -24,16 +24,6 @@
 
 			<Card item={item} classname="list-element"/>
 
-			<!-- <li class="card worlditem {item.classlist}">
-				<a on:click={window.navi} href={item.url} data-template={item.template}>
-					{#if item.thumbnail}
-						<figure>{@html item.thumbnail}</figure>
-					{/if}
-					<div class="title">
-						<h4>{item.title}</h4>
-					</div>
-				</a>
-			</li> -->
 
 		{:else if item.view && ( item.view.type == 'audio' || item.view.type == 'video' )}
 
@@ -56,18 +46,6 @@
 		{:else}
 
 			<Card item={item}/>
-
-			<!-- big image -->
-			<!-- <li class="card {item.classlist}">
-				<a on:click={window.navi} href={item.url} data-template={item.template}>
-					{#if item.thumbnail}
-						<figure>{@html item.thumbnail}</figure>
-					{/if}
-					<div class="title">
-						<h4>{item.title}</h4>
-					</div>
-				</a>
-			</li> -->
 
 		{/if}
 
