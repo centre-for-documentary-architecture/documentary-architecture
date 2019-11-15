@@ -1,4 +1,4 @@
-title: Pool of Landmarks
+title: Pool of buildings
 icon: globe
 
 num: zero
@@ -30,4 +30,4 @@ tabs:
         sections:
           section_pool:
             templates:
-              - item_landmark
+              - item_building
