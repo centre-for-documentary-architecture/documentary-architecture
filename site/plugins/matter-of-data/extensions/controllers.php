@@ -10,7 +10,14 @@ return [
 
     'home' => function ( $site ) {
         return [
-            'projects' => $site->children()->listed()->template(['collection','collection_liebling-house'])
+            'projects' => $site
+                ->children()
+                ->listed()
+                ->template(['collection','collection_liebling-house']),
+            'publications' => $site
+                ->archive('publications')
+                ->highlights()
+                ->toPages(),
         ];
     },
 
