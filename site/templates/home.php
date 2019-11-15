@@ -105,6 +105,7 @@ snippet('navigation/history');
 <div id="archive-preview" class="black grid">
 
 	<div class="col-sm-6">
+
 		<?php
 		// ↗ →
 		$previews = ['buildings','persons','materials','objects'];
@@ -122,9 +123,11 @@ snippet('navigation/history');
 				]); ?>
 			</section>
 		<?php endforeach; ?>
+
 	</div>
 
 	<div class="col-sm-6">
+
 		<?php
 		$previews = ['videos','3d-objects','images','audios'];
 		foreach( $previews as $preview ):
@@ -146,6 +149,7 @@ snippet('navigation/history');
 				]); ?>
 			</section>
 		<?php endforeach; ?>
+
 	</div>
 
 	<div class="offset-md-3 col-md-6 archive-search">
