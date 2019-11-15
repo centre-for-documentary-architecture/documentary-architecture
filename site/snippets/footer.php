@@ -1,8 +1,8 @@
     </div><!-- .page-wrapper -->
 
-    <?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/lazysizes.min.js', true) ?>
+    <?= js( option('cdn').'assets/js/lazysizes.min.js', true) ?>
 
-    <?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/smooth-scroll.min.js') ?>
+    <?= js( option('cdn').'assets/js/smooth-scroll.min.js') ?>
     <script>
         var scroll = new SmoothScroll('a.smooth[href*="#"]',{
             speed: 500,

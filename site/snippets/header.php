@@ -25,6 +25,7 @@ if( isset( $class ) ){
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width,initial-scale=1.0'>
 	<meta name="robots" content="noindex,nofollow">
+	<link rel="dns-prefetch" href="<?= option('cdn-host') ?>">
 
 	<title><?= $page->title()->html(); ?></title>
 	<meta name="description" content="<?= $page->description()->html()->or('CDA') ?>">
@@ -42,18 +43,18 @@ if( isset( $class ) ){
 
 	<?= js('assets/es6/global.js') ?>
 
-	<?= css( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/fonts/fonts.css' ) ?>
-	<?= css( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/css/normalize.css') ?>
-	<?= css( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/css/reflex.css') ?>
+	<?= css( option('cdn').'assets/fonts/fonts.css' ) ?>
+	<?= css( option('cdn').'assets/css/normalize.css') ?>
+	<?= css( option('cdn').'assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
 
 	<?= js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'); ?>
 	<?= css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css'); ?>
 
-	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/three.min.js'); ?>
-	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/inflate.min.js'); ?>
-	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/FBXLoader.js'); ?>
-	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/OrbitControls.js'); ?>
+	<?= js( option('cdn').'assets/js/three.min.js'); ?>
+	<?= js( option('cdn').'assets/js/inflate.min.js'); ?>
+	<?= js( option('cdn').'assets/js/FBXLoader.js'); ?>
+	<?= js( option('cdn').'assets/js/OrbitControls.js'); ?>
 
 	<script>
 
