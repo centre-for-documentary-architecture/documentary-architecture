@@ -39,10 +39,7 @@
 
 	<div class="section--content">
 
-		<audio width="100%" height="auto" controls bind:this={mediaElement}>
-
-			<source type="{view.content.mime}" src="{view.content.url}" >
-
+		<audio width="100%" height="auto" controls bind:this={mediaElement} preload="meta" src="{view.content.url}">
 		</audio>
 
 	</div>
