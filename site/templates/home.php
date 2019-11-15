@@ -40,7 +40,7 @@ snippet('navigation/history');
 							</h5>
 							<?php if($image = $item->thumbnail()): ?>
 								<figure>
-									<?= $image->responsiveImage('large') ?>
+									<?= $image->responsiveImage('large', false) ?>
 								</figure>
 							<?php endif ?>
 							<h1><?= $item->title()->wbr() ?></h1>
@@ -82,7 +82,7 @@ snippet('navigation/history');
 							</h5>
 							<?php if($image = $item->thumbnail()): ?>
 								<figure>
-									<?= $image->responsiveImage('large') ?>
+									<?= $image->responsiveImage('large', false) ?>
 								</figure>
 							<?php endif ?>
 							<h2><?= $item->title()->wbr() ?></h2>
