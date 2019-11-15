@@ -101,7 +101,7 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 
 		'items'              => 'PageArchiveFilter',
 		'items_document'     => 'PageArchiveFilter',
-		'items_landmark'     => 'PageArchiveFilter',
+		'items_building'     => 'PageArchiveFilter',
 		'items_material'     => 'PageArchiveFilter',
 		'items_object'       => 'PageArchiveFilter',
 		'items_organisation' => 'PageArchiveFilter',
@@ -125,7 +125,7 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 		// item
 		'item'               => 'EntityItem',
 		'item_document'      => 'EntityItem',
-		'item_landmark'      => 'EntityItemLandmark',
+		'item_building'      => 'EntityItemBuilding',
 		'item_material'      => 'EntityItemMaterial',
 		'item_object'        => 'EntityItemObject',
 		'item_organisation'  => 'EntityItemOrganisation',

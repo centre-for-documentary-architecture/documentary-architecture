@@ -29,7 +29,7 @@ columns:
         sortBy: title asc
         info: "{{ page.childrenAndDrafts.count }} Items"
         templates:
-          - items_landmark
+          - items_building
           - items_person
           - items_organisation
           - items_object

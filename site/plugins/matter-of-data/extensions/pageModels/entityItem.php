@@ -112,9 +112,9 @@ class EntityItemPerson extends EntityItem
 }
 
 /*
-* Entity > Item > Landmark
+* Entity > Item > building
 */
-class EntityItemLandmark extends EntityItem
+class EntityItemBuilding extends EntityItem
 {
     public function dataIndividualFields(): array
 	{
