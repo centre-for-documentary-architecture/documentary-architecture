@@ -75,7 +75,7 @@ class EntityItemPerson extends EntityItem
                 if( $entity = entity( $project ) ){
                     $projects[] = $entity->dataAbstract();
                 } else {
-                    $projects[] = $project;
+                    $projects[] = keywordDataAbstract( $project );
                 }
             }
             $content[] = [
@@ -139,7 +139,7 @@ class EntityItemBuilding extends EntityItem
                 if( $entity = entity( $architect ) ){
                     $architects[] = $entity->dataAbstract();
                 } else {
-                    $architects[] = $architect;
+                    $architects[] = keywordDataAbstract( $architect );
                 }
             }
             $content[] = [
