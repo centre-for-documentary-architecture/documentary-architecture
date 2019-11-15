@@ -248,10 +248,10 @@ class Entity extends Page
         $type = $this->entity();
         $typ = $this->type();
         if( $typ != $type ){
-            $type .= ' <wbr>→' . $typ;
+            $type .= '<wbr><i>→</i>' . $typ;
         }
         if( $cat = $this->category() ){
-            $type .= ' <wbr>→' . $cat;
+            $type .= '<wbr><i>→</i>' . $cat;
         }
 		$content = [
             [
@@ -260,7 +260,7 @@ class Entity extends Page
             ],
             [
                 'key' => 'Signature',
-                'value' => $this->id()
+                'value' => wbr( $this->id() )
             ]
         ];
 

@@ -210,6 +210,14 @@ body.file {
 	}
 }
 
+.tab.meta {
+	i {
+		font-style: inherit;
+		display: inline-block;
+		margin: 0 0.2em;
+	}
+}
+
 main {
 	> .content {
 		padding: $padding $padding-double;
@@ -234,11 +242,6 @@ body.multipanel {
 		.section--header {
 			display: none;
 		}
-		/*
-		div:first-child {
-			border-top: none;
-		}
-		*/
 	}
 
 	.tab .cards {
@@ -254,8 +257,8 @@ body.multipanel {
 			font-family: $mono;
 		}
 	}
-	.tab.accordion + .tab.list,
 	// .tab.accordion + .tab.meta,
+	.tab.accordion + .tab.list,
 	.tab.info + .tab.meta {
 		margin-top: 0;
 	}
@@ -330,6 +333,11 @@ body.liebling-house {
 			.button {
 				display: block;
 				width: 100%;
+			}
+		}
+		.tab.info {
+			div:first-child {
+				border-top: none;
 			}
 		}
 	}
