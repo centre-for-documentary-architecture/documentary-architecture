@@ -75,7 +75,7 @@
 
 		replaceEntityData( await load( target.href ) );
 
-		console.log( 'navi() ', entity );
+		console.log( entity );
 
 		naviWorld( entity.worlditem );
 

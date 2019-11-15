@@ -1,5 +1,6 @@
 <script>
 
+	import { onDestroy } from 'svelte';
 	import { beforeUpdate } from 'svelte';
 
 	export let view;
@@ -10,17 +11,25 @@
 	export let classname = 'preview';
 
 	beforeUpdate(() => {
+		console.log('beforeUpdate');
 		if( mediaElement === false ){
-			return;
+			return false;
 		}
 		mediaElement.pause();
+	});
+	onDestroy(() => {
+		console.log('beforeUpdate');
+		if( mediaElement === false ){
+			return false;
+		}
+		mediaElement.remove();
 	});
 
 	let mediaElement = false;
 
 	let videoWidth = 0;
 
-	function stop( e ){
+	function preventContextMenu( e ){
 		e.preventDefault();
 		return false;
 	}
@@ -36,7 +45,7 @@
 	</h3>-->
 
 	<div class="section--content">
-		<video width="100%" height="auto" on:contextmenu={stop} controls poster="{ view.content.poster }" bind:this={mediaElement} preload="metadata" >
+		<video width="100%" height="auto" on:contextmenu={preventContextMenu} controls poster="{ view.content.poster }" bind:this={mediaElement} preload="metadata" >
 
 			{#each view.content.srcset as source}
 				{#if videoWidth < source.width }

@@ -72,7 +72,7 @@
 
 	onMount(() => {
 
-		return;
+		// return;
 
 		// https://docs.unity3d.com/Manual/webgl-templates.html
 		lieblingHouseWorldContainer = document.getElementById('worldContainer');
