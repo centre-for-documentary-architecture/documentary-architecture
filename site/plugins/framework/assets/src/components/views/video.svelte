@@ -11,13 +11,12 @@
 
 	let videoWidth = 0;
 
-	let video = true;
-	$: videoSource = view.content.srcset[0].url;
-	$: { reMountVideo( videoSource ) }
-	function reMountVideo( xx ){
-		console.log('reMountVideo',xx);
-		video = false;
-		setTimeout(() => video = true, 0);
+	let render = true;
+	$: { reMountVideo( view.content.srcset[0].url ) }
+	function reMountVideo(){
+		console.log('remount');
+		render = false;
+		setTimeout(() => render = true, 0);
 	}
 
 	function preventContextMenu( e ){
@@ -36,7 +35,7 @@
 	</h3>-->
 
 	<div class="section--content">
-		{#if video === true}
+		{#if render === true}
 			<video width="100%" height="auto" controls preload="metadata"
 				on:contextmenu={preventContextMenu} poster="{ view.content.poster }" bind:this={mediaElement}>
 
@@ -47,8 +46,6 @@
 				{/each}
 
 			</video>
-		{:else}
-			Remount
 		{/if}
 	</div>
 
