@@ -7,9 +7,9 @@
     export let src;
 	script.src = src;
 	script.onload = function() {
-        dispatch('loaded', {
+        setTimeout(() => dispatch('loaded', {
             loaded: true
-        });
+        }), 1);
         console.log( 'Load script '+src );
 	};
     document.body.appendChild(script);

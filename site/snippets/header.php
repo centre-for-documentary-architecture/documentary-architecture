@@ -49,19 +49,11 @@ if( isset( $class ) ){
 	<?= css('assets/css/global.css') ?>
 
 	<?= css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css'); ?>
-	<?= js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'); ?>
 
 	<?= js( option('cdn').'assets/js/three.min.js', ['defer' => true]); ?>
 	<?= js( option('cdn').'assets/js/inflate.min.js', ['defer' => true]); ?>
 	<?= js( option('cdn').'assets/js/FBXLoader.js', ['defer' => true]); ?>
 	<?= js( option('cdn').'assets/js/OrbitControls.js', ['defer' => true]); ?>
-
-	<script>
-
-		var mapboxgl;
-		mapboxgl.accessToken = 'pk.eyJ1IjoibW9yaXdhYW4iLCJhIjoiY2l4cnIxNTFvMDAzZjJ3cGJ6MmpiY2ZmciJ9.KnmjmhWCBzMm-D30JdnnXg';
-
-	</script>
 
 </head>
 <body class="<?= implode(' ', array_unique($classlist) ) ?>">
