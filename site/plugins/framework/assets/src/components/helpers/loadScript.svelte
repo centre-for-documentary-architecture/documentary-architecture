@@ -1,23 +1,39 @@
 <script>
+    import { onDestroy } from 'svelte';
     import { createEventDispatcher } from 'svelte';
     const dispatch = createEventDispatcher();
 
-    let script = document.createElement('script');
+    /**
+     * array of urls
+     */
+    export let dependencies;
+    let dependenciesLoaded = 0;
 
-    export let src;
-	script.src = src;
-	script.onload = function() {
-        setTimeout(() => dispatch('loaded', {
-            loaded: true
-        }), 1);
-        console.log( 'Load script '+src );
-	};
-    document.body.appendChild(script);
+    let scripts = [];
+    for (const src of dependencies) {
+        let script = document.createElement('script');
+        script.src = src;
+        script.onload = function() {
 
-    import { onDestroy } from 'svelte';
+            dependenciesLoaded++;
+            console.log( 'Load '+dependenciesLoaded+' of '+dependencies.length+': '+src);
+            if( dependenciesLoaded < dependencies.length ){
+                return;
+            }
+
+            setTimeout(() => dispatch('loaded', {
+                loaded: true
+            }), 1);
+        };
+        document.body.appendChild(script);
+        scripts.push( script );
+    }
 
     onDestroy(() => {
-        script.remove();
-        console.log( 'Remove script '+src );
+        for (const script of scripts) {
+            console.log( 'Remove script '+script.src );
+            script.remove();
+        }
+        scripts = [];
     });
 </script>

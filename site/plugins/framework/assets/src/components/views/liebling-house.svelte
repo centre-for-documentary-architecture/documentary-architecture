@@ -1,6 +1,8 @@
 <script>
-	import { onMount } from 'svelte';
 	import LoadScript from '../helpers/loadScript.svelte';
+	const dependencies = [
+		"https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/liebling-house/Build/UnityLoader.js"
+	];
 
 	export let view;
 	export let classname;
@@ -229,7 +231,7 @@
 	}
 </style>
 
-<LoadScript on:loaded={unityInit} src="https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/liebling-house/Build/UnityLoader.js"/>
+<LoadScript on:loaded={unityInit} dependencies={dependencies}/>
 
 <section class="{classname} {view.type}">
 

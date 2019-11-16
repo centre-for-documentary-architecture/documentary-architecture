@@ -1,5 +1,8 @@
 <script>
 	import LoadScript from '../helpers/loadScript.svelte';
+	const dependencies = [
+		"https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js"
+	];
 
 	export let view;
 	export let classname;
@@ -209,7 +212,7 @@
 
 </style>
 
-<LoadScript on:loaded={mapInit} src="https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js"/>
+<LoadScript on:loaded={mapInit} dependencies={dependencies}/>
 <svelte:head>
 	<link href="https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css" rel="stylesheet">
 </svelte:head>
