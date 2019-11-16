@@ -48,13 +48,13 @@ if( isset( $class ) ){
 	<?= css( option('cdn').'assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
 
-	<?= js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'); ?>
 	<?= css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css'); ?>
+	<?= js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'); ?>
 
-	<?= js( option('cdn').'assets/js/three.min.js'); ?>
-	<?= js( option('cdn').'assets/js/inflate.min.js'); ?>
-	<?= js( option('cdn').'assets/js/FBXLoader.js'); ?>
-	<?= js( option('cdn').'assets/js/OrbitControls.js'); ?>
+	<?= js( option('cdn').'assets/js/three.min.js', ['defer' => true]); ?>
+	<?= js( option('cdn').'assets/js/inflate.min.js', ['defer' => true]); ?>
+	<?= js( option('cdn').'assets/js/FBXLoader.js', ['defer' => true]); ?>
+	<?= js( option('cdn').'assets/js/OrbitControls.js', ['defer' => true]); ?>
 
 	<script>
 

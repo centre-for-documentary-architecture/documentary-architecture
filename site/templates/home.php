@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * $projects and $publications defined in controller
+ */
+
 snippet('header');
 
 snippet('navigation/history');
@@ -36,10 +40,10 @@ snippet('navigation/history');
 							</h5>
 							<?php if($image = $item->thumbnail()): ?>
 								<figure>
-									<?= $image->responsiveImage('large') ?>
+									<?= $image->responsiveImage('large', false) ?>
 								</figure>
 							<?php endif ?>
-							<h1><?= $item->title() ?></h1>
+							<h1><?= $item->title()->wbr() ?></h1>
 							<div class="highlight"><?= $item->description()->kirbytext() ?></div>
 						</div>
 					</a>
@@ -54,7 +58,7 @@ snippet('navigation/history');
 
 		<ul class="gallery grid">
 
-			<?php foreach( $site->archive('publications')->highlights()->toPages() as $item ): ?>
+			<?php foreach( $publications as $item ): ?>
 				<li class="card col-sm-6">
 					<a href="<?= $item->url() ?>">
 						<div>
@@ -78,10 +82,10 @@ snippet('navigation/history');
 							</h5>
 							<?php if($image = $item->thumbnail()): ?>
 								<figure>
-									<?= $image->responsiveImage('large') ?>
+									<?= $image->responsiveImage('large', false) ?>
 								</figure>
 							<?php endif ?>
-							<h2><?= $item->title() ?></h2>
+							<h2><?= $item->title()->wbr() ?></h2>
 							<?php if( $item->additional_title()->isNotEmpty() ): ?>
 								<h4><?= $item->additional_title()->html(); ?></h4>
 							<?php endif; ?>
@@ -107,22 +111,12 @@ snippet('navigation/history');
 	<div class="col-sm-6">
 
 		<?php
-		// ↗ →
 		$previews = ['buildings','persons','materials','objects'];
 		foreach( $previews as $preview ):
-			$archive = $site->archive( $preview );
-			$highlights = $archive->highlights()->toPages();
-			if( !$highlights || $highlights->count() < 4 ){
-				$highlights = $highlights->add( $archive->children()->listed()->limit( 4 ) );
-			}
-			?>
-			<section>
-				<h2><?= $archive->children()->listed()->count() ?> <?= $archive->toLink() ?> →</h2>
-				<?php snippet('home/cards', [
-					'collection' => $highlights->limit(4)
-				]); ?>
-			</section>
-		<?php endforeach; ?>
+			snippet('home/archivePreview', [
+				'preview' => $preview
+			]);
+		endforeach; ?>
 
 	</div>
 
@@ -131,24 +125,10 @@ snippet('navigation/history');
 		<?php
 		$previews = ['videos','3d-objects','images','audios'];
 		foreach( $previews as $preview ):
-			$archive = $site->archive( $preview );
-			if( $preview === 'images' ){
-				$highlights = $archive->highlights()->toEntities();
-			} else {
-				$highlights = $archive->highlights()->toPages();
-			}
-
-			if( !$highlights || $highlights->count() < 4 ){
-				$highlights = $highlights->add( $archive->children()->listed()->limit( 4 ) );
-			}
-			?>
-			<section>
-				<h2><?= $archive->children()->listed()->count() ?> <?= $archive->toLink() ?> →</h2>
-				<?php snippet('home/cards', [
-					'collection' => $highlights->limit(4)
-				]); ?>
-			</section>
-		<?php endforeach; ?>
+			snippet('home/archivePreview', [
+				'preview' => $preview
+			]);
+		endforeach; ?>
 
 	</div>
 

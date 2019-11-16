@@ -73,7 +73,7 @@ return [
 			'content' => $this->content()->toArray()
 		]);
 	},
-	'responsiveImage' => function( $srcset = 'medium', $alt = false ){
+	'responsiveImage' => function( string $srcset = 'medium', bool $lazy = null, string $alt = '' ){
 		if( $alt === '' ){
 			if( $title = $this->additional_title()->isNotEmpty() ){
 				$alt = $title;
@@ -81,8 +81,13 @@ return [
 				$alt = $parent;
 			}
 		}
+		if( $lazy === null ){
+			$size = 80;
+		} else {
+			$size = 360;
+		}
 		return Html::img(
-			$this->thumb(['width' => 80])->url(),
+			$this->thumb(['width' => $size])->url(),
 			[
 				'alt' => $alt,
 				'class' => 'lazyload',
@@ -91,6 +96,7 @@ return [
 				'data-srcset' => $this->srcset( $srcset ),
 			]
 		);
+
 	},
 	'dataThumbnail' => function( $srcset = 'small' ){
 		return $this->responsiveImage( $srcset );
