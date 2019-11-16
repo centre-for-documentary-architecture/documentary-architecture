@@ -12,8 +12,7 @@ body {
 	// flex between cda bar and main page content
 	> .page-wrapper {
 		flex-direction: column;
-		height: 100%;
-		height: 100vh;
+		min-height: 100%;
 	}
 	&.home,
 	&.regular {
@@ -24,19 +23,15 @@ body {
 	}
 }
 
-@media screen and (max-width: 767px) {
-	// specifics for small screens
-
-	.panel.presentation {
-		.section--content {
-			height: 400px;
-		}
-	}
-
-}
-
 @media screen and (min-width: 768px){
 	// specifics for large screens
+
+	body {
+		> .page-wrapper {
+			height: 100%;
+			height: 100vh;
+		}
+	}
 
 	.presentation {
 		.section--content {
@@ -66,6 +61,10 @@ body {
 				flex-grow: 1;
 				flex-shrink: 1;
 				flex-basis: 1px;
+
+				main {
+					order: -1;
+				}
 
 				.panel {
 

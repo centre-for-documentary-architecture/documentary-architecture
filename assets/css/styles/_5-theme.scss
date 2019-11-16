@@ -128,9 +128,11 @@ button,
 	}
 }
 
-body.entity.file {
-	main.panel {
-		border-right: $border;
-		border-color: $white;
+@media screen and (min-width: 768px){
+	body.entity.file {
+		main.panel {
+			border-right: $border;
+			border-color: $white;
+		}
 	}
 }

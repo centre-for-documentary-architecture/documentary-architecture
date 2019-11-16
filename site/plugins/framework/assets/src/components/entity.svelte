@@ -83,6 +83,12 @@
 
 </script>
 
+
+{#if entity.view}
+
+	<svelte:component this={views[ entity.view.type ]} view={entity.view} classname="presentation panel col-sm-{12 - contentWidth(entity.entity)}" transcript={entity.transcript || false}/>
+
+{/if}
 {#if entity.content}
 
     <main class="panel col-sm-{contentWidth(entity.entity)}" on:click={window.touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
@@ -110,10 +116,5 @@
         </div>
 
     </main>
-
-{/if}
-{#if entity.view}
-
-	<svelte:component this={views[ entity.view.type ]} view={entity.view} classname="presentation panel col-sm-{12 - contentWidth(entity.entity)}" transcript={entity.transcript || false}/>
 
 {/if}
