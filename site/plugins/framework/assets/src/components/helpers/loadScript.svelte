@@ -12,7 +12,9 @@
     let scripts = [];
     for (const src of dependencies) {
         let script = document.createElement('script');
+        script.type = 'text/javascript';
         script.src = src;
+        script.async = false;
         script.onload = function() {
 
             dependenciesLoaded++;
