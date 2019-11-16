@@ -65,8 +65,6 @@ if( isset( $class ) ){
 
 	</script>
 
-	<?= js( option('centre-for-documentary-architecture.liebling-house.path').'Build/UnityLoader.js' ); ?>
-
 </head>
 <body class="<?= implode(' ', array_unique($classlist) ) ?>">
 

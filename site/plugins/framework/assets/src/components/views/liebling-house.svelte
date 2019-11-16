@@ -1,9 +1,9 @@
 <script>
 	import { onMount } from 'svelte';
+	import LoadScript from '../helpers/loadScript.svelte';
 
 	export let view;
 	export let classname;
-	export let transcript;
 
 	/*
 
@@ -70,7 +70,7 @@
 	* load and ini world
 	*/
 
-	onMount(() => {
+	function unityInit(){
 
 		// return;
 
@@ -82,7 +82,7 @@
 			{ onProgress: UnityProgress }
 		);
 
-	});
+	};
 
 	function UnityProgress(lieblingHouseWorldInstance, progress) {
 
@@ -236,6 +236,8 @@
 		}
 	}
 </style>
+
+<LoadScript on:loaded={unityInit} src="https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/liebling-house/Build/UnityLoader.js"/>
 
 <section class="{classname} {view.type}">
 
