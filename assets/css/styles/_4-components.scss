@@ -396,6 +396,15 @@ dl.table {
 	}
 }
 
+#map .card {
+	width: 40vw;
+}
+@media screen and (min-width: 768px){
+	#map .card {
+		width: 20vw;
+	}
+}
+
 
 //
 // list layout

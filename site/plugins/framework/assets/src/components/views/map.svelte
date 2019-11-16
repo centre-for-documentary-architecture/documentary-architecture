@@ -173,13 +173,6 @@
 	}
 
 	/* Marker tweaks */
-	#map :global(.mapboxgl-popup) {
-		width: 20vw;
-		/*
-		font-size: 0.8rem;
-		font-family: "Favorit Mono", "Favorit", Roboto Mono, Roboto, Helvetica, Arial, sans-serif;
-		*/
-	}
 
 	#map :global(.mapboxgl-popup-content) {
 		background-color: transparent;

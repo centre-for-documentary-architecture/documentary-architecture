@@ -19,8 +19,8 @@ body {
 .bar.history {
 	border-bottom: $border;
 }
-body.home,
-body.white {
+// body.white,
+body.home {
 	> .page-wrapper {
 		> nav.archive,
 		> div {

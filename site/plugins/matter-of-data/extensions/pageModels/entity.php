@@ -399,7 +399,9 @@ class Entity extends Page
                 if( count( $line['value'] ) === 1 ){
                     $line['value'] = $line['value'][0];
                 }
-                $content[] = $line;
+                if( $line['value'] !== [] ){
+                    $content[] = $line;
+                }
 
 			}
 
