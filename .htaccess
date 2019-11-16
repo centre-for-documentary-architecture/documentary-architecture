@@ -116,6 +116,7 @@ Options +FollowSymlinks
   AddOutputFilterByType DEFLATE text/html
   AddOutputFilterByType DEFLATE text/css
   AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/json
   AddOutputFilterByType DEFLATE text/map
 
   AddOutputFilterByType DEFLATE application/json
