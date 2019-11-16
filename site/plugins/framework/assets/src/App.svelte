@@ -8,7 +8,7 @@
 	import Archive from './components/archive.svelte';
 
 	function naviWorld( worlditem ){
-		if( lieblingHouseWorldInstance === undefined ){
+		if( typeof lieblingHouseWorldInstance === undefined ){
 			return;
 		}
 		if( !worlditem ){
