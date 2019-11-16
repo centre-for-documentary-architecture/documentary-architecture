@@ -48,8 +48,6 @@ if( isset( $class ) ){
 	<?= css( option('cdn').'assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
 
-	<?= css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css'); ?>
-
 	<?= js( option('cdn').'assets/js/three.min.js', ['defer' => true]); ?>
 	<?= js( option('cdn').'assets/js/inflate.min.js', ['defer' => true]); ?>
 	<?= js( option('cdn').'assets/js/FBXLoader.js', ['defer' => true]); ?>

@@ -210,6 +210,9 @@
 </style>
 
 <LoadScript on:loaded={mapInit} src="https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js"/>
+<svelte:head>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css" rel="stylesheet">
+</svelte:head>
 
 <section class="{classname} {view.type}">
 
