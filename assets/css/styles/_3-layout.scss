@@ -62,10 +62,6 @@ body {
 				flex-shrink: 1;
 				flex-basis: 1px;
 
-				main {
-					order: -1;
-				}
-
 				.panel {
 
 					// panel should be reduced to screen height and scrollable
@@ -191,12 +187,22 @@ body {
 		}
 	}
 
+	.grid [class*="col"].panel {
+		position: sticky;
+	}
+
+}
+
+@media screen and (max-width: 768px){
+	body.entity.file {
+		.panels {
+			main {
+				order: 10;
+			}
+		}
+	}
 }
 
 .preview .section--header {
 	display: none;
-}
-
-.grid [class*="col"].panel {
-	position: sticky;
 }

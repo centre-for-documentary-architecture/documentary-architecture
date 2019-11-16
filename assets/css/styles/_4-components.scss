@@ -66,13 +66,7 @@ dl.table {
 	> div {
 		border-top: $border-thin;
 		padding: $padding 0;
-		display: flex;
-		flex-wrap: wrap;
-		div {
-			flex: 1 0 50%;
-		}
 		dt + div.long {
-			flex-basis: 100%;
 			margin-top: $padding-text-top;
 		}
 	}
@@ -80,17 +74,9 @@ dl.table {
 		display: inline;
 	}
 	dt { // key
-		flex: 1 0 50%;
-		padding-right: 0.3em;
 		&.empty {
 			display: none;
 			padding: 0;
-		}
-	}
-	dd { // value
-		flex: 1 0 50%;
-		&.long {
-			flex: 1 0 100%;
 		}
 	}
 	p {
@@ -102,7 +88,30 @@ dl.table {
 		margin-top: $padding-text-top;
 	}
 }
-
+@media screen and (min-width: 768px){
+	dl.table {
+		> div {
+			display: flex;
+			flex-wrap: wrap;
+			div {
+				flex: 1 0 50%;
+			}
+			dt + div.long {
+				flex-basis: 100%;
+			}
+		}
+		dt { // key
+			flex: 1 0 50%;
+			padding-right: 0.3em;
+		}
+		dd { // value
+			flex: 1 0 50%;
+			&.long {
+				flex: 1 0 100%;
+			}
+		}
+	}
+}
 .black {
 	dl.table > div {
 		border-color: $white;
@@ -118,7 +127,6 @@ dl.table {
 		}
 	}
 }
-
 
 //
 // card
