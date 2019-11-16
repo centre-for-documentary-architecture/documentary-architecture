@@ -10,6 +10,7 @@
 	/*
 	* mapbox api
 	* https://docs.mapbox.com/mapbox-gl-js/api/
+	* someone mixed up lat <-> lon, i dont know, just try, error, fix
 	*/
 
 	var map;
@@ -65,10 +66,6 @@
 			this.visible = false;
 		}
 	};
-
-	/*
-	* someone mixed up lat <-> lon, i dont know, just try, error, fix
-	*/
 
 	function mapInit(){
 
@@ -184,27 +181,7 @@
 		background-color: transparent;
 		border-radius: 0;
 		padding: 0;
-		/* color: #000; */
 	}
-
-	/*
-
-	#map :global(.mapboxgl-popup-content:hover) {
-		background-color: #00f;
-		color: #fff;
-		cursor: pointer;
-	}
-
-	#map :global(.mapboxgl-popup-content .count) {
-		padding-bottom: 0;
-	}
-
-	#map :global(.mapboxgl-popup-content h4) {
-		padding: 0.5rem 0.5rem;
-		margin: 0;
-		font-size: 0.8rem;
-	}
-	*/
 
 	#map :global(.mapboxgl-popup > .mapboxgl-popup-tip) {
 		display: none;

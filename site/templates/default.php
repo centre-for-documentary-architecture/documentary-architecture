@@ -1,4 +1,3 @@
-Default
 <?php
 
 snippet('header');

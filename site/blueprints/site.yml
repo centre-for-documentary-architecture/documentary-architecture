@@ -22,7 +22,7 @@ tabs:
             templates:
               - collection
               - collection_liebling-house
-        
+
       column_right:
         width: 1/2
         sections:
@@ -49,13 +49,12 @@ tabs:
               - imprint
             create:
               - default
-            
 
   tab2:
     label: Activity
     icon: users
     columns:
-    
+
     sections:
 
       latest_activity:

@@ -53,8 +53,6 @@
 
 	function init() {
 
-		// console.log('init');
-
 		// camera
 		camera = new THREE.PerspectiveCamera( 100, containerWidth / containerHeight, 1, 1100 );
 		// camera.position.set( 0, 0, 0 );

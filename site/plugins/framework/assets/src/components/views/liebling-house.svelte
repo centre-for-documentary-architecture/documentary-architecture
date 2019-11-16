@@ -85,7 +85,6 @@
 		);
 
 	};
-
 	function UnityProgress(lieblingHouseWorldInstance, progress) {
 
 		if (!lieblingHouseWorldInstance.Module) {
@@ -104,11 +103,9 @@
 		}
 
 	}
-
 	/*
 	* control world -> website
 	*/
-
 	window.worldUpdateState = state => {
 
 		console.log('worldUpdateState( ' + state + ' )' );
@@ -124,7 +121,6 @@
 		world.help = world.states[ state ].help;
 
 	}
-
 	window.worldHoverItem = worlditemId => {
 		if( worlditemId == '' ){
 			// console.log('worldHoverItem() mouse leave');
@@ -136,7 +132,6 @@
 		// maybe highlight collection elements by id?
 		return true;
 	}
-
 	window.worldSelectItem = worlditemId => {
 		if( worlditemId == '' ){
 			console.log('worldSelectItem() no selection');
@@ -147,7 +142,6 @@
 		showWorlditemContent( worlditemId );
 		return true;
 	}
-
 	window.worldSelectTourstopOfItem = tourstopId => {
 		if( tourstopId == '' ){
 			console.log('worldSelectTourstopOfItem() no selection');
@@ -158,11 +152,9 @@
 		naviFromWorld( tourstopId );
 		return true;
 	}
-
 	/*
 	* control website -> world
 	*/
-
 	window.worldSetRoaming = option => {
 		console.log('WorldUpdateState( FreeRoaming )');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'FreeRoaming');
@@ -179,7 +171,6 @@
 		console.log('went through glass');
 		worldSetRoaming();
 	}
-
 </script>
 
 <style>
@@ -272,21 +263,7 @@
 
 			{/if}
 
-			<!--
-			<span class="right">
-				<span class="hover" on:mouseenter={()=> world.tooltips.help = true } on:mouseleave={()=> world.tooltips.help = false }>{world.help}</span>
-			</span>
-			-->
-
 		{/if}
-
-		<!--
-		{#if world.tooltips.item !== false}
-			<div class="bar tooltip left">{world.tooltips.item}</div>
-		{:else if world.tooltips.help !== false}
-			<div class="bar tooltip left">{world.help}</div>
-		{/if}
-		-->
 
 	</div>
 

@@ -105,7 +105,9 @@
 		window.addEventListener( 'resize', onWindowResize, false );
 
 	}
-
+	/**
+	 * interactions
+	 */
 	function onWindowResize() {
 
 		containerWidth = container.parentElement.offsetWidth;
@@ -117,7 +119,6 @@
 		renderer.setSize( containerWidth, containerHeight );
 
 	}
-
 	function animate() {
 
 		requestAnimationFrame( animate );
@@ -130,7 +131,6 @@
 		renderer.render( scene, camera );
 
 	}
-
 	function startRotation(){
 		console.log('start 3d rotation');
 		autoRotate = true;

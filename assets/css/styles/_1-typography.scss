@@ -22,8 +22,8 @@ h5,
 }
 button, .button {
 	font-family: $mono;
-	// text-transform: uppercase;
 	padding: 0.3em 0.6em;
+	// text-transform: uppercase;
 	// letter-spacing: 0.05em;
 }
 
@@ -77,7 +77,6 @@ h6 {
 //
 // buttons and links
 //
-
 p,
 dl,
 .text {
@@ -103,11 +102,9 @@ dl,
 	}
 }
 
-
 //
 // word braking
 //
-
 p {
 	-webkit-hyphenate-limit-chars: auto 9;
 	-webkit-hyphenate-limit-lines: 2;
