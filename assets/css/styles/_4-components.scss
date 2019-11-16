@@ -143,21 +143,19 @@ dl.table {
 	.title {
 		font-family: $mono;
 		font-size: $font-small;
-		display: flex;
-		flex-wrap: wrap;
+
 		.count {
 			display: block;
 			color: $grey;
-			// align-self: center;
 			text-align: right;
-			flex: 0 1 auto;
-			order: 2;
 			margin-left: 0.2em;
+			float: right;
 			&:after {
 				content: '→';
 				padding-left: 0.2em;
 			}
 		}
+
 		h4,
 		h5 {
 			font-family: inherit;
@@ -172,6 +170,19 @@ dl.table {
 		h5 {
 			width: 100%;
 			order: 10;
+		}
+	}
+}
+
+.list {
+	.card .title {
+		display: flex;
+		flex-wrap: wrap;
+		.count {
+			float: none;
+			flex: 0 1 auto;
+			order: 2;
+			// align-self: center;
 		}
 	}
 }
@@ -291,7 +302,8 @@ dl.table {
 
 .cards .card.no-thumb {
 	figure {
-		min-height: 15vw;
+		display: none;
+		// min-height: 15vw;
 		// height: 50%;
 	}
 }
@@ -334,6 +346,7 @@ dl.table {
 
 .card.image.panorama {
 	figure {
+		overflow: hidden;
 		img {
 			min-height: 140%;
 			min-width: 140%;
