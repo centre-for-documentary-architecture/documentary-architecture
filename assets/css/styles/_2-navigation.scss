@@ -201,10 +201,15 @@ nav.bar.history {
 	display: flex;
 	z-index: 2000;
 
+	white-space: nowrap;
+	overflow: hidden;
+
 	ol {
-		display: flex;
+		// display: flex;
+		width: unset;
 		li {
-			display: flex;
+			// display: flex;
+			display: inline-block;
 			&.current {
 				opacity: 0;
 				transition: opacity 300ms ease, transform 300ms ease;
