@@ -58,8 +58,6 @@ if( isset( $class ) ){
 
 	<script>
 
-		var lieblingHouseWorldContainer;
-		var lieblingHouseWorldInstance;
 		var mapboxgl;
 		mapboxgl.accessToken = 'pk.eyJ1IjoibW9yaXdhYW4iLCJhIjoiY2l4cnIxNTFvMDAzZjJ3cGJ6MmpiY2ZmciJ9.KnmjmhWCBzMm-D30JdnnXg';
 
