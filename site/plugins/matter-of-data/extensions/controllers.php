@@ -21,6 +21,7 @@ return [
         ];
     },
 
+    /*
     'archive' => function ($site, $page) {
 
         $query = get('q');
@@ -31,17 +32,20 @@ return [
                 /archive?query
                 queries the whole page
                 */
+                /*
                 $collection = $site;
             } else {
                 /*
                 /archive
                 queries archive
                 */
+                /*
                 $collection = $page;
             }
             /*
             * query
             */
+            /*
             $collection = $collection->index()->listed()->search( $query );
         } else {
             if( $page->depth() === 1 ) {
@@ -49,12 +53,14 @@ return [
                 /archive
                 shows all entities
                 */
+                /*
                 $collection = $page->index()->listed();
             } else {
                 /*
                 /archive/images
                 shows children
                 */
+                /*
                 $collection = $page->children()->listed();
             }
         }
@@ -65,6 +71,7 @@ return [
         ];
 
     },
+    */
 
 
 ];

@@ -7,6 +7,23 @@
 	import Entity from './components/entity.svelte';
 	import Archive from './components/archive.svelte';
 
+	let entity = undefined;
+
+	onMount(async () => {
+		replaceEntityData( await load( window.location.href ) );
+		console.log( 'initial data', entity );
+
+		document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
+
+		history.replaceState({
+			title: entity.title,
+			url: entity.url,
+			worlditem: entity.worlditem
+		}, entity.title, entity.url);
+	});
+	/**
+	 * naviWorld
+	 */
 	function naviWorld( worlditem ){
 		if( typeof lieblingHouseWorldInstance === undefined ){
 			return;
@@ -18,14 +35,15 @@
 		console.log('naviWorld() GameInstance goToItem: '+worlditem);
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'GoToItem', worlditem);
 	}
-
-	let entity = undefined;
-
-	// function replaceEntityData( data ){
+	/**
+	 * replaceEntityData
+	 */
 	window.replaceEntityData = async data => {
 		entity = data;
 	}
-
+	/**
+	 * relocate
+	 */
 	function relocate( e = false, className = '' ){
 		if( !e ){
 			e = entity;
@@ -42,7 +60,9 @@
 		}, entity.title, entity.url);
 
 	}
-
+	/**
+	 * load
+	 */
 	window.load = async url => {
 		url = url.replace( '.json', '' );
 
@@ -60,7 +80,9 @@
 		}
 		return data.data;
 	}
-
+	/**
+	 * navi
+	 */
 	window.navi = async event => {
 
 		let target = event.target.closest('a');
@@ -82,8 +104,9 @@
 		relocate();
 
 	}
-
-	// async function naviFromWorld( worlditemId ){
+	/**
+	 * showWorlditemContent
+	 */
 	window.showWorlditemContent = async worlditemId => {
 
 		var href = window.location.origin + '/' + worlditemId;
@@ -102,7 +125,9 @@
 		relocate( worlditemContent, 'liebling-house' );
 
 	}
-
+	/**
+	 * onpopstate
+	 */
 	window.onpopstate = async event => {
 		console.log( event );
 		if( event.state ){
@@ -115,20 +140,6 @@
 			console.log( 'history.back', entity );
 		}
 	}
-
-	onMount(async () => {
-		replaceEntityData( await load( window.location.href ) );
-		console.log( 'initial data', entity );
-
-		document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
-
-		history.replaceState({
-			title: entity.title,
-			url: entity.url,
-			worlditem: entity.worlditem
-		}, entity.title, entity.url);
-	});
-
 </script>
 
 {#if entity !== undefined }

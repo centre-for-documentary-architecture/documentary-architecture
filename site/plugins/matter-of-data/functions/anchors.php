@@ -97,7 +97,6 @@ function toPageOrKeyword( string $id ){
 }
 
 function toUserOrKeyword( string $id ){
-
 	/*
 	* currently there are no user pages
 	*/

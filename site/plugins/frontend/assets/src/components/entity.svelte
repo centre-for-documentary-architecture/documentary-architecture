@@ -52,7 +52,6 @@
 	}
 
 	function contentWidth( type ){
-		// console.log( type );
 		if( type == 'file' ){
 			return 3;
 		}

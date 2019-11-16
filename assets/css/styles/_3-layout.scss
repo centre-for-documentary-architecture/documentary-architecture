@@ -46,7 +46,6 @@ body {
 		max-height: 100vh;
 
 		> .page-wrapper {
-
 			display: flex;
 
 			> nav {
@@ -63,20 +62,15 @@ body {
 				flex-basis: 1px;
 
 				.panel {
-
 					// panel should be reduced to screen height and scrollable
 					// height: unset works in safari
 					// height: 100% works in ff
 					// max-height: 100% works in s && ff, bot not in chrome
 					height: 100%;
 					overflow-y: auto;
-
 				}
-
 			}
-
 		}
-
 	}
 
 	// overlapping layout, with one non-scrollable panel in the background and the other free floating above
