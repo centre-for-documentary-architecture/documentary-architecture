@@ -53,4 +53,4 @@ if( isset( $class ) ){
 
 	<?php snippet('navigation/cda'); ?>
 
-	<div class="page-wrapper" id="framework">
+	<div class="page-wrapper" id="frontend">

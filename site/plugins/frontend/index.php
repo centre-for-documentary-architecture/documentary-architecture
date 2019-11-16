@@ -9,7 +9,7 @@ function archivePath( string $base, string $filter = '', array $query = [] ): st
     return  $url;
 }
 
-Kirby::plugin('centre-for-documentary-architecture/framework', [
+Kirby::plugin('centre-for-documentary-architecture/frontend', [
 
     'routes' => [
         [

@@ -3,7 +3,7 @@
 /**
  * liebling-house 3d world
  *
- * is called a_liebling-hosue to be loaded before the framework plugin
+ * is called a_liebling-hosue to be loaded before the frontend plugin
  * unfortunately it is not possible to move the EntityCollectionLieblingHouse class in here as well
  * it deosn’t seem to be possible to consume the .unityweb files from the cdn :(
  */
