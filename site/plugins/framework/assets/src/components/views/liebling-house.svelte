@@ -1,9 +1,11 @@
 <script>
-	import { onMount } from 'svelte';
+	import LoadScript from '../helpers/loadScript.svelte';
+	const dependencies = [
+		"https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/liebling-house/Build/UnityLoader.js"
+	];
 
 	export let view;
 	export let classname;
-	export let transcript;
 
 	/*
 
@@ -31,11 +33,9 @@
 			item: false,
 			help: false
 		},
-
 		roaming: "Start exploring",
 		dollhouse: false,
 		help: "Click on the builing to start exploring.",
-
 		state: 'ViewingKiosk',
 		states: {
 			ViewingKiosk: {
@@ -70,7 +70,9 @@
 	* load and ini world
 	*/
 
-	onMount(() => {
+	var lieblingHouseWorldContainer;
+	var lieblingHouseWorldInstance;
+	function unityInit(){
 
 		// return;
 
@@ -82,7 +84,7 @@
 			{ onProgress: UnityProgress }
 		);
 
-	});
+	};
 
 	function UnityProgress(lieblingHouseWorldInstance, progress) {
 
@@ -96,7 +98,7 @@
 			lieblingHouseWorldInstance.removeTimeout = setTimeout(function() {
 
 				world.loaded = true;
-				// console.log('Unity loaded');
+				console.log('Unity loaded');
 
 			}, 3000);
 		}
@@ -162,25 +164,17 @@
 	*/
 
 	window.worldSetRoaming = option => {
-
 		console.log('WorldUpdateState( FreeRoaming )');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'FreeRoaming');
-
 	}
-
 	function worldSetRoaming2(){
-
 		console.log('WorldUpdateState( FreeRoaming )');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'FreeRoaming');
-
 	}
 	function worldSetDollhouse(){
-
 		console.log('WorldUpdateState( ViewingDollhouse )');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'ViewingDollhouse');
-
 	}
-
 	window.goThroughGlass = event => {
 		console.log('went through glass');
 		worldSetRoaming();
@@ -236,6 +230,8 @@
 		}
 	}
 </style>
+
+<LoadScript on:loaded={unityInit} dependencies={dependencies}/>
 
 <section class="{classname} {view.type}">
 

@@ -48,25 +48,6 @@ if( isset( $class ) ){
 	<?= css( option('cdn').'assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
 
-	<?= css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css'); ?>
-	<?= js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'); ?>
-
-	<?= js( option('cdn').'assets/js/three.min.js', ['defer' => true]); ?>
-	<?= js( option('cdn').'assets/js/inflate.min.js', ['defer' => true]); ?>
-	<?= js( option('cdn').'assets/js/FBXLoader.js', ['defer' => true]); ?>
-	<?= js( option('cdn').'assets/js/OrbitControls.js', ['defer' => true]); ?>
-
-	<script>
-
-		var lieblingHouseWorldContainer;
-		var lieblingHouseWorldInstance;
-		var mapboxgl;
-		mapboxgl.accessToken = 'pk.eyJ1IjoibW9yaXdhYW4iLCJhIjoiY2l4cnIxNTFvMDAzZjJ3cGJ6MmpiY2ZmciJ9.KnmjmhWCBzMm-D30JdnnXg';
-
-	</script>
-
-	<?= js( option('centre-for-documentary-architecture.liebling-house.path').'Build/UnityLoader.js' ); ?>
-
 </head>
 <body class="<?= implode(' ', array_unique($classlist) ) ?>">
 

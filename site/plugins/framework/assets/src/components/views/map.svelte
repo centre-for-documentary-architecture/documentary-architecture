@@ -1,9 +1,11 @@
 <script>
-	import { onMount } from 'svelte';
+	import LoadScript from '../helpers/loadScript.svelte';
+	const dependencies = [
+		"https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js"
+	];
 
 	export let view;
 	export let classname;
-	export let transcript;
 
 	/*
 	* mapbox api
@@ -68,7 +70,11 @@
 	* someone mixed up lat <-> lon, i dont know, just try, error, fix
 	*/
 
-	onMount(() => {
+	function mapInit(){
+
+		console.log('mapInit');
+
+		mapboxgl.accessToken = 'pk.eyJ1IjoibW9yaXdhYW4iLCJhIjoiY2l4cnIxNTFvMDAzZjJ3cGJ6MmpiY2ZmciJ9.KnmjmhWCBzMm-D30JdnnXg';
 
 		map = new mapboxgl.Map({
 			container: 'map',
@@ -158,7 +164,7 @@
 			}
 		});
 
-	});
+	};
 
 	function round( f, d = 2 ){
 		// round coords
@@ -205,6 +211,11 @@
 	}
 
 </style>
+
+<LoadScript on:loaded={mapInit} dependencies={dependencies}/>
+<svelte:head>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css" rel="stylesheet">
+</svelte:head>
 
 <section class="{classname} {view.type}">
 

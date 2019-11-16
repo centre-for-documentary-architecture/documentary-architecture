@@ -1,5 +1,13 @@
     </div><!-- .page-wrapper -->
 
+    <?php
+    if( isset( $include ) ){
+        foreach( $include as $script ){
+            echo $script;
+        }
+    }
+    ?>
+
     <?= js( option('cdn').'assets/js/lazysizes.min.js', true) ?>
 
     <?= js( option('cdn').'assets/js/smooth-scroll.min.js') ?>
@@ -9,14 +17,6 @@
             offset: 28
         });
     </script>
-
-    <?php
-    if( isset( $include ) ){
-        foreach( $include as $script ){
-            echo $script;
-        }
-    }
-    ?>
 
 </body>
 </html>
