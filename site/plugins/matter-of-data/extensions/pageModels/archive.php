@@ -79,10 +79,10 @@ class PageArchive extends Page
     public function results( string $query = '' ){
 
         if( $query === '' ){
-            return $this->recentActivity();
+            return $this->recentActivity()->listed();
         }
 
-        return $this->search( $query );
+        return $this->search( $query )->listed();
 
     }
     public function dataAbstract( string $srcset = 'medium' )
