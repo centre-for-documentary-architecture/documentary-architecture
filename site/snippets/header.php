@@ -27,7 +27,7 @@ if( isset( $class ) ){
 	<meta name="robots" content="noindex,nofollow">
 	<link rel="dns-prefetch" href="<?= option('cdn-host') ?>">
 	<?php if( !$page->isHomePage() ): ?>
-		<link rel="preload" href="<?= $page->url() ?>.json" as="fetch">
+		<!-- <link rel="preload" as="fetch" href="<?= $page->url() ?>.json"> -->
 	<?php endif; ?>
 
 	<title><?= $page->title()->html(); ?></title>
@@ -36,6 +36,8 @@ if( isset( $class ) ){
 	<?= css( option('cdn').'assets/css/normalize.css') ?>
 	<?= css( option('cdn').'assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
+
+	<link rel="preload" as="script" href="<?= $site->url() ?>/media/plugins/centre-for-documentary-architecture/frontend/public/bundle.js">
 
 	<meta name="description" content="<?= $page->description()->html()->or('CDA') ?>">
 	<meta name="keywords" content="<?= $page->keywords()->or('architecture, bauhaus, research, data') ?>">
