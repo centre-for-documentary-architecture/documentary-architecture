@@ -70,8 +70,6 @@
 	* load and ini world
 	*/
 
-	var lieblingHouseWorldContainer;
-	var lieblingHouseWorldInstance;
 	function unityInit(){
 
 		// return;

@@ -50,6 +50,11 @@ if( isset( $class ) ){
 	<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
 
+	<script>
+		var lieblingHouseWorldContainer;
+		var lieblingHouseWorldInstance;
+	</script>
+
 </head>
 <body class="<?= implode(' ', array_unique($classlist) ) ?>">
 
