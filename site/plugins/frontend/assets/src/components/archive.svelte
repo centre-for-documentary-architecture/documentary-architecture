@@ -1,4 +1,6 @@
 <script>
+	import { loading } from './helpers/loader.js';
+	import Wait from './helpers/wait.svelte';
 
 	export let archive;
 
@@ -6,7 +8,7 @@
 	import Card from './collection/card.svelte';
 	import CollectionList from './collection/list.svelte';
 
-	let loading = false;
+	let loadingQuery = false;
 
 	async function startSearch(){
 		if( searchTerm == previouslySearched ){
@@ -14,15 +16,15 @@
 		}
 		// console.log('research '+searchTerm);
 
-		loading = true;
+		loadingQuery = true;
 		// console.log('please wait...');
 
 		let newData = await load( archive.url + '?research='+searchTerm );
 
 		if( newData ){
 
-			loading = false;
-			// console.log('loading finished from '+newData.url);
+			loadingQuery = false;
+			// console.log('loadingQuery finished from '+newData.url);
 
 			// console.log( newData );
 
@@ -76,5 +78,9 @@
 
 	</div>
 </main>
+
+{#if $loading === true}
+	<Wait />
+{/if}
 
 <ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true} columns=3/>

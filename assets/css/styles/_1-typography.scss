@@ -146,3 +146,9 @@ p {
 	user-select: none;
 	font-family: $mono;
 }
+
+img {
+	font-family: $mono;
+	font-size: $font-small;
+	word-break: break-word;
+}

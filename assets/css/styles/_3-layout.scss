@@ -68,6 +68,7 @@ body {
 					// max-height: 100% works in s && ff, bot not in chrome
 					height: 100%;
 					overflow-y: auto;
+					transition: width 200ms ease;
 				}
 			}
 		}
@@ -86,7 +87,6 @@ body {
 			padding: 0;
 			width: 100%;
 			height: 100%;
-			background-color: transparent !important;
 			> .content {
 				position: absolute;
 				top: 2rem;
