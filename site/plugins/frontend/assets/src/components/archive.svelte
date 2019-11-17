@@ -30,16 +30,16 @@
 
 		archiveSearch.query.term = archiveSearch.query.term.trim();
 
-		let title = 'Archive';
+		let title = 'CDA Archive';
 		let url = archive.url + '?';
 
 		if( archiveSearch.filter.id !== '' ){
-			title = archiveSearch.filter.id;
+			title += ' '+archiveSearch.filter.id;
 			url += 'filter=' + archiveSearch.filter.id + '&';
 		}
 
 		if( archiveSearch.query.term !== '' ){
-			title = archiveSearch.query.term + ' in ' + title;
+			title += ' ' + title;
 			url += 'research=' + archiveSearch.query.term;
 		}
 
@@ -83,7 +83,7 @@
 					aria-label="Search the archive ..."
 					placeholder="Search the archive ..."
 					bind:this={archiveSearch.inputField}
-					on:keyup={startSearch} >
+					on:input={startSearch} >
 			</form>
 
 		</header>
@@ -105,8 +105,6 @@
 				{/each}
 			</ul>
 		</section>
-
-		<div>Loading: {archiveSearch.loading}</div>
 
 	</div>
 </main>

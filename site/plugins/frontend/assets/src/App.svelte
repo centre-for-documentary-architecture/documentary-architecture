@@ -57,7 +57,7 @@
 
 		document.body.className = [ className, e.theme, e.layout, e.template, e.entity, e.type, e.category, 'dynamic' ].join(' ');
 
-		document.title = e.title;
+		document.title = 'CDA '+e.title;
 
 		history.pushState({
 			title: entity.title,
