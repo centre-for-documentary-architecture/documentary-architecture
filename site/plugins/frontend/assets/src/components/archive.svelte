@@ -8,32 +8,45 @@
 	import Card from './collection/card.svelte';
 	import CollectionList from './collection/list.svelte';
 
-	let loadingQuery = false;
+	let archiveSearch = {
+		inputFiled: false,
+		filter: {
+			id: archive.archive.filter,
+			previous: archive.archive.filter,
+		},
+		query: {
+			term: archive.archive.query,
+			previous: archive.archive.query,
+		},
+		loading: false
+	};
 
 	async function startSearch(){
-		searchTerm = searchTerm.trim();
 
-		if( searchTerm === previousTerm && filter === previousFilter ){
+		if( archiveSearch.query.term === archiveSearch.query.previous &&
+			archiveSearch.filter.id === archiveSearch.filter.previous ){
 			return;
 		}
+
+		archiveSearch.query.term = archiveSearch.query.term.trim();
 
 		let title = 'Archive';
 		let url = archive.url + '?';
 
-		if( filter !== '' ){
-			title = filter;
-			url += 'filter=' + filter + '&';
+		if( archiveSearch.filter.id !== '' ){
+			title = archiveSearch.filter.id;
+			url += 'filter=' + archiveSearch.filter.id + '&';
 		}
 
-		if( searchTerm !== '' ){
-			title = searchTerm + ' in ' + title;
-			url += 'research=' + searchTerm;
+		if( archiveSearch.query.term !== '' ){
+			title = archiveSearch.query.term + ' in ' + title;
+			url += 'research=' + archiveSearch.query.term;
 		}
 
 		document.title = title;
-		console.log( searchTerm, title, url );
+		console.log( archiveSearch.query.term, title, url );
 
-		loadingQuery = true;
+		archiveSearch.loading = true;
 		let newData = await load( url );
 
 		history.replaceState({
@@ -43,26 +56,15 @@
 
 		if( newData ){
 
-			loadingQuery = false;
-			// console.log('loadingQuery finished from '+newData.url);
-
-			// console.log( newData );
-
+			archiveSearch.loading = false;
 			archive.results = newData.results;
 
 		}
 
-		previousTerm = searchTerm;
-		previousFilter = filter;
+		archiveSearch.query.previous = archiveSearch.query.term;
+		archiveSearch.filter.previous = archiveSearch.filter.id;
 
 	}
-
-	let searchField;
-
-	let previousTerm = false;
-	let searchTerm = archive.archive.query;
-	let previousFilter = false;
-	$: filter = archive.filter;
 
 </script>
 
@@ -72,29 +74,26 @@
 		<header id="top" class="tab">
 			<h1>Archive</h1>
 
-			<form id="search" on:click="{() => searchField.focus() }" autocomplete="off">
+			<form id="search" on:click="{() => archiveSearch.inputField.focus() }" autocomplete="off">
 				<input class="input" type="search" name="research"
 					autocomplete="off"
 					spellcheck="false"
 					autocorrect="off"
-					bind:value={searchTerm}
+					bind:value={archiveSearch.query.term}
 					aria-label="Search the archive ..."
 					placeholder="Search the archive ..."
-					bind:this={searchField}
+					bind:this={archiveSearch.inputField}
 					on:keyup={startSearch} >
-				<!-- {#if searchTerm}
-					<button class="button" value="Search" title="Search {searchTerm}">Start search</button>
-				{/if} -->
 			</form>
 
 		</header>
 
 		<section class="filters tab">
-			<h2>Filter {filter}</h2>
+			<h2>Filter {archiveSearch.filter.id}</h2>
 			<ul class="list">
 				{#each archive.archive.filters.content as item}
-					<li class="card {filter == item.filter ? 'active' : ''}">
-						<button on:click={() => filter = item.filter} on:click={startSearch}>
+					<li class="card {archiveSearch.filter.id == item.filter ? 'active' : ''}">
+						<button on:click={() => archiveSearch.filter.id = item.filter} on:click={startSearch}>
 							<div class="title">
 
 								<!-- <span class="count">{item.count || ''}</span> -->
@@ -106,6 +105,8 @@
 				{/each}
 			</ul>
 		</section>
+
+		<div>Loading: {archiveSearch.loading}</div>
 
 	</div>
 </main>

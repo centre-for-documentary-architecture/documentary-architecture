@@ -93,7 +93,7 @@ class PageArchive extends Page
 			'title' => $this->title()->value(),
 			'template' => 'archive',
             'classlist' => $this->classlist(),
-            'filter' => false,
+            'filter' => '',
             'worlditem' => null,
             'count' => $this->countCollection()
 		];
