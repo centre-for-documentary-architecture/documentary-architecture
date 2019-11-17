@@ -131,9 +131,15 @@ button,
 
 @media screen and (min-width: 768px){
 	body.entity.file {
+		/*
 		main.panel {
 			border-right: $border;
 			border-color: $white;
 		}
+		*/
+		.panel.presentation {
+			background-color: $dark;
+		}
+
 	}
 }
