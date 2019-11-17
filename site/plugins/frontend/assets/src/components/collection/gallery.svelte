@@ -29,7 +29,7 @@
 
 </script>
 
-<ul class="gallery grid">
+<ul class="gallery { columns !== 1 ? 'grid' : ''}">
     {#each list as item}
 
 		{#if category == 'tourstop' && item.worlditem !== null }
@@ -58,7 +58,7 @@
 
 		{:else}
 
-			<Card item={item} width={columnWidth}/>
+			<Card item={item} classname="card-element" width={columnWidth}/>
 
 		{/if}
 

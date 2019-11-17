@@ -173,8 +173,9 @@ dl.table {
 	}
 }
 
-.list {
-	.card .title {
+.list .card,
+.list-element {
+	.title {
 		display: flex;
 		flex-wrap: wrap;
 		.count {
@@ -195,6 +196,9 @@ dl.table {
 		flex-direction: column;
 		height: 100%;
 	}
+}
+.card-element > a {
+	flex-direction: column;
 }
 .card.list-element > a {
 	flex-direction: row;
@@ -297,6 +301,13 @@ dl.table {
 .gallery {
 	.preview.audio {
 		background-color: $dark;
+	}
+}
+.gallery.grid .card  {
+	display: flex;
+	flex-direction: column;
+	a {
+		flex: 1;
 	}
 }
 
