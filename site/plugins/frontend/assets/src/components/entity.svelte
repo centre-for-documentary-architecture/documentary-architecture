@@ -1,4 +1,6 @@
 <script>
+	import { loading } from './helpers/loader.js';
+	import Wait from './helpers/wait.svelte';
 
     /*
     * import components
@@ -81,6 +83,10 @@
 	}
 
 </script>
+
+{#if $loading === true}
+	<Wait />
+{/if}
 
 {#if entity.content}
 

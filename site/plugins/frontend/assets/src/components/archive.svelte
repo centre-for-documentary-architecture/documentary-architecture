@@ -81,6 +81,6 @@
 
 {#if $loading === true}
 	<Wait />
-{:else}
-	<ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
 {/if}
+
+<ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
