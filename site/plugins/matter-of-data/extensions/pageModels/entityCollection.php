@@ -195,11 +195,13 @@ class EntityCollection extends Entity
 
                 $output = $collection->limit( $pagination );
                 $layout = $this->content_layout()->or('cards')->value();
+                $columns = 1;
 
                 switch ($layout) {
                     case 'gallery':
 
                         $output = $output->dataPreview();
+                        $columns = 2;
 
                         break;
                     case 'list':
@@ -219,6 +221,7 @@ class EntityCollection extends Entity
                     'headline' => $this->content_headline()->html()->value(),
                     'count' => $count,
                     'layout' => $layout,
+                    'columns' => $columns,
                     'page' => 1,
                     'next' => $next,
                     'content' => $output
