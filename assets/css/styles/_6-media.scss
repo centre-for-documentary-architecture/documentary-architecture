@@ -41,10 +41,14 @@
 		&.audio {
 			min-height: 100%;
 			.transcript {
+				padding: $padding;
+				div {
+					padding: $padding;
+				}
 				h4 {
 					font-family: $mono;
+					margin-top: 0;
 				}
-				padding: $padding $padding-double $padding-double;
 				font-size: 1.05rem;
 				line-height: 1.3;
 			}
