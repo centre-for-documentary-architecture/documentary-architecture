@@ -5,7 +5,6 @@
 	import ViewAudio from '../views/audio.svelte';
 
     export let list;
-	export let columns = 1;
 	export let category = '';
 
 	let views = {
@@ -13,22 +12,36 @@
 		'audio': ViewAudio,
 	}
 
+	export let columns = 1;
+    let columnWidth = 12 / columns;
+
+    import { beforeUpdate } from 'svelte';
+	beforeUpdate(() => {
+        columnWidth = 12 / columns;
+        if( list.length < 4 ){
+            if( columns == 2 ){
+
+                columnWidth = 12;
+
+            }
+        }
+    });
+
 </script>
 
-<ul class="gallery">
+<ul class="gallery grid">
     {#each list as item}
 
 		{#if category == 'tourstop' && item.worlditem !== null }
 
 			<!-- show only as small thumbnails -->
 
-			<Card item={item} classname="list-element"/>
-
+			<Card item={item} classname="list-element" width={columnWidth}/>
 
 		{:else if item.view && ( item.view.type == 'audio' || item.view.type == 'video' )}
 
 			<!-- play audio or video -->
-			<li class="card preview {item.classlist}">
+			<li class="card preview {item.classlist} {columnWidth ? 'col-'+columnWidth : ''}">
 
 				<svelte:component this={views[ item.view.type ]} view={item.view}/>
 
@@ -45,7 +58,7 @@
 
 		{:else}
 
-			<Card item={item}/>
+			<Card item={item} width={columnWidth}/>
 
 		{/if}
 

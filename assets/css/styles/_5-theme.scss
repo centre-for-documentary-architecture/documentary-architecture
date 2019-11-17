@@ -129,6 +129,7 @@ button,
 	}
 }
 
+/*
 @media screen and (min-width: 768px){
 	body.entity.file {
 		main.panel {
@@ -136,4 +137,11 @@ button,
 			border-color: $white;
 		}
 	}
+}
+*/
+body.entity.file {
+	.panel.presentation {
+		background-color: $dark;
+	}
+
 }
