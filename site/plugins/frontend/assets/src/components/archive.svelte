@@ -1,5 +1,4 @@
 <script>
-
 	export let archive;
 
 	import ViewCollection from './views/collection.svelte';

@@ -1,6 +1,10 @@
 <script>
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
+
+	import { loading } from './components/helpers/loader.js';
+	$: {
+		console.log( 'loading', $loading );
+	}
 
 	import NavHistory from './components/navigation/history.svelte';
 	import NavArchive from './components/navigation/archive.svelte';
@@ -10,7 +14,9 @@
 	let entity = undefined;
 
 	onMount(async () => {
+		loading.set( true );
 		replaceEntityData( await load( window.location.href ) );
+		loading.set( false );
 		console.log( 'initial data', entity );
 
 		document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
@@ -95,7 +101,9 @@
 
 		event.preventDefault();
 
+		loading.set( true );
 		replaceEntityData( await load( target.href ) );
+		loading.set( false );
 
 		console.log( entity );
 
@@ -112,7 +120,9 @@
 		var href = window.location.origin + '/' + worlditemId;
 		console.log( 'showWorlditemContent()', href );
 
+		loading.set( true );
 		var worlditemContent = await load( href );
+		loading.set( false );
 
 		// replaceEntityData( await load( href ) );
 
