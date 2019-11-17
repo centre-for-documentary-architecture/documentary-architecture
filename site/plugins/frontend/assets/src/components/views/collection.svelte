@@ -6,7 +6,7 @@
 	export let classname;
 
 	export let controls = false;
-	export let columns = 2;
+	export let columns = view.columns || 2;
 
 	import CollectionCards from '../collection/cards.svelte';
 	import CollectionList from '../collection/list.svelte';

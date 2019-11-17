@@ -57,8 +57,8 @@ Options +FollowSymlinks
 
 <IfModule mod_headers.c>
   # allow CORS
-  Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.digitaloceanspaces.com"
   Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.cdn.digitaloceanspaces.com"
+  Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.digitaloceanspaces.com"
   Header Set Access-Control-Allow-Origin "https://mod.documentary-architecture.org"
   Header Set Access-Control-Allow-Origin "https://documentary-architecture.org"
   Header Set Access-Control-Allow-Origin "http://localhost:8000"
@@ -116,6 +116,7 @@ Options +FollowSymlinks
   AddOutputFilterByType DEFLATE text/html
   AddOutputFilterByType DEFLATE text/css
   AddOutputFilterByType DEFLATE text/javascript
+  AddOutputFilterByType DEFLATE application/json
   AddOutputFilterByType DEFLATE text/map
 
   AddOutputFilterByType DEFLATE application/json

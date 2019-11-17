@@ -12,9 +12,6 @@ Kirby::plugin('centre-for-documentary-architecture/cache-busting', [
 	'components' => [
 
 		'css' => function (Kirby $kirby, string $url, $options = null): string {
-		  // create fingerprint for cache busting
-		  // $fingerprint = md5_file($url);
-		  // return $url . '?' . $fingerprint;
 
 		  // as suggested by https://forum.getkirby.com/t/plugin-assets-timestamp/13975/27
 		  $relative_url = Url::path($url, false);
@@ -29,9 +26,6 @@ Kirby::plugin('centre-for-documentary-architecture/cache-busting', [
 		},
 
 		'js' => function (Kirby $kirby, string $url, $options = null): string {
-			// create fingerprint for cache busting
-			// $fingerprint = md5_file($url);
-			// return $url . '?' . $fingerprint;
 
 			$relative_url = Url::path($url, false);
 			$file_root = $kirby->root('index') . DS . $relative_url;

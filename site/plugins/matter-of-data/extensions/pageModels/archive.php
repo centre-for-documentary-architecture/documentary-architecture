@@ -79,10 +79,10 @@ class PageArchive extends Page
     public function results( string $query = '' ){
 
         if( $query === '' ){
-            return $this->recentActivity();
+            return $this->recentActivity()->listed();
         }
 
-        return $this->search( $query );
+        return $this->search( $query, 'title|additional_title|tags|content_text|description|category|transcript|credits|date_start|date_end|location_start|location_end' )->listed();
 
     }
     public function dataAbstract( string $srcset = 'medium' )
@@ -93,7 +93,7 @@ class PageArchive extends Page
 			'title' => $this->title()->value(),
 			'template' => 'archive',
             'classlist' => $this->classlist(),
-            'filter' => false,
+            'filter' => '',
             'worlditem' => null,
             'count' => $this->countCollection()
 		];
@@ -120,7 +120,7 @@ class PageArchiveFilter extends PageArchive
     {
 
         $content = [
-            'url' => $this->url(),
+            'url' => $this->parent()->url().'?filter='.$this->slug(),
             'filter' => $this->slug(),
             'template' => 'archive',
             'title' => $this->title()->value(),
@@ -130,6 +130,10 @@ class PageArchiveFilter extends PageArchive
         return $content;
 
     }
+    public function dataBreadcrumbs(): array
+	{
+		return $this->parent()->dataBreadcrumbs();
+	}
 }
 
 class PageArchiveImages extends PageArchiveFilter

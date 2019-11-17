@@ -1,4 +1,6 @@
 <script>
+	import { loading } from './helpers/loader.js';
+	import Wait from './helpers/wait.svelte';
 
     /*
     * import components
@@ -52,7 +54,6 @@
 	}
 
 	function contentWidth( type ){
-		// console.log( type );
 		if( type == 'file' ){
 			return 3;
 		}
@@ -82,6 +83,10 @@
 	}
 
 </script>
+
+{#if $loading === true}
+	<Wait />
+{/if}
 
 {#if entity.content}
 

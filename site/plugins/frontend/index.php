@@ -9,7 +9,7 @@ function archivePath( string $base, string $filter = '', array $query = [] ): st
     return  $url;
 }
 
-Kirby::plugin('centre-for-documentary-architecture/framework', [
+Kirby::plugin('centre-for-documentary-architecture/frontend', [
 
     'routes' => [
         [
@@ -22,10 +22,11 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 // https://getkirby.com/docs/reference/objects/request
                 $query = get();
 
-                if( isset( $query['filter'] ) && $filter === '' ){
+                if( $filter !== '' ){
+                    $query['filter'] = $filter;
+                } else if ( isset( $query['filter'] ) ){
                     $filter = $query['filter'];
                 }
-                unset( $query['filter'] );
 
                 if( !isset( $query['research'] ) ){
                     $query['research'] = '';
@@ -39,14 +40,16 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 }
 
                 $mainArchive = kirby()->site()->archive();
+                /*
                 if( $archiveFiltered = $mainArchive->find( $filter ) ){
                     $archive = $archiveFiltered;
                 } else {
                     $archive = $mainArchive;
                     $filter = '';
                 }
+                */
 
-                // $archive = kirby()->site()->archive()->filter( $filter );
+                $archive = kirby()->site()->archive()->filter( $filter );
                 $results = $archive->results( $research );
 
                 $count = $results->count();
@@ -58,7 +61,7 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 } else {
                     $nextQuery = $query;
                     $nextQuery['page'] = $page + 1;
-                    $next = archivePath( $mainArchive->url(), $filter, $nextQuery );
+                    $next = archivePath( $mainArchive->url(), '', $nextQuery );
                 }
 
                 if( $page == 1 ){
@@ -66,11 +69,12 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
 
                     $data = $archive->dataGeneral();
 
-                    $data['url'] = archivePath( $mainArchive->url(), $filter, $query );
+                    $data['url'] = $mainArchive->url();
                     $data['archive'] = [
-                        'filters' => $mainArchive->dataFilters(),
+                        'url' => $mainArchive->url(),
                         'filter' => $filter,
-                        'query' => $query['research']
+                        'query' => $query['research'],
+                        'filters' => $mainArchive->dataFilters(),
                     ];
                     $data['results'] = [
                         'type' => 'collection',
@@ -107,7 +111,7 @@ Kirby::plugin('centre-for-documentary-architecture/framework', [
                 $kirby = kirby();
                 $query = get();
 
-                $jsonCache = $kirby->cache('jsonRequest');
+                $jsonCache = $kirby->cache('json');
                 $jsonCacheId = $all;
                 if( http_build_query($query) != '' ){
                     $jsonCacheId .= '-' . http_build_query($query);

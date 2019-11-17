@@ -1,9 +1,11 @@
 <script>
-	import { onMount } from 'svelte';
+	import LoadScript from '../helpers/loadScript.svelte';
+	const dependencies = [
+		"https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/liebling-house/Build/UnityLoader.js"
+	];
 
 	export let view;
 	export let classname;
-	export let transcript;
 
 	/*
 
@@ -31,11 +33,9 @@
 			item: false,
 			help: false
 		},
-
 		roaming: "Start exploring",
 		dollhouse: false,
 		help: "Click on the builing to start exploring.",
-
 		state: 'ViewingKiosk',
 		states: {
 			ViewingKiosk: {
@@ -66,13 +66,16 @@
 		}
 	};
 
+	import { onDestroy } from 'svelte';
+	onDestroy(() => {
+		lieblingHouseWorldInstance = undefined;
+	});
 	/*
 	* load and ini world
 	*/
+	function unityInit(){
 
-	onMount(() => {
-
-		return;
+		// return;
 
 		// https://docs.unity3d.com/Manual/webgl-templates.html
 		lieblingHouseWorldContainer = document.getElementById('worldContainer');
@@ -82,8 +85,7 @@
 			{ onProgress: UnityProgress }
 		);
 
-	});
-
+	};
 	function UnityProgress(lieblingHouseWorldInstance, progress) {
 
 		if (!lieblingHouseWorldInstance.Module) {
@@ -96,17 +98,15 @@
 			lieblingHouseWorldInstance.removeTimeout = setTimeout(function() {
 
 				world.loaded = true;
-				// console.log('Unity loaded');
+				console.log('Unity loaded');
 
 			}, 3000);
 		}
 
 	}
-
 	/*
 	* control world -> website
 	*/
-
 	window.worldUpdateState = state => {
 
 		console.log('worldUpdateState( ' + state + ' )' );
@@ -122,7 +122,6 @@
 		world.help = world.states[ state ].help;
 
 	}
-
 	window.worldHoverItem = worlditemId => {
 		if( worlditemId == '' ){
 			// console.log('worldHoverItem() mouse leave');
@@ -134,7 +133,6 @@
 		// maybe highlight collection elements by id?
 		return true;
 	}
-
 	window.worldSelectItem = worlditemId => {
 		if( worlditemId == '' ){
 			console.log('worldSelectItem() no selection');
@@ -145,7 +143,6 @@
 		showWorlditemContent( worlditemId );
 		return true;
 	}
-
 	window.worldSelectTourstopOfItem = tourstopId => {
 		if( tourstopId == '' ){
 			console.log('worldSelectTourstopOfItem() no selection');
@@ -156,36 +153,25 @@
 		naviFromWorld( tourstopId );
 		return true;
 	}
-
 	/*
 	* control website -> world
 	*/
-
 	window.worldSetRoaming = option => {
-
 		console.log('WorldUpdateState( FreeRoaming )');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'FreeRoaming');
-
 	}
-
 	function worldSetRoaming2(){
-
 		console.log('WorldUpdateState( FreeRoaming )');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'FreeRoaming');
-
 	}
 	function worldSetDollhouse(){
-
 		console.log('WorldUpdateState( ViewingDollhouse )');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'WorldUpdateState', 'ViewingDollhouse');
-
 	}
-
 	window.goThroughGlass = event => {
 		console.log('went through glass');
 		worldSetRoaming();
 	}
-
 </script>
 
 <style>
@@ -237,6 +223,8 @@
 	}
 </style>
 
+<LoadScript on:loaded={unityInit} dependencies={dependencies}/>
+
 <section class="{classname} {view.type}">
 
 	<!--<h3 class="section--header">
@@ -276,21 +264,7 @@
 
 			{/if}
 
-			<!--
-			<span class="right">
-				<span class="hover" on:mouseenter={()=> world.tooltips.help = true } on:mouseleave={()=> world.tooltips.help = false }>{world.help}</span>
-			</span>
-			-->
-
 		{/if}
-
-		<!--
-		{#if world.tooltips.item !== false}
-			<div class="bar tooltip left">{world.tooltips.item}</div>
-		{:else if world.tooltips.help !== false}
-			<div class="bar tooltip left">{world.help}</div>
-		{/if}
-		-->
 
 	</div>
 

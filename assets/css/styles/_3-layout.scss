@@ -12,8 +12,7 @@ body {
 	// flex between cda bar and main page content
 	> .page-wrapper {
 		flex-direction: column;
-		height: 100%;
-		height: 100vh;
+		min-height: 100%;
 	}
 	&.home,
 	&.regular {
@@ -24,19 +23,15 @@ body {
 	}
 }
 
-@media screen and (max-width: 767px) {
-	// specifics for small screens
-
-	.panel.presentation {
-		.section--content {
-			height: 400px;
-		}
-	}
-
-}
-
 @media screen and (min-width: 768px){
 	// specifics for large screens
+
+	body {
+		> .page-wrapper {
+			height: 100%;
+			height: 100vh;
+		}
+	}
 
 	.presentation {
 		.section--content {
@@ -51,7 +46,6 @@ body {
 		max-height: 100vh;
 
 		> .page-wrapper {
-
 			display: flex;
 
 			> nav {
@@ -68,20 +62,16 @@ body {
 				flex-basis: 1px;
 
 				.panel {
-
 					// panel should be reduced to screen height and scrollable
 					// height: unset works in safari
 					// height: 100% works in ff
 					// max-height: 100% works in s && ff, bot not in chrome
 					height: 100%;
 					overflow-y: auto;
-
+					transition: width 200ms ease;
 				}
-
 			}
-
 		}
-
 	}
 
 	// overlapping layout, with one non-scrollable panel in the background and the other free floating above
@@ -97,7 +87,6 @@ body {
 			padding: 0;
 			width: 100%;
 			height: 100%;
-			background-color: transparent !important;
 			> .content {
 				position: absolute;
 				top: 2rem;
@@ -192,12 +181,22 @@ body {
 		}
 	}
 
+	.grid [class*="col"].panel {
+		position: sticky;
+	}
+
+}
+
+@media screen and (max-width: 768px){
+	body.entity.file {
+		.panels {
+			main {
+				order: 10;
+			}
+		}
+	}
 }
 
 .preview .section--header {
 	display: none;
-}
-
-.grid [class*="col"].panel {
-	position: sticky;
 }

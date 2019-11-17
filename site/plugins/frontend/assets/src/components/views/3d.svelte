@@ -1,5 +1,12 @@
 <script>
-	import { onMount } from 'svelte';
+
+	import LoadScript from '../helpers/loadScript.svelte';
+	const dependencies = [
+		"https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/js/three.min.js",
+		"https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/js/inflate.min.js",
+		"https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/js/FBXLoader.js",
+		"https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/js/OrbitControls.js",
+	];
 
 	export let view;
 	export let classname;
@@ -25,7 +32,7 @@
 
 	var container, containerWidth, containerHeight;
 
-	onMount(() => {
+	function threeInit(){
 
 		container = document.getElementById( 'view-3d' );
 
@@ -35,7 +42,7 @@
 		init();
 		animate();
 
-	});
+	}
 
 	function init() {
 
@@ -98,7 +105,9 @@
 		window.addEventListener( 'resize', onWindowResize, false );
 
 	}
-
+	/**
+	 * interactions
+	 */
 	function onWindowResize() {
 
 		containerWidth = container.parentElement.offsetWidth;
@@ -110,7 +119,6 @@
 		renderer.setSize( containerWidth, containerHeight );
 
 	}
-
 	function animate() {
 
 		requestAnimationFrame( animate );
@@ -123,7 +131,6 @@
 		renderer.render( scene, camera );
 
 	}
-
 	function startRotation(){
 		console.log('start 3d rotation');
 		autoRotate = true;
@@ -136,6 +143,8 @@
 	}
 
 </script>
+
+<LoadScript on:loaded={threeInit} dependencies={dependencies}/>
 
 <section class="{classname} {view.type}">
 

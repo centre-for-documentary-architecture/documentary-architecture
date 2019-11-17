@@ -4,12 +4,11 @@ return [
 
 	// setting up
 	'panel' =>[
-		'install' => true,
 		'css' => 'assets/css/panel.css'
 	],
 
 	// development
-	'debug'  => true,
+	'debug'  => false,
 
 	// languages
 	'languages' => true,
@@ -17,9 +16,14 @@ return [
 
 	// cache
 	// https://getkirby.com/docs/guide/cache
+	'cache' => [
+		'pages' => [
+			'active' => true
+		]
+	],
 	'cache-expires' => 1440,
 	'cache.abstract' => true,
-	'cache.jsonRequest' => true,
+	'cache.json' => true,
 	'cache.worlditems' => true,
 
 	// other configuration
@@ -35,8 +39,12 @@ return [
 	],
 
 	// archive shall render all 404, using the request path as query input
-	'error' => 'archive',
+	'error' => 'error',
 
 	'smartypants' => true,
+
+	'cdn-host' => 	'https://documentary-architecture.fra1.digitaloceanspaces.com',
+	'cdn' => 		'https://documentary-architecture.fra1.digitaloceanspaces.com/cda/',
+	//				'https://documentary-architecture.fra1.cdn.digitaloceanspaces.com'
 
 ];

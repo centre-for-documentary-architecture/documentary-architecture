@@ -75,7 +75,7 @@ class EntityItemPerson extends EntityItem
                 if( $entity = entity( $project ) ){
                     $projects[] = $entity->dataAbstract();
                 } else {
-                    $projects[] = $project;
+                    $projects[] = keywordDataAbstract( $project );
                 }
             }
             $content[] = [
@@ -112,9 +112,9 @@ class EntityItemPerson extends EntityItem
 }
 
 /*
-* Entity > Item > Landmark
+* Entity > Item > building
 */
-class EntityItemLandmark extends EntityItem
+class EntityItemBuilding extends EntityItem
 {
     public function dataIndividualFields(): array
 	{
@@ -139,7 +139,7 @@ class EntityItemLandmark extends EntityItem
                 if( $entity = entity( $architect ) ){
                     $architects[] = $entity->dataAbstract();
                 } else {
-                    $architects[] = $architect;
+                    $architects[] = keywordDataAbstract( $architect );
                 }
             }
             $content[] = [

@@ -73,6 +73,15 @@ columns:
               gallery: Gallery
               entityinfo: Entity Info
 
+          cardSize:
+            type: select
+            label: Card Size
+            width: 1/2
+            translate: false
+            options:
+              small: Small
+              large: Large
+
           content_headline:
             type: text
             translate: false

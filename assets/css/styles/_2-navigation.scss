@@ -136,7 +136,7 @@ body {
 	transition: transform 400ms ease;
 }
 .bar.cda.open {
-	width: 75vw;
+	width: 85vw;
 	overflow-y: auto;
 	padding-right: 1rem;
 	a.logo {
@@ -159,6 +159,14 @@ body {
 	transform: translateX(75%);
 }
 
+@media screen and (max-width: 768px){
+	.bar.cda.open ~ .page-wrapper {
+		background-color: $white;
+		* {
+			opacity: 0;
+		}
+	}
+}
 @media screen and (min-width: 768px){
 	.bar.cda.open {
 		width: 51.5vw;
@@ -201,10 +209,15 @@ nav.bar.history {
 	display: flex;
 	z-index: 2000;
 
+	white-space: nowrap;
+	overflow: hidden;
+
 	ol {
-		display: flex;
+		// display: flex;
+		width: unset;
 		li {
-			display: flex;
+			// display: flex;
+			display: inline-block;
 			&.current {
 				opacity: 0;
 				transition: opacity 300ms ease, transform 300ms ease;
@@ -231,7 +244,6 @@ body.scrolled nav.bar.history {
 //
 // Archive Bar bottom
 //
-
 nav.bar.archive {
 
 	position: sticky;
@@ -242,7 +254,7 @@ nav.bar.archive {
 
 }
 body {
-	&.archive,
+	// &.archive,
 	&.home {
 		nav.bar.archive {
 			display: none;
@@ -253,7 +265,6 @@ body {
 //
 // Media controls
 //
-
 .bar.controls {
 
 	position: relative;
@@ -301,7 +312,6 @@ body {
 //
 // Tourstop Pagination
 //
-
 nav.pagination {
 
 	background-color: $blue;

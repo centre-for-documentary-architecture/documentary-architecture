@@ -50,7 +50,6 @@ if( !isset( $about ) ){
 
 				<?php //echo $about->contact()->kirbytext(); ?>
 				<script type="text/javascript" language="javascript">
-				<!--
 				// Email obfuscator script 2.1 by Tim Williams, University of Arizona
 				// Random encryption key feature coded by Andrew Moulden
 				// This code is freeware provided these four comment lines remain intact
@@ -61,17 +60,16 @@ if( !isset( $about ) ){
 				link=""
 				for (i=0; i<coded.length; i++) {
 					if (key.indexOf(coded.charAt(i))==-1) {
-					ltr = coded.charAt(i)
-					link += (ltr)
+						ltr = coded.charAt(i)
+						link += (ltr)
 					}
 					else {
-					ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
-					link += (key.charAt(ltr))
+						ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
+						link += (key.charAt(ltr))
 					}
 				}
 				document.write("<a href='mailto:"+link+"'>"+link+"</a>")
 				}
-				//-->
 				</script><noscript>Switch on JavaScript to see the email address.</noscript>
 
 			</div>

@@ -1,91 +1,79 @@
 // media
 
-.presentation {
-
-	.section--header {
-		display: none;
-	}
-
-	.section--content {
-		user-select: none;
-		flex: 1;
-		flex-grow: 1;
-		flex-shrink: 1;
-		flex-basis: 1px;
-
-		.presentation-container,
-		canvas {
-			display: block;
-			width: 100%;
-			height: 100%;
-		}
-
-	}
-
-	&.image {
-		figure {
-			pointer-events: none;
-			width: 100%;
-			// padding: $border-width;
-			img {
-				display: inline-block;
-				width: 100%;
-				height: auto;
-			}
-		}
-	}
-
-	&.video,
-	&.audio {
-		min-height: 100%;
-		.transcript {
-			h4 {
-				font-family: $mono;
-			}
-			padding: $padding-double;
-			font-size: 1.05rem;
-			line-height: 1.3;
-		}
-	}
-
-	&.video.center,
-	&.audio.center,
-	&.panorama {
-		display: flex;
-		flex-direction: column;
-		overflow: hidden !important;
-		height: 100%;
-
-		.section--content {
-			align-items: center;
-			display: flex;
-		}
-	}
-
-	&.panel.collection {
-
-		display: flex;
-		flex-direction: column;
-
-		.bar.controls {
-			position: sticky;
-			bottom: -1px;
-			background-color: $blue;
-		}
-		.bar.load-more {
-			text-align: center;
-			color: $grey;
-			padding: $padding;
-			font-family: $mono;
-		}
-
-	}
-
-}
-
 @media screen and (min-width: 768px){
 
 	.presentation {
+
+		.section--header {
+			display: none;
+		}
+
+		.section--content {
+			user-select: none;
+			flex: 1;
+			flex-grow: 1;
+			flex-shrink: 1;
+			flex-basis: 1px;
+
+			.presentation-container,
+			canvas {
+				display: block;
+				width: 100%;
+				height: 100%;
+			}
+
+		}
+
+		&.image {
+			figure {
+				pointer-events: none;
+				width: 100%;
+				// padding: $border-width;
+				img {
+					display: inline-block;
+					width: 100%;
+					height: auto;
+				}
+			}
+		}
+
+		&.video,
+		&.audio {
+			min-height: 100%;
+		}
+
+		&.video.center,
+		&.audio.center,
+		&.panorama {
+			display: flex;
+			flex-direction: column;
+			overflow: hidden !important;
+			height: 100%;
+
+			.section--content {
+				align-items: center;
+				display: flex;
+			}
+		}
+
+		&.panel.collection {
+
+			display: flex;
+			flex-direction: column;
+
+			.bar.controls {
+				position: sticky;
+				bottom: -1px;
+				background-color: $blue;
+			}
+			.bar.load-more {
+				text-align: center;
+				color: $grey;
+				padding: $padding;
+				font-family: $mono;
+			}
+
+		}
 
 		&.image,
 		&.\33 d,
@@ -121,11 +109,42 @@
 
 }
 
+@media screen and (max-width: 768px){
+
+	.presentation {
+
+		&.\33 d,
+		&.map,
+		&.liebling-house {
+
+			.section--content {
+				height: 60vh;
+			}
+		}
+
+	}
+
+}
+
 .controls {
 	z-index: 500;
 	font-size: $font-small;
 }
 
+.presentation {
+	.transcript {
+		padding: $padding;
+		div {
+			padding: $padding;
+		}
+		h4 {
+			font-family: $mono;
+			margin-top: 0;
+		}
+		font-size: 1.05rem;
+		line-height: 1.3;
+	}
+}
 
 /*
 // lazyloading

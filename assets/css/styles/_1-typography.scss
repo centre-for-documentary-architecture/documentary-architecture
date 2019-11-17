@@ -22,8 +22,8 @@ h5,
 }
 button, .button {
 	font-family: $mono;
-	// text-transform: uppercase;
 	padding: 0.3em 0.6em;
+	// text-transform: uppercase;
 	// letter-spacing: 0.05em;
 }
 
@@ -77,7 +77,6 @@ h6 {
 //
 // buttons and links
 //
-
 p,
 dl,
 .text {
@@ -85,7 +84,7 @@ dl,
 		text-decoration: underline;
 		text-decoration-color: $grey-light;
 		// not supported yet
-		text-underline-offset: 3px;
+		text-underline-offset: 0.18em;
 		transition: color 200ms ease, text-decoration-color 200ms ease;
 		&:hover {
 			text-decoration-color: $blue !important;
@@ -103,11 +102,9 @@ dl,
 	}
 }
 
-
 //
 // word braking
 //
-
 p {
 	-webkit-hyphenate-limit-chars: auto 9;
 	-webkit-hyphenate-limit-lines: 2;
@@ -148,4 +145,10 @@ p {
 .section--header {
 	user-select: none;
 	font-family: $mono;
+}
+
+img {
+	font-family: $mono;
+	font-size: $font-small;
+	word-break: break-word;
 }

@@ -2,6 +2,7 @@
 body {
 	background-color: $black;
 	color: $black;
+	transition: background-color 200ms ease;
 }
 
 //
@@ -19,8 +20,8 @@ body {
 .bar.history {
 	border-bottom: $border;
 }
-body.home,
-body.white {
+// body.white,
+body.home {
 	> .page-wrapper {
 		> nav.archive,
 		> div {
@@ -116,6 +117,10 @@ button,
 		color: $blue-active;
 	}
 }
+.card.active > button {
+	color: $white;
+	background-color: $blue;
+}
 
 button,
 .button {
@@ -128,9 +133,20 @@ button,
 	}
 }
 
-body.entity.file {
-	main.panel {
-		border-right: $border;
-		border-color: $white;
+
+/*
+@media screen and (min-width: 768px){
+	body.entity.file {
+		main.panel {
+			border-right: $border;
+			border-color: $white;
+		}
 	}
+}
+*/
+body.entity.file {
+	.panel.presentation {
+		background-color: $dark;
+	}
+
 }

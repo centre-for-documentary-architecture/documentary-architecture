@@ -61,47 +61,7 @@ body.home {
 	.archive-bar {
 		display: flex;
 		padding: 0 $padding;
-		h1 {
-			flex: 1;
-			margin-left: 0.75rem;
-		}
 	}
-
-
-
-	/*
-	section.projects,
-	section.on-display {
-		.grid {
-			padding: 0;
-		}
-		.cards {
-
-			.card {
-				// padding: $padding-half;
-				a {
-					padding: 0 $padding;
-				}
-			}
-		}
-		figure {
-			margin: $padding 0;
-			display: block;
-			img {
-				object-fit: unset;
-				width: 100%;
-				height: auto;
-			}
-		}
-	}
-	section.projects {
-		.cards {
-			.card {
-				width: 100%;
-			}
-		}
-	}
-	*/
 
 	#archive-preview {
 
@@ -198,7 +158,7 @@ body.archive {
 //
 // item page
 //
-body.item.landmark,
+body.item.building,
 body.file {
 	header h1 {
 		font-family: $mono;
@@ -275,14 +235,6 @@ body.entity.black {
 	}
 }
 
-
-
-section.transcript {
-	.section--content {
-		padding: $padding-text;
-	}
-}
-
 //
 // content in cda bar
 //
@@ -323,7 +275,6 @@ body.about,
 	}
 
 }
-
 
 body.liebling-house {
 	main {

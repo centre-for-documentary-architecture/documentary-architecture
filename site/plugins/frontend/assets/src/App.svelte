@@ -1,12 +1,35 @@
 <script>
 	import { onMount } from 'svelte';
-	import { writable } from 'svelte/store';
+
+	import { loading } from './components/helpers/loader.js';
+	$: {
+		console.log( 'loading', $loading );
+	}
 
 	import NavHistory from './components/navigation/history.svelte';
 	import NavArchive from './components/navigation/archive.svelte';
 	import Entity from './components/entity.svelte';
 	import Archive from './components/archive.svelte';
 
+	let entity = undefined;
+
+	onMount(async () => {
+		loading.set( true );
+		replaceEntityData( await load( window.location.href ) );
+		loading.set( false );
+		console.log( 'initial data', entity );
+
+		document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
+
+		history.replaceState({
+			title: entity.title,
+			url: entity.url,
+			worlditem: entity.worlditem
+		}, entity.title, entity.url);
+	});
+	/**
+	 * naviWorld
+	 */
 	function naviWorld( worlditem ){
 		if( lieblingHouseWorldInstance === undefined ){
 			return;
@@ -18,14 +41,15 @@
 		console.log('naviWorld() GameInstance goToItem: '+worlditem);
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'GoToItem', worlditem);
 	}
-
-	let entity = undefined;
-
-	// function replaceEntityData( data ){
+	/**
+	 * replaceEntityData
+	 */
 	window.replaceEntityData = async data => {
 		entity = data;
 	}
-
+	/**
+	 * relocate
+	 */
 	function relocate( e = false, className = '' ){
 		if( !e ){
 			e = entity;
@@ -33,7 +57,7 @@
 
 		document.body.className = [ className, e.theme, e.layout, e.template, e.entity, e.type, e.category, 'dynamic' ].join(' ');
 
-		document.title = e.title;
+		document.title = 'CDA '+e.title;
 
 		history.pushState({
 			title: entity.title,
@@ -42,7 +66,9 @@
 		}, entity.title, entity.url);
 
 	}
-
+	/**
+	 * load
+	 */
 	window.load = async url => {
 		url = url.replace( '.json', '' );
 
@@ -60,7 +86,9 @@
 		}
 		return data.data;
 	}
-
+	/**
+	 * navi
+	 */
 	window.navi = async event => {
 
 		let target = event.target.closest('a');
@@ -73,23 +101,28 @@
 
 		event.preventDefault();
 
+		loading.set( true );
 		replaceEntityData( await load( target.href ) );
+		loading.set( false );
 
-		console.log( 'navi() ', entity );
+		console.log( entity );
 
 		naviWorld( entity.worlditem );
 
 		relocate();
 
 	}
-
-	// async function naviFromWorld( worlditemId ){
+	/**
+	 * showWorlditemContent
+	 */
 	window.showWorlditemContent = async worlditemId => {
 
 		var href = window.location.origin + '/' + worlditemId;
 		console.log( 'showWorlditemContent()', href );
 
+		loading.set( true );
 		var worlditemContent = await load( href );
+		loading.set( false );
 
 		// replaceEntityData( await load( href ) );
 
@@ -102,29 +135,21 @@
 		relocate( worlditemContent, 'liebling-house' );
 
 	}
-
+	/**
+	 * onpopstate
+	 */
 	window.onpopstate = async event => {
 		console.log( event );
 		if( event.state ){
+
 			replaceEntityData( await load( event.state.url ) );
-			relocate();
+
+			document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
+			document.title = entity.title;
+
 			console.log( 'history.back', entity );
 		}
 	}
-
-	onMount(async () => {
-		replaceEntityData( await load( window.location.href ) );
-		console.log( 'initial data', entity );
-
-		document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
-
-		history.replaceState({
-			title: entity.title,
-			url: entity.url,
-			worlditem: entity.worlditem
-		}, entity.title, entity.url);
-	});
-
 </script>
 
 {#if entity !== undefined }

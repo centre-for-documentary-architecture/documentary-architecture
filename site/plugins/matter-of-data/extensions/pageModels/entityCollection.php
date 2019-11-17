@@ -196,6 +196,13 @@ class EntityCollection extends Entity
                 $output = $collection->limit( $pagination );
                 $layout = $this->content_layout()->or('cards')->value();
 
+                $columns = 1;
+                if( $this->cardSize()->isNotEmpty() ){
+                    if( $this->cardSize()->value() === 'small' ){
+                        $columns = 2;
+                    }
+                }
+
                 switch ($layout) {
                     case 'gallery':
 
@@ -219,6 +226,7 @@ class EntityCollection extends Entity
                     'headline' => $this->content_headline()->html()->value(),
                     'count' => $count,
                     'layout' => $layout,
+                    'columns' => $columns,
                     'page' => 1,
                     'next' => $next,
                     'content' => $output

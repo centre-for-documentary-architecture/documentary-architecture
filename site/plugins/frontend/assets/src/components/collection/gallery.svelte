@@ -5,7 +5,6 @@
 	import ViewAudio from '../views/audio.svelte';
 
     export let list;
-	export let columns = 1;
 	export let category = '';
 
 	let views = {
@@ -13,32 +12,36 @@
 		'audio': ViewAudio,
 	}
 
+	export let columns = 1;
+    let columnWidth = 12 / columns;
+
+    import { beforeUpdate } from 'svelte';
+	beforeUpdate(() => {
+        columnWidth = 12 / columns;
+        if( list.length < 4 ){
+            if( columns == 2 ){
+
+                columnWidth = 12;
+
+            }
+        }
+    });
+
 </script>
 
-<ul class="gallery">
+<ul class="gallery { columns !== 1 ? 'grid' : ''}">
     {#each list as item}
 
 		{#if category == 'tourstop' && item.worlditem !== null }
 
 			<!-- show only as small thumbnails -->
 
-			<Card item={item} classname="list-element"/>
-
-			<!-- <li class="card worlditem {item.classlist}">
-				<a on:click={window.navi} href={item.url} data-template={item.template}>
-					{#if item.thumbnail}
-						<figure>{@html item.thumbnail}</figure>
-					{/if}
-					<div class="title">
-						<h4>{item.title}</h4>
-					</div>
-				</a>
-			</li> -->
+			<Card item={item} classname="list-element" width={columnWidth}/>
 
 		{:else if item.view && ( item.view.type == 'audio' || item.view.type == 'video' )}
 
 			<!-- play audio or video -->
-			<li class="card preview {item.classlist}">
+			<li class="card preview {item.classlist} {columnWidth ? 'col-'+columnWidth : ''}">
 
 				<svelte:component this={views[ item.view.type ]} view={item.view}/>
 
@@ -55,19 +58,7 @@
 
 		{:else}
 
-			<Card item={item}/>
-
-			<!-- big image -->
-			<!-- <li class="card {item.classlist}">
-				<a on:click={window.navi} href={item.url} data-template={item.template}>
-					{#if item.thumbnail}
-						<figure>{@html item.thumbnail}</figure>
-					{/if}
-					<div class="title">
-						<h4>{item.title}</h4>
-					</div>
-				</a>
-			</li> -->
+			<Card item={item} classname="card-element" width={columnWidth}/>
 
 		{/if}
 

@@ -1,13 +1,16 @@
 <script>
-	import { onMount } from 'svelte';
+	import LoadScript from '../helpers/loadScript.svelte';
+	const dependencies = [
+		"https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js"
+	];
 
 	export let view;
 	export let classname;
-	export let transcript;
 
 	/*
 	* mapbox api
 	* https://docs.mapbox.com/mapbox-gl-js/api/
+	* someone mixed up lat <-> lon, i dont know, just try, error, fix
 	*/
 
 	var map;
@@ -64,11 +67,11 @@
 		}
 	};
 
-	/*
-	* someone mixed up lat <-> lon, i dont know, just try, error, fix
-	*/
+	function mapInit(){
 
-	onMount(() => {
+		console.log('mapInit');
+
+		mapboxgl.accessToken = 'pk.eyJ1IjoibW9yaXdhYW4iLCJhIjoiY2l4cnIxNTFvMDAzZjJ3cGJ6MmpiY2ZmciJ9.KnmjmhWCBzMm-D30JdnnXg';
 
 		map = new mapboxgl.Map({
 			container: 'map',
@@ -158,7 +161,7 @@
 			}
 		});
 
-	});
+	};
 
 	function round( f, d = 2 ){
 		// round coords
@@ -173,45 +176,23 @@
 	}
 
 	/* Marker tweaks */
-	#map :global(.mapboxgl-popup) {
-		width: 20vw;
-		/*
-		font-size: 0.8rem;
-		font-family: "Favorit Mono", "Favorit", Roboto Mono, Roboto, Helvetica, Arial, sans-serif;
-		*/
-	}
 
 	#map :global(.mapboxgl-popup-content) {
 		background-color: transparent;
 		border-radius: 0;
 		padding: 0;
-		/* color: #000; */
 	}
-
-	/*
-
-	#map :global(.mapboxgl-popup-content:hover) {
-		background-color: #00f;
-		color: #fff;
-		cursor: pointer;
-	}
-
-	#map :global(.mapboxgl-popup-content .count) {
-		padding-bottom: 0;
-	}
-
-	#map :global(.mapboxgl-popup-content h4) {
-		padding: 0.5rem 0.5rem;
-		margin: 0;
-		font-size: 0.8rem;
-	}
-	*/
 
 	#map :global(.mapboxgl-popup > .mapboxgl-popup-tip) {
 		display: none;
 	}
 
 </style>
+
+<LoadScript on:loaded={mapInit} dependencies={dependencies}/>
+<svelte:head>
+	<link href="https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css" rel="stylesheet">
+</svelte:head>
 
 <section class="{classname} {view.type}">
 

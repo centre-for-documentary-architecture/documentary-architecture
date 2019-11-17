@@ -1,5 +1,9 @@
 <script>
-	import { onMount } from 'svelte';
+	import LoadScript from '../helpers/loadScript.svelte';
+	const dependencies = [
+		"https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/js/three.min.js",
+		"https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/js/OrbitControls.js",
+	];
 
 	export let view;
 	export let classname;
@@ -39,7 +43,7 @@
 		lon: 0
 	};
 
-	onMount(() => {
+	function threeInit() {
 
 		container = document.getElementById( 'view-3d' );
 
@@ -49,11 +53,9 @@
 		init();
 		animate();
 
-	});
+	}
 
 	function init() {
-
-		// console.log('init');
 
 		// camera
 		camera = new THREE.PerspectiveCamera( 100, containerWidth / containerHeight, 1, 1100 );
@@ -201,6 +203,8 @@
 
 
 </script>
+
+<LoadScript on:loaded={threeInit} dependencies={dependencies}/>
 
 <section class="{classname} {view.type}">
 

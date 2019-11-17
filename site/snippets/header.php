@@ -25,8 +25,20 @@ if( isset( $class ) ){
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width,initial-scale=1.0'>
 	<meta name="robots" content="noindex,nofollow">
+	<link rel="dns-prefetch" href="<?= option('cdn-host') ?>">
+	<?php if( !$page->isHomePage() ): ?>
+		<!-- <link rel="preload" as="fetch" href="<?= $page->url() ?>.json"> -->
+	<?php endif; ?>
 
 	<title><?= $page->title()->html(); ?></title>
+
+	<?= css( option('cdn').'assets/fonts/fonts.css' ) ?>
+	<?= css( option('cdn').'assets/css/normalize.css') ?>
+	<?= css( option('cdn').'assets/css/reflex.css') ?>
+	<?= css('assets/css/global.css') ?>
+
+	<link rel="preload" as="script" href="<?= $site->url() ?>/media/plugins/centre-for-documentary-architecture/frontend/public/bundle.js">
+
 	<meta name="description" content="<?= $page->description()->html()->or('CDA') ?>">
 	<meta name="keywords" content="<?= $page->keywords()->or('architecture, bauhaus, research, data') ?>">
 
@@ -40,35 +52,14 @@ if( isset( $class ) ){
 	<meta name="msapplication-config" content="/assets/favicon/browserconfig.xml">
 	<meta name="theme-color" content="#ffffff">
 
-	<?= js('assets/es6/global.js') ?>
-
-	<?= css( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/fonts/fonts.css' ) ?>
-	<?= css( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/css/normalize.css') ?>
-	<?= css( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/css/reflex.css') ?>
-	<?= css('assets/css/global.css') ?>
-
-	<?= js('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.js'); ?>
-	<?= css('https://api.mapbox.com/mapbox-gl-js/v1.2.0/mapbox-gl.css'); ?>
-
-	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/three.min.js'); ?>
-	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/inflate.min.js'); ?>
-	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/FBXLoader.js'); ?>
-	<?= js( option('centre-for-documentary-architecture.matter-of-data.cdn').'assets/js/OrbitControls.js'); ?>
-
 	<script>
-
 		var lieblingHouseWorldContainer;
 		var lieblingHouseWorldInstance;
-		var mapboxgl;
-		mapboxgl.accessToken = 'pk.eyJ1IjoibW9yaXdhYW4iLCJhIjoiY2l4cnIxNTFvMDAzZjJ3cGJ6MmpiY2ZmciJ9.KnmjmhWCBzMm-D30JdnnXg';
-
 	</script>
-
-	<?= js( option('centre-for-documentary-architecture.liebling-house.path').'Build/UnityLoader.js' ); ?>
 
 </head>
 <body class="<?= implode(' ', array_unique($classlist) ) ?>">
 
 	<?php snippet('navigation/cda'); ?>
 
-	<div class="page-wrapper" id="framework">
+	<div class="page-wrapper" id="frontend">
