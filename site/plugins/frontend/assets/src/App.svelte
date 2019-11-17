@@ -31,7 +31,7 @@
 	 * naviWorld
 	 */
 	function naviWorld( worlditem ){
-		if( typeof lieblingHouseWorldInstance === undefined ){
+		if( lieblingHouseWorldInstance === undefined ){
 			return;
 		}
 		if( !worlditem ){

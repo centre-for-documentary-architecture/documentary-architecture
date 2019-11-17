@@ -66,10 +66,13 @@
 		}
 	};
 
+	import { onDestroy } from 'svelte';
+	onDestroy(() => {
+		lieblingHouseWorldInstance = undefined;
+	});
 	/*
 	* load and ini world
 	*/
-
 	function unityInit(){
 
 		// return;
