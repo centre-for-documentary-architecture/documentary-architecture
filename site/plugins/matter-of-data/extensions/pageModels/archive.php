@@ -130,6 +130,10 @@ class PageArchiveFilter extends PageArchive
         return $content;
 
     }
+    public function dataBreadcrumbs(): array
+	{
+		return $this->parent()->dataBreadcrumbs();
+	}
 }
 
 class PageArchiveImages extends PageArchiveFilter
