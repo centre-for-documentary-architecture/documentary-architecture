@@ -23,7 +23,7 @@ return [
 	],
 	'cache-expires' => 1440,
 	'cache.abstract' => true,
-	'cache.json' => true,
+	'cache.json' => false,
 	'cache.worlditems' => true,
 
 	// other configuration
