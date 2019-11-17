@@ -82,7 +82,7 @@ class PageArchive extends Page
             return $this->recentActivity()->listed();
         }
 
-        return $this->search( $query, 'title|additional_title|tags|content_text|description|category|transcript|contexts|contextualized' )->listed();
+        return $this->search( $query, 'title|additional_title|tags|content_text|description|category|transcript|credits|date_start|date_end|location_start|location_end' )->listed();
 
     }
     public function dataAbstract( string $srcset = 'medium' )
