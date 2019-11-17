@@ -117,6 +117,10 @@ button,
 		color: $blue-active;
 	}
 }
+.card.active > button {
+	color: $white;
+	background-color: $blue;
+}
 
 button,
 .button {
@@ -128,6 +132,7 @@ button,
 		}
 	}
 }
+
 
 /*
 @media screen and (min-width: 768px){

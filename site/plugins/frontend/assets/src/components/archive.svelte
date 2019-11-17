@@ -11,15 +11,35 @@
 	let loadingQuery = false;
 
 	async function startSearch(){
-		if( searchTerm == previouslySearched ){
+		searchTerm = searchTerm.trim();
+
+		if( searchTerm === previousTerm && filter === previousFilter ){
 			return;
 		}
-		// console.log('research '+searchTerm);
+
+		let title = 'Archive';
+		let url = archive.url + '?';
+
+		if( filter !== '' ){
+			title = filter;
+			url += 'filter=' + filter + '&';
+		}
+
+		if( searchTerm !== '' ){
+			title = searchTerm + ' in ' + title;
+			url += 'research=' + searchTerm;
+		}
+
+		document.title = title;
+		console.log( searchTerm, title, url );
 
 		loadingQuery = true;
-		// console.log('please wait...');
+		let newData = await load( url );
 
-		let newData = await load( archive.url + '?research='+searchTerm );
+		history.replaceState({
+			title: title,
+			url: url
+		}, title, url);
 
 		if( newData ){
 
@@ -32,15 +52,17 @@
 
 		}
 
-		previouslySearched = searchTerm;
+		previousTerm = searchTerm;
+		previousFilter = filter;
 
 	}
 
 	let searchField;
-	let searchTerm = archive.archive.query;
-	let previouslySearched = false;
 
-	$: filter = archive.archive.filter;
+	let previousTerm = false;
+	let searchTerm = archive.archive.query;
+	let previousFilter = false;
+	$: filter = archive.filter;
 
 </script>
 
@@ -68,10 +90,19 @@
 		</header>
 
 		<section class="filters tab">
-			<h2>Filter</h2>
+			<h2>Filter {filter}</h2>
 			<ul class="list">
 				{#each archive.archive.filters.content as item}
-					<Card item={item} classname={filter == item.filter ? 'active' : ''}/>
+					<li class="card {filter == item.filter ? 'active' : ''}">
+						<button on:click={() => filter = item.filter} on:click={startSearch}>
+							<div class="title">
+
+								<!-- <span class="count">{item.count || ''}</span> -->
+								<h4>{@html item.title}</h4>
+
+							</div>
+						</button>
+					</li>
 				{/each}
 			</ul>
 		</section>

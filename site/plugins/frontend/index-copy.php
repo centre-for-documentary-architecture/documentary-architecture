@@ -22,11 +22,10 @@ Kirby::plugin('centre-for-documentary-architecture/frontend', [
                 // https://getkirby.com/docs/reference/objects/request
                 $query = get();
 
-                if( $filter !== '' ){
-                    $query['filter'] = $filter;
-                } else if ( isset( $query['filter'] ) ){
+                if( isset( $query['filter'] ) && $filter === '' ){
                     $filter = $query['filter'];
                 }
+                unset( $query['filter'] );
 
                 if( !isset( $query['research'] ) ){
                     $query['research'] = '';
@@ -40,16 +39,14 @@ Kirby::plugin('centre-for-documentary-architecture/frontend', [
                 }
 
                 $mainArchive = kirby()->site()->archive();
-                /*
                 if( $archiveFiltered = $mainArchive->find( $filter ) ){
                     $archive = $archiveFiltered;
                 } else {
                     $archive = $mainArchive;
                     $filter = '';
                 }
-                */
 
-                $archive = kirby()->site()->archive()->filter( $filter );
+                // $archive = kirby()->site()->archive()->filter( $filter );
                 $results = $archive->results( $research );
 
                 $count = $results->count();
@@ -61,7 +58,7 @@ Kirby::plugin('centre-for-documentary-architecture/frontend', [
                 } else {
                     $nextQuery = $query;
                     $nextQuery['page'] = $page + 1;
-                    $next = archivePath( $mainArchive->url(), '', $nextQuery );
+                    $next = archivePath( $mainArchive->url(), $filter, $nextQuery );
                 }
 
                 if( $page == 1 ){
@@ -69,12 +66,11 @@ Kirby::plugin('centre-for-documentary-architecture/frontend', [
 
                     $data = $archive->dataGeneral();
 
-                    $data['url'] = $mainArchive->url();
+                    $data['url'] = archivePath( $mainArchive->url(), $filter, $query );
                     $data['archive'] = [
-                        'url' => $mainArchive->url(),
-                        'filter' => $filter,
-                        'query' => $query['research'],
                         'filters' => $mainArchive->dataFilters(),
+                        'filter' => $filter,
+                        'query' => $query['research']
                     ];
                     $data['results'] = [
                         'type' => 'collection',

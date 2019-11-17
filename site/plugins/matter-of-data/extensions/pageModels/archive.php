@@ -120,7 +120,7 @@ class PageArchiveFilter extends PageArchive
     {
 
         $content = [
-            'url' => $this->url(),
+            'url' => $this->parent()->url().'?filter='.$this->slug(),
             'filter' => $this->slug(),
             'template' => 'archive',
             'title' => $this->title()->value(),
