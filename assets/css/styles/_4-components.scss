@@ -186,8 +186,10 @@ dl.table {
 	}
 }
 
+/*
+* .gallery .card a {height: 100%;} is wrong for mlh tourstops
+*/
 .cards,
-.gallery,
 #map {
 	.card > a {
 		flex-direction: column;
