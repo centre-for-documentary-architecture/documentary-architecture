@@ -8,39 +8,63 @@
 	import Card from './collection/card.svelte';
 	import CollectionList from './collection/list.svelte';
 
-	let loadingQuery = false;
+	let archiveSearch = {
+		inputFiled: false,
+		filter: {
+			id: archive.archive.filter,
+			previous: archive.archive.filter,
+		},
+		query: {
+			term: archive.archive.query,
+			previous: archive.archive.query,
+		},
+		loading: false
+	};
 
 	async function startSearch(){
-		if( searchTerm == previouslySearched ){
+
+		if( archiveSearch.query.term === archiveSearch.query.previous &&
+			archiveSearch.filter.id === archiveSearch.filter.previous ){
 			return;
 		}
-		// console.log('research '+searchTerm);
 
-		loadingQuery = true;
-		// console.log('please wait...');
+		archiveSearch.query.term = archiveSearch.query.term.trim();
 
-		let newData = await load( archive.url + '?research='+searchTerm );
+		let title = 'CDA Archive';
+		let url = archive.url + '?';
+
+		if( archiveSearch.filter.id !== '' ){
+			title += ' '+archiveSearch.filter.id;
+			url += 'filter=' + archiveSearch.filter.id + '&';
+		}
+
+		if( archiveSearch.query.term !== '' ){
+			title += ' ' + title;
+			url += 'research=' + archiveSearch.query.term;
+		}
+
+		document.title = title;
+		console.log( archiveSearch.query.term, title, url );
+
+		archiveSearch.loading = true;
+		let newData = await load( url );
+
+		history.replaceState({
+			title: title,
+			url: url
+		}, title, url);
 
 		if( newData ){
 
-			loadingQuery = false;
-			// console.log('loadingQuery finished from '+newData.url);
-
-			// console.log( newData );
-
+			archiveSearch.loading = false;
 			archive.results = newData.results;
 
 		}
 
-		previouslySearched = searchTerm;
+		archiveSearch.query.previous = archiveSearch.query.term;
+		archiveSearch.filter.previous = archiveSearch.filter.id;
 
 	}
-
-	let searchField;
-	let searchTerm = archive.archive.query;
-	let previouslySearched = false;
-
-	let filter = archive.archive.filter;
 
 </script>
 
@@ -50,28 +74,34 @@
 		<header id="top" class="tab">
 			<h1>Archive</h1>
 
-			<form id="search" on:click="{() => searchField.focus() }" autocomplete="off">
+			<form id="search" on:click="{() => archiveSearch.inputField.focus() }" autocomplete="off">
 				<input class="input" type="search" name="research"
 					autocomplete="off"
 					spellcheck="false"
 					autocorrect="off"
-					bind:value={searchTerm}
+					bind:value={archiveSearch.query.term}
 					aria-label="Search the archive ..."
 					placeholder="Search the archive ..."
-					bind:this={searchField}
-					on:keyup={startSearch} >
-				<!-- {#if searchTerm}
-					<button class="button" value="Search" title="Search {searchTerm}">Start search</button>
-				{/if} -->
+					bind:this={archiveSearch.inputField}
+					on:input={startSearch} >
 			</form>
 
 		</header>
 
 		<section class="filters tab">
-			<h2>Filter</h2>
+			<h2>Filter {archiveSearch.filter.id}</h2>
 			<ul class="list">
 				{#each archive.archive.filters.content as item}
-					<Card item={item} classname={filter == item.filter ? 'active' : ''}/>
+					<li class="card {archiveSearch.filter.id == item.filter ? 'active' : ''}">
+						<button on:click={() => archiveSearch.filter.id = item.filter} on:click={startSearch}>
+							<div class="title">
+
+								<!-- <span class="count">{item.count || ''}</span> -->
+								<h4>{@html item.title}</h4>
+
+							</div>
+						</button>
+					</li>
 				{/each}
 			</ul>
 		</section>

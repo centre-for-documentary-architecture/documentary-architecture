@@ -320,6 +320,12 @@ dl.table {
 	}
 }
 
+.card > button {
+	display: block;
+	.title {
+		padding: 0;
+	}
+}
 
 //
 // list layout
