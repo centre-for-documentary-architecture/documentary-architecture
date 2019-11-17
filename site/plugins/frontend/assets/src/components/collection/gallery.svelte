@@ -36,7 +36,7 @@
 
 			<!-- show only as small thumbnails -->
 
-			<Card item={item} classname="list-element"/>
+			<Card item={item} classname="list-element" width={columnWidth}/>
 
 		{:else if item.view && ( item.view.type == 'audio' || item.view.type == 'video' )}
 
