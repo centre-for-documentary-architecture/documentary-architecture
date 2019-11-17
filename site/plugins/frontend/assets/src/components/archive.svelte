@@ -40,7 +40,7 @@
 	let searchTerm = archive.archive.query;
 	let previouslySearched = false;
 
-	let filter = archive.archive.filter;
+	$: filter = archive.archive.filter;
 
 </script>
 
