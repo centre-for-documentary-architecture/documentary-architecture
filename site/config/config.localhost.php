@@ -12,6 +12,10 @@ return [
 			'active' => false
 		]
 	],
+	'cache-expires' => 10,
+	'cache.abstract' => true,
+	'cache.json' => false,
+	'cache.worlditems' => true,
 
 	'debug'  => true,
 
