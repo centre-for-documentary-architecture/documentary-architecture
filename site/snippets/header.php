@@ -32,12 +32,12 @@ if( isset( $class ) ){
 
 	<title><?= $page->title()->html(); ?></title>
 
-	<?= css( option('cdn').'assets/fonts/fonts.css' ) ?>
-	<?= css( option('cdn').'assets/css/normalize.css') ?>
-	<?= css( option('cdn').'assets/css/reflex.css') ?>
+	<?= css( option('cdn').'/assets/fonts/fonts.css' ) ?>
+	<?= css( option('cdn').'/assets/css/normalize.css') ?>
+	<?= css( option('cdn').'/assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
 
-	<link rel="preload" as="script" href="<?= $site->url() ?>/media/plugins/centre-for-documentary-architecture/frontend/public/bundle.js">
+	<link rel="preload" as="script" href="<?= option('frontend-js') ?>">
 
 	<meta name="description" content="<?= $page->description()->html()->or('CDA') ?>">
 	<meta name="keywords" content="<?= $page->keywords()->or('architecture, bauhaus, research, data') ?>">
