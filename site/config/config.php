@@ -11,8 +11,8 @@ return [
 	'debug'  => false,
 
 	// languages
-	'languages' => true,
-	'languages.detect' => true,
+	'languages' => false,
+	'languages.detect' => false,
 
 	// cache
 	// https://getkirby.com/docs/guide/cache
