@@ -6,9 +6,16 @@ if( !isset( $preview ) ){
 
 $archive = $site->archive( $preview );
 
-$highlights = $archive->highlights()->toPages();
-if( !$highlights || $highlights->count() < 4 ){
-	$highlights = $highlights->add( $archive->children()->listed()->limit( 4 ) );
+if( $preview === 'images' ){
+	$highlights = $archive->highlights()->toEntities();
+	if( !$highlights || $highlights->count() < 4 ){
+		$highlights = $highlights->add( $archive->children()->listed()->limit( 4 ) );
+	}
+} else {
+	$highlights = $archive->highlights()->toPages();
+	if( !$highlights || $highlights->count() < 4 ){
+		$highlights = $highlights->add( $archive->children()->listed()->limit( 4 ) );
+	}
 }
 
 ?>
