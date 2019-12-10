@@ -1313,6 +1313,7 @@ img.lazyloaded {
 */
 body.home header#top {
   min-height: 65vh;
+  transition: min-height 1000ms ease;
   position: relative;
   display: flex;
 }
@@ -1331,6 +1332,12 @@ body.home header#top video {
   min-width: 100%;
   min-height: 100%;
   z-index: 0;
+}
+body.home header#top.video-end {
+  min-height: 100px;
+}
+body.home header#top.video-end video {
+  display: none;
 }
 body.home nav.bar.history {
   display: none;

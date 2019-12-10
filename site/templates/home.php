@@ -15,12 +15,18 @@ snippet('navigation/history');
 	<h1><?= $site->title() ?></h1>
 
 	<?php $root = option('cdn').'/assets/videos/'; ?>
-	<video autoplay loop muted preload="auto">
+	<video autoplay muted preload="auto" id="introvideo">
 		<source src="<?= $root ?>CDA-intro-short-1080.mp4" type='video/mp4'/>
 		<source src="<?= $root ?>CDA-intro-short-720.mp4" type='video/mp4' media="all and (max-width: 1280px)" />
 		<source src="<?= $root ?>CDA-intro-short-480.mp4" type='video/mp4' media="all and (max-width: 854px)" />
 		<source src="<?= $root ?>CDA-intro-short-360.mp4" type='video/mp4' media="all and (max-width: 640px)" />
 	</video>
+	<script>
+	var introvideo = document.getElementById('introvideo');
+	introvideo.onended = function() {
+		introvideo.closest('header').classList.add('video-end');
+	};
+	</script>
 
 </header>
 
@@ -69,11 +75,13 @@ snippet('navigation/history');
 									} else {
 										echo ucwords( $item->type() );
 									}
-									if( $item->date_start()->exists() && $item->date_start()->isNotEmpty() ){
+									if( $item->date_start()->isNotEmpty() ){
 
-										echo ', '.$item->date_start()->value();
+										echo '<br />';
 
-										if( $item->date_end()->exists() && $item->date_end()->isNotEmpty() ){
+										echo $item->date_start()->value();
+
+										if( $item->date_end()->isNotEmpty() ){
 											echo ' – '.$item->date_end()->value();
 										}
 
