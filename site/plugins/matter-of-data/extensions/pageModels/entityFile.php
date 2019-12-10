@@ -238,7 +238,7 @@ class EntityFileVideo extends EntityFile
                     $media = 'all and (max-width:'.$width.'px)';
                 }
 
-                $url = option('cdn') . 'archive/videos/' . $source['filename'] .'/'. $source['filename'] .'-'. $size.'.mp4';
+                $url = option('cdn') . '/archive/videos/' . $source['filename'] .'/'. $source['filename'] .'-'. $size.'.mp4';
 
                 $srcset[] = [
                     'mime' => 'video/mp4',

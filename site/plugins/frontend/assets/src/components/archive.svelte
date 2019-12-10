@@ -89,7 +89,7 @@
 		</header>
 
 		<section class="filters tab">
-			<h2>Filter {archiveSearch.filter.id}</h2>
+			<h2>Filter</h2>
 			<ul class="list">
 				{#each archive.archive.filters.content as item}
 					<li class="card {archiveSearch.filter.id == item.filter ? 'active' : ''}">
