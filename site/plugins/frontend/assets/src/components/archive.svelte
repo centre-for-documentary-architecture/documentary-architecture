@@ -28,7 +28,7 @@
 			return;
 		}
 
-		archiveSearch.query.term = archiveSearch.query.term.trim();
+		archiveSearch.query.term = archiveSearch.query.term.trimStart();
 
 		let title = 'CDA Archive';
 		let url = archive.url + '?';
