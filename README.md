@@ -28,35 +28,17 @@ php -S localhost:8000 kirby/router.php
 
 **2. SCSS**
 All style definitions are made within `assets/scss/...` and are compiled to CSS in `assets/css` upon save.
-For VS Code, I use [Live Sass Compiler](https://marketplace.visualstudio.com/items?itemName=ritwickdey.live-sass) which auto includes all needed css prefixes. Make sure to also compile a sourcemap.
-Settings in VS Code `settings.json`:
-```json
-{
-    ...
-    "liveSassCompile.settings.formats":[
-        {
-            "format": "expanded",
-            "extensionName": ".css",
-            "savePath": "~/../css"
-        },
-        {
-            "format": "compressed",
-            "extensionName": ".min.css",
-            "savePath": "~/../css"
-        }
-    ],
-    "liveSassCompile.settings.excludeList": [ 
-        "kirby/**",
-        "site/**" 
-    ]
-}
+```
+sass --watch --style=compressed assets/scss:assets/css
 ```
 
 **3. Svelte**
-Some frontent pages are delivered blank by Kirby and are filled with Svelte, using data from the API. Svelte is a JS framework like react, but instead of having its own runtime, it is complied to vanilla JS before being shipped to the browser. The whole Svelte thing lives in a Kirby Plugin at `site/plugins/framework`. `cd` over there and run
+Some frontent pages are delivered blank by Kirby and are filled with Svelte, using data from the API. Svelte is a JS framework like react, but instead of having its own runtime, it is complied to vanilla JS before being shipped to the browser.
 ```
+cd site/plugins/framework/assets
 npm install
 npm run dev
+npm run build
 ```
 However, you don’t have to do the Svelte thing to work on the rest of the site.
 
