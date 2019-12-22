@@ -1,30 +1,32 @@
-<script context="module">
-
-  let historyList = [];
-
-  export function historyAdd( entity ){
-    historyList = [...historyList, entity];
-    console.log( historyList );
-  }
-
-</script>
-
 <script>
+  import { historyList } from './historyListStore.js';
 
-  $: historyList;
+  let listItems;
+  const unsubscribe = historyList.subscribe(value => {
+    listItems = value;
+  });
 
-  // export let entity;
+  export let start;
+  export let entityUrl = '';
 
   // ← →
 </script>
 
 <nav class="col-12 bar history horizontal white">
-    <ol>
-        {#each historyList as item, i}
+  <h3>
+    <a on:click={window.navi} title="{start.title}" href="{start.url}" data-template="{start.template}">
+        {start.title}
+    </a>
+  </h3>
+  <ol>
+    {#each listItems as item}
 
-            {i}
+      <li class="{ item.url == entityUrl ? 'current' : ''}">
+          <a on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
+              {item.title}
+          </a>
+      </li>
 
-        {/each}
-    </ol>
+    {/each}
+  </ol>
 </nav>
- 

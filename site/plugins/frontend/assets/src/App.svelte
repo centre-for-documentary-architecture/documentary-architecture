@@ -6,7 +6,9 @@
 		console.log( 'loading', $loading );
 	}
 
-	import NavHistory, {historyAdd} from './components/navigation/history.svelte';
+	import { historyListAdd } from './components/navigation/historyListStore.js';
+
+	import NavHistory from './components/navigation/history.svelte';
 	import NavArchive from './components/navigation/archive.svelte';
 	import Entity from './components/entity.svelte';
 	import Archive from './components/archive.svelte';
@@ -19,7 +21,7 @@
 		loading.set( false );
 		console.log( 'initial data', entity );
 
-		historyAdd( entity );
+		historyListAdd( entity );
 
 		document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
 
@@ -61,7 +63,7 @@
 
 		document.title = 'CDA '+e.title;
 
-		historyAdd( entity );
+		historyListAdd( entity );
 
 		history.pushState({
 			title: entity.title,
@@ -158,7 +160,7 @@
 
 {#if entity !== undefined }
 
-	<NavHistory />
+	<NavHistory entityUrl={entity.url} start={entity.breadcrumbs[0]} />
 
 	<div class="grid panels {entity.type == 'liebling-house' ? 'overlap' : '' }">
 

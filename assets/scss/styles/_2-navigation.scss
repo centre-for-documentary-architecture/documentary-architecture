@@ -211,6 +211,9 @@ nav.bar.history {
 
 	white-space: nowrap;
 	overflow: hidden;
+	h3 {
+		margin: 0;
+	}
 
 	ol {
 		// display: flex;
@@ -219,27 +222,32 @@ nav.bar.history {
 			// display: flex;
 			display: inline-block;
 			&.current {
-				opacity: 0;
-				transition: opacity 300ms ease, transform 300ms ease;
+				color: #00f;
+				// opacity: 0;
+				// transition: opacity 300ms ease, transform 300ms ease;
 			}
 		}
-		li ~ li {
+		li {
 			a {
+				padding-left: 0.3em;
+				padding-right: 0.3em;
 				&:before {
 					content: '→';
 					display: inline-block;
-					margin-right: 0.8rem;
+					margin-right: 0.6rem;
 				}
 			}
 		}
 	}
 
 }
+/*
 body.scrolled nav.bar.history {
 	li.current {
 		opacity: 1;
 	}
 }
+*/
 
 //
 // Archive Bar bottom
