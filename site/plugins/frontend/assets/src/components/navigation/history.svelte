@@ -1,23 +1,28 @@
+<script context="module">
+
+  let historyList = [];
+
+  export function historyAdd( entity ){
+    historyList = [...historyList, entity];
+    console.log( historyList );
+  }
+
+</script>
+
 <script>
 
-    export let entity;
+  $: historyList;
 
-    function isEqual( x, y, echo){
-        return echo;
-    }
+  // export let entity;
 
-    // ← →
+  // ← →
 </script>
 
 <nav class="col-12 bar history horizontal white">
     <ol>
-        {#each entity.breadcrumbs as item}
+        {#each historyList as item, i}
 
-            <li class="{ item.url == entity.url ? 'current' : ''}">
-                <a on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
-                    {item.title}
-                </a>
-            </li>
+            {i}
 
         {/each}
     </ol>
