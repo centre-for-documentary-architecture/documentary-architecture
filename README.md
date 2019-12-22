@@ -11,6 +11,10 @@ Get a shallow clone including all submodules
 ```
 git clone --recursive -–depth 1 https://github.com/moritzebeling/documentary-architecture.org.git
 ```
+Update modules
+```
+git submodule foreach git pull origin master
+```
 Go there
 ```
 cd documentary-architecture.org
@@ -36,7 +40,7 @@ sass --watch --style=compressed assets/scss:assets/css
 ```
 Run Svelte
 ```
-cd site/plugins/framework/assets
+cd site/plugins/frontend/assets
 npm run dev
 npm run build
 ```
