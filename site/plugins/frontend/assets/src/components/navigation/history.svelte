@@ -3,6 +3,10 @@
 
   let listItems;
   const unsubscribe = historyList.subscribe(value => {
+    if( value.length > 50 ){
+			value.splice(1,1);
+		}
+
     let doubles = [];
 
 		for( let i = value.length - 1; i >= 0; i--){
@@ -20,6 +24,8 @@
   export let start;
   export let entityUrl = '';
 
+  let outerWidth, innerWidth;
+
   // ← →
 </script>
 
@@ -29,15 +35,19 @@
         {start.title}
     </a>
   </h3>
-  <ol>
-    {#each listItems as item}
+  <ol bind:offsetWidth={outerWidth} class="{ innerWidth > outerWidth ? 'alignright' : ''}">
+    <div bind:offsetWidth={innerWidth}>
 
-      <li class="{ item.url == entityUrl ? 'current' : ''} { item.double ? 'double' : ''}">
-          <a on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
-              {item.title}
-          </a>
-      </li>
+      {#each listItems as item}
 
-    {/each}
+        <li class="{ item.url == entityUrl ? 'current' : ''} { item.double ? 'double' : ''}">
+            <a on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
+                {item.title}
+            </a>
+        </li>
+
+      {/each}
+
+    </div>
   </ol>
 </nav>

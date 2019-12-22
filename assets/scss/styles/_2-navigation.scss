@@ -201,34 +201,53 @@ body.white {
 //
 
 nav.bar.history {
+	font-family: $favorit;
 
 	position: sticky;
 	background-color: $white;
 	top: -1px;
 	color: $black;
 	display: flex;
+	flex-wrap: nowrap;
 	z-index: 2000;
 
 	white-space: nowrap;
 	overflow: hidden;
+
 	h3 {
 		margin: 0;
+		flex-grow: 0;
+		flex-shrink: 0;
+		flex-basis: auto;
 	}
-
 	ol {
-		// display: flex;
-		width: unset;
-		li {
-			// display: flex;
-			display: inline-block;
-			&.current {
-				color: #00f;
-			}
-			&.double {
-				overflow: hidden;
-				width: 1.2em;
+		flex-grow: 1;
+		flex-shrink: 1;
+		flex-basis: auto;
+
+		display: flex;
+		overflow-x: hidden;
+
+		div {
+			display: flex;
+			flex-wrap: nowrap;
+		}
+		&.alignright {
+			justify-content: flex-end;
+			position: absolute;
+			&:before {
+			  content: '';
+			  position: absolute;
+				z-index: 10;
+			  top: 0;
+			  left: 0;
+			  display: block;
+			  width: 3rem;
+			  height: 100%;
+			  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 100%);
 			}
 		}
+
 		li {
 			a {
 				padding-left: 0.3em;
@@ -238,6 +257,14 @@ nav.bar.history {
 					display: inline-block;
 					margin-right: 0.6rem;
 				}
+			}
+			&.current a,
+			a:hover {
+				color: #00f;
+			}
+			&.double a {
+				overflow: hidden;
+				width: 1.4em;
 			}
 		}
 	}
