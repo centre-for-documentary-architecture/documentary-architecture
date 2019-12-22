@@ -13,6 +13,7 @@ body.home {
 			margin-left: 0.75rem;
 		}
 		min-height: 65vh;
+		transition: min-height 1000ms ease;
 		position: relative;
 		display: flex;
 		video {
@@ -25,11 +26,18 @@ body.home {
 			min-height: 100%;
 			z-index: 0;
 		}
+		&.video-end {
+			min-height: 100px;
+			video {
+				display: none;
+			}
+		}
 	}
 
 	nav.bar.history {
 		display: none;
 	}
+
 	&.scrolled {
 		header#top {
 			margin-top: -$barWidth;
