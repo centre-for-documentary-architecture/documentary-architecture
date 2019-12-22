@@ -223,8 +223,10 @@ nav.bar.history {
 			display: inline-block;
 			&.current {
 				color: #00f;
-				// opacity: 0;
-				// transition: opacity 300ms ease, transform 300ms ease;
+			}
+			&.double {
+				overflow: hidden;
+				width: 1.2em;
 			}
 		}
 		li {

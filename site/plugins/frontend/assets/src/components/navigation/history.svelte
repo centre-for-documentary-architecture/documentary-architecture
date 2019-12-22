@@ -3,7 +3,18 @@
 
   let listItems;
   const unsubscribe = historyList.subscribe(value => {
-    listItems = value;
+    let doubles = [];
+
+		for( let i = value.length - 1; i >= 0; i--){
+			if( doubles.includes( value[i].url) ){
+				value[i].double = true;
+			} else {
+        value[i].double = false;
+				doubles.push(value[i].url);
+			}
+		}
+
+		listItems = value;
   });
 
   export let start;
@@ -21,7 +32,7 @@
   <ol>
     {#each listItems as item}
 
-      <li class="{ item.url == entityUrl ? 'current' : ''}">
+      <li class="{ item.url == entityUrl ? 'current' : ''} { item.double ? 'double' : ''}">
           <a on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
               {item.title}
           </a>
