@@ -146,6 +146,12 @@
 	}
 }
 
+.empty-results {
+	text-align: center;
+	padding: $padding;
+	font-family: $mono;
+}
+
 /*
 // lazyloading
 // https://github.com/aFarkas/lazysizes

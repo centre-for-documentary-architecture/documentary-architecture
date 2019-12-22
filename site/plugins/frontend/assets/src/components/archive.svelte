@@ -28,7 +28,7 @@
 			return;
 		}
 
-		archiveSearch.query.term = archiveSearch.query.term.trim();
+		archiveSearch.query.term = archiveSearch.query.term.trimStart();
 
 		let title = 'CDA Archive';
 		let url = archive.url + '?';
@@ -58,6 +58,7 @@
 
 			archiveSearch.loading = false;
 			archive.results = newData.results;
+			console.log( archive.results );
 
 		}
 
@@ -113,4 +114,8 @@
 	<Wait />
 {/if}
 
-<ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
+{#if archive.results.total === 0 && archiveSearch.query.term !== '' }
+	<div class="panel col-sm-9 empty-results">No results for »{archiveSearch.query.term}«</div>
+{:else}
+	<ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
+{/if}

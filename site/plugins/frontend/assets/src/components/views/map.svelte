@@ -21,6 +21,11 @@
 		zoom: 3
 	};
 
+	const mapstyles = {
+		dark: 'mapbox://styles/moriwaan/cjzqsxone04y21ctdxp1dgogb',
+		light: 'mapbox://styles/moriwaan/ck3njz1ds2lgm1cqp2poywa3i'
+	};
+
 	let loaded = false;
 
 	let popups = {
@@ -75,7 +80,7 @@
 
 		map = new mapboxgl.Map({
 			container: 'map',
-			style: 'mapbox://styles/moriwaan/cjzqsxone04y21ctdxp1dgogb',
+			style: mapstyles.light,
 			center: [ mapPositions.lon, mapPositions.lat ],
 			zoom: mapPositions.zoom
 		});
