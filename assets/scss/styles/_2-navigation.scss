@@ -220,6 +220,10 @@ nav.bar.history {
 		flex-shrink: 0;
 		flex-basis: auto;
 	}
+	&.current a,
+	a:hover {
+		color: #00f;
+	}
 	ol {
 		flex-grow: 1;
 		flex-shrink: 1;
@@ -257,10 +261,6 @@ nav.bar.history {
 					display: inline-block;
 					margin-right: 0.6rem;
 				}
-			}
-			&.current a,
-			a:hover {
-				color: #00f;
 			}
 			&.double a {
 				overflow: hidden;
