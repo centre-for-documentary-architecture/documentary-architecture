@@ -68,7 +68,10 @@
 
 	import { onDestroy } from 'svelte';
 	onDestroy(() => {
-		lieblingHouseWorldInstance = undefined;
+		lieblingHouseWorldInstance.Quit(function() {
+		    console.log("done!");
+		});
+		lieblingHouseWorldInstance = null;
 	});
 	/*
 	* load and ini world
