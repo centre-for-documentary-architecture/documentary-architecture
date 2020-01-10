@@ -118,6 +118,8 @@ return [
 			$update['date_modified'] = date('Y-m-d H:i');
 		}
 
+		flushCache( $page->id() );
+
 		if( !empty( $update ) ){
 			$page->update( $update, 'en');
 		}
@@ -126,10 +128,13 @@ return [
 		syncContexts( $page, $oldPage );
 	},
 	'page.changeSlug:after' => function ( $page, $oldPage ) {
+		flushCache( $page->id() );
 		require_once __DIR__.'/../functions/syncContexts.php';
 		syncContexts( $page, $oldPage );
 	},
 	'page.changeTitle:after' => function ($newPage, $oldPage) {
+
+		flushCache( $page->id() );
 
 		$currentLang = $newPage->kirby()->languageCode();
 		$newTitle = $newPage->content( $currentLang )->title()->value();
@@ -143,6 +148,15 @@ return [
 			], $lang );
 		}
 
+	},
+	'page.chengeNum:after' => function ($page) {
+		flushCache( $page->id() );
+	},
+	'page.changeStatus:after' => function ($page) {
+		flushCache( $page->id() );
+	},
+	'page.delete:after' => function ($page) {
+		flushCache( $page->id() );
 	},
 
 	/*
@@ -206,6 +220,8 @@ return [
 			return;
 		}
 
+		flushCache( $file->id() );
+
 		$update = [
 			'date_modified' => date('Y-m-d H:i'),
 			'user_modified' => Yaml::encode( $this->user()->email() ),
@@ -246,7 +262,6 @@ return [
 		$protocol[] = $new;
 		$update['protocol'] = Yaml::encode( $protocol );
 
-
 		$file->update( $update, 'en');
 
 		require_once __DIR__.'/../functions/syncContexts.php';
@@ -257,11 +272,19 @@ return [
 			return;
 		}
 
+		flushCache( $file->id() );
+
 		/*
 		* when filename is changed, all pages, where this image is used as thumbnail, should be updated
 		*/
 		searchReplaceFields( $oldFile->id(), $file->id(), 'thumbnail' );
 
-	}
+	},
+	'file.delte:after' => function ($file) {
+		flushCache( $file->id() );
+	},
+	'file.replace:after' => function ($file) {
+		flushCache( $file->id() );
+	},
 
 ];
