@@ -12,7 +12,7 @@
 	padding: 0 0.5rem;
 	flex-shrink: 0;
 
-	a, button {
+	a, button, .item {
 		border: none;
 		display: inline-block;
 		padding: 0.4rem 0.4rem;
@@ -220,7 +220,7 @@ nav.bar.history {
 		flex-shrink: 0;
 		flex-basis: auto;
 	}
-	&.current a,
+	.current .item,
 	a:hover {
 		color: #00f;
 	}
@@ -253,7 +253,7 @@ nav.bar.history {
 		}
 
 		li {
-			a {
+			.item {
 				padding-left: 0.3em;
 				padding-right: 0.3em;
 				&:before {
@@ -262,7 +262,7 @@ nav.bar.history {
 					margin-right: 0.6rem;
 				}
 			}
-			&.double a {
+			&.double .item {
 				overflow: hidden;
 				width: 1.4em;
 			}

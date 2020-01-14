@@ -31,23 +31,31 @@
 
 <nav class="col-12 bar history horizontal white">
   <h3>
-    <a on:click={window.navi} title="{start.title}" href="{start.url}" data-template="{start.template}">
+    <a class="item" on:click={window.navi} title="{start.title}" href="{start.url}" data-template="{start.template}">
         {start.title}
     </a>
   </h3>
   <ol bind:offsetWidth={outerWidth} class="{ innerWidth > outerWidth ? 'alignright' : ''}">
     <div bind:offsetWidth={innerWidth}>
-
       {#each listItems as item}
+        {#if item.url == entityUrl }
 
-        <li class="{ item.url == entityUrl ? 'current' : ''} { item.double ? 'double' : ''}">
-            <a on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
-                {item.title}
-            </a>
-        </li>
+          <li class="current { item.double ? 'double' : ''}">
+              <span class="item" title="{item.title}">
+                  {item.title}
+              </span>
+          </li>
 
+        {:else}
+
+          <li class="{ item.double ? 'double' : ''}">
+              <a class="item" on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
+                  {item.title}
+              </a>
+          </li>
+
+        {/if}
       {/each}
-
     </div>
   </ol>
 </nav>
