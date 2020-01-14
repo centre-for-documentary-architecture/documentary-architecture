@@ -45,14 +45,14 @@
 
 				<svelte:component this={views[ item.view.type ]} view={item.view}/>
 
-				<a href={item.url}>
-					<div class="title">
+				<a on:click={window.navi} href={item.url} data-template={item.template}>
+		        <div class="title">
 
-						<span class="count">{item.count || 1}</span>
-						<h4>{@html item.title}</h4>
+		            <span class="count">{item.count || ''}</span>
+		            <h4>{@html item.title}</h4>
 
-					</div>
-				</a>
+		        </div>
+		    </a>
 
 			</li>
 
