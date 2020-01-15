@@ -117,9 +117,6 @@ Kirby::plugin('centre-for-documentary-architecture/frontend', [
                     $jsonCacheId .= '-' . http_build_query($query);
                 }
                 $jsonCacheData  = $jsonCache->get( $jsonCacheId );
-                if( isset( $query['flush'] ) ){
-                    $jsonCacheData = null;
-                }
                 $cached = true;
 
                 if ($jsonCacheData === null) {
