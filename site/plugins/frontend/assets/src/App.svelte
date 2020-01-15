@@ -25,6 +25,8 @@
 
 		document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
 
+		entity.url = window.location.href;
+
 		history.replaceState({
 			title: entity.title,
 			url: entity.url,

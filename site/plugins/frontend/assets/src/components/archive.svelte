@@ -28,10 +28,11 @@
 			return;
 		}
 
-		archiveSearch.query.term = archiveSearch.query.term.trimStart();
+		// archiveSearch.query.term = archiveSearch.query.term.trimStart();
 
 		let title = 'CDA Archive';
-		let url = archive.url + '?';
+		// let url = archive.url + '?';
+		let url = window.location.origin + window.location.pathname + '?';
 
 		if( archiveSearch.filter.id !== '' ){
 			title += ' '+archiveSearch.filter.id;
@@ -64,6 +65,8 @@
 
 		archiveSearch.query.previous = archiveSearch.query.term;
 		archiveSearch.filter.previous = archiveSearch.filter.id;
+
+		console.log( archiveSearch );
 
 	}
 

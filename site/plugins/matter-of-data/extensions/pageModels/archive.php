@@ -88,15 +88,15 @@ class PageArchive extends Page
     public function dataAbstract( string $srcset = 'medium' )
     {
 
-		$content = [
-			'url' => $this->url(),
-			'title' => $this->title()->value(),
-			'template' => 'archive',
-            'classlist' => $this->classlist(),
-            'filter' => '',
-            'worlditem' => null,
-            'count' => $this->countCollection()
-		];
+    $content = [
+    	'url' => $this->url(),
+    	'title' => $this->title()->value(),
+    	'template' => 'archive',
+        'classlist' => $this->classlist(),
+        'filter' => '',
+        'worlditem' => null,
+        'count' => $this->countCollection()
+    ];
 
 		return $content;
 
