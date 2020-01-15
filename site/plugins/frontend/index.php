@@ -84,10 +84,12 @@ Kirby::plugin('centre-for-documentary-architecture/frontend', [
                         'next' => $next,
                         'content' => $results->limit( $pagination )->dataAbstract()
                     ];
+                    /*
                     if( isset($query['research']) && $query['research'] != '' ){
                       // $data['title'] .= ': '.$query['research'];
                       // $data['url'] .= '?'.http_build_query(['research' => $query['research'] ]);
                     }
+                    */
 
                 } else {
 

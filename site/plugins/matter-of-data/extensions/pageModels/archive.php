@@ -90,7 +90,7 @@ class PageArchive extends Page
 
     $content = [
     	'url' => $this->url(),
-    	'title' => $this->title()->value(),
+    	'title' => 'CDA '.$this->title()->value(),
     	'template' => 'archive',
         'classlist' => $this->classlist(),
         'filter' => '',

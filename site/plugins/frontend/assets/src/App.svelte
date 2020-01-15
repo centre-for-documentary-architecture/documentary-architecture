@@ -25,13 +25,14 @@
 
 		document.body.className = [ entity.theme, entity.layout, entity.template, entity.entity, entity.type, entity.category, 'dynamic' ].join(' ');
 
+		document.title = 'CDA '+entity.title;
 		entity.url = window.location.href;
 
 		history.replaceState({
 			title: entity.title,
 			url: entity.url,
 			worlditem: entity.worlditem
-		}, entity.title, entity.url);
+		}, 'CDA '+entity.title, entity.url);
 	});
 	/**
 	 * naviWorld
