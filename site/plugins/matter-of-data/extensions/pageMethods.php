@@ -127,13 +127,14 @@ return [
 				'worlditem' => $this->worlditem(),
 				'count' => $this->countCollection(),
 				'info' => $this->entityInfo(),
+				'keywords' => $this->tags()->split(),
 			];
 
 			if( $srcset && $thumbnail = $this->thumbnail() ){
 				$data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
 			}
 
-			$cache->set($id, $data, 10000 );
+			$cache->set($id, $data, option('cache-expires',1440) );
 
 		}
 
