@@ -151,7 +151,7 @@ return [
 			'category' => $this->category(),
 
 			'title' => $this->title()->value(),
-			'keywords' => $this->keywords()->split(),
+			'keywords' => $this->tags()->split(),
 			'description' => $this->description()->value(),
 
 			'theme' => $this->theme(),
