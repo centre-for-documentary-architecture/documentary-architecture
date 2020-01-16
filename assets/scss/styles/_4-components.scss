@@ -76,7 +76,7 @@ dl.table {
 		margin: 0;
 	}
 	dd + dd,
-	// dt + dd.long p,
+	dt + dd.long p,
 	dd.long p + p {
 		margin-top: $padding-text-top;
 	}
