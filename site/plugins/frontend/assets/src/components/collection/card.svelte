@@ -1,7 +1,7 @@
 <script>
 
     export let item;
-    export let width;
+    export let width = false;
     export let info = false;
     export let classname = '';
 
