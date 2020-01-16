@@ -21,7 +21,6 @@
 		listItems = value;
   });
 
-  export let start;
   export let entityUrl = '';
 
   let outerWidth, innerWidth;
@@ -31,8 +30,8 @@
 
 <nav class="col-12 bar history horizontal white">
   <h3>
-    <a class="item" on:click={window.navi} title="{start.title}" href="{start.url}" data-template="{start.template}">
-        {start.title}
+    <a class="item" title="Go to start page" href="{window.location.origin}">
+        Start
     </a>
   </h3>
   <ol bind:offsetWidth={outerWidth} class="{ innerWidth > outerWidth ? 'alignright' : ''}">

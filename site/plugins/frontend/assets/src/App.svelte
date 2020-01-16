@@ -163,7 +163,7 @@
 
 {#if entity !== undefined }
 
-	<NavHistory entityUrl={entity.url} start={entity.breadcrumbs[0]} />
+	<NavHistory entityUrl={entity.url} />
 
 	<div class="grid panels {entity.type == 'liebling-house' ? 'overlap' : '' }">
 
