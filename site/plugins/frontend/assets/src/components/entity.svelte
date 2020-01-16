@@ -2,25 +2,25 @@
 	import { loading } from './helpers/loader.js';
 	import Wait from './helpers/wait.svelte';
 
-    /*
-    * import components
-    */
+  /*
+  * import components
+  */
 
-    import Pagination from './navigation/pagination.svelte';
-    import TourNavigation from './navigation/tourNavigation.svelte';
+  import Pagination from './navigation/pagination.svelte';
+  import TourNavigation from './navigation/tourNavigation.svelte';
 
-    import TabHeader from './tabs/header.svelte';
-	import TabTable from './tabs/table.svelte';
+  import TabHeader from './tabs/header.svelte';
 	import TabCollection from './tabs/collection.svelte';
+	import TabTable from './tabs/table.svelte';
 	import TabText from './tabs/text.svelte';
 	let tabs = {
 		header: TabHeader,
-		table: TabTable,
 		collection: TabCollection,
+		table: TabTable,
 		text: TabText
-    }
+  }
 
-    import ViewCollection from './views/collection.svelte';
+  import ViewCollection from './views/collection.svelte';
 	import ViewImage from './views/image.svelte';
 	import ViewVideo from './views/video.svelte';
 	import ViewAudio from './views/audio.svelte';
