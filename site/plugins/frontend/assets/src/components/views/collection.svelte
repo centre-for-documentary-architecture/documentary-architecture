@@ -1,7 +1,7 @@
 <script>
 	import { afterUpdate } from 'svelte';
 
-	export let transcript;
+	export let transcript = false;
 	export let view;
 	export let classname;
 

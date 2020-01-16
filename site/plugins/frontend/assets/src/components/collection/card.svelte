@@ -2,7 +2,7 @@
 
     export let item;
     export let width;
-    export let info;
+    export let info = false;
     export let classname = '';
 
 </script>
