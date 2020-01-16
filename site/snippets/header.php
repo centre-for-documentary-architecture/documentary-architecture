@@ -62,7 +62,6 @@ if( isset( $class ) ){
   <meta name="msapplication-TileColor" content="#000000">
   <meta name="theme-color" content="#000000">
 
-
 	<script>
 		var lieblingHouseWorldContainer;
 		var lieblingHouseWorldInstance;
