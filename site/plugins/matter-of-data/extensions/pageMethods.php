@@ -159,7 +159,7 @@ return [
 			'layout' => $this->layout(),
 			'template' => $this->template()->name(),
 			'worlditem' => $this->worlditem(),
-			'breadcrumbs' => $this->dataBreadcrumbs()
+			// 'breadcrumbs' => $this->dataBreadcrumbs()
 		];
 
 	},
