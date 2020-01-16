@@ -22,19 +22,13 @@
 
 	}
 	.section--content {
-		max-height: 0;
 		overflow: hidden;
-		transition: 200ms max-height ease;
 	}
 	&.open {
 		.section--header:after {
 			top: 0.5em;
 			transform: rotate(-135deg);
 			-webkit-transform: rotate(-135deg);
-		}
-		.section--content {
-			display: block;
-			max-height: 10000px;
 		}
 	}
 }
