@@ -289,6 +289,11 @@ nav.bar.archive {
 	background-color: $black;
 	color: $white;
 
+	.keywords a:after {
+		content: '→';
+		padding-left: 0.2em;
+	}
+
 }
 body {
 	// &.archive,

@@ -179,6 +179,6 @@
 
 	</div>
 
-	<NavArchive />
+	<NavArchive keywords={entity.keywords} />
 
 {/if}
