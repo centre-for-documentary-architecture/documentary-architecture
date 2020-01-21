@@ -3,27 +3,37 @@ import { pageStore } from './pageStore.js';
 
 import { loadData } from './loadData.js';
 
-export async function navigateTo( url, replace = false, page = {} ) {
+let loading = false;
 
-	const target = new URL( url );
-	if( target.host != window.location.host ){
-		window.open( url, '_blank' );
-		return;
+export async function navigateTo( url, replace = false, target = {} ) {
+	if( loading === true ){
+		return false;
 	}
 
-	page.title = page.title || target.pathname;
-	page.template = page.template || false;
+	const href = new URL( url );
+	if( href.host !== window.location.host ){
+		window.open( href, '_blank' );
+		return;
+	}
+	if( url === window.location.href ){
+		return false;
+	}
+
+	loading = true;
+
+	target.title = target.title || target.pathname;
+	target.template = target.template || false;
 
 	let state = {
 		url: url,
-		title: page.title,
-		template: page.template,
-		worlditem: page.worlditem
+		title: target.title,
+		template: target.template,
+		worlditem: target.worlditem
 	};
 
 	// use info provided by page object for
 
-	pageStore.set({...page, loading: true});
+	pageStore.set({...target, loading: true});
 
 	if( replace === false ){
 		history.pushState( state, state.title, state.url);
@@ -50,9 +60,12 @@ export async function navigateTo( url, replace = false, page = {} ) {
 
 	history.replaceState( state, data.title, data.url );
 
+	console.log('historyStore before update');
 	historyStore.update( l => {
 		l[l.length-1] = state;
 		return l;
 	});
+	console.log('historyStore after update');
 
+	loading = false;
 }

@@ -1,5 +1,6 @@
 <script>
   import { historyStore } from '../../router/historyStore.js';
+  import Link from '../../router/Link.svelte';
 
   let list;
   const unsubscribe = historyStore.subscribe(value => {
@@ -19,6 +20,7 @@
 		}
 
 		list = value;
+    console.log( value );
   });
 
   let outerWidth, innerWidth;
@@ -28,30 +30,14 @@
 
 <nav class="col-12 bar history horizontal white">
   <h3>
-    <a class="item" title="Go to start page" href="{window.location.origin}">
-        Start
-    </a>
+    <Link title="Start" url={window.location.origin} />
   </h3>
   <ol bind:offsetWidth={outerWidth} class="{ innerWidth > outerWidth ? 'alignright' : ''}">
     <div bind:offsetWidth={innerWidth}>
       {#each list as item}
-        {#if item.url == window.location.href }
 
-          <li class="current { item.double ? 'double' : ''}">
-              <span class="item" title="{item.title}">
-                  {item.title}
-              </span>
-          </li>
+        <Link target={item} classList="{ item.double ? 'double' : ''}" />
 
-        {:else}
-
-          <li class="{ item.double ? 'double' : ''}">
-              <a class="item" on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
-                  {item.title}
-              </a>
-          </li>
-
-        {/if}
       {/each}
     </div>
   </ol>
