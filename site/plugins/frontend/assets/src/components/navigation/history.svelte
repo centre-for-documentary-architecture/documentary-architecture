@@ -1,8 +1,8 @@
 <script>
-  import { historyList } from './historyListStore.js';
+  import { historyStore } from '../../router/historyStore.js';
 
-  let listItems;
-  const unsubscribe = historyList.subscribe(value => {
+  let list;
+  const unsubscribe = historyStore.subscribe(value => {
     if( value.length > 50 ){
 			value.splice(1,1);
 		}
@@ -18,10 +18,8 @@
 			}
 		}
 
-		listItems = value;
+		list = value;
   });
-
-  export let entityUrl = '';
 
   let outerWidth, innerWidth;
 
@@ -36,8 +34,8 @@
   </h3>
   <ol bind:offsetWidth={outerWidth} class="{ innerWidth > outerWidth ? 'alignright' : ''}">
     <div bind:offsetWidth={innerWidth}>
-      {#each listItems as item}
-        {#if item.url == entityUrl }
+      {#each list as item}
+        {#if item.url == window.location.href }
 
           <li class="current { item.double ? 'double' : ''}">
               <span class="item" title="{item.title}">
