@@ -19,14 +19,17 @@
 	import ArchiveBar from './components/navigation/archive.svelte';
 
 	// import HtmlTemplate 	from './templates/html.svelte';
+	/*
 	import EntityTemplate 	from './templates/entity.svelte';
-	import ArchiveTemplate 	from './templates/default.svelte';
-
+	import ArchiveTemplate 	from './templates/archive.svelte';
 	let templates = {
 		// 'html': 	HtmlTemplate,
 		'entity': 	EntityTemplate,
 		'archive': 	ArchiveTemplate,
 	};
+	*/
+
+	import { slide } from 'svelte/transition';
 
 </script>
 
@@ -39,9 +42,9 @@
 <HistoryBar />
 
 {#if page.template === 'entity' }
-	<div>Entity</div>
+	<div transition:slide="{{duration: 300}}">Entity</div>
 {:else if page.template === 'archive'}
-	<div>Archive</div>
+	<div transition:slide="{{duration: 300}}">Archive</div>
 {/if}
 
 <ArchiveBar />
