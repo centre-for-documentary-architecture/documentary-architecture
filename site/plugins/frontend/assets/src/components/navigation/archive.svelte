@@ -1,4 +1,5 @@
 <script>
+  import Link from '../../router/Link.svelte';
 
   export let keywords = [];
   let url = location.origin + '/archive';
@@ -8,7 +9,7 @@
 <nav class="col-12 bar archive horizontal">
 
   <div class="left">
-    <a on:click={window.navi} title="Go to Archive" href="{url}" data-template="archive">Archive</a>
+    <Link {url} title="Archive" template="archive" />
   </div>
   {#if keywords.length > 0}
     <div class="right keywords">

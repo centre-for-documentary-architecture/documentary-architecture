@@ -60,12 +60,10 @@ export async function navigateTo( url, replace = false, target = {} ) {
 
 	history.replaceState( state, data.title, data.url );
 
-	console.log('historyStore before update');
 	historyStore.update( l => {
 		l[l.length-1] = state;
 		return l;
 	});
-	console.log('historyStore after update');
 
 	loading = false;
 }

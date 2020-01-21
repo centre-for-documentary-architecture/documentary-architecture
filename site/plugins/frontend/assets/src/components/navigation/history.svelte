@@ -20,7 +20,6 @@
 		}
 
 		list = value;
-    console.log( value );
   });
 
   let outerWidth, innerWidth;
