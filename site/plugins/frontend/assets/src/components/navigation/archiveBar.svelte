@@ -24,7 +24,7 @@
   {#if keywords}
     <div class="right keywords">
       {#each keywords as keyword}
-        <a on:click={window.navi} href="{url+'?research='+keyword}" data-template="archive">{keyword}</a>
+        <Link url="{url+'?research='+keyword}" template="archive" title="{keyword}" />
       {/each}
     </div>
   {/if}

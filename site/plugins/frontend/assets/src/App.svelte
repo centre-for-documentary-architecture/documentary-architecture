@@ -1,23 +1,22 @@
 <script>
 	import { slide } from 'svelte/transition';
 
-	import Link from './router/Link.svelte';
 	import HistoryBar from './components/navigation/history.svelte';
-	// import HtmlTemplate 	from './templates/html.svelte';
-	// import EntityTemplate 	from './templates/entity.svelte';
+	// import HtmlTemplate from './templates/html.svelte';
+	import EntityTemplate from './templates/entity.svelte';
 	import ArchiveTemplate from './templates/archive.svelte';
 	import ArchiveBar from './components/navigation/archiveBar.svelte';
 
 	import { loadPage } from './router/loadPage.js';
-	import { popState } 	from './router/popState.js';
+	import { popState } from './router/popState.js';
 
-	import { onMount } 		from 'svelte';
+	import { onMount } from 'svelte';
 	onMount(async () => {
 		loadPage();
 	});
 
 	let page;
-	import { pageStore } 	from './router/pageStore.js';
+	import { pageStore } from './router/pageStore.js';
   const unsubscribe = pageStore.subscribe(value => {
 		page = value;
 		console.log( value );
@@ -34,7 +33,7 @@
 <HistoryBar />
 
 {#if page.template === 'entity' }
-	Entity Page
+	<EntityTemplate {page} />
 	<ArchiveBar {page} />
 {:else if page.template === 'archive' }
 	<ArchiveTemplate {page} />

@@ -1,6 +1,4 @@
 <script>
-	import { loading } from '../helpers/loader.js';
-	import Wait from '../helpers/wait.svelte';
 
   /*
   * import components
@@ -20,14 +18,14 @@
 		text: TabText
   }
 
-  import ViewCollection from './views/collection.svelte';
-	import ViewImage from './views/image.svelte';
-	import ViewVideo from './views/video.svelte';
-	import ViewAudio from './views/audio.svelte';
-	import ViewMap from './views/map.svelte';
-	import View3d from './views/3d.svelte';
-	import ViewPanorama from './views/panorama.svelte';
-	import ViewLieblingHouse from './views/liebling-house.svelte';
+  import ViewCollection from '../views/collection.svelte';
+	import ViewImage from '../views/image.svelte';
+	import ViewVideo from '../views/video.svelte';
+	import ViewAudio from '../views/audio.svelte';
+	import ViewMap from '../views/map.svelte';
+	import View3d from '../views/3d.svelte';
+	import ViewPanorama from '../views/panorama.svelte';
+	import ViewLieblingHouse from '../views/liebling-house.svelte';
 	let views = {
 		'collection': ViewCollection,
 		'image': ViewImage,
@@ -39,11 +37,11 @@
 		'panorama': ViewPanorama
 	}
 
-	export let entity;
+	export let page;
 
 	let glass;
 	window.touchGlass = event => {
-		if( entity.view.type !== 'liebling-house' ){
+		if( page.view.type !== 'liebling-house' ){
 			return false;
 		}
 		if( event.target !== glass ){
@@ -84,31 +82,27 @@
 
 </script>
 
-{#if $loading === true}
-	<Wait />
-{/if}
+{#if page.content}
 
-{#if entity.content}
-
-    <main class="panel col-sm-{contentWidth(entity.entity)}" on:click={window.touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
+    <main class="panel col-sm-{contentWidth(page.entity)}" on:click={window.touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
 
         <div class="content">
 			<div class="tabs">
-				{#if entity.category == 'overview'}
+				{#if page.category == 'overview'}
 					<TourNavigation>
 						<button class="blue" on:click={window.worldSetRoaming}>Start exploring →</button>
 					</TourNavigation>
-				{:else if entity.category == 'tour'}
+				{:else if page.category == 'tour'}
 					<TourNavigation>
-						<a class="button blue" on:click={window.navi} href="{entity.content[1].content[0].url}" data-template="{entity.content[1].content[0].template}">Start promenade →</a>
+						<a class="button blue" on:click={window.navi} href="{page.content[1].content[0].url}" data-template="{page.content[1].content[0].template}">Start promenade →</a>
 					</TourNavigation>
-				{:else if entity.category == 'tourstop' && entity.pagination }
-					<Pagination pagination={entity.pagination} />
+				{:else if page.category == 'tourstop' && page.pagination }
+					<Pagination pagination={page.pagination} />
 				{/if}
 
-				{#each entity.content as tab}
+				{#each page.content as tab}
 
-					<svelte:component this={tabs[ tab.type ]} {tab} category="{entity.category}" entity="{entity.entity}"/>
+					<svelte:component this={tabs[ tab.type ]} {tab} category="{page.category}" entity="{page.entity}"/>
 
 				{/each}
 			</div>
@@ -117,8 +111,8 @@
     </main>
 
 {/if}
-{#if entity.view}
+{#if page.view}
 
-	<svelte:component this={views[ entity.view.type ]} view={entity.view} classname="presentation panel col-sm-{12 - contentWidth(entity.entity)}" transcript={entity.transcript || false}/>
+	<svelte:component this={views[ page.view.type ]} view={page.view} classname="presentation panel col-sm-{12 - contentWidth(page.entity)}" transcript={page.transcript || false}/>
 
 {/if}

@@ -1,33 +1,40 @@
 <script>
 
-    export let pagination;
+  import Link from './router/Link.svelte';
+  export let pagination;
 
-    // ← →
+  // ← →
 </script>
 
 <nav class="pagination bar controls">
     {#if pagination.prev }
-        <a on:click={window.navi} title="Previous: {pagination.prev.title}" href={pagination.prev.url} data-template={pagination.prev.template}>←</a>
+      <Link target={pagination.prev} >←</Link>
     {/if}
 
     {#if pagination.siblings}
-        <ol>
-            {#each pagination.siblings as item, i}
+      <ol>
+        {#each pagination.siblings as item, i}
 
-                <li class="{ item.url == pagination.current.url ? 'current' : ''}">
-                    <a on:click={window.navi} title="{item.title}" href="{item.url}" data-template="{item.template}">
-                        <span class="num">{i+1}</span>
-                        <span class="title">{item.title}</span>
-                    </a>
-                </li>
+          <li class="{ item.url == pagination.current.url ? 'current' : ''}">
 
-            {/each}
-        </ol>
+            <Link target={item} >
+              <span class="num">{i+1}</span>
+              <span class="title">{item.title}</span>
+            </Link>
+
+          </li>
+
+        {/each}
+      </ol>
     {/if}
 
     {#if pagination.next }
-        <a on:click={window.navi} title="Next: {pagination.next.title}" href="{pagination.next.url}" data-template="{pagination.next.template}">→</a>
+      <Link target={pagination.next} >
+        <abbr title="Previous: {pagination.next.title}">→</abbr>
+      </Link>
     {:else}
-        <a on:click={window.navi} title="Back to start" href="{pagination.parent.url}" data-template="{pagination.parent.template}">Back</a>
+      <Link target={pagination.parent} >
+        <abbr title="Back to start">Back</abbr>
+      </Link>
     {/if}
 </nav>
