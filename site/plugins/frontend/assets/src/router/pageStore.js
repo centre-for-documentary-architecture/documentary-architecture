@@ -1,5 +1,5 @@
 import { writable } from 'svelte/store';
 export const pageStore = writable({
-	title: 'CDA',
+	title: document.title,
 	url: window.location.href
 });

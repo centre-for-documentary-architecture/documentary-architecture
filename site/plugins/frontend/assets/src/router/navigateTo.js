@@ -7,6 +7,7 @@ let loading = false;
 
 export async function navigateTo( url, replace = false, target = {} ) {
 	if( loading === true ){
+		console.log('navigateTo() already loading');
 		return false;
 	}
 
@@ -55,6 +56,7 @@ export async function navigateTo( url, replace = false, target = {} ) {
 	state = {
 		title: data.title,
 		url: data.url,
+		template: data.template,
 		worlditem: data.worlditem
 	}
 
