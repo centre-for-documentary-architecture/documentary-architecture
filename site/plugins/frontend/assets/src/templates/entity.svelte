@@ -1,18 +1,18 @@
 <script>
-	import { loading } from './helpers/loader.js';
-	import Wait from './helpers/wait.svelte';
+	import { loading } from '../helpers/loader.js';
+	import Wait from '../helpers/wait.svelte';
 
   /*
   * import components
   */
 
-  import Pagination from './navigation/pagination.svelte';
-  import TourNavigation from './navigation/tourNavigation.svelte';
+  import Pagination from '../components/navigation/pagination.svelte';
+  import TourNavigation from '../components/navigation/tourNavigation.svelte';
 
-  import TabHeader from './tabs/header.svelte';
-	import TabCollection from './tabs/collection.svelte';
-	import TabTable from './tabs/table.svelte';
-	import TabText from './tabs/text.svelte';
+  import TabHeader from '../components/tabs/header.svelte';
+	import TabCollection from '../components/tabs/collection.svelte';
+	import TabTable from '../components/tabs/table.svelte';
+	import TabText from '../components/tabs/text.svelte';
 	let tabs = {
 		header: TabHeader,
 		collection: TabCollection,

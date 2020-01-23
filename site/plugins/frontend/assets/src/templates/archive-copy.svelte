@@ -1,22 +1,22 @@
 <script>
+	import { loading } from './helpers/loader.js';
+	import Wait from './helpers/wait.svelte';
 
-	import ViewCollection from '../views/collection.svelte';
-	import Card from '../components/collection/card.svelte';
-	import List from '../components/collection/list.svelte';
+	export let archive;
 
-	import { loadData } from '../router/loadData.js';
-
-	export let page;
+	import ViewCollection from './views/collection.svelte';
+	import Card from './collection/card.svelte';
+	import CollectionList from './collection/list.svelte';
 
 	let archiveSearch = {
 		inputFiled: false,
 		filter: {
-			id: page.archive.filter,
-			previous: page.archive.filter,
+			id: archive.archive.filter,
+			previous: archive.archive.filter,
 		},
 		query: {
-			term: page.archive.query,
-			previous: page.archive.query,
+			term: archive.archive.query,
+			previous: archive.archive.query,
 		},
 		loading: false
 	};
@@ -31,7 +31,7 @@
 		// archiveSearch.query.term = archiveSearch.query.term.trimStart();
 
 		let title = 'CDA Archive';
-		// let url = page.url + '?';
+		// let url = archive.url + '?';
 		let url = window.location.origin + window.location.pathname + '?';
 
 		if( archiveSearch.filter.id !== '' ){
@@ -58,8 +58,8 @@
 		if( newData ){
 
 			archiveSearch.loading = false;
-			page.results = newData.results;
-			console.log( page.results );
+			archive.results = newData.results;
+			console.log( archive.results );
 
 		}
 
@@ -95,7 +95,7 @@
 		<section class="filters tab">
 			<h2>Filter</h2>
 			<ul class="list">
-				{#each page.archive.filters.content as item}
+				{#each archive.archive.filters.content as item}
 					<li class="card {archiveSearch.filter.id == item.filter ? 'active' : ''}">
 						<button on:click={() => archiveSearch.filter.id = item.filter} on:click={startSearch}>
 							<div class="title">
@@ -113,12 +113,12 @@
 	</div>
 </main>
 
-{#if archiveSearch.loading === true}
-	Please wait...
+{#if $loading === true}
+	<Wait />
 {/if}
 
-{#if page.results.total === 0 && archiveSearch.query.term !== '' }
+{#if archive.results.total === 0 && archiveSearch.query.term !== '' }
 	<div class="panel col-sm-9 empty-results">No results for »{archiveSearch.query.term}«</div>
 {:else}
-	<ViewCollection view={page.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
+	<ViewCollection view={archive.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
 {/if}

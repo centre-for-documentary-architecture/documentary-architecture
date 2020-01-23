@@ -1,8 +1,8 @@
 <script>
 
 	import Card from './card.svelte';
-	import ViewVideo from '../views/video.svelte';
-	import ViewAudio from '../views/audio.svelte';
+	import ViewVideo from '../../views/video.svelte';
+	import ViewAudio from '../../views/audio.svelte';
 
     export let list;
 	export let category = '';

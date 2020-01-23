@@ -8,9 +8,9 @@
 	export let controls = false;
 	export let columns = view.columns || 2;
 
-	import CollectionCards from '../collection/cards.svelte';
-	import CollectionList from '../collection/list.svelte';
-	import CollectionsGallery from '../collection/gallery.svelte';
+	import CollectionCards from '../components/collection/cards.svelte';
+	import CollectionList from '../components/collection/list.svelte';
+	import CollectionsGallery from '../components/collection/gallery.svelte';
 	let layouts = {
 		cards: CollectionCards,
 		list: CollectionList,
