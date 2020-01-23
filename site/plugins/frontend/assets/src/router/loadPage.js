@@ -1,14 +1,16 @@
 import { historyStore } from './historyStore.js';
 import { pageStore } from './pageStore.js';
 
+import { createStateObject } from './createStateObject.js';
+
 import { loadData } from './loadData.js';
 
 export async function loadPage( url = false, title = false ) {
 
-	let state = {
+	let state = createStateObject({
 		title: title || document.title.replace('CDA ',''),
 		url: url || window.location.href
-	}
+	});
 
 	pageStore.set({...state, loading: true});
 	historyStore.update(l => [...l, state]);
@@ -22,13 +24,7 @@ export async function loadPage( url = false, title = false ) {
 	// naviWorld( entity.worlditem );
 	// relocate();
 
-	state = {
-		title: data.title,
-		url: data.url,
-		template: data.template,
-		worlditem: data.worlditem
-	}
-
+	state = createStateObject( data );
 	history.replaceState( state, state.title, state.url );
 
 	historyStore.update( l => {

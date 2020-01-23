@@ -1,6 +1,8 @@
 import { historyStore } from './historyStore.js';
 import { pageStore } from './pageStore.js';
 
+import { createStateObject } from './createStateObject.js';
+
 import { loadData } from './loadData.js';
 
 let loading = false;
@@ -24,13 +26,9 @@ export async function navigateTo( url, replace = false, target = {} ) {
 
 	target.title = target.title || target.pathname;
 	target.template = target.template || false;
+	target.url = url;
 
-	let state = {
-		url: url,
-		title: target.title,
-		template: target.template,
-		worlditem: target.worlditem
-	};
+	let state = createStateObject( target );
 
 	// use info provided by page object for
 
@@ -53,13 +51,7 @@ export async function navigateTo( url, replace = false, target = {} ) {
 	// naviWorld( entity.worlditem );
 	// relocate();
 
-	state = {
-		title: data.title,
-		url: data.url,
-		template: data.template,
-		worlditem: data.worlditem
-	}
-
+	state = createStateObject( data );
 	history.replaceState( state, data.title, data.url );
 
 	historyStore.update( l => {
