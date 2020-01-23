@@ -25,9 +25,9 @@ if( isset( $class ) ){
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width,initial-scale=1.0'>
 	<meta name="robots" content="noindex,nofollow">
-	<link rel="dns-prefetch" href="<?= option('cdn-host') ?>">
-	<?php if( !$page->isHomePage() ): ?>
-		<!-- <link rel="preload" as="fetch" href="<?= $page->url() ?>.json"> -->
+	<?php if( option('cdn-domain') ): ?>
+		<link rel="dns-prefetch" href="<?= option('cdn-domain') ?>">
+		<link rel="preconnect" href="<?= option('cdn-domain') ?>">
 	<?php endif; ?>
 
 	<title><?= $page->title()->html(); ?></title>
@@ -36,8 +36,6 @@ if( isset( $class ) ){
 	<?= css( option('cdn').'/assets/css/normalize.css') ?>
 	<?= css( option('cdn').'/assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
-
-	<link rel="preload" as="script" href="<?= option('frontend-js') ?>">
 
 	<meta name="description" content="<?= $page->description()->html()->or('CDA') ?>">
 	<meta name="keywords" content="<?= $page->keywords()->or('architecture, bauhaus, research, data') ?>">
