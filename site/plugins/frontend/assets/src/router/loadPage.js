@@ -6,7 +6,7 @@ import { loadData } from './loadData.js';
 export async function loadPage( url = false, title = false ) {
 
 	let state = {
-		title: title || document.title,
+		title: title || document.title.replace('CDA ',''),
 		url: url || window.location.href
 	}
 
