@@ -1,7 +1,7 @@
 @font-face {
 	font-family: "Favorit";
     src: url("FavoritStd-Book.woff2") format("woff2"),
-         url("FavoritStd-Book.woff2") format("woff");
+         url("FavoritStd-Book.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
 }
