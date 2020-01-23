@@ -2,8 +2,6 @@
 
 snippet('header');
 
-snippet('noscript');
-
 snippet('footer', [
     'include' => [
         js( option('frontend-js'), ['defer'=>true]),

@@ -19,5 +19,7 @@
         });
     </script>
 
+    <?php snippet('noscript'); ?>
+
 </body>
 </html>
