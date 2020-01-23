@@ -4,6 +4,7 @@
          url("FavoritStd-Book.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
+	font-display: swap;
 }
 @font-face {
 	font-family: "Favorit Mono";
@@ -11,4 +12,5 @@
          url("FavoritMonoStd-Book.woff") format("woff");
 	font-weight: normal;
 	font-style: normal;
+	font-display: swap;
 }
