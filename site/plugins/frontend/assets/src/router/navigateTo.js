@@ -7,7 +7,7 @@ import { loadData } from './loadData.js';
 
 let loading = false;
 
-export async function navigateTo( url, replace = false, target = {} ) {
+export async function navigateTo( url, target = {}, replace = false ) {
 	if( loading === true ){
 		console.log('navigateTo() already loading');
 		return false;

@@ -7,7 +7,6 @@
 	import { slide } from 'svelte/transition';
 
 	import { loadPage } from './router/loadPage.js';
-	import { navigateTo } from './router/navigateTo.js';
 	import { popState } 	from './router/popState.js';
 
 	import { onMount } 		from 'svelte';

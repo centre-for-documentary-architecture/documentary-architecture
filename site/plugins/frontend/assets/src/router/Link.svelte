@@ -19,7 +19,7 @@
   export { classList as class };
 
   function onClick(event) {
-    navigateTo( target.url, replace, target);
+    navigateTo( target.url, target, replace);
     dispatch('click', event);
   }
 </script>
