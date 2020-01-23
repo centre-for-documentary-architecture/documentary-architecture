@@ -119,6 +119,8 @@ Options +FollowSymlinks
   AddOutputFilterByType DEFLATE application/json
   AddOutputFilterByType DEFLATE text/map
 
+  AddOutputFilterByType DEFLATE application/x-font-woff
+
   AddOutputFilterByType DEFLATE application/json
   AddOutputFilterByType DEFLATE application/unityweb
   AddOutputFilterByType DEFLATE application/x-font-woff
@@ -134,6 +136,7 @@ Options +FollowSymlinks
   ExpiresByType image/png "access 1 year"
   ExpiresByType image/svg "access 1 year"
   ExpiresByType image/x-icon "access 1 year"
+  ExpiresByType application/x-font-woff "access 1 year"
 
   ExpiresByType text/css "access 30 minutes"
   ExpiresByType text/html "access 30 minutes"
