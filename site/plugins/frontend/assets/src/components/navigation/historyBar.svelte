@@ -34,9 +34,9 @@
   <ol bind:offsetWidth={outerWidth} class="{ innerWidth > outerWidth ? 'alignright' : ''}">
     <div bind:offsetWidth={innerWidth}>
       {#each list as item}
-
-        <Link target={item} classList="{ item.double ? 'double' : ''}" />
-
+        <li>
+          <Link target={item} classList="{ item.double ? 'double' : ''}" />
+        </li>
       {/each}
     </div>
   </ol>

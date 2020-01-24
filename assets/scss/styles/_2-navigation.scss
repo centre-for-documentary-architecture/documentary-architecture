@@ -253,7 +253,7 @@ nav.bar.history {
 		}
 
 		li {
-			.item {
+			a {
 				padding-left: 0.3em;
 				padding-right: 0.3em;
 				&:before {
@@ -262,7 +262,7 @@ nav.bar.history {
 					margin-right: 0.6rem;
 				}
 			}
-			&.double .item {
+			&.double a {
 				overflow: hidden;
 				width: 1.4em;
 			}

@@ -1,6 +1,6 @@
 <script>
 
-  import Link from './router/Link.svelte';
+  import Link from '../../router/Link.svelte';
   export let pagination;
 
   // ← →

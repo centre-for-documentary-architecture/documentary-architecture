@@ -1,7 +1,7 @@
 <script>
 	import { slide } from 'svelte/transition';
 
-	import HistoryBar from './components/navigation/history.svelte';
+	import HistoryBar from './components/navigation/historyBar.svelte';
 	// import HtmlTemplate from './templates/html.svelte';
 	import EntityTemplate from './templates/entity.svelte';
 	import ArchiveTemplate from './templates/archive.svelte';
