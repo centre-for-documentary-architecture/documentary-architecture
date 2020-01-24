@@ -72,53 +72,57 @@
 
 </script>
 
-<main class="panel col-sm-3">
-	<div class="content">
+<div class="grid panels">
 
-		<header id="top" class="tab">
-			<h1>Archive</h1>
+	<main class="panel col-sm-3">
+		<div class="content">
 
-			<form id="search" on:click="{() => archiveSearch.inputField.focus() }" autocomplete="off">
-				<input class="input" type="search" name="research"
-					autocomplete="off"
-					spellcheck="false"
-					autocorrect="off"
-					bind:value={archiveSearch.query.term}
-					aria-label="Search the archive ..."
-					placeholder="Search the archive ..."
-					bind:this={archiveSearch.inputField}
-					on:input={startSearch} >
-			</form>
+			<header id="top" class="tab">
+				<h1>Archive</h1>
 
-		</header>
+				<form id="search" on:click="{() => archiveSearch.inputField.focus() }" autocomplete="off">
+					<input class="input" type="search" name="research"
+						autocomplete="off"
+						spellcheck="false"
+						autocorrect="off"
+						bind:value={archiveSearch.query.term}
+						aria-label="Search the archive ..."
+						placeholder="Search the archive ..."
+						bind:this={archiveSearch.inputField}
+						on:input={startSearch} >
+				</form>
 
-		<section class="filters tab">
-			<h2>Filter</h2>
-			<ul class="list">
-				{#each page.archive.filters.content as item}
-					<li class="card {archiveSearch.filter.id == item.filter ? 'active' : ''}">
-						<button on:click={() => archiveSearch.filter.id = item.filter} on:click={startSearch}>
-							<div class="title">
+			</header>
 
-								<!-- <span class="count">{item.count || ''}</span> -->
-								<h4>{@html item.title}</h4>
+			<section class="filters tab">
+				<h2>Filter</h2>
+				<ul class="list">
+					{#each page.archive.filters.content as item}
+						<li class="card {archiveSearch.filter.id == item.filter ? 'active' : ''}">
+							<button on:click={() => archiveSearch.filter.id = item.filter} on:click={startSearch}>
+								<div class="title">
 
-							</div>
-						</button>
-					</li>
-				{/each}
-			</ul>
-		</section>
+									<!-- <span class="count">{item.count || ''}</span> -->
+									<h4>{@html item.title}</h4>
 
-	</div>
-</main>
+								</div>
+							</button>
+						</li>
+					{/each}
+				</ul>
+			</section>
 
-{#if archiveSearch.loading === true}
-	Please wait...
-{/if}
+		</div>
+	</main>
 
-{#if page.results.total === 0 && archiveSearch.query.term !== '' }
-	<div class="panel col-sm-9 empty-results">No results for »{archiveSearch.query.term}«</div>
-{:else}
-	<ViewCollection view={page.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
-{/if}
+	{#if archiveSearch.loading === true}
+		Please wait...
+	{/if}
+
+	{#if page.results.total === 0 && archiveSearch.query.term !== '' }
+		<div class="panel col-sm-9 empty-results">No results for »{archiveSearch.query.term}«</div>
+	{:else}
+		<ViewCollection view={page.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
+	{/if}
+
+</div>
