@@ -1,5 +1,52 @@
 // media
 
+//
+// Media controls
+//
+.bar.controls {
+
+	position: relative;
+	background-color: $blue;
+	color: $white;
+	z-index: 100;
+	display: flex;
+	width: 100%;
+	padding: 0 0.5rem;
+	font-family: $mono;
+
+	.left {
+		flex: 1;
+	}
+	.right {
+		flex: 1;
+		text-align: right;
+	}
+	button {
+		display: inline-block;
+		text-transform: uppercase;
+		letter-spacing: 0.1em;
+	}
+
+	.left span,
+	.right span,
+	span span {
+		display: inline-block;
+		padding: 0.5rem 0.5rem;
+	}
+	.message {
+		padding: 0.5rem 0.5rem;
+	}
+
+	.tooltip {
+		position: absolute;
+		left: 0;
+		bottom: 1.9rem;
+		padding: 0.5rem 0.9rem;
+		background-color: $blue-active;
+	}
+
+}
+
 @media screen and (min-width: 768px){
 
 	.presentation {
