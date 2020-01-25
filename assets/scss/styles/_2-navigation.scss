@@ -3,10 +3,12 @@
 //
 
 .bar {
-
 	user-select: none;
-	display: flex;
+}
 
+.page-wrapper .bar {
+
+	display: flex;
 	width: 100%;
 	// height: $barWidth;
 	padding: 0 0.5rem;
@@ -38,7 +40,6 @@
 		display: block;
 		width: $barWidth;
 		top: 0;
-		padding: 0.4rem 0;
 		a, button {
 			padding: 0;
 		}

@@ -84,11 +84,14 @@ button {
 	display: inline-block;
 	outline: none;
 	text-align: left;
+	user-select: none;
 }
 
+/*
 button * {
 	pointer-events: none;
 }
+*/
 
 // links
 a {

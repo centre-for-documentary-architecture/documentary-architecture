@@ -1,6 +1,6 @@
-<aside id="cda" class="bar cda vertical" onclick="openAboutBar(event)" title="More info on <?= $site->title() ?>">
+<aside id="cda">
 
-  <div class="panel">
+  <div class="bar cda vertical" onclick="openAboutBar(event)" title="More info on <?= $site->title() ?>">
 
     <a class="logo abbr"><?= svg('assets/img/cda-logo-bar.svg'); ?></a>
     <a class="logo full" onclick="closeAboutBar(event)"><?= svg('assets/img/cda-logo-full.svg'); ?></a>
