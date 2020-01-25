@@ -1,7 +1,7 @@
 import { historyStore } from './historyStore.js';
 import { pageStore } from './pageStore.js';
 
-import { createStateObject } from './createStateObject.js';
+import { createStateObject, assumeTemplate } from './utilities.js';
 
 import { loadData } from './loadData.js';
 
@@ -25,8 +25,8 @@ export async function navigateTo( url, target = {}, replace = false ) {
 	loading = true;
 
 	target.title = target.title || target.pathname;
-	target.template = target.template || false;
 	target.url = url;
+	target.template = target.template || assumeTemplate( href.pathname );
 
 	let state = createStateObject( target );
 

@@ -1,7 +1,7 @@
 import { historyStore } from './historyStore.js';
 import { pageStore } from './pageStore.js';
 
-import { createStateObject } from './createStateObject.js';
+import { createStateObject, assumeTemplate } from './utilities.js';
 
 import { loadData } from './loadData.js';
 
@@ -9,7 +9,8 @@ export async function loadPage( url = false, title = false ) {
 
 	let state = createStateObject({
 		title: title || document.title.replace('CDA ',''),
-		url: url || window.location.href
+		url: url || window.location.href,
+		template: assumeTemplate( window.location.pathname )
 	});
 
 	pageStore.set({...state, loading: true});
