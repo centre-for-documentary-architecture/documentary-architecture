@@ -43,6 +43,7 @@ return [
 
 	'smartypants' => true,
 
+	'cdn-domain' =>	'//documentary-architecture.fra1.digitaloceanspaces.com',
 	'cdn-host' => 		'https://documentary-architecture.fra1.digitaloceanspaces.com',
 	// 'cdn' =>		 	'https://documentary-architecture.fra1.digitaloceanspaces.com/cda',
 	'cdn' =>			'https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda',
