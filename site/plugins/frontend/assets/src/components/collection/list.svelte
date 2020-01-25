@@ -1,15 +1,16 @@
 <script>
 
-    import Card from './card.svelte';
+  import Card from './card.svelte';
 
-    export let list;
+  export let list;
+  export let category = false;
 
 </script>
 
 <ul class="list">
-    {#each list as item}
+  {#each list as item}
 
-        <Card item={item}/>
+    <Card item={item}/>
 
-    {/each}
+  {/each}
 </ul>

@@ -33,9 +33,8 @@ body.home {
 		}
 	}
 }
-body.black > .page-wrapper {
-	border-left: $border;
-	border-left-color: $white;
+body.white .bar.archive {
+	border-left: $border-white;
 }
 
 .bar.archive,

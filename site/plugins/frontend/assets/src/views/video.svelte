@@ -3,7 +3,7 @@
 	export let view;
 
 	import Transcript from './transcript.svelte';
-	export let transcript;
+	export let transcript = false;
 
 	export let classname = 'preview';
 

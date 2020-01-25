@@ -127,13 +127,14 @@ return [
 				'worlditem' => $this->worlditem(),
 				'count' => $this->countCollection(),
 				'info' => $this->entityInfo(),
+				'keywords' => $this->tags()->split(),
 			];
 
 			if( $srcset && $thumbnail = $this->thumbnail() ){
 				$data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
 			}
 
-			$cache->set($id, $data, 10000 );
+			$cache->set($id, $data, option('cache-expires',1440) );
 
 		}
 
@@ -151,14 +152,14 @@ return [
 			'category' => $this->category(),
 
 			'title' => $this->title()->value(),
-			'keywords' => $this->keywords()->split(),
+			'keywords' => $this->tags()->split(),
 			'description' => $this->description()->value(),
 
 			'theme' => $this->theme(),
 			'layout' => $this->layout(),
 			'template' => $this->template()->name(),
 			'worlditem' => $this->worlditem(),
-			'breadcrumbs' => $this->dataBreadcrumbs()
+			// 'breadcrumbs' => $this->dataBreadcrumbs()
 		];
 
 	},
