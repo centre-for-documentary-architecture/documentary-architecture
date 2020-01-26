@@ -68,7 +68,7 @@
 		}
 		if( value.loading === false ){
 			setTimeout(() => {
-				// unsubscribe();
+				unsubscribe();
 			}, 5);
 		}
   });
