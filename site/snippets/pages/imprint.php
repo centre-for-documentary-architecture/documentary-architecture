@@ -1,13 +1,3 @@
-<?php
-
-snippet('header',[
-	'class' => 'black imprint'
-]);
-
-snippet('navigation/history');
-
-?>
-
 <div class="grid">
 
 	<section class="col-sm-6 panel content">
@@ -29,9 +19,3 @@ snippet('navigation/history');
 	</section>
 
 </div>
-
-<?php
-
-snippet('navigation/archive');
-
-snippet('footer');

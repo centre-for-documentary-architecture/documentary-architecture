@@ -1,15 +1,9 @@
 <?php
 
-/**
- * $projects and $publications defined in controller
- */
-
-snippet('header');
-
-snippet('navigation/history');
+$projects = $site->children()->listed()->template(['collection','collection_liebling-house']);
+$publications = $site->archive('publications')->highlights()->toPages();
 
 ?>
-
 <header id="top" class="white">
 
 	<h1><?= $site->title() ?></h1>
@@ -155,7 +149,3 @@ snippet('navigation/history');
 	</div>
 
 </div>
-
-<?php
-
-snippet('footer');

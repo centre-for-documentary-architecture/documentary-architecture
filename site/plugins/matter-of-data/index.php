@@ -150,7 +150,6 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 	'fields'       => require_once __DIR__.'/extensions/fields.php',
 	'fieldMethods' => require_once __DIR__.'/extensions/fieldMethods.php',
 
-	'controllers'  => require_once __DIR__.'/extensions/controllers.php',
 	'hooks' 	   => require_once __DIR__.'/extensions/hooks.php',
 	'tags' 		   => require_once __DIR__.'/extensions/tags.php',
 

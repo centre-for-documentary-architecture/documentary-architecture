@@ -1,11 +1,3 @@
-<?php
-
-snippet('header');
-
-snippet('navigation/history');
-
-?>
-
 <header id="top" class="black content">
 
     <h1>Sorry</h1>
@@ -20,7 +12,3 @@ snippet('navigation/history');
     </p>
 
 </header>
-
-<?php
-
-snippet('footer');
