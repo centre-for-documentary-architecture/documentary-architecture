@@ -3,7 +3,7 @@ export async function loadData( url ){
 	url = url.replace( '.json', '' );
 
 	const location = new URL( url );
-	url = location.origin + location.pathname + '.json' + location.search;
+	url = location.origin + '/get' + location.pathname + location.search;
 
 	console.log( 'loadData( '+url+' )' );
 	const response = await fetch( url );
