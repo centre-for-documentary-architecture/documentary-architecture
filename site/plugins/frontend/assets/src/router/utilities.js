@@ -8,11 +8,11 @@ export function createStateObject( obj ){
 }
 
 export function assumeTemplate( pathname ){
-  if( pathname === '' ){
+  if( pathname === '' || pathname === '/' ){
     return false;
-  } else if( pathname.match(/^\/archive\/.+/) ){
+  } else if( pathname.match(/^\/?archive\/.+\/.+/) ){
 		return 'entity';
-	} else if( pathname.match(/^\/archive(\/*$|\?$|\?.+)/) ){
+	} else if( pathname.match(/^\/?archive.*/) ){
 		return 'archive';
 	}
 	return false;
