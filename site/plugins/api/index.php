@@ -18,29 +18,35 @@ Kirby::plugin('cda/get', [
       'action'  => function ( $pathname = '' ) {
 
         $kirby = kirby();
-        $query = get();
+
+        $request = $pathname;
+        if( $querystring = $kirby->request()->query()->toString() ){
+          $request .= '?' . trim( $querystring, '=' );
+        }
 
         if ( $page = $kirby->page($pathname) ) {
           // good, it’s a page
-        } else if( $page = $kirby->file($pathname) ) {
+        } else if( $page = $kirby->file($pathname)->toImageEntity() ) {
           // good, it’s a file
         } else {
           // error
           return $kirby->site()->errorPage()->render(['get' => true]);
         }
 
-        if( $page->template() !== 'archive' || $page->template() !== 'entity' ){
+        $template = $page->template()->name();
+
+        if( $template !== 'archive' && $template !== 'entity' ){
           return $page->render(['get' => true]);
         }
 
         $data = $page->dataAbstract();
 
         return [
-        	'status' => $status,
-        	'query'  => $query,
-          'type'   => $type,
+        	'status' => 200,
+        	'request'  => $request,
         	'data'   => $data,
-          'cached' => false
+          'cached' => false,
+          'template' => $template
         ];
 
       }
