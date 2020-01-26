@@ -2,7 +2,7 @@
 	import { loadData } from '../router/loadData.js';
 
 	import { navigateTo } from '../router/navigateTo.js';
-	import { pageStore } from '../router/pageStore.js';
+	import { pageStore, pageStoreReplaceProperties } from '../router/pageStore.js';
 
 	import ViewCollection from '../views/collection.svelte';
 	import Card from '../components/collection/card.svelte';
@@ -26,7 +26,7 @@
 				this.search();
 			}, 250);
 		},
-		search: function(){
+		search: async function(){
 
 			let parameters = {};
 			if( this.filter ){ parameters.filter = this.filter; }
@@ -48,10 +48,12 @@
 			console.log( 'search '+this.str );
 
 			// load data
-			// let data = await loadData( url );
+			let data = await loadData( url );
 
+			// replace history.replace
+			// replace page.results
 
-
+			pageStoreReplaceProperties({ results: data.results });
 
 
 			/*
@@ -132,7 +134,10 @@
 	{#if page.results}
 
 		{#if page.results.total === 0 && archive.query !== '' }
-			<div class="panel col-sm-9 empty-results">No results for »{archive.query}«</div>
+			<div class="panel col-sm-9 empty-results">
+				No results for »{archive.query}«
+				{#if archive.filter } in {archive.filter}{/if}
+			</div>
 		{:else}
 			<ViewCollection view={page.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
 		{/if}
