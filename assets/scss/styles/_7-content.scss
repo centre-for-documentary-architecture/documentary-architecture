@@ -131,6 +131,12 @@ body.archive {
 			&:focus {
 				background-color: $blue;
 			}
+			::selection,
+			&::selection,
+			&focus::selection,
+			&focus ::selection {
+				background-color: #ccc;
+			}
 			&::placeholder {
 				color: $black;
 			}
