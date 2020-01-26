@@ -49,7 +49,6 @@ export async function navigateTo( url, target = {}, replace = false ) {
 	pageStoreSet({...data , loading: false });
 
 	// naviWorld( entity.worlditem );
-	// relocate();
 
 	state = createStateObject( data );
 	history.replaceState( state, data.title, data.url );

@@ -15,10 +15,10 @@
 	let archive = {
 		filter: false,
 		query: '',
-		str: '',
 		previous: {
-			str: false
+			url: false
 		},
+		url: window.location.origin + '/archive',
 		wait: false,
 		input: function(){
 			clearTimeout( this.wait );
@@ -28,41 +28,31 @@
 		},
 		search: async function(){
 
-			let parameters = {};
-			if( this.filter ){ parameters.filter = this.filter; }
-			if( this.query ){ parameters.research = this.query; }
+			let url = this.url;
 
-			this.str = Object.keys(parameters).map( key => key + '=' + encodeURIComponent(parameters[key]) ).join('&');
+			if( this.filter ){
+				url += '/' + encodeURIComponent( this.filter );
+			}
+			if( this.query ){
+				url += '?research=' + encodeURIComponent( this.query );
+			}
 
-			if( this.str === this.previous.str ){
+			if( url === this.previous.url ){
 				return false;
 			} else {
-				this.previous.str = this.str;
+				this.previous.url = url;
 			}
 
-			let url = window.location.origin + window.location.pathname;
-			if( this.str !== '' ){
-				url += '?' + this.str;
-			}
+			console.log( 'search '+url );
 
-			console.log( 'search '+this.str );
+			let state = history.state;
+			state.url = url;
+			console.log( state );
+			history.replaceState( state, state.title, state.url );
 
 			// load data
 			let data = await loadData( url );
-
-			// replace history.replace
-			// replace page.results
-
 			pageStoreReplaceProperties({ results: data.results });
-
-
-			/*
-			navigateTo( url, {
-				title: 'AAArchivoo',
-				url: url,
-				template: 'archive'
-			}, true );
-			*/
 
 		}
 	};

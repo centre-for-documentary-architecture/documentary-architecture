@@ -9,14 +9,12 @@ async function navigateBack( target ) {
 	pageStoreSet({...target, loading: true});
 	historyStoreRemoveLast();
 
-	// load data
 	let data = await loadData( target.url );
 
 	// replace info in page object and history
 	pageStoreSet({...data , loading: false });
 
 	// naviWorld( entity.worlditem );
-	// relocate();
 
 }
 
