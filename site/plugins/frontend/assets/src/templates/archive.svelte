@@ -1,12 +1,14 @@
 <script>
+	import { loadData } from '../router/loadData.js';
+
+	import { navigateTo } from '../router/navigateTo.js';
+	import { pageStore } from '../router/pageStore.js';
 
 	import ViewCollection from '../views/collection.svelte';
 	import Card from '../components/collection/card.svelte';
 	import List from '../components/collection/list.svelte';
 
-	import { navigateTo } from '../router/navigateTo.js';
-	import { pageStore } from '../router/pageStore.js';
-
+	let page;
 	let field;
 	let loading = false;
 
@@ -17,15 +19,11 @@
 		previous: {
 			str: false
 		},
-		modify: function( key, value ){
-			this[key] = value;
-			this.search();
-		},
 		wait: false,
 		input: function(){
 			clearTimeout( this.wait );
 			this.wait = setTimeout(() => {
-				this.modify( 'query', archive.query );
+				this.search();
 			}, 250);
 		},
 		search: function(){
@@ -36,40 +34,49 @@
 
 			this.str = Object.keys(parameters).map( key => key + '=' + encodeURIComponent(parameters[key]) ).join('&');
 
-			console.log( 'search '+this.str );
-			let url = window.location.origin + window.location.pathname + '?' + this.str;
-			console.log( url );
+			if( this.str === this.previous.str ){
+				return false;
+			} else {
+				this.previous.str = this.str;
+			}
 
+			let url = window.location.origin + window.location.pathname;
+			if( this.str !== '' ){
+				url += '?' + this.str;
+			}
+
+			console.log( 'search '+this.str );
+
+			// load data
+			// let data = await loadData( url );
+
+
+
+
+
+			/*
 			navigateTo( url, {
 				title: 'AAArchivoo',
 				url: url,
 				template: 'archive'
 			}, true );
+			*/
 
 		}
 	};
 
-	export let page;
-
-	/*
   const unsubscribe = pageStore.subscribe(value => {
 		page = value;
 		if( value.archive ){
-
 			if( value.archive.filter ){
-				archive.modify( 'filter', value.archive.filter );
+				archive.filter = value.archive.filter;
 			}
 			if( value.archive.query ){
-				archive.modify( 'query', value.archive.query );
+				archive.query = value.archive.query;
 			}
-
-		}
-		if( value.loading ){
-			loading = value.loading;
 		}
 		console.log('page store updated');
   });
-	*/
 
 </script>
 
@@ -97,11 +104,11 @@
 
 			{#if page.archive && page.archive.filters}
 				<section class="filters tab">
-					<h2>Filter</h2>
+					<h2>Filter {archive.filter}</h2>
 					<ul class="list">
 						{#each page.archive.filters.content as item}
 							<li class="card {item.filter === archive.filter ? 'active' : ''}">
-								<button on:click={() => archive.modify('filter',item.filter) }>
+								<button on:click={() => { archive.filter = item.filter; archive.search(); }}>
 									<div class="title">
 
 										<!-- <span class="count">{item.count || ''}</span> -->
@@ -114,8 +121,6 @@
 					</ul>
 				</section>
 			{/if}
-
-			<div>{archive.str}</div>
 
 		</div>
 	</main>
