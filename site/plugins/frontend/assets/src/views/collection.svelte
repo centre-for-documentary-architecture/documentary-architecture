@@ -27,7 +27,7 @@
 	let loading = false;
 
 	async function loadNext(){
-
+		
 		loading = true;
 
 		let data = await loadData( view.next );
@@ -77,9 +77,9 @@
 		<svelte:component this={layouts[layout]} list={view.content} {columns}/>
 
 		{#if view.next || loading === true}
-			<div class="bar load-more">
+			<div class="load-more">
 				{#if loading === true}
-					<span class="pleas-wait">Please wait...</span>
+					<div class="is-loading"></div>
 				{:else}
 					<button class="card" on:click={loadNext}>Load more</button>
 				{/if}
