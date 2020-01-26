@@ -1,4 +1,4 @@
-import { historyStore } from './historyStore.js';
+import { historyStoreAdd, historyStoreReplaceLast } from './historyStore.js';
 import { pageStore } from './pageStore.js';
 
 import { createStateObject, assumeTemplate } from './utilities.js';
@@ -40,7 +40,7 @@ export async function navigateTo( url, target = {}, replace = false ) {
 		history.replaceState( state, state.title, state.url);
 	}
 
-	historyStore.update(l => [...l, state]);
+	historyStoreAdd( state );
 
 	// load data
 	let data = await loadData( url );
@@ -53,11 +53,7 @@ export async function navigateTo( url, target = {}, replace = false ) {
 
 	state = createStateObject( data );
 	history.replaceState( state, data.title, data.url );
-
-	historyStore.update( l => {
-		l[l.length-1] = state;
-		return l;
-	});
+	historyStoreReplaceLast( state );
 
 	loading = false;
 }
