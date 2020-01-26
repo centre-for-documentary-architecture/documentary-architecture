@@ -57,7 +57,7 @@
 	};
 
 	const unsubscribe = pageStore.subscribe(value => {
-		page = value;
+		// page = value;
 		if( value.archive ){
 			if( value.archive.filter ){
 				archive.filter = value.archive.filter;

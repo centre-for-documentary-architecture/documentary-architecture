@@ -1,5 +1,6 @@
 <script>
 	import { afterUpdate } from 'svelte';
+	import { loadData } from '../router/loadData.js';
 
 	export let transcript = false;
 	export let view;
@@ -26,23 +27,16 @@
 	let loading = false;
 
 	async function loadNext(){
-		// console.log('load next chunk of collections '+view.next);
 
 		loading = true;
-		// console.log('please wait...');
 
-		let newData = await load( view.next );
+		let data = await loadData( view.next );
 
-		if( newData ){
+		if( data ){
 
 			loading = false;
-			// console.log('loading finished');
-
-			// console.log( newData );
-
-			view.next = newData.next;
-
-			view.content = view.content.concat( newData.content );
+			view.next = data.next;
+			view.content = view.content.concat( data.content );
 
 		}
 	}
@@ -53,12 +47,9 @@
 	let scrollPos = 0;
 
 	function scrollTrigger(){
-		// console.log('scroll');
 		if( view.next === false || loading === true ){
-			// console.log('no more');
 			return;
 		}
-		// console.log('scrollll');
 		scrollPos = container.scrollTop;
 		if( scrollPos > ( pageHeight - offset ) ){
 
