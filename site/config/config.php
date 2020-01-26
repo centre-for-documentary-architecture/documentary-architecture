@@ -25,6 +25,8 @@ return [
 	'cache.abstract' => true,
 	'cache.json' => true,
 	'cache.worlditems' => true,
+	
+	'cache.get' => false,
 
 	// other configuration
 	'thumbs' => [
