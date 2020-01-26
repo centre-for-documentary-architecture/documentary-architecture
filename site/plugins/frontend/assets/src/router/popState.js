@@ -1,19 +1,19 @@
 import { historyStoreRemoveLast } from './historyStore.js';
-import { pageStore } from './pageStore.js';
+import { pageStoreSet } from './pageStore.js';
 
 import { loadData } from './loadData.js';
 
 async function navigateBack( target ) {
 
 	// use info provided by old state object for
-	pageStore.set({...target, loading: true});
+	pageStoreSet({...target, loading: true});
 	historyStoreRemoveLast();
 
 	// load data
 	let data = await loadData( target.url );
 
 	// replace info in page object and history
-	pageStore.set({...data , loading: false });
+	pageStoreSet({...data , loading: false });
 
 	// naviWorld( entity.worlditem );
 	// relocate();

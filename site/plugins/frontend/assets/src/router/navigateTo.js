@@ -1,5 +1,5 @@
 import { historyStoreAdd, historyStoreReplaceLast } from './historyStore.js';
-import { pageStore } from './pageStore.js';
+import { pageStoreSet } from './pageStore.js';
 
 import { createStateObject, assumeTemplate } from './utilities.js';
 
@@ -32,7 +32,7 @@ export async function navigateTo( url, target = {}, replace = false ) {
 
 	// use info provided by page object for
 
-	pageStore.set({...target, loading: true});
+	pageStoreSet({...target, loading: true});
 
 	if( replace === false ){
 		history.pushState( state, state.title, state.url);
@@ -46,7 +46,7 @@ export async function navigateTo( url, target = {}, replace = false ) {
 	let data = await loadData( url );
 
 	// replace info in page object and history
-	pageStore.set({...data , loading: false });
+	pageStoreSet({...data , loading: false });
 
 	// naviWorld( entity.worlditem );
 	// relocate();

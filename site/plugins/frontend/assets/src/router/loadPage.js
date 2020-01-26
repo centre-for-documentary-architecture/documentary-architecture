@@ -1,5 +1,5 @@
 import { historyStoreAdd, historyStoreReplaceLast } from './historyStore.js';
-import { pageStore } from './pageStore.js';
+import { pageStoreSet } from './pageStore.js';
 
 import { createStateObject, assumeTemplate } from './utilities.js';
 
@@ -13,14 +13,14 @@ export async function loadPage( url = false, title = false ) {
 		template: assumeTemplate( window.location.pathname )
 	});
 
-	pageStore.set({...state, loading: true});
+	pageStoreSet({...state, loading: true});
 	historyStoreAdd( state );
 
 	// load data
 	let data = await loadData( state.url );
 
 	// replace info in page object and history
-	pageStore.set({...data , loading: false });
+	pageStoreSet({...data, loading: false});
 
 	// naviWorld( entity.worlditem );
 	// relocate();
