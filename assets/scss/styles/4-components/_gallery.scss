@@ -1,0 +1,15 @@
+//
+// gallery
+//
+.gallery {
+	.preview.audio {
+		background-color: $dark;
+	}
+}
+.gallery.grid .card  {
+	display: flex;
+	flex-direction: column;
+	a {
+		flex: 1;
+	}
+}

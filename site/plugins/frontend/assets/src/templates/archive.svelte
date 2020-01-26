@@ -1,74 +1,78 @@
 <script>
+	import { loadData } from '../router/loadData.js';
+
+	import { navigateTo } from '../router/navigateTo.js';
+	import { pageStore, pageStoreReplaceProperties } from '../router/pageStore.js';
 
 	import ViewCollection from '../views/collection.svelte';
 	import Card from '../components/collection/card.svelte';
 	import List from '../components/collection/list.svelte';
 
-	import { loadData } from '../router/loadData.js';
-
 	export let page;
+	let field;
+	let loading = false;
 
-	let archiveSearch = {
-		inputFiled: false,
-		filter: {
-			id: page.archive.filter,
-			previous: page.archive.filter,
+	let archive = {
+		filter: false,
+		query: '',
+		previous: {
+			url: false
 		},
-		query: {
-			term: page.archive.query,
-			previous: page.archive.query,
+		url: window.location.origin + '/archive',
+		wait: false,
+		input: function(){
+			clearTimeout( this.wait );
+			this.wait = setTimeout(() => {
+				this.search();
+			}, 250);
 		},
-		loading: false
+		search: async function(){
+			loading = true;
+
+			let url = this.url;
+			if( this.filter ){
+				url += '/' + encodeURIComponent( this.filter );
+			}
+			if( this.query ){
+				url += '?research=' + encodeURIComponent( this.query );
+			}
+
+			if( url === this.previous.url ){
+				return false;
+			} else {
+				this.previous.url = url;
+			}
+
+			console.log( 'search '+url );
+
+			let state = history.state;
+			state.url = url;
+			history.replaceState( state, state.title, state.url );
+
+			// load data
+			let data = await loadData( url );
+			pageStoreReplaceProperties({ results: data.results });
+			loading = false;
+
+		}
 	};
 
-	async function startSearch(){
-
-		if( archiveSearch.query.term === archiveSearch.query.previous &&
-			archiveSearch.filter.id === archiveSearch.filter.previous ){
-			return;
+	const unsubscribe = pageStore.subscribe(value => {
+		// page = value;
+		if( value.archive ){
+			if( value.archive.filter ){
+				archive.filter = value.archive.filter;
+			}
+			if( value.archive.query ){
+				archive.query = value.archive.query;
+			}
 		}
-
-		// archiveSearch.query.term = archiveSearch.query.term.trimStart();
-
-		let title = 'CDA Archive';
-		// let url = page.url + '?';
-		let url = window.location.origin + window.location.pathname + '?';
-
-		if( archiveSearch.filter.id !== '' ){
-			// title += ' '+archiveSearch.filter.id;
-			url += 'filter=' + archiveSearch.filter.id + '&';
+		if( value.loading === false ){
+			setTimeout(() => {
+				unsubscribe();
+			}, 5);
 		}
-
-		if( archiveSearch.query.term !== '' ){
-			// title += ' ' + title;
-			url += 'research=' + archiveSearch.query.term;
-		}
-
-		document.title = title;
-		console.log( archiveSearch.query.term, title, url );
-
-		archiveSearch.loading = true;
-		let newData = await load( url );
-
-		history.replaceState({
-			title: title,
-			url: url
-		}, title, url);
-
-		if( newData ){
-
-			archiveSearch.loading = false;
-			page.results = newData.results;
-			console.log( page.results );
-
-		}
-
-		archiveSearch.query.previous = archiveSearch.query.term;
-		archiveSearch.filter.previous = archiveSearch.filter.id;
-
-		// console.log( archiveSearch );
-
-	}
+  });
 
 </script>
 
@@ -80,49 +84,58 @@
 			<header id="top" class="tab">
 				<h1>Archive</h1>
 
-				<form id="search" on:click="{() => archiveSearch.inputField.focus() }" autocomplete="off">
+				<form id="search" on:click="{() => field.focus() }" autocomplete="off">
 					<input class="input" type="search" name="research"
 						autocomplete="off"
 						spellcheck="false"
 						autocorrect="off"
-						bind:value={archiveSearch.query.term}
+						bind:value={archive.query}
 						aria-label="Search the archive ..."
 						placeholder="Search the archive ..."
-						bind:this={archiveSearch.inputField}
-						on:input={startSearch} >
+						bind:this={field}
+						on:input={() => archive.input() }>
 				</form>
 
 			</header>
 
-			<section class="filters tab">
-				<h2>Filter</h2>
-				<ul class="list">
-					{#each page.archive.filters.content as item}
-						<li class="card {archiveSearch.filter.id == item.filter ? 'active' : ''}">
-							<button on:click={() => archiveSearch.filter.id = item.filter} on:click={startSearch}>
-								<div class="title">
+			{#if page.archive && page.archive.filters}
+				<section class="filters tab">
+					<h2>Filter</h2>
+					<ul class="list">
+						{#each page.archive.filters.content as item}
+							<li class="card {item.filter === archive.filter ? 'active' : ''}">
+								<button on:click={() => { archive.filter = item.filter; archive.search(); }}>
+									<div class="title">
 
-									<!-- <span class="count">{item.count || ''}</span> -->
-									<h4>{@html item.title}</h4>
+										<!-- <span class="count">{item.count || ''}</span> -->
+										<h4>{@html item.title}</h4>
 
-								</div>
-							</button>
-						</li>
-					{/each}
-				</ul>
-			</section>
+									</div>
+								</button>
+							</li>
+						{/each}
+					</ul>
+				</section>
+			{/if}
 
 		</div>
 	</main>
 
-	{#if archiveSearch.loading === true}
-		Please wait...
+	{#if loading === true}
+		<div class="is-loading"></div>
 	{/if}
 
-	{#if page.results.total === 0 && archiveSearch.query.term !== '' }
-		<div class="panel col-sm-9 empty-results">No results for »{archiveSearch.query.term}«</div>
-	{:else}
-		<ViewCollection view={page.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
+	{#if page.results}
+
+		{#if page.results.total === 0 && archive.query !== '' }
+			<div class="panel col-sm-9 empty-results">
+				No results for »{archive.query}«
+				{#if archive.filter } in {archive.filter}{/if}
+			</div>
+		{:else}
+			<ViewCollection view={page.results} classname="presentation panel col-sm-9" controls={true} columns=3/>
+		{/if}
+
 	{/if}
 
 </div>

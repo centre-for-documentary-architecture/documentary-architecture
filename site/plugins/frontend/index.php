@@ -69,7 +69,7 @@ Kirby::plugin('centre-for-documentary-architecture/frontend', [
 
                     $data = $archive->dataGeneral();
 
-                    $data['url'] = $mainArchive->url();
+                    $data['url'] = archivePath( $mainArchive->url(), $filter, ['research' => $query['research']] );
                     $data['archive'] = [
                         'url' => $mainArchive->url(),
                         'filter' => $filter,

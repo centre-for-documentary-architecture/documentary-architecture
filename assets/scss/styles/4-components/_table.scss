@@ -1,0 +1,68 @@
+//
+// table layout
+//
+dl.table {
+	> div {
+		border-top: $border-thin;
+		padding: $padding 0;
+		dt + div.long {
+			margin-top: $padding-text-top;
+		}
+	}
+	a {
+		display: inline;
+	}
+	dt { // key
+		&.empty {
+			display: none;
+			padding: 0;
+		}
+	}
+	p {
+		margin: 0;
+	}
+	dd + dd,
+	dt + dd.long p,
+	dd.long p + p {
+		margin-top: $padding-text-top;
+	}
+}
+@media screen and (min-width: 768px){
+	dl.table {
+		> div {
+			display: flex;
+			flex-wrap: wrap;
+			div {
+				flex: 1 0 50%;
+			}
+			dt + div.long {
+				flex-basis: 100%;
+			}
+		}
+		dt { // key
+			flex: 1 0 50%;
+			padding-right: 0.3em;
+		}
+		dd { // value
+			flex: 1 0 50%;
+			&.long {
+				flex: 1 0 100%;
+			}
+		}
+	}
+}
+.black {
+	dl.table > div {
+		border-color: $white;
+	}
+}
+
+dl.table {
+	.list {
+		margin: $padding 0;
+		a {
+			display: flex;
+			text-decoration: none;
+		}
+	}
+}
