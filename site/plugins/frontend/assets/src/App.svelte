@@ -45,6 +45,6 @@
 	<ArchiveBar {page} />
 {:else if page.template === 'archive' }
 	<ArchiveTemplate {page} />
-{:else}
-	Unknown page<br />
+{:else if page.html }
+	{@html page.html}
 {/if}
