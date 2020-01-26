@@ -8,7 +8,7 @@
 	import Card from '../components/collection/card.svelte';
 	import List from '../components/collection/list.svelte';
 
-	let page;
+	export let page;
 	let field;
 	let loading = false;
 
@@ -47,7 +47,6 @@
 
 			let state = history.state;
 			state.url = url;
-			console.log( state );
 			history.replaceState( state, state.title, state.url );
 
 			// load data
@@ -57,7 +56,7 @@
 		}
 	};
 
-  const unsubscribe = pageStore.subscribe(value => {
+	const unsubscribe = pageStore.subscribe(value => {
 		page = value;
 		if( value.archive ){
 			if( value.archive.filter ){
@@ -67,7 +66,11 @@
 				archive.query = value.archive.query;
 			}
 		}
-		console.log('page store updated');
+		if( value.loading === false ){
+			setTimeout(() => {
+				// unsubscribe();
+			}, 5);
+		}
   });
 
 </script>
@@ -96,7 +99,7 @@
 
 			{#if page.archive && page.archive.filters}
 				<section class="filters tab">
-					<h2>Filter {archive.filter}</h2>
+					<h2>Filter</h2>
 					<ul class="list">
 						{#each page.archive.filters.content as item}
 							<li class="card {item.filter === archive.filter ? 'active' : ''}">
