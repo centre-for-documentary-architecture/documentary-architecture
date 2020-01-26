@@ -27,9 +27,9 @@
 			}, 250);
 		},
 		search: async function(){
+			loading = true;
 
 			let url = this.url;
-
 			if( this.filter ){
 				url += '/' + encodeURIComponent( this.filter );
 			}
@@ -52,6 +52,7 @@
 			// load data
 			let data = await loadData( url );
 			pageStoreReplaceProperties({ results: data.results });
+			loading = false;
 
 		}
 	};
@@ -121,7 +122,7 @@
 	</main>
 
 	{#if loading === true}
-		Please wait...
+		<div class="is-loading"></div>
 	{/if}
 
 	{#if page.results}
