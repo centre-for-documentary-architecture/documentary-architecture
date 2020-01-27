@@ -2,13 +2,13 @@
 	import { slide } from 'svelte/transition';
 
 	import HistoryBar from './components/navigation/historyBar.svelte';
-	// import HtmlTemplate from './templates/html.svelte';
+	import ArchiveBar from './components/navigation/archiveBar.svelte';
 	import EntityTemplate from './templates/entity.svelte';
 	import ArchiveTemplate from './templates/archive.svelte';
-	import ArchiveBar from './components/navigation/archiveBar.svelte';
 
 	import { loadPage } from './router/loadPage.js';
 	import { popState } from './router/popState.js';
+	import { clickAnyLink } from './router/clickAnyLink.js';
 
 	import { onMount } from 'svelte';
 	onMount(async () => {
@@ -22,9 +22,11 @@
 		console.log( value );
   });
 
+
+
 </script>
 
-<svelte:window on:popstate={popState}></svelte:window>
+<svelte:window on:popstate={popState} on:click={clickAnyLink}></svelte:window>
 
 <svelte:head>
 	<title>CDA {page.title}</title>
