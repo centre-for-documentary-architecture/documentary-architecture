@@ -17,13 +17,13 @@ return [
 	'cache.json' => false,
 	'cache.worlditems' => true,
 
+	'cache.get' => false,
+
 	'debug'  => true,
 
 	'cache-expires' => 30,
 
-	// 'cdn' =>		 		'https://documentary-architecture.fra1.digitaloceanspaces.com/cda',
-	'cdn' =>		 			'',
-	'cdn-domain' =>		 			'',
+	'cdn' =>		 	  	'https://documentary-architecture.fra1.digitaloceanspaces.com/cda',
 	'frontend-js' => 	'http://localhost:8000/media/plugins/centre-for-documentary-architecture/frontend/public/bundle.js',
 	'frontend-css' => 'http://localhost:8000/media/plugins/centre-for-documentary-architecture/frontend/public/bundle.css',
 
