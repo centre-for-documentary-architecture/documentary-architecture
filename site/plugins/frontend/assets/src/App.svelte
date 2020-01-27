@@ -32,19 +32,27 @@
 
 <HistoryBar />
 
-{#if page.loading }
+<!-- {#if page.loading }
 	Page loading.<br />
 	Title: {page.title || '?'}<br />
 	Url: {page.url || '?'}<br />
 	Template: {page.template || '?'}<br />
 	Worlditem: {page.worlditem || '?'}
-{/if}
+{/if} -->
 
 {#if page.template === 'html' }
-	{@html page.html}
+
+	<div>
+		{@html page.html}
+	</div>
+
 {:else if page.template === 'entity' }
+
 	<EntityTemplate {page} />
 	<ArchiveBar {page} />
+
 {:else if page.template === 'archive' }
+
 	<ArchiveTemplate {page} />
+
 {/if}

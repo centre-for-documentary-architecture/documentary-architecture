@@ -121,7 +121,7 @@
 		</div>
 	</main>
 
-	{#if loading === true}
+	{#if loading === true || page.loading}
 		<div class="is-loading"></div>
 	{/if}
 
