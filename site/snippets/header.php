@@ -11,8 +11,8 @@ $classlist = [
 	$page->layout(),
 	$page->template(),
 	$page->entity(),
-	$page->type(),
-	$page->category()
+	// $page->type(),
+	// $page->category()
 ];
 if( isset( $class ) ){
 	$classlist[] = $class;

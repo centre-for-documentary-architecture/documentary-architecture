@@ -45,12 +45,16 @@ export async function navigateTo( url, target = {}, replace = false ) {
 	// load data
 	let data = await loadData( url );
 
+	let classlist = ['dynamic'];
 	if( data.html ){
 		data.url = state.url;
 		data.title = state.title;
 		data.template = 'html';
+		classlist = [...classlist, 'reqular', 'black'];
 	} else {
 		state = createStateObject( data );
+		// let classlist = ['dynamic', data.theme, data.layout, data.template, data.entity, data.type, data.category ];
+		classlist = [...classlist, data.theme, data.layout, data.template, data.entity ];
 	}
 
 	// replace info in page object and history
@@ -60,6 +64,8 @@ export async function navigateTo( url, target = {}, replace = false ) {
 
 	history.replaceState( state, data.title, data.url );
 	historyStoreReplaceLast( state );
+
+	document.body.className = classlist.join(' ');
 
 	loading = false;
 }
