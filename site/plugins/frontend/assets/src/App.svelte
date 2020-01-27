@@ -55,4 +55,8 @@
 
 	<ArchiveTemplate {page} />
 
+{:else}
+
+	{#if page.loading}<div class="is-loading"></div>{/if}
+
 {/if}

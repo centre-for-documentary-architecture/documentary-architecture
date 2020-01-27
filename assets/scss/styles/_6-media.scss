@@ -232,9 +232,12 @@ img.lazyloaded {
 	margin-top: -1rem;
 	border-radius: 5rem;
 	z-index: 1;
-	background-color: #fff;
+	background-color: $white;
 	-webkit-animation: pulsate 1.5s ease infinite both;
 	animation: pulsate 1.5s ease infinite both;
+}
+.white .is-loading:after {
+	background-color: $black;
 }
 @keyframes pulsate {
 	0% {
