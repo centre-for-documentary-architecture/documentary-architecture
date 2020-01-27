@@ -41,10 +41,11 @@
 		return 6;
 	}
 
+  let main;
 	var isScrolled = false;
 	var isScrolledPrev = false;
 	function scrolling(){
-		if( glass.scrollTop > 100 ){
+		if( main.scrollTop > 100 ){
 			isScrolled = true;
 		} else {
 			isScrolled = false;
@@ -69,7 +70,7 @@
 
   {#if page.content}
 
-    <main class="panel col-sm-{contentWidth(page.entity)}" on:scroll|passive={scrolling}>
+    <main bind:this={main} class="panel col-sm-{contentWidth(page.entity)}" on:scroll|passive={scrolling}>
 
       <div class="content">
         <div class="tabs">

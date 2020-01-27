@@ -10,7 +10,6 @@
       return;
     }
 		keywords = value.keywords;
-    console.log( keywords );
   });
 
 </script>
