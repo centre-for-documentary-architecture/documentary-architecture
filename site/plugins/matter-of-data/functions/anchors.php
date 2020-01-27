@@ -18,7 +18,8 @@ function toKeyword( string $keyword, $text = false, $title = false ){
 		$text,
 		$attr = [
 			'title' => 'Research "'.$title.'" ('.esc($keyword).')',
-			'rel' => 'nofollow'
+			'rel' => 'search',
+			'class' => 'follow'
 	]);
 }
 
