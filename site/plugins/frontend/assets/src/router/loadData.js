@@ -1,20 +1,34 @@
+function readHeader( header ){
+	if( header.includes('json') ){
+		 return 'json';
+	}
+	return 'html';
+}
+
 export async function loadData( url ){
 
 	url = url.replace( '.json', '' );
 
 	const location = new URL( url );
-	url = location.origin + location.pathname + '.json' + location.search;
+	url = location.origin + '/get' + location.pathname + location.search;
 
 	console.log( 'loadData( '+url+' )' );
 	const response = await fetch( url );
-	let data;
-	if (response.ok) { // if HTTP-status is 200-299
-		// get the response body (the method explained below)
-		// console.log( response.headers.get('content-type') );
+
+	if (!response.ok) {
+		console.error("HTTP-Error: " + response.status);
+		return false;
+	}
+
+	let format = readHeader( response.headers.get('content-type') );
+	let data = {};
+
+	if( format === 'json' ){
 		data = await response.json();
 	} else {
-		console.error("HTTP-Error: " + response.status);
+		data.data = {};
+		data.data.html = await response.text();
 	}
-	return data.data;
 
+	return data.data;
 }

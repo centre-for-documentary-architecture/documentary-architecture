@@ -26,6 +26,8 @@ return [
 	'cache.json' => true,
 	'cache.worlditems' => true,
 
+	'cache.get' => true,
+
 	// other configuration
 	'thumbs' => [
 		'srcsets' => [

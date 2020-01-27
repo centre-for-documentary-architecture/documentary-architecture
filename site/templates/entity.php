@@ -1,10 +1,12 @@
 <?php
 
-snippet('header');
+if( isset($get) ){
 
-snippet('footer', [
-    'include' => [
-        js( option('frontend-js'), ['defer'=>true]),
-        css( option('frontend-css') )
-    ]
-]);
+  snippet( 'pages/' . $page->intendedTemplate() );
+
+} else {
+
+  snippet('header');
+  snippet('footer');
+
+}

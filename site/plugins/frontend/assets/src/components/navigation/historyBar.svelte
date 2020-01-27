@@ -27,9 +27,9 @@
   // ← →
 </script>
 
-<nav class="col-12 bar history horizontal white">
+<nav class="bar history horizontal white">
   <h3>
-    <Link title="Start" url={window.location.origin} />
+    <a href={window.location.origin} title="Start" >Start</a>
   </h3>
   <ol bind:offsetWidth={outerWidth} class="{ innerWidth > outerWidth ? 'alignright' : ''}">
     <div bind:offsetWidth={innerWidth}>
