@@ -168,15 +168,14 @@ body {
 			position: absolute;
 			height: 100%;
 		}
-	}
-
-	body.liebling-house.tour {
-		main .tab.list {
-			background-color: transparent;
-			.section--content {
-				padding: 0;
-				.list {
+		main.tour {
+			.tab.list {
+				background-color: transparent;
+				.section--content {
 					padding: 0;
+					.list {
+						padding: 0;
+					}
 				}
 			}
 		}

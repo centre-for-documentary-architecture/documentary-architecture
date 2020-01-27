@@ -1,13 +1,13 @@
 <script>
   import { navigateTo } from './navigateTo.js';
 
-	import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
   export let target = {};
 
-  export let url = undefined;
-	export let title = undefined;
+  export let url = false;
+  export let title = false;
   export let template = false;
 
   target.url = url || target.url;

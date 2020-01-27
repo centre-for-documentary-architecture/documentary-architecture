@@ -290,7 +290,13 @@ body.about,
 
 }
 
-body.liebling-house {
+.panels.overlap {
+	background-color: $light;
+	header {
+		h1 {
+			hyphens: auto;
+		}
+	}
 	main {
 		.invitation {
 			border-top: none !important;
@@ -304,14 +310,6 @@ body.liebling-house {
 			div:first-child {
 				border-top: none;
 			}
-		}
-	}
-}
-body.liebling-house {
-	&.tour,
-	&.tourstop {
-		h1 {
-			hyphens: auto;
 		}
 	}
 }
