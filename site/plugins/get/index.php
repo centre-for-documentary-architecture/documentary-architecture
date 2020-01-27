@@ -8,7 +8,22 @@ Kirby::plugin('cda/get', [
         'get/start'
       ],
       'action'  => function () {
-        return kirby()->site()->homePage()->render(['get' => true]);
+
+        $kirby = kirby();
+
+        // cache
+        $cache = $kirby->cache('get');
+        if( option('cache.get',false) ){
+          $cacheData = $cache->get('start');
+          if( $cacheData !== null ){
+            return $cacheData;
+          }
+        }
+
+        $return = $kirby->site()->homePage()->render(['get' => true]);
+
+        $cache->set('start', $return, option('cache-expires',1440) );
+        return $return;
       }
     ],
     [
