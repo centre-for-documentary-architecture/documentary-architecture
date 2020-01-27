@@ -40,7 +40,7 @@
 	Worlditem: {page.worlditem || '?'}
 {/if}
 
-{#if page.html }
+{#if page.template === 'html' }
 	{@html page.html}
 {:else if page.template === 'entity' }
 	<EntityTemplate {page} />

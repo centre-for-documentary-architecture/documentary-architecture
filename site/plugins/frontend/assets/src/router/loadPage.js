@@ -19,13 +19,19 @@ export async function loadPage( url = false, title = false ) {
 	// load data
 	let data = await loadData( state.url );
 
+	if( data.html ){
+		data.url = state.url;
+		data.title = state.title;
+		data.template = 'html';
+	} else {
+		state = createStateObject( data );
+	}
+
 	// replace info in page object and history
 	pageStoreSet({...data, loading: false});
 
 	// naviWorld( entity.worlditem );
-	// relocate();
 
-	state = createStateObject( data );
 	history.replaceState( state, state.title, state.url );
 	historyStoreReplaceLast( state );
 

@@ -45,12 +45,19 @@ export async function navigateTo( url, target = {}, replace = false ) {
 	// load data
 	let data = await loadData( url );
 
+	if( data.html ){
+		data.url = state.url;
+		data.title = state.title;
+		data.template = 'html';
+	} else {
+		state = createStateObject( data );
+	}
+
 	// replace info in page object and history
 	pageStoreSet({...data , loading: false });
 
 	// naviWorld( entity.worlditem );
 
-	state = createStateObject( data );
 	history.replaceState( state, data.title, data.url );
 	historyStoreReplaceLast( state );
 
