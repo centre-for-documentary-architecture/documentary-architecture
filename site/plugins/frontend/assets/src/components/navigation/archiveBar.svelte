@@ -3,14 +3,7 @@
 
   let url = location.origin + '/archive';
 
-  let keywords = false;
-	import { pageStore } 	from '../../router/pageStore.js';
-  const unsubscribe = pageStore.subscribe(value => {
-    if( value.loading === true ){
-      return;
-    }
-		keywords = value.keywords;
-  });
+  export let page;
 
 </script>
 
@@ -20,9 +13,9 @@
     <Link {url} title="Archive" template="archive" />
   </div>
 
-  {#if keywords}
+  {#if page.keywords}
     <div class="right keywords">
-      {#each keywords as keyword}
+      {#each page.keywords as keyword}
         <Link url="{url+'?research='+keyword}" template="archive" title="{keyword}" />
       {/each}
     </div>
