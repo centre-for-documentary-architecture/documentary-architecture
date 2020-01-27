@@ -129,6 +129,9 @@ aside#cda.open ~ .page-wrapper {
 //
 body.home {
 	aside#cda {
+		.bar {
+			border: none;
+		}
 		a.logo {
 			transform: translateY(0.6rem);
 		}

@@ -27,7 +27,7 @@
   // ← →
 </script>
 
-<nav class="col-12 bar history horizontal white">
+<nav class="bar history horizontal white">
   <h3>
     <a href={window.location.origin} title="Start" >Start</a>
   </h3>

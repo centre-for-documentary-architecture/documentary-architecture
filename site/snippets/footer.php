@@ -1,8 +1,9 @@
     </div><!-- .page-wrapper -->
 
-    <?= js( option('frontend-js'), ['defer'=>true]) ?>
-
-    <?= css( option('frontend-css') ) ?>
+    <?php if( !$page->isHomePage() ): ?>
+      <?= js( option('frontend-js'), ['defer'=>true]) ?>
+      <?= css( option('frontend-css') ) ?>
+    <?php endif; ?>
 
     <?= js('assets/es6/global.js', true) ?>
     <?= js( option('cdn').'/assets/js/lazysizes.min.js', true) ?>
