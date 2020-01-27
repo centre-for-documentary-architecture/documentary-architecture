@@ -10,9 +10,20 @@ nav.bar.archive {
 	background-color: $black;
 	color: $white;
 
-	.keywords a:after {
-		content: '→';
-		padding-left: 0.2em;
+	a {
+		transition: color 200ms ease;
+		&:hover {
+			color: $blue;
+		}
+	}
+
+	.keywords a {
+		font-size: $font-small;
+		padding-top: 0.45rem;
+		&:before {
+			content: '→';
+			padding-right: 0.2em;
+		}
 	}
 
 }

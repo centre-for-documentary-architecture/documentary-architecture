@@ -95,7 +95,6 @@
 						bind:this={field}
 						on:input={() => archive.input() }>
 				</form>
-
 			</header>
 
 			{#if page.archive && page.archive.filters}

@@ -132,6 +132,9 @@ Kirby::plugin('cda/get', [
               }
 
               $data['url'] = $requested->url();
+              if( $research ){
+                $data['url'] .= '?'.http_build_query(['research' => $research]);
+              }
               $data['archive'] = [
                   'url' => $requested->url(),
                   'filter' => $filter,
