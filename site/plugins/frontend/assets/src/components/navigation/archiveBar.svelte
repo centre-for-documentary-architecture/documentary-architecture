@@ -15,7 +15,7 @@
 
 </script>
 
-<nav class="col-12 bar archive horizontal">
+<nav class="bar archive horizontal">
 
   <div class="left">
     <Link {url} title="Archive" template="archive" />
