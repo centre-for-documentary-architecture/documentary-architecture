@@ -30,16 +30,15 @@ export async function navigateTo( url, target = {}, replace = false ) {
 		console.log('navigateTo() already loading');
 		return false;
 	}
-
+	if( url === window.location.href ){
+		return false;
+	}
 	const href = new URL( url );
 	if( href.host !== window.location.host ){
 		window.open( href, '_blank' );
 		return;
 	}
-	if( url === window.location.href ){
-		return false;
-	}
-
+	
 	loading = true;
 
 	target.url = url;

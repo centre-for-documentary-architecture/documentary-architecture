@@ -1,5 +1,6 @@
 <script>
   import { navigateTo } from './navigateTo.js';
+  import { replaceContent } from '../liebling-house/replaceContent.js';
 
   import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
@@ -19,7 +20,11 @@
   export { classList as class };
 
   function onClick(event) {
-    navigateTo( target.url, target, replace);
+    if( target.worlditem && document.body.classList.contains('liebling-house') ){
+      replaceContent( target.url, target, replace);
+    } else {
+      navigateTo( target.url, target, replace);
+    }
     dispatch('click', event);
   }
 </script>
