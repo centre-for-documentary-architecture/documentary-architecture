@@ -179,8 +179,10 @@ body.file {
 	}
 }
 body.file {
-	header h1 {
-		font-size: $font-medium;
+	header {
+		h1 {
+			font-size: $font-medium;
+		}
 	}
 }
 

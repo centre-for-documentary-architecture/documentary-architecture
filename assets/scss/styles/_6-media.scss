@@ -13,6 +13,7 @@
 	width: 100%;
 	padding: 0 0.5rem;
 	font-family: $mono;
+	height: unset;
 
 	.left {
 		flex: 1;
@@ -157,16 +158,13 @@
 @media screen and (max-width: 768px){
 
 	.presentation {
-
 		&.\33 d,
 		&.map,
 		&.liebling-house {
-
 			.section--content {
 				height: 60vh;
 			}
 		}
-
 	}
 
 }
