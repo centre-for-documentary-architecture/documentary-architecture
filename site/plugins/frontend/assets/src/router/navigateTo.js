@@ -1,29 +1,11 @@
 import { historyStoreAdd, historyStoreReplaceLast } from './historyStore.js';
 import { pageStoreSet } from './pageStore.js';
 
-import { createStateObject, assumeTemplate } from './utilities.js';
+import { createStateObject, assumeTemplate, assumeTitle } from './utilities.js';
 
 import { loadData } from './loadData.js';
 
 let loading = false;
-
-function assumeTitle( href ){
-
-	// from query
-	let matches = href.search.match(/research=([^&]*)/);
-	if( matches ){
-		return matches[0].replace('research=','');
-	}
-
-	// from last slug
-	if( href.pathname ){
-		let slugs = href.pathname.split('/');
-		return slugs.pop();
-	}
-
-	return '';
-
-}
 
 export async function navigateTo( url, target = {}, replace = false ) {
 	if( loading === true ){
@@ -38,7 +20,7 @@ export async function navigateTo( url, target = {}, replace = false ) {
 		window.open( href, '_blank' );
 		return;
 	}
-	
+
 	loading = true;
 
 	target.url = url;

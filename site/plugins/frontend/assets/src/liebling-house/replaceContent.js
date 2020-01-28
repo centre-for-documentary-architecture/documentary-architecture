@@ -1,6 +1,8 @@
 import { historyStoreAdd, historyStoreReplaceLast } from '../router/historyStore.js';
 import { pageStoreReplaceProperties } from '../router/pageStore.js';
 
+import { assumeTitle } from '../router/utilities.js';
+
 import { loadData } from '../router/loadData.js';
 
 let loading = false;

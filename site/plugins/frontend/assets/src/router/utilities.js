@@ -17,3 +17,21 @@ export function assumeTemplate( pathname ){
 	}
 	return false;
 }
+
+export function assumeTitle( href ){
+
+	// from query
+	let matches = href.search.match(/research=([^&]*)/);
+	if( matches ){
+		return matches[0].replace('research=','');
+	}
+
+	// from last slug
+	if( href.pathname ){
+		let slugs = href.pathname.split('/');
+		return slugs.pop();
+	}
+
+	return '';
+
+}
