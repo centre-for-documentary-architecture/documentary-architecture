@@ -16,14 +16,17 @@
 		loadPage();
 	});
 
-	let page;
+	let page = {};
 	import { pageStore } from './router/pageStore.js';
   const unsubscribe = pageStore.subscribe(value => {
-		page = value;
-		console.log( value );
+		for (var prop in value) {
+			if( value[prop] !== page[prop] ){
+				page[prop] = value[prop];
+			}
+		}
+		// page = value;
+		console.log( page );
   });
-
-
 
 </script>
 
