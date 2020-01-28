@@ -5,8 +5,8 @@
   */
 
   import Link from '../router/Link.svelte';
-  import Pagination from '../components/navigation/pagination.svelte';
-  import TourNavigation from '../components/navigation/tourNavigation.svelte';
+  import Pagination from './pagination.svelte';
+  import TourNavigation from './tourNavigation.svelte';
 
   import TabHeader from '../components/tabs/header.svelte';
 	import TabCollection from '../components/tabs/collection.svelte';
@@ -19,7 +19,7 @@
 		text: TabText
   }
 
-	import ViewLieblingHouse from '../views/liebling-house.svelte';
+	import World from './world.svelte';
 
 	export let page;
 
@@ -31,7 +31,6 @@
 		if( event.target !== glass ){
 			return false;
 		}
-		// console.log('clicked on glass');
 		window.goThroughGlass();
 	}
 
@@ -68,8 +67,7 @@
   import { onDestroy } from 'svelte';
 	onDestroy(() => {
 		document.body.classList.remove('liebling-house');
-	})
-
+	});
 
 </script>
 
@@ -77,9 +75,12 @@
 
   {#if page.content}
     <main class="panel col-sm-3 {page.category}" on:click={window.touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
-
       <div class="content">
+
   			<div class="tabs">
+
+          {#if page.loading}<div class="is-loading"></div>{/if}
+
   				{#if page.category == 'overview'}
   					<TourNavigation>
   						<button class="blue" on:click={window.worldSetRoaming}>Start exploring →</button>
@@ -99,13 +100,13 @@
 
   				{/each}
   			</div>
-      </div>
 
+      </div>
     </main>
   {/if}
   {#if page.view}
 
-    <!-- <ViewLieblingHouse view={page.view} classname="presentation panel col-12" /> -->
+    <!-- <World view={page.view} classname="presentation panel col-12" /> -->
 
   {/if}
 

@@ -5,7 +5,7 @@
 	import ArchiveBar from './components/navigation/archiveBar.svelte';
 	import ArchiveTemplate from './templates/archive.svelte';
 	import EntityTemplate from './templates/entity.svelte';
-	import LieblingHouse from './templates/entityLieblingHouse.svelte';
+	import LieblingHouse from './liebling-house/template.svelte';
 
 	import { loadPage } from './router/loadPage.js';
 	import { popState } from './router/popState.js';
