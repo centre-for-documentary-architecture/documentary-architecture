@@ -110,6 +110,13 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+a,
+button {
+	abbr, abbr[title]{
+		text-decoration: none;
+	}
+}
+
 h1,
 h2,
 h3,

@@ -4,8 +4,9 @@
   * import components
   */
 
-  import Pagination from '../components/navigation/pagination.svelte';
-  import TourNavigation from '../components/navigation/tourNavigation.svelte';
+  import Link from '../router/Link.svelte';
+  import Pagination from './pagination.svelte';
+  import TourNavigation from './tourNavigation.svelte';
 
   import TabHeader from '../components/tabs/header.svelte';
 	import TabCollection from '../components/tabs/collection.svelte';
@@ -18,24 +19,7 @@
 		text: TabText
   }
 
-  import ViewCollection from '../views/collection.svelte';
-	import ViewImage from '../views/image.svelte';
-	import ViewVideo from '../views/video.svelte';
-	import ViewAudio from '../views/audio.svelte';
-	import ViewMap from '../views/map.svelte';
-	import View3d from '../views/3d.svelte';
-	import ViewPanorama from '../views/panorama.svelte';
-	import ViewLieblingHouse from '../views/liebling-house.svelte';
-	let views = {
-		'collection': ViewCollection,
-		'image': ViewImage,
-		'liebling-house': ViewLieblingHouse,
-		'video': ViewVideo,
-		'audio': ViewAudio,
-		'map': ViewMap,
-		'3d': View3d,
-		'panorama': ViewPanorama
-	}
+	import World from './world.svelte';
 
 	export let page;
 
@@ -47,7 +31,6 @@
 		if( event.target !== glass ){
 			return false;
 		}
-		// console.log('clicked on glass');
 		window.goThroughGlass();
 	}
 
@@ -80,23 +63,32 @@
 		}
 	}
 
+  document.body.classList.add('liebling-house');
+  import { onDestroy } from 'svelte';
+	onDestroy(() => {
+		document.body.classList.remove('liebling-house');
+	});
+
 </script>
 
-<div class="grid panels {page.type == 'liebling-house' ? 'overlap' : '' }">
+<div class="grid panels overlap">
 
   {#if page.content}
+    <main class="panel col-sm-3 {page.category}" on:click={window.touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
+      <div class="content">
 
-      <main class="panel col-sm-{contentWidth(page.entity)}" on:click={window.touchGlass} bind:this={glass} on:scroll|passive={scrolling}>
-
-          <div class="content">
   			<div class="tabs">
+
+          {#if page.loading}<div class="is-loading"></div>{/if}
+
   				{#if page.category == 'overview'}
   					<TourNavigation>
   						<button class="blue" on:click={window.worldSetRoaming}>Start exploring →</button>
   					</TourNavigation>
   				{:else if page.category == 'tour'}
   					<TourNavigation>
-  						<a class="button blue" on:click={window.navi} href="{page.content[1].content[0].url}" data-template="{page.content[1].content[0].template}">Start promenade →</a>
+  						<!-- <a class="button blue" on:click={window.navi} href="{page.content[1].content[0].url}" data-template="{page.content[1].content[0].template}">Start promenade →</a> -->
+              <Link target={page.content[1].content[0]} class="button blue">Start promenade →</Link>
   					</TourNavigation>
   				{:else if page.category == 'tourstop' && page.pagination }
   					<Pagination pagination={page.pagination} />
@@ -108,14 +100,13 @@
 
   				{/each}
   			</div>
-          </div>
 
-      </main>
-
+      </div>
+    </main>
   {/if}
   {#if page.view}
 
-  	<svelte:component this={views[ page.view.type ]} view={page.view} classname="presentation panel col-sm-{12 - contentWidth(page.entity)}" transcript={page.transcript || false}/>
+    <World view={page.view} classname="presentation panel col-12" />
 
   {/if}
 

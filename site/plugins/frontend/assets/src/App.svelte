@@ -3,8 +3,9 @@
 
 	import HistoryBar from './components/navigation/historyBar.svelte';
 	import ArchiveBar from './components/navigation/archiveBar.svelte';
-	import EntityTemplate from './templates/entity.svelte';
 	import ArchiveTemplate from './templates/archive.svelte';
+	import EntityTemplate from './templates/entity.svelte';
+	import LieblingHouse from './liebling-house/template.svelte';
 
 	import { loadPage } from './router/loadPage.js';
 	import { popState } from './router/popState.js';
@@ -15,14 +16,17 @@
 		loadPage();
 	});
 
-	let page;
+	let page = {};
 	import { pageStore } from './router/pageStore.js';
   const unsubscribe = pageStore.subscribe(value => {
-		page = value;
-		console.log( value );
+		for (var prop in value) {
+			if( value[prop] !== page[prop] ){
+				page[prop] = value[prop];
+			}
+		}
+		// page = value;
+		console.log( page );
   });
-
-
 
 </script>
 
@@ -50,7 +54,12 @@
 
 {:else if page.template === 'entity' }
 
-	<EntityTemplate {page} />
+	{#if page.view && page.view.type === 'liebling-house'}
+		<LieblingHouse {page} />
+	{:else}
+		<EntityTemplate {page} />
+	{/if}
+
 	<ArchiveBar {page} />
 
 {:else if page.template === 'archive' }

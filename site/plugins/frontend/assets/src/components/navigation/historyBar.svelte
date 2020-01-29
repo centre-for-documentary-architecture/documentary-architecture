@@ -1,6 +1,8 @@
 <script>
-  import { historyStore } from '../../router/historyStore.js';
   import Link from '../../router/Link.svelte';
+
+  import { onDestroy } from 'svelte';
+  import { historyStore } from '../../router/historyStore.js';
 
   let list;
   const unsubscribe = historyStore.subscribe(value => {
@@ -21,6 +23,9 @@
 
 		list = value;
   });
+  onDestroy(() => {
+		unsubscribe();
+	});
 
   let outerWidth, innerWidth;
 

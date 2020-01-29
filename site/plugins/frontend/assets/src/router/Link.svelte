@@ -1,13 +1,14 @@
 <script>
   import { navigateTo } from './navigateTo.js';
+  import { replaceContent } from '../liebling-house/replaceContent.js';
 
-	import { createEventDispatcher } from 'svelte';
+  import { createEventDispatcher } from 'svelte';
   const dispatch = createEventDispatcher();
 
   export let target = {};
 
-  export let url = undefined;
-	export let title = undefined;
+  export let url = false;
+  export let title = false;
   export let template = false;
 
   target.url = url || target.url;
@@ -19,7 +20,11 @@
   export { classList as class };
 
   function onClick(event) {
-    navigateTo( target.url, target, replace);
+    if( target.worlditem && document.body.classList.contains('liebling-house') ){
+      replaceContent( target.url, target, replace);
+    } else {
+      navigateTo( target.url, target, replace);
+    }
     dispatch('click', event);
   }
 </script>

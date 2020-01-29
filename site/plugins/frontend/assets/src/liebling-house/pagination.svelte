@@ -1,6 +1,6 @@
 <script>
 
-  import Link from '../../router/Link.svelte';
+  import Link from '../router/Link.svelte';
   export let pagination;
 
   // ← →
@@ -8,7 +8,7 @@
 
 <nav class="pagination bar controls">
     {#if pagination.prev }
-      <Link target={pagination.prev} >←</Link>
+      <Link target={pagination.prev} replace={true}>←</Link>
     {/if}
 
     {#if pagination.siblings}
@@ -17,7 +17,7 @@
 
           <li class="{ item.url == pagination.current.url ? 'current' : ''}">
 
-            <Link target={item} >
+            <Link target={item} replace={true}>
               <span class="num">{i+1}</span>
               <span class="title">{item.title}</span>
             </Link>
@@ -29,7 +29,7 @@
     {/if}
 
     {#if pagination.next }
-      <Link target={pagination.next} >
+      <Link target={pagination.next} replace={true} >
         <abbr title="Previous: {pagination.next.title}">→</abbr>
       </Link>
     {:else}
