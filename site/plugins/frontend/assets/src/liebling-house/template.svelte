@@ -106,7 +106,7 @@
   {/if}
   {#if page.view}
 
-    <!-- <World view={page.view} classname="presentation panel col-12" /> -->
+    <World view={page.view} classname="presentation panel col-12" />
 
   {/if}
 
