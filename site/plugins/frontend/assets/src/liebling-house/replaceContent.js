@@ -45,7 +45,7 @@ export async function replaceContent( url, target = {}, replace = false ) {
 	state.title = data.title;
 	state.worlditem = data.worlditem;
 
-	// ? naviWorld( entity.worlditem );
+	window.goToItem( data.worlditem );
 
 	pageStoreReplaceProperties({
 		...state,

@@ -121,7 +121,9 @@
 
 		if( view.content.worlditemStart ){
 			console.log( 'could navigate to "'+view.content.worlditemStart+'"' );
-			lieblingHouseWorldInstance.SendMessage('GameManager', 'TeleportToItem', view.content.worlditemStart );
+			setTimeout(function(){
+				lieblingHouseWorldInstance.SendMessage('GameManager', 'TeleportToItem', view.content.worlditemStart );
+			}, 3001);
 		} else {
 			worldSetState('Kiosk');
 		}
@@ -186,6 +188,14 @@
 	window.goThroughGlass = event => {
 		console.log('went through glass');
 		worldSetState('FreeRoaming');
+	}
+	window.goToItem = itemName => {
+		console.log('goToItem('+itemName+')');
+		lieblingHouseWorldInstance.SendMessage('GameManager', 'GoToItem', itemName );
+	}
+	window.teleportToItem = itemName => {
+		console.log('teleportToItem('+itemName+')');
+		lieblingHouseWorldInstance.SendMessage('GameManager', 'TeleportToItem', itemName );
 	}
 	function worldSetState( state ){
 		switch (state) {
