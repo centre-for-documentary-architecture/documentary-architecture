@@ -36,7 +36,7 @@ $publications = $site->archive('publications')->highlights()->toPages();
 						<div>
 							<h5>
 								Online Collection,
-								<?= $item->date_created()->toDate('Y') ?>
+								<?= $item->date_modified()->toDate('Y') ?>
 							</h5>
 							<?php if($image = $item->thumbnail()): ?>
 								<figure>
