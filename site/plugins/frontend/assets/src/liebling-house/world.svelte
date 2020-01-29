@@ -3,7 +3,9 @@
 	export let view;
 	export let classname;
 
+	import {replaceContent} from './replaceContent.js';
 	import LoadScript from '../helpers/loadScript.svelte';
+
 	const dependencies = [
 		view.content.unityLoader || "https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/liebling-house/Build/UnityLoader.js"
 	];
@@ -27,11 +29,6 @@
 		MovingToItem     // automated walk to destination -> stop + dollhouse
 
 	*/
-
-
-	window.showWorlditemContent = ( option ) => {
-		console.log('showWorlditemContent()');
-	}
 
 	var world = {
 		loaded: false,
@@ -64,7 +61,7 @@
 			FreeRoaming: {
 				roaming: false,
 				dollhouse: true,
-				help: "Use ← ↑ ↓ → to navigate and mouse to rotate camera. ESC to leave."
+				help: "Use W A S D to navigate and ← ↑ ↓ → to rotate camera."
 			},
 			MovingToItem: {
 				roaming: "Stop",
@@ -115,22 +112,22 @@
 		}
 
 	}
-	window.onWorldReady = () => {
-
-		console.log( 'onWorldReady' );
-		/*
-		if( page.worlditem ){
-			console.log( 'could navigate to '+page.worlditem );
-		}
-		*/
-
-	}
 
 	/*
 	* control world -> website
 	*/
-	window.worldUpdateState = state => {
+	window.onWorldReady = () => {
+		console.log( 'onWorldReady()' );
 
+		if( view.content.worlditemStart ){
+			console.log( 'could navigate to "'+view.content.worlditemStart+'"' );
+			lieblingHouseWorldInstance.SendMessage('GameManager', 'TeleportToItem', view.content.worlditemStart );
+		} else {
+			worldSetState('Kiosk');
+		}
+
+	}
+	window.worldUpdateState = state => {
 		console.log('worldUpdateState( ' + state + ' )' );
 
 		if( state == 'ViewingPlatform' ){
@@ -149,7 +146,7 @@
 			// console.log('worldHoverItem() mouse leave');
 			world.tooltips.item = false;
 		} else {
-			// console.log( 'worldHoverItem( ' + worlditemId + ' )' );
+			console.log( 'worldHoverItem( ' + worlditemId + ' )' );
 			world.tooltips.item = worlditemId;
 		}
 		// maybe highlight collection elements by id?
@@ -175,6 +172,14 @@
 		naviFromWorld( tourstopId );
 		return true;
 	}
+	window.showWorlditemContent = async worlditemId => {
+
+		var href = window.location.origin + '/' + worlditemId;
+		console.log( 'showWorlditemContent()', href );
+
+		replaceContent( href, {}, true);
+
+	}
 	/*
 	* control website -> world
 	*/
@@ -192,6 +197,9 @@
 		}
 		console.log( state );
 		lieblingHouseWorldInstance.SendMessage('GameManager', state );
+	}
+	window.worldSetState = state => {
+		worldSetState( state );
 	}
 </script>
 
@@ -220,10 +228,6 @@
 <LoadScript on:loaded={unityInit} dependencies={dependencies}/>
 
 <section class="{classname} {view.type}">
-
-	<!--<h3 class="section--header">
-		{ view.headline || 'Virtual 3D World' }
-	</h3>-->
 
 	<div class="section--content" id="view-liebling-house">
 		<div id="worldContainer" class="presentation-container"></div>
