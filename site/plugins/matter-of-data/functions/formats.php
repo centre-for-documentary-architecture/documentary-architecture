@@ -106,7 +106,6 @@ function toSource( $source, $website = false, $keyword = false ){
 	*   declaration, website
 	* ];
 	*/
-
 	if( $website ){
 		return toLink( $website, $source );
 	}

@@ -79,7 +79,7 @@ return [
 					return toLink( $tag->value, $tag->text );
 
 				}
-	
+
 			}
 
 			// check if page exists internally
@@ -107,13 +107,10 @@ return [
 		'html' => function($tag) {
 
 			return toKeyword( $tag->value );
-			
+
 		}
 	],
 	'source' => [
-		/*
-		* custom kirbytag (user: Moritz Ebeling) that creates a link to that user profile
-		*/
 		'attr' => [
 			'author', 'date', 'publisher', 'website', 'country'
 		],
@@ -132,7 +129,7 @@ return [
 				'website' => $tag->website,
 				'country' => $tag->country
 			]);
-			
+
 		}
 	],
 ];

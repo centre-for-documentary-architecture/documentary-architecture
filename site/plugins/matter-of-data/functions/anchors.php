@@ -66,6 +66,7 @@ function toLink( $url, $text = false ){
 		$text,
 		$attr = [
 			'target' => '_blank',
+			'class' => 'follow',
 			'title' => 'Open "'.$url.'"'
 	]);
 }
