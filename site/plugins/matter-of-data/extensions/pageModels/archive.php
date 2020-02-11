@@ -82,21 +82,21 @@ class PageArchive extends Page
             return $this->recentActivity()->listed();
         }
 
-        return $this->search( $query, 'title|additional_title|tags|content_text|description|category|transcript|credits|date_start|date_end|location_start|location_end|starring' )->listed();
+        return $this->search( $query, 'title|additional_title|tags|content_text|description|category|transcript|credits|date_start|date_end|location_start|location_end|starring|occupation|sources' )->listed();
 
     }
     public function dataAbstract( string $srcset = 'medium' )
     {
 
-		$content = [
-			'url' => $this->url(),
-			'title' => $this->title()->value(),
-			'template' => 'archive',
-            'classlist' => $this->classlist(),
-            'filter' => '',
-            'worlditem' => null,
-            'count' => $this->countCollection()
-		];
+    $content = [
+    	'url' => $this->url(),
+    	'title' => 'CDA '.$this->title()->value(),
+    	'template' => 'archive',
+        'classlist' => $this->classlist(),
+        'filter' => '',
+        'worlditem' => null,
+        'count' => $this->countCollection()
+    ];
 
 		return $content;
 

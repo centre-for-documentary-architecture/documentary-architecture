@@ -14,11 +14,12 @@ function toKeyword( string $keyword, $text = false, $title = false ){
 	$text = ucfirst( r( $text, $text, $keyword ) );
 	$title = ucfirst( r( $title, $title, $keyword ) );
 	return Html::a(
-		kirby()->page('archive')->url().'?research='.Str::slug( $keyword ),
+		kirby()->page('archive')->url().'?research='.$keyword,
 		$text,
 		$attr = [
-			'title' => 'Research "'.$title.'"',
-			'rel' => 'nofollow'
+			'title' => 'Research "'.$title.'" ('.esc($keyword).')',
+			'rel' => 'search',
+			'class' => 'follow'
 	]);
 }
 
@@ -39,7 +40,7 @@ function toKeywords( $terms, string $delimiter = ',', string $glue = ', ' ){
 
 function keywordDataAbstract( string $keyword ){
 	return [
-		'url' => kirby()->page('archive')->url().'?research='.Str::slug( $keyword ),
+		'url' => kirby()->page('archive')->url().'?research='.$keyword,
 		'title' => $keyword,
 		'template' => 'archive',
 		'classlist' => 'archive',
@@ -65,6 +66,7 @@ function toLink( $url, $text = false ){
 		$text,
 		$attr = [
 			'target' => '_blank',
+			'class' => 'follow',
 			'title' => 'Open "'.$url.'"'
 	]);
 }

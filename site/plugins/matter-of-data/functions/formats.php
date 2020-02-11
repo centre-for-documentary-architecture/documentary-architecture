@@ -100,18 +100,17 @@ function toLocation( $location, $glue = '<br />' ){
 	return $return;
 }
 
-
-
-
-function toSource( $source, $website ){
+function toSource( $source, $website = false, $keyword = false ){
 	/*
 	* recieves $source[
 	*   declaration, website
 	* ];
 	*/
-
 	if( $website ){
 		return toLink( $website, $source );
 	}
-	return toKeyword( $source );
+	if( $keyword ){
+		return toKeyword( $keyword, $source );
+	}
+	return $source;
 }

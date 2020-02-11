@@ -107,6 +107,11 @@
 		}
 
 	}
+	window.onWorldReady = () => {
+
+		console.log( 'onWorldReady' );
+
+	}
 	/*
 	* control world -> website
 	*/

@@ -16,9 +16,9 @@
 	var map;
 
 	let mapPositions = {
-		lat: 44,
-		lon: 23,
-		zoom: 3
+		lat: 25,
+		lon: 30,
+		zoom: 1
 	};
 
 	const mapstyles = {

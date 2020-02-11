@@ -143,6 +143,7 @@ p {
 }
 
 .section--header {
+	-webkit-user-select: none;
 	user-select: none;
 	font-family: $mono;
 }

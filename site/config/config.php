@@ -26,6 +26,8 @@ return [
 	'cache.json' => true,
 	'cache.worlditems' => true,
 
+	'cache.get' => true,
+
 	// other configuration
 	'thumbs' => [
 		'srcsets' => [
@@ -43,10 +45,11 @@ return [
 
 	'smartypants' => true,
 
+	'cdn-domain' =>		'//documentary-architecture.fra1.digitaloceanspaces.com',
 	'cdn-host' => 		'https://documentary-architecture.fra1.digitaloceanspaces.com',
-	// 'cdn' =>		 	'https://documentary-architecture.fra1.digitaloceanspaces.com/cda',
-	'cdn' =>			'https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda',
-	'frontend-js' => 	'https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda/assets/frontend/bundle.js',
-	'frontend-css' => 	'https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda/assets/frontend/bundle.css',
+	'cdn' =>		 			'https://documentary-architecture.fra1.digitaloceanspaces.com/cda',
+	// 'cdn' =>				'https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda',
+	'frontend-js' => 	'https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/frontend/bundle.js',
+	'frontend-css' => 'https://documentary-architecture.fra1.digitaloceanspaces.com/cda/assets/frontend/bundle.css',
 
 ];

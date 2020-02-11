@@ -84,11 +84,14 @@ button {
 	display: inline-block;
 	outline: none;
 	text-align: left;
+	user-select: none;
 }
 
+/*
 button * {
 	pointer-events: none;
 }
+*/
 
 // links
 a {
@@ -105,6 +108,13 @@ body {
 	text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+
+a,
+button {
+	abbr, abbr[title]{
+		text-decoration: none;
+	}
 }
 
 h1,

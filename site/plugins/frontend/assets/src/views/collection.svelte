@@ -1,16 +1,17 @@
 <script>
 	import { afterUpdate } from 'svelte';
+	import { loadData } from '../router/loadData.js';
 
-	export let transcript;
+	export let transcript = false;
 	export let view;
 	export let classname;
 
 	export let controls = false;
 	export let columns = view.columns || 2;
 
-	import CollectionCards from '../collection/cards.svelte';
-	import CollectionList from '../collection/list.svelte';
-	import CollectionsGallery from '../collection/gallery.svelte';
+	import CollectionCards from '../components/collection/cards.svelte';
+	import CollectionList from '../components/collection/list.svelte';
+	import CollectionsGallery from '../components/collection/gallery.svelte';
 	let layouts = {
 		cards: CollectionCards,
 		list: CollectionList,
@@ -26,23 +27,16 @@
 	let loading = false;
 
 	async function loadNext(){
-		// console.log('load next chunk of collections '+view.next);
-
+		
 		loading = true;
-		// console.log('please wait...');
 
-		let newData = await load( view.next );
+		let data = await loadData( view.next );
 
-		if( newData ){
+		if( data ){
 
 			loading = false;
-			// console.log('loading finished');
-
-			// console.log( newData );
-
-			view.next = newData.next;
-
-			view.content = view.content.concat( newData.content );
+			view.next = data.next;
+			view.content = view.content.concat( data.content );
 
 		}
 	}
@@ -53,12 +47,9 @@
 	let scrollPos = 0;
 
 	function scrollTrigger(){
-		// console.log('scroll');
 		if( view.next === false || loading === true ){
-			// console.log('no more');
 			return;
 		}
-		// console.log('scrollll');
 		scrollPos = container.scrollTop;
 		if( scrollPos > ( pageHeight - offset ) ){
 
@@ -86,9 +77,9 @@
 		<svelte:component this={layouts[layout]} list={view.content} {columns}/>
 
 		{#if view.next || loading === true}
-			<div class="bar load-more">
+			<div class="load-more">
 				{#if loading === true}
-					<span class="pleas-wait">Please wait...</span>
+					<div class="is-loading"></div>
 				{:else}
 					<button class="card" on:click={loadNext}>Load more</button>
 				{/if}

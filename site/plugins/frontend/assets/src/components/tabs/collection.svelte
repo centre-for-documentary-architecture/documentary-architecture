@@ -4,7 +4,7 @@
 	export let tab;
 	export let category;
 
-    import CollectionCards from '../collection/cards.svelte';
+  import CollectionCards from '../collection/cards.svelte';
 	import CollectionList from '../collection/list.svelte';
 	import EntityInfo from '../collection/entityinfo.svelte';
 	import CollectionsGallery from '../collection/gallery.svelte';

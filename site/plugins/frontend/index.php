@@ -69,7 +69,7 @@ Kirby::plugin('centre-for-documentary-architecture/frontend', [
 
                     $data = $archive->dataGeneral();
 
-                    $data['url'] = $mainArchive->url();
+                    $data['url'] = archivePath( $mainArchive->url(), $filter, ['research' => $query['research']] );
                     $data['archive'] = [
                         'url' => $mainArchive->url(),
                         'filter' => $filter,
@@ -84,6 +84,12 @@ Kirby::plugin('centre-for-documentary-architecture/frontend', [
                         'next' => $next,
                         'content' => $results->limit( $pagination )->dataAbstract()
                     ];
+                    /*
+                    if( isset($query['research']) && $query['research'] != '' ){
+                      // $data['title'] .= ': '.$query['research'];
+                      // $data['url'] .= '?'.http_build_query(['research' => $query['research'] ]);
+                    }
+                    */
 
                 } else {
 
