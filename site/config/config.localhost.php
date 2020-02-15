@@ -24,7 +24,7 @@ return [
 	'cache-expires' => 30,
 
 	'cdn' =>		 	  	'https://documentary-architecture.fra1.digitaloceanspaces.com/cda',
-	'frontend-js' => 	'http://localhost:8000/media/plugins/centre-for-documentary-architecture/frontend/public/bundle.js',
-	'frontend-css' => 'http://localhost:8000/media/plugins/centre-for-documentary-architecture/frontend/public/bundle.css',
+	'frontend-js' => 	'assets/frontend/bundle.js',
+	'frontend-css' => 'assets/frontend/bundle.css',
 
 ];
