@@ -3,48 +3,56 @@
 # rewrite rules
 <IfModule mod_rewrite.c>
 
-# enable awesome urls. i.e.:
-# http://yourdomain.com/about-us/team
-RewriteEngine on
+  # enable awesome urls. i.e.:
+  # http://yourdomain.com/about-us/team
+  RewriteEngine on
 
-# make sure to set the RewriteBase correctly
-# if you are running the site in a subfolder.
-# Otherwise links or the entire site will break.
-#
-# If your homepage is http://yourdomain.com/mysite
-# Set the RewriteBase to:
-#
-# RewriteBase /mysite
+  # make sure to set the RewriteBase correctly
+  # if you are running the site in a subfolder.
+  # Otherwise links or the entire site will break.
+  #
+  # If your homepage is http://yourdomain.com/mysite
+  # Set the RewriteBase to:
+  #
+  # RewriteBase /mysite
 
-# In some enviroments it's necessary to
-# set the RewriteBase to:
-#
-RewriteBase /
+  # In some enviroments it's necessary to
+  # set the RewriteBase to:
+  #
+  RewriteBase /
 
-# favicon
-RewriteRule ^favicon\.ico$ /assets/favicon/favicon.ico [L]
+  # remove www and add https
+  RewriteCond %{HTTP_HOST} ^www.documentary-architecture.org$ [NC]
+  RewriteRule ^(.*)$ https://documentary-architecture.org/$1 [R=301,L]
 
-# block files and folders beginning with a dot, such as .git
-# except for the .well-known folder, which is used for Let's Encrypt and security.txt
-RewriteRule (^|/)\.(?!well-known\/) index.php [L]
+  # force https
+  RewriteCond %{HTTPS} off
+  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
-# block text files in the content folder from being accessed directly
-RewriteRule ^content/(.*)\.(txt|md|mdown)$ index.php [L]
+  # favicon
+  RewriteRule ^favicon\.ico$ /assets/favicon/favicon.ico [L]
 
-# block all files in the site folder from being accessed directly
-# except for requests to plugin assets files
-RewriteRule ^site/(.*) index.php [L]
+  # block files and folders beginning with a dot, such as .git
+  # except for the .well-known folder, which is used for Let's Encrypt and security.txt
+  RewriteRule (^|/)\.(?!well-known\/) index.php [L]
 
-# Enable authentication header
-SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+  # block text files in the content folder from being accessed directly
+  RewriteRule ^content/(.*)\.(txt|md|mdown)$ index.php [L]
 
-# block direct access to kirby and the panel sources
-RewriteRule ^kirby/(.*) index.php [L]
+  # block all files in the site folder from being accessed directly
+  # except for requests to plugin assets files
+  RewriteRule ^site/(.*) index.php [L]
 
-# make site links work
-RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*) index.php [L]
+  # Enable authentication header
+  SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
+
+  # block direct access to kirby and the panel sources
+  RewriteRule ^kirby/(.*) index.php [L]
+
+  # make site links work
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteRule ^(.*) index.php [L]
 
 </IfModule>
 
@@ -59,7 +67,6 @@ Options +FollowSymlinks
   # allow CORS
   Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.cdn.digitaloceanspaces.com"
   Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.digitaloceanspaces.com"
-  Header Set Access-Control-Allow-Origin "https://mod.documentary-architecture.org"
   Header Set Access-Control-Allow-Origin "https://documentary-architecture.org"
   Header Set Access-Control-Allow-Origin "http://localhost:8000"
   Header Set Access-Control-Allow-Origin "http://localhost:80"
@@ -138,14 +145,14 @@ Options +FollowSymlinks
   ExpiresByType image/x-icon "access 1 year"
   ExpiresByType application/x-font-woff "access 1 year"
 
-  ExpiresByType text/css "access 30 minutes"
-  ExpiresByType text/html "access 30 minutes"
-  ExpiresByType text/x-javascript "access 30 minutes"
-  ExpiresByType application/unityweb "access 5 minutes"
-  ExpiresByType application/json "access 5 minutes"
+  ExpiresByType text/css "access 1 month"
+  ExpiresByType text/html "access 1 month"
+  ExpiresByType text/x-javascript "access 1 month"
+  ExpiresByType application/unityweb "access 1 month"
+  ExpiresByType application/json "access 10 minutes"
 
   ExpiresByType application/pdf "access 1 month"
-  ExpiresByType application/x-shockwave-flash "access 1 month"
+  ExpiresByType application/x-shockwave-flash "access 1 year"
   ExpiresByType application/x-font-woff "access 1 year"
 
   ExpiresDefault "access 1 month"
