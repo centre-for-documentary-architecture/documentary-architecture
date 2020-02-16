@@ -211,6 +211,11 @@
 	window.worldSetState = state => {
 		worldSetState( state );
 	}
+	function canvasClick(){
+		if( world.state !== 'FreeRoaming '){
+			worldSetState('FreeRoaming');
+		}
+	}
 </script>
 
 <style>
@@ -240,7 +245,7 @@
 <section class="{classname} {view.type}">
 
 	<div class="section--content" id="view-liebling-house">
-		<div id="worldContainer" class="presentation-container"></div>
+		<div id="worldContainer" class="presentation-container" on:click="{canvasClick}"></div>
 		{#if world.loaded === false }
 			<div class="is-loading"></div>
 		{/if}

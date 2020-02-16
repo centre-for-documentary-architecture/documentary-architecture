@@ -10,6 +10,11 @@ return [
 	// development
 	'debug'  => false,
 
+	// archive shall render all 404, using the request path as query input
+	'error' => 'error',
+
+	'smartypants' => true,
+
 	// languages
 	'languages' => false,
 	'languages.detect' => false,
@@ -23,12 +28,11 @@ return [
 	],
 	'cache-expires' => 1440,
 	'cache.abstract' => true,
-	'cache.json' => true,
 	'cache.worlditems' => true,
-
 	'cache.get' => true,
 
 	// other configuration
+	/*
 	'thumbs' => [
 		'srcsets' => [
 			'mini' =>  [ 40, 80, 120],
@@ -39,11 +43,17 @@ return [
 			'all' =>       [ 80, 120, 240, 360, 480, 640, 880, 1200, 1600, 2000, 2500, 3000, 3500],
 		]
 	],
-
-	// archive shall render all 404, using the request path as query input
-	'error' => 'error',
-
-	'smartypants' => true,
+	*/
+	'thumbs' => [
+		'srcsets' => [
+			'mini' => [ 40, 80, 120],
+			'small' => [ 120, 240, 360],
+			'medium' => [360, 640, 1200],
+			'large' => [640, 1200, 2000],
+			'full' => [640, 1200, 2000, 3000],
+			'all' => [ 80, 360, 640, 1200, 2000, 3000],
+		]
+	],
 
 	'cdn-domain' =>		'//documentary-architecture.fra1.digitaloceanspaces.com',
 	'cdn-host' => 		'https://documentary-architecture.fra1.digitaloceanspaces.com',

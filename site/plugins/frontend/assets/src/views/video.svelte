@@ -14,7 +14,7 @@
 	let render = true;
 	$: { reMountVideo( view.content.srcset[0].url ) }
 	function reMountVideo(){
-		console.log('remount');
+		// console.log('remount');
 		render = false;
 		setTimeout(() => render = true, 0);
 	}

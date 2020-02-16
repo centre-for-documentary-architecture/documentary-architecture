@@ -1,3 +1,15 @@
+# Content files
+# ------------
+
+.lock
+.mp4
+*.mp4
+.unityweb
+*.unityweb
+
+content/*
+/content/*
+
 # System files
 # ------------
 
@@ -9,11 +21,6 @@ Icon
 
 /media/*
 !/media/index.html
-
-.lock
-
-content/*
-/content/*
 
 # -------------SECURITY-------------
 # NEVER publish these files via Git!
