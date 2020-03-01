@@ -83,7 +83,7 @@
 
   				{#if page.category == 'overview'}
   					<TourNavigation>
-  						<button class="blue" on:click={window.worldSetRoaming}>Start exploring →</button>
+  						<button class="blue" on:click={window.worldFreeRoaming}>Start exploring →</button>
   					</TourNavigation>
   				{:else if page.category == 'tour'}
   					<TourNavigation>
@@ -106,7 +106,7 @@
   {/if}
   {#if page.view}
 
-    <World view={page.view} classname="presentation panel col-12" />
+    <World view={page.view} page={page.category} classname="presentation panel col-12" />
 
   {/if}
 

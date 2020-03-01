@@ -1,6 +1,7 @@
 <script>
 
 	export let view;
+	export let page;
 	export let classname;
 
 	import {replaceContent} from './replaceContent.js';
@@ -13,27 +14,49 @@
 	console.log( dependencies );
 
 	/*
+	*	deprecated functions ??
+	*/
+	window.worldSetState = state => {
+		console.warn('deprecated: window.worldSetState('+state+')');
+		worldCallMethod( state );
+	}
+	window.goThroughGlass = event => {
+		console.warn('deprecated: window.goThroughGlass('+event+')');
+		worldCallMethod('FreeRoaming');
+	}
+	window.teleportToItem = itemName => {
+		console.warn('deprecated: window.teleportToItem('+itemName+')');
+		lieblingHouseWorldInstance.SendMessage('GameManager', 'TeleportToItem', itemName );
+	}
 
+	/*
 	view.content
 		worlditemStart: worlditem
 		worlditemsList: ./i/liebling-house/worlditems.json
 		unityLoader:    ./Build/UnityLoader.js
 		unityJson:      ./Build/liebling-house-world.json
 
-	world.state
-		ViewingKiosk     // rotating building at the beginning of program -> explore
-		ViewingDollhouse // DHV -> explore
-		ViewingItem      // camera fixed in hotspot -> explore + dollhouse
-		ViewingPlatform  // world deactivated (controls remain from previous state)
-		FreeRoaming      // walking in wolrd -> dollhouse
-		MovingToItem     // automated walk to destination -> stop + dollhouse
+		Weltfunktionen sind wie gehabt über `gameInstance.SendMessage('GameManager', [FUNCTION], [ARGUMENT])` erreichbar.
+		- GoToItem(string itemName)
+		- TeleportToItem(string itemName)
+		- FreeRoaming()
+		- Kiosk()
+		- Dollhouse()
+		- Stop() stoppt `GoToItem`
 
+		Verfügbare States
+		- FreeRoaming
+		- MovingToItem
+		- ViewingDollhouse
+		- ViewingItem
+		- ViewingKiosk
+		- (ViewingPlatform)
 	*/
 
 	var world = {
 		loaded: false,
 		progress: 0,
-
+		setInitialState: false,
 		tooltips: {
 			item: false,
 			help: false
@@ -43,21 +66,6 @@
 		help: "Click on the builing to start exploring.",
 		state: 'ViewingKiosk',
 		states: {
-			ViewingKiosk: {
-				roaming: false,
-				dollhouse: false,
-				help: "Click on the builing to start exploring."
-			},
-			ViewingDollhouse: {
-				roaming: "Continue exploring",
-				dollhouse: false,
-				help: "Drag to rotate building or click on one of the highlighted spots."
-			},
-			ViewingItem: {
-				roaming: false,
-				dollhouse: true,
-				help: "Click to start exploring."
-			},
 			FreeRoaming: {
 				roaming: false,
 				dollhouse: true,
@@ -67,14 +75,30 @@
 				roaming: "Stop",
 				dollhouse: false,
 				help: false
-			}
+			},
+			ViewingDollhouse: {
+				roaming: "Continue exploring",
+				dollhouse: false,
+				help: "Drag to rotate building or click on one of the highlighted spots."
+			},
+			ViewingItem: {
+				roaming: "Continue exploring",
+				dollhouse: true,
+				help: "Click to start exploring."
+			},
+			ViewingKiosk: {
+				roaming: "Start exploring",
+				dollhouse: false,
+				help: "Click on the builing to start exploring."
+			},
 		}
 	};
 
 	import { onDestroy } from 'svelte';
 	onDestroy(() => {
+		console.log("onDestroy()");
 		lieblingHouseWorldInstance.Quit(function() {
-		    console.log("done!");
+		    console.log("lieblingHouseWorldInstance.Quit");
 		});
 		lieblingHouseWorldInstance = null;
 	});
@@ -82,6 +106,7 @@
 	* load and ini world
 	*/
 	function unityInit(){
+		console.log("unityInit()");
 
 		// return;
 
@@ -95,6 +120,7 @@
 
 	};
 	function UnityProgress(lieblingHouseWorldInstance, progress) {
+		console.log("UnityProgress()");
 
 		if (!lieblingHouseWorldInstance.Module) {
 			return;
@@ -112,28 +138,68 @@
 		}
 
 	}
+	/*
+	* state management
+	*/
+	function worldCallMethod( state ){
+		console.log( 'worldCallMethod('+state+')' );
 
+		switch (state) {
+			case 'Kiosk':
+			case 'Dollhouse':
+				break;
+			default:
+				state = 'FreeRoaming';
+		}
+		lieblingHouseWorldInstance.SendMessage('GameManager', state );
+	}
+	/*
+	* alias
+	*/
+	window.worldCallMethod = state => {
+		worldCallMethod( state );
+	}
 	/*
 	* control world -> website
+	*
+	* onWorldReady
+	* worldUpdateState
+	* worldHoverItem
+	* worldSelectItem
+	* worldSelectTourstopOfItem
 	*/
 	window.onWorldReady = () => {
-		console.log( 'onWorldReady()' );
+		console.log('window.onWorldReady()');
 
-		if( view.content.worlditemStart ){
+		if( page === 'overview' ){
+			worldCallMethod('Kiosk');
+		} else if( view.content.worlditemStart ){
 			console.log( 'could navigate to "'+view.content.worlditemStart+'"' );
-			setTimeout(function(){
-				lieblingHouseWorldInstance.SendMessage('GameManager', 'TeleportToItem', view.content.worlditemStart );
-			}, 3001);
+			lieblingHouseWorldInstance.SendMessage('GameManager', 'TeleportToItem', view.content.worlditemStart );
 		} else {
-			worldSetState('Kiosk');
+			worldCallMethod('Kiosk');
 		}
 
 	}
+	let setInitialState = false;
 	window.worldUpdateState = state => {
-		console.log('worldUpdateState( ' + state + ' )' );
+		if( setInitialState === false && state === 'FreeRoaming' ){
+			console.log('window.worldUpdateState('+state+') -> window.onWorldReady()');
+			window.onWorldReady();
+			setInitialState = true;
+		}
+		console.log('window.worldUpdateState('+state+')');
 
-		if( state == 'ViewingPlatform' ){
-			return;
+		switch (state) {
+			case 'ViewingPlatform':
+				console.warn('deprecated: ViewingPlatform state');
+			case 'MovingToItem':
+			case 'ViewingDollhouse':
+			case 'ViewingItem':
+			case 'ViewingKiosk':
+				break;
+			default:
+				state = 'FreeRoaming';
 		}
 
 		world.state = state;
@@ -144,76 +210,59 @@
 
 	}
 	window.worldHoverItem = worlditemId => {
+		console.log('window.worldHoverItem('+worlditemId+')');
+
 		if( worlditemId == '' ){
 			// console.log('worldHoverItem() mouse leave');
 			world.tooltips.item = false;
 		} else {
-			console.log( 'worldHoverItem( ' + worlditemId + ' )' );
 			world.tooltips.item = worlditemId;
 		}
 		// maybe highlight collection elements by id?
 		return true;
 	}
 	window.worldSelectItem = worlditemId => {
+		console.log('window.worldSelectItem('+worlditemId+')');
 		if( worlditemId == '' ){
-			console.log('worldSelectItem() no selection');
 			return false;
 		}
 		/* will directly navigate to this entity */
-		console.log('worldSelectItem( ' + worlditemId + ' )');
 		showWorlditemContent( worlditemId );
 		return true;
 	}
 	window.worldSelectTourstopOfItem = tourstopId => {
+		console.log('window.worldSelectTourstopOfItem('+tourstopId+')');
 		if( tourstopId == '' ){
-			console.log('worldSelectTourstopOfItem() no selection');
 			return false;
 		}
 		/* will navigate to tourstop within world */
-		console.log('worldSelectTourstopOfItem( ' + tourstopId + ' )');
 		naviFromWorld( tourstopId );
 		return true;
 	}
-	window.showWorlditemContent = async worlditemId => {
+	/*
+	* loading content
+	*/
+	async function showWorlditemContent(worlditemId){
+		console.log('async function showWorlditemContent('+worlditemId+')');
 
 		var href = window.location.origin + '/' + worlditemId;
-		console.log( 'showWorlditemContent()', href );
-
 		replaceContent( href, {}, true);
-
 	}
 	/*
-	* control website -> world
+	* helpers
 	*/
-	window.goThroughGlass = event => {
-		console.log('went through glass');
-		worldSetState('FreeRoaming');
+	window.worldFreeRoaming = arg => {
+		console.log('window.worldFreeRoaming()');
+		worldCallMethod('FreeRoaming');
 	}
 	window.goToItem = itemName => {
-		console.log('goToItem('+itemName+')');
+		console.log('window.goToItem('+itemName+')');
 		lieblingHouseWorldInstance.SendMessage('GameManager', 'GoToItem', itemName );
 	}
-	window.teleportToItem = itemName => {
-		console.log('teleportToItem('+itemName+')');
-		lieblingHouseWorldInstance.SendMessage('GameManager', 'TeleportToItem', itemName );
-	}
-	function worldSetState( state ){
-		switch (state) {
-			case 'Kiosk':
-			case 'Dollhouse':
-				break;
-			default:
-				state = 'FreeRoaming';
-		}
-		console.log( state );
-		lieblingHouseWorldInstance.SendMessage('GameManager', state );
-	}
-	window.worldSetState = state => {
-		worldSetState( state );
-	}
 	function canvasClick(){
-		if( world.state !== 'FreeRoaming '){
-			worldSetState('FreeRoaming');
+		console.log('canvasClick()');
+		if( world.state === 'Kiosk '){
+			worldCallMethod('FreeRoaming');
 		}
 	}
 </script>
@@ -265,12 +314,12 @@
 				<span class="right">
 					{#if world.roaming }
 
-						<button on:click={() => worldSetState('FreeRoaming')}>{world.roaming}</button>
+						<button on:click={() => worldCallMethod('FreeRoaming')}>{world.roaming}</button>
 
 					{/if}
 					{#if world.dollhouse }
 
-						<button on:click={() => worldSetState('Dollhouse')}>Overview</button>
+						<button on:click={() => worldCallMethod('Dollhouse')}>Overview</button>
 
 					{/if}
 				</span>
