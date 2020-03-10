@@ -69,7 +69,7 @@
 			FreeRoaming: {
 				roaming: false,
 				dollhouse: true,
-				help: "Use W A S D to navigate and ← ↑ ↓ → to rotate camera."
+				help: "Use W ← A ↑ S ↓ D → to navigate and drag to rotate camera."
 			},
 			MovingToItem: {
 				roaming: "Stop",
@@ -120,7 +120,6 @@
 
 	};
 	function UnityProgress(lieblingHouseWorldInstance, progress) {
-		console.log("UnityProgress()");
 
 		if (!lieblingHouseWorldInstance.Module) {
 			return;

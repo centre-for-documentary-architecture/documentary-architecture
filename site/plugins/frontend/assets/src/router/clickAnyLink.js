@@ -8,6 +8,5 @@ export function clickAnyLink( event ){
 		event.preventDefault();
 		navigateTo( anchor.href );
 	}
-	console.log('clickAnyLink',anchor);
 
 }
