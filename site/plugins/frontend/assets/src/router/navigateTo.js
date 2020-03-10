@@ -53,7 +53,7 @@ export async function navigateTo( url, target = {}, replace = false ) {
 	} else {
 		state = createStateObject( data );
 		// let classlist = ['dynamic', data.theme, data.layout, data.template, data.entity, data.type, data.category ];
-		classlist = [...classlist, data.theme, data.layout, data.template, data.entity ];
+		classlist = [...classlist, data.theme, data.layout, data.template, data.type, data.entity ];
 	}
 
 	// replace info in page object and history
