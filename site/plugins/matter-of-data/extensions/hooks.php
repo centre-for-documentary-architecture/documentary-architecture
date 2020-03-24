@@ -149,7 +149,7 @@ return [
 		}
 
 	},
-	'page.chengeNum:after' => function ($page) {
+	'page.changeNum:after' => function ($page) {
 		flushCache( $page->id() );
 	},
 	'page.changeStatus:after' => function ($page) {
