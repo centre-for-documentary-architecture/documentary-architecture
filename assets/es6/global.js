@@ -48,12 +48,15 @@ window.onscroll = function() {
 
 var aboutBar;
 function toggleAboutBar(){
+  document.body.classList.toggle('about-open');
   aboutBar.classList.toggle('open');
 }
 function openAboutBar(){
+  document.body.classList.add('about-open');
   aboutBar.classList.add('open');
 }
 function closeAboutBar( e ){
+  document.body.classList.remove('about-open');
   aboutBar.classList.remove('open');
   e.stopPropagation();
 }

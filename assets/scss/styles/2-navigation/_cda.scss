@@ -112,6 +112,11 @@ aside#cda {
 
 }
 
+body.about-open {
+	overflow: hidden;
+}
+
+
 aside#cda.open ~ .page-wrapper {
  transform: translateX( calc( 85vw - #{$barWidth} ) );
 }
