@@ -201,10 +201,6 @@
 
 <section class="{classname} {view.type}">
 
-	<!--<h3 class="section--header">
-		{ view.headline || 'Map' }
-	</h3>-->
-
 	<div class="section--content">
 		<div id='map' style='width: 100%; height: 100%;'></div>
 	</div>

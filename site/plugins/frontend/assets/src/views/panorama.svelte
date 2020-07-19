@@ -208,10 +208,6 @@
 
 <section class="{classname} {view.type}">
 
-	<!--<h3 class="section--header">
-		{ view.headline || 'Panorama' }
-	</h3>-->
-
 	<div class="section--content">
 		<div id="view-3d"></div>
 	</div>
