@@ -59,6 +59,3 @@ columns:
             extends: fields/user
             label: Last modified by
             width: 1/2
-
-          protocol:
-            extends: fields/protocol

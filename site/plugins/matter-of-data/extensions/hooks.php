@@ -52,14 +52,6 @@ return [
 		if( $page->user_created()->exists() ){
 			$update['user_created'] = Yaml::encode( $this->user()->email() );
 		}
-		if( $page->protocol()->exists() ){
-			// add first entry to protocol
-			$update['protocol'] = Yaml::encode([[
-				'date' => date('Y-m-d H:i'),
-				'user' => $this->user()->email(),
-				'comment' => 'Created'
-			]]);
-		}
 		if( $page->properties()->exists() && $page->depth() > 1 && $page->parent()->type_properties()->exists() ){
 			// copy defaults from parent
 			$update['properties'] = $page->parent()->type_properties();
@@ -97,52 +89,6 @@ return [
 		if( $newPage->user_modified()->exists() ){
 			// override user
 			$update['user_modified'] = Yaml::encode( $this->user()->email() );
-		}
-		if( $newPage->protocol()->exists() ){
-			$protocol = $newPage->protocol()->yaml();
-
-			/*
-			* I tried to collect all the fields that were actually updated and wanted to list them in the comment,
-			* but that seems to be really hard.
-			* for now, it should be enough to only say "Updated", when:
-			* - the last user is the same as right now
-			* - the last edit is more than 15 mins ago
-			*/
-
-			$last = array_pop( $protocol );
-			$new = [
-				'date' => date('Y-m-d H:i'),
-				'user' => $this->user()->email(),
-				'comment' => 'Update'
-			];
-
-			if( $last['user'][0] === $this->user()->email() ){
-				/*
-				* same user as last update
-				*/
-				if( time() > ( strtotime( $last['date'] ) + (60*30) )){
-					/*
-					* last update more than 30 mins ago,
-					* keep the last update and insert a new one
-					*/
-					$protocol[] = $last;
-				} else {
-					/*
-					* last update only few mins ago,
-					* edit the last one
-					*/
-					$new['date'] = $last['date'];
-					$new['comment'] = $last['comment'];
-				}
-			} else {
-				/*
-				* all new update
-				*/
-				$protocol[] = $last;
-			}
-
-			$protocol[] = $new;
-			$update['protocol'] = Yaml::encode( $protocol );
 		}
 
 		if( !empty( $update ) ){
@@ -182,13 +128,6 @@ return [
 			'date_created' => date('Y-m-d H:i'),
 			'user_created' => Yaml::encode( $this->user()->email() ),
 		];
-
-		// add protocol
-		$update['protocol'] = Yaml::encode([[
-			'date' => $update['date_created'],
-			'user' => $update['user_created'],
-			'comment' => 'Uploaded'
-		]]);
 
 		// reconstruct properties from parent page
 		if( $file->properties()->exists() && $file->parent()->type_properties()->exists() ){
@@ -242,41 +181,6 @@ return [
 			'date_modified' => date('Y-m-d H:i'),
 			'user_modified' => Yaml::encode( $this->user()->email() ),
 		];
-
-
-		$protocol = $newFile->protocol()->yaml();
-		$last = array_pop( $protocol );
-		$new = [
-			'date' => $update['date_modified'],
-			'user' => $update['user_modified'],
-			'comment' => 'Update'
-		];
-		if( $last['user'][0] === $this->user()->email() ){
-			/*
-			* same user as last update
-			*/
-			if( time() > ( strtotime( $last['date'] ) + (60*30) )){
-				/*
-				* last update more than 30 mins ago,
-				* keep the last update and insert a new one
-				*/
-				$protocol[] = $last;
-			} else {
-				/*
-				* last update only few mins ago,
-				* edit the last one
-				*/
-				$new['date'] = $last['date'];
-				$new['comment'] = $last['comment'];
-			}
-		} else {
-			/*
-			* all new update
-			*/
-			$protocol[] = $last;
-		}
-		$protocol[] = $new;
-		$update['protocol'] = Yaml::encode( $protocol );
 
 		$newFile->update( $update, 'en');
 
