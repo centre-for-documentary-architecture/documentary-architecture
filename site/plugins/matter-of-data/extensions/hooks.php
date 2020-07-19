@@ -12,6 +12,37 @@ return [
 	/*
 	* page
 	*/
+	'page.changeNum:after' => function ($newPage) {
+		flushCache( $newPage->id() );
+	},
+	'page.changeSlug:after' => function ($newPage, $oldPage) {
+		flushCache( $newPage->id() );
+		require_once __DIR__.'/../functions/syncContexts.php';
+		syncContexts( $newPage, $oldPage );
+	},
+	'page.changeStatus:after' => function ($newPage) {
+		flushCache( $newPage->id() );
+	},
+	'page.changeTemplate:after' => function ($newPage) {
+		flushCache( $newPage->id() );
+	},
+	'page.changeTitle:after' => function ($newPage) {
+
+		flushCache( $newPage->id() );
+
+		$currentLang = $newPage->kirby()->languageCode();
+		$newTitle = $newPage->content( $currentLang )->title()->value();
+
+		foreach( $newPage->kirby()->languages()->codes() as $lang ){
+			if( $currentLang === $lang ){
+				continue;
+			}
+			$newPage->update( [
+				'title' => $newTitle
+			], $lang );
+		}
+
+	},
 	'page.create:after' => function ($page) {
 		$update = [];
 
@@ -39,20 +70,36 @@ return [
 		}
 		$page->changeStatus('unlisted');
 	},
-
-	'page.update:after' => function ( $page, $oldPage ) {
+	'page.delete:after' => function ($page) {
+		flushCache( $page->id() );
+	},
+	'page.duplicate:after' => function ( $duplicatePage ) {
 		$update = [];
 
-		if( $page->date_modified()->exists() ){
+		if( $duplicatePage->date_created()->exists() ){
+			$update['date_created'] = date('Y-m-d H:i');
+		}
+		if( $duplicatePage->date_modified()->exists() ){
+			$update['date_modified'] = date('Y-m-d H:i');
+		}
+
+		if( !empty( $update ) ){
+			$duplicatePage->update( $update, 'en');
+		}
+	},
+	'page.update:after' => function ( $newPage, $oldPage ) {
+		$update = [];
+
+		if( $newPage->date_modified()->exists() ){
 			// override date
 			$update['date_modified'] = date('Y-m-d H:i');
 		}
-		if( $page->user_modified()->exists() ){
+		if( $newPage->user_modified()->exists() ){
 			// override user
 			$update['user_modified'] = Yaml::encode( $this->user()->email() );
 		}
-		if( $page->protocol()->exists() ){
-			$protocol = $page->protocol()->yaml();
+		if( $newPage->protocol()->exists() ){
+			$protocol = $newPage->protocol()->yaml();
 
 			/*
 			* I tried to collect all the fields that were actually updated and wanted to list them in the comment,
@@ -99,69 +146,32 @@ return [
 		}
 
 		if( !empty( $update ) ){
-			$page->update( $update, 'en');
+			$newPage->update( $update, 'en');
 		}
 
 		require_once __DIR__.'/../functions/syncContexts.php';
-		syncContexts( $page, $oldPage );
+		syncContexts( $newPage, $oldPage );
 
-		flushCache( $page->id() );
-		$abstract = $page->dataAbstract();
-	},
-	'page.duplicate:after' => function ( $page, $oldPage ) {
-		$update = [];
-
-		if( $page->date_created()->exists() ){
-			$update['date_created'] = date('Y-m-d H:i');
-		}
-		if( $page->date_modified()->exists() ){
-			$update['date_modified'] = date('Y-m-d H:i');
-		}
-
-		flushCache( $page->id() );
-
-		if( !empty( $update ) ){
-			$page->update( $update, 'en');
-		}
-
-		require_once __DIR__.'/../functions/syncContexts.php';
-		syncContexts( $page, $oldPage );
-	},
-	'page.changeSlug:after' => function ( $page, $oldPage ) {
-		flushCache( $page->id() );
-		require_once __DIR__.'/../functions/syncContexts.php';
-		syncContexts( $page, $oldPage );
-	},
-	'page.changeTitle:after' => function ($newPage, $oldPage) {
-
-		flushCache( $page->id() );
-
-		$currentLang = $newPage->kirby()->languageCode();
-		$newTitle = $newPage->content( $currentLang )->title()->value();
-
-		foreach( $newPage->kirby()->languages()->codes() as $lang ){
-			if( $currentLang === $lang ){
-				continue;
-			}
-			$newPage->update( [
-				'title' => $newTitle
-			], $lang );
-		}
-
-	},
-	'page.chengeNum:after' => function ($page) {
-		flushCache( $page->id() );
-	},
-	'page.changeStatus:after' => function ($page) {
-		flushCache( $page->id() );
-	},
-	'page.delete:after' => function ($page) {
-		flushCache( $page->id() );
+		flushCache( $newPage->id() );
+		$abstract = $newPage->dataAbstract();
 	},
 
 	/*
 	* file
 	*/
+	'file.changeName:after' => function ($newFile, $oldFile) {
+		if( $newFile->template() != 'file_image' ){
+			return;
+		}
+
+		flushCache( $newFile->id() );
+
+		/*
+		* when filename is changed, all pages, where this image is used as thumbnail, should be updated
+		*/
+		searchReplaceFields( $oldFile->id(), $newFile->id(), 'thumbnail' );
+
+	},
 	'file.create:after' => function( $file ){
 		if( $file->template() != 'file_image' ){
 			return;
@@ -215,12 +225,18 @@ return [
 		$file->changeName( $name )->update( $update, 'en' );
 
 	},
-	'file.update:after' => function ( $file, $oldFile ) {
-		if( $file->template() != 'file_image' ){
+	'file.delete:after' => function ($file) {
+		flushCache( $file->id() );
+	},
+	'file.replace:after' => function ($newFile) {
+		flushCache( $newFile->id() );
+	},
+	'file.update:after' => function ( $newFile, $oldFile ) {
+		if( $newFile->template() != 'file_image' ){
 			return;
 		}
 
-		flushCache( $file->id() );
+		flushCache( $newFile->id() );
 
 		$update = [
 			'date_modified' => date('Y-m-d H:i'),
@@ -228,7 +244,7 @@ return [
 		];
 
 
-		$protocol = $file->protocol()->yaml();
+		$protocol = $newFile->protocol()->yaml();
 		$last = array_pop( $protocol );
 		$new = [
 			'date' => $update['date_modified'],
@@ -262,29 +278,10 @@ return [
 		$protocol[] = $new;
 		$update['protocol'] = Yaml::encode( $protocol );
 
-		$file->update( $update, 'en');
+		$newFile->update( $update, 'en');
 
 		require_once __DIR__.'/../functions/syncContexts.php';
-		syncContexts( $file, $oldFile );
-	},
-	'file.changeName:after' => function ($file, $oldFile) {
-		if( $file->template() != 'file_image' ){
-			return;
-		}
-
-		flushCache( $file->id() );
-
-		/*
-		* when filename is changed, all pages, where this image is used as thumbnail, should be updated
-		*/
-		searchReplaceFields( $oldFile->id(), $file->id(), 'thumbnail' );
-
-	},
-	'file.delte:after' => function ($file) {
-		flushCache( $file->id() );
-	},
-	'file.replace:after' => function ($file) {
-		flushCache( $file->id() );
+		syncContexts( $newFile, $oldFile );
 	},
 
 ];
