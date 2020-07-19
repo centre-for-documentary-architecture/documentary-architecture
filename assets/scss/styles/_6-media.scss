@@ -200,19 +200,8 @@
 	font-family: $mono;
 }
 
-/*
 // lazyloading
 // https://github.com/aFarkas/lazysizes
-img.lazyload,
-img.lazyloading {
-	filter: blur(8px);
-}
-img.lazyloaded {
-	filter: blur(0);
-}
-*/
-
-
 .is-loading {
 	width: 100%;
 	height: 100%;

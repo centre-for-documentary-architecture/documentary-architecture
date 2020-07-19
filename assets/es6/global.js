@@ -30,7 +30,6 @@ function scrollControl(){
 }
 
 window.onload = function() {
-    // console.log('onload');
     scrollControl();
     aboutBar = document.getElementById('cda');
 }
