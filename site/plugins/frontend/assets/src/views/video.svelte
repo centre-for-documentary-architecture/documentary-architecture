@@ -30,10 +30,6 @@
 
 <section class="{classname} {view.type} {transcript ? '' : 'center'}" bind:offsetWidth={videoWidth}>
 
-	<!--<h3 class="section--header" bind:offsetWidth={videoWidth}>
-		{ view.headline || 'Video' }
-	</h3>-->
-
 	<div class="section--content">
 		{#if render === true}
 			<video width="100%" height="auto" controls preload="metadata"

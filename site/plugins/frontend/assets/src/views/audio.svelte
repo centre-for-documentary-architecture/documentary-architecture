@@ -33,10 +33,6 @@
 
 <section class="{classname} {view.type} {transcript ? '' : 'center'}">
 
-	<!--<h3 class="section--header">
-		{ view.headline || 'Audio' }
-	</h3>-->
-
 	<div class="section--content">
 
 		<audio width="100%" height="auto" controls bind:this={mediaElement} preload="meta" src="{view.content.url}">

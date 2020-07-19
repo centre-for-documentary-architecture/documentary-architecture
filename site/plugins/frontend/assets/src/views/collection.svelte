@@ -27,7 +27,7 @@
 	let loading = false;
 
 	async function loadNext(){
-		
+
 		loading = true;
 
 		let data = await loadData( view.next );
@@ -67,10 +67,6 @@
 </style>
 
 <section class="{classname} {view.type}" on:scroll|passive={scrollTrigger} bind:this={container}>
-
-	<!--<h3 class="section--header">
-		{ view.headline }
-	</h3>-->
 
 	<div class="section--content" bind:clientHeight={ pageHeight }>
 
