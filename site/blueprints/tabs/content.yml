@@ -20,11 +20,6 @@ columns:
               - Not connected
               - This directly represents another entity
 
-          topic:
-            extends: fields/topic
-            when:
-              represents_entity_switch: false
-
           represents_entity:
             extends: fields/pages
             type: entities
