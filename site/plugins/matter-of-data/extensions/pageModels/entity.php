@@ -301,7 +301,7 @@ class Entity extends Page
         }
 
         /*
-        bonus
+        license ?
         if( $this->license()->isNotEmpty() ){
             $content[] = [
                 'key' => 'License',
@@ -362,7 +362,6 @@ class Entity extends Page
                 ];
                 foreach( $block->kombi()->toBuilderBlocks() as $field ){
 
-                    // dump( $field );
                     switch ($field->_key()) {
                         case 'text':
 
