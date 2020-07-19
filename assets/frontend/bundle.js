@@ -5830,7 +5830,7 @@ var app = (function () {
     	return child_ctx;
     }
 
-    // (49:4) {#if open}
+    // (34:4) {#if open}
     function create_if_block$a(ctx) {
     	var dl, dl_transition, current;
 
@@ -5854,7 +5854,7 @@ var app = (function () {
     				each_blocks[i].c();
     			}
     			attr_dev(dl, "class", "section--content table");
-    			add_location(dl, file$f, 49, 6, 1148);
+    			add_location(dl, file$f, 34, 6, 711);
     		},
 
     		m: function mount(target, anchor) {
@@ -5932,11 +5932,11 @@ var app = (function () {
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$a.name, type: "if", source: "(49:4) {#if open}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block$a.name, type: "if", source: "(34:4) {#if open}", ctx });
     	return block;
     }
 
-    // (56:18) {:else}
+    // (41:18) {:else}
     function create_else_block_1(ctx) {
     	var dt, t_value = ctx.line.key + "", t;
 
@@ -5944,7 +5944,7 @@ var app = (function () {
     		c: function create() {
     			dt = element("dt");
     			t = text(t_value);
-    			add_location(dt, file$f, 56, 22, 1426);
+    			add_location(dt, file$f, 41, 22, 989);
     		},
 
     		m: function mount(target, anchor) {
@@ -5964,11 +5964,11 @@ var app = (function () {
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block_1.name, type: "else", source: "(56:18) {:else}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block_1.name, type: "else", source: "(41:18) {:else}", ctx });
     	return block;
     }
 
-    // (54:18) {#if line.key == ''}
+    // (39:18) {#if line.key == ''}
     function create_if_block_3$2(ctx) {
     	var dt;
 
@@ -5977,7 +5977,7 @@ var app = (function () {
     			dt = element("dt");
     			dt.textContent = "Description";
     			attr_dev(dt, "class", "empty");
-    			add_location(dt, file$f, 54, 22, 1343);
+    			add_location(dt, file$f, 39, 22, 906);
     		},
 
     		m: function mount(target, anchor) {
@@ -5992,11 +5992,11 @@ var app = (function () {
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_3$2.name, type: "if", source: "(54:18) {#if line.key == ''}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_3$2.name, type: "if", source: "(39:18) {#if line.key == ''}", ctx });
     	return block;
     }
 
-    // (70:18) {:else}
+    // (55:18) {:else}
     function create_else_block$3(ctx) {
     	var dd, raw_value = ctx.line.value + "", dd_class_value;
 
@@ -6004,7 +6004,7 @@ var app = (function () {
     		c: function create() {
     			dd = element("dd");
     			attr_dev(dd, "class", dd_class_value = cellSize( ctx.line.key + ctx.line.value ));
-    			add_location(dd, file$f, 70, 22, 1927);
+    			add_location(dd, file$f, 55, 22, 1490);
     		},
 
     		m: function mount(target, anchor) {
@@ -6031,11 +6031,11 @@ var app = (function () {
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$3.name, type: "else", source: "(70:18) {:else}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_else_block$3.name, type: "else", source: "(55:18) {:else}", ctx });
     	return block;
     }
 
-    // (64:57) 
+    // (49:57) 
     function create_if_block_2$3(ctx) {
     	var div;
 
@@ -6054,7 +6054,7 @@ var app = (function () {
     			for (let i = 0; i < each_blocks.length; i += 1) {
     				each_blocks[i].c();
     			}
-    			add_location(div, file$f, 64, 22, 1675);
+    			add_location(div, file$f, 49, 22, 1238);
     		},
 
     		m: function mount(target, anchor) {
@@ -6100,11 +6100,11 @@ var app = (function () {
     			destroy_each(each_blocks, detaching);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_2$3.name, type: "if", source: "(64:57) ", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_2$3.name, type: "if", source: "(49:57) ", ctx });
     	return block;
     }
 
-    // (60:18) {#if line.type && line.type == 'collection'}
+    // (45:18) {#if line.type && line.type == 'collection'}
     function create_if_block_1$7(ctx) {
     	var current;
 
@@ -6145,11 +6145,11 @@ var app = (function () {
     			destroy_component(collectionlist, detaching);
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_1$7.name, type: "if", source: "(60:18) {#if line.type && line.type == 'collection'}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_if_block_1$7.name, type: "if", source: "(45:18) {#if line.type && line.type == 'collection'}", ctx });
     	return block;
     }
 
-    // (66:22) {#each line.value as bit}
+    // (51:22) {#each line.value as bit}
     function create_each_block_1(ctx) {
     	var dd, raw_value = ctx.bit + "", dd_class_value;
 
@@ -6157,7 +6157,7 @@ var app = (function () {
     		c: function create() {
     			dd = element("dd");
     			attr_dev(dd, "class", dd_class_value = cellSize( ctx.line.key + ctx.line.value ));
-    			add_location(dd, file$f, 66, 26, 1755);
+    			add_location(dd, file$f, 51, 26, 1318);
     		},
 
     		m: function mount(target, anchor) {
@@ -6181,11 +6181,11 @@ var app = (function () {
     			}
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_1.name, type: "each", source: "(66:22) {#each line.value as bit}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block_1.name, type: "each", source: "(51:22) {#each line.value as bit}", ctx });
     	return block;
     }
 
-    // (51:10) {#each tab.content as line}
+    // (36:10) {#each tab.content as line}
     function create_each_block$8(ctx) {
     	var div, t0, show_if, current_block_type_index, if_block1, t1, current;
 
@@ -6222,7 +6222,7 @@ var app = (function () {
     			t0 = space();
     			if_block1.c();
     			t1 = space();
-    			add_location(div, file$f, 51, 14, 1275);
+    			add_location(div, file$f, 36, 14, 838);
     		},
 
     		m: function mount(target, anchor) {
@@ -6287,7 +6287,7 @@ var app = (function () {
     			if_blocks[current_block_type_index].d();
     		}
     	};
-    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block$8.name, type: "each", source: "(51:10) {#each tab.content as line}", ctx });
+    	dispatch_dev("SvelteRegisterBlock", { block, id: create_each_block$8.name, type: "each", source: "(36:10) {#each tab.content as line}", ctx });
     	return block;
     }
 
@@ -6304,10 +6304,10 @@ var app = (function () {
     			t1 = space();
     			if (if_block) if_block.c();
     			attr_dev(h3, "class", "section--header");
-    			add_location(h3, file$f, 47, 4, 1037);
+    			add_location(h3, file$f, 32, 4, 600);
     			attr_dev(section, "class", section_class_value = "tab accordion " + ctx.tabClass( ctx.tab.headline ));
     			toggle_class(section, "open", ctx.open);
-    			add_location(section, file$f, 46, 0, 963);
+    			add_location(section, file$f, 31, 0, 526);
     			dispose = listen_dev(h3, "click", ctx.click_handler);
     		},
 

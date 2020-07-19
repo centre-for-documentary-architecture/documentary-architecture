@@ -9,21 +9,6 @@
 
   let open = false;
 
-  /*
-  function accordionToggle( event ){
-      let parent = event.target.closest('.accordion');
-      let content = parent.getElementsByClassName("section--content")[0];
-
-      if( parent.classList.contains('open') ){
-          parent.classList.remove('open');
-          content.style.maxHeight = 0;
-      } else {
-          parent.classList.add('open');
-          content.style.maxHeight = content.scrollHeight+'px';
-      }
-  }
-  */
-
   function cellSize( str ){
 
       str = str.replace(/<[^>]+>/g, '');

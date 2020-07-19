@@ -235,10 +235,6 @@
 
 <section class="{classname} {view.type}">
 
-	<!--<h3 class="section--header">
-		{ view.headline || 'Virtual 3D World' }
-	</h3>-->
-
 	<div class="section--content" id="view-liebling-house">
 		<div id="worldContainer" class="presentation-container"></div>
 		{#if world.loaded === false }
