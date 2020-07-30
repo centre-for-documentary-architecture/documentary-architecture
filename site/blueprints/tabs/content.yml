@@ -77,12 +77,6 @@ columns:
               small: Small
               large: Large
 
-          content_headline:
-            type: text
-            translate: false
-            label: Content Headline
-            placeholder: Content
-
           line1: fields/line
 
       section_content_children:

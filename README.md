@@ -55,6 +55,7 @@ npm run build
     - [OrbitControls](https://threejs.org/examples/?q=orbit#misc_controls_orbit)
     - [Equirectangular Panorama](https://threejs.org/examples/?q=panorama#webgl_panorama_equirectangular)
 - **[UnityLoader](https://docs.unity3d.com/Manual/webgl-gettingstarted.html)**
+- **[Sitemapper](https://gitlab.com/kirbyzone/sitemapper)**
 
 ## Web APIs
 The website offeres some public APIs

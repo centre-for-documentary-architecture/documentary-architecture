@@ -41,7 +41,7 @@ $keywords = array_merge( $page->tags()->split(), ['architecture','bauhaus','rese
 	<?php if( $parent = $page->parent() ): ?>
 		<link rel="index" href="<?= $parent->url() ?>">
 	<?php else: ?>
-		<link rel="index" href="<?= $site-url() ?>">
+		<link rel="index" href="<?= $site->url() ?>">
 	<?php endif; ?>
 
 	<?php if( option('cdn-domain') ): ?>
