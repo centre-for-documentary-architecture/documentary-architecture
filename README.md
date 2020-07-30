@@ -40,7 +40,7 @@ sass --watch --style=compressed assets/scss:assets/css
 ```
 Run Svelte
 ```
-cd site/plugins/frontend/assets
+cd assets/frontend/app
 npm run dev
 npm run build
 ```
