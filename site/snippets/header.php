@@ -18,6 +18,10 @@ if( isset( $class ) ){
 	$classlist[] = $class;
 }
 
+$title = 'C D A → ' . $page->title()->html();
+$description = $page->description()->html()->or( 'Discover '. $page->title()->html()->value() .' at the Centre for Documentary Architecture' );
+$keywords = array_merge( $page->tags()->split(), ['architecture','bauhaus','research','data','history','media','modernism'] );
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -25,22 +29,40 @@ if( isset( $class ) ){
 	<meta charset='utf-8'>
 	<meta name='viewport' content='width=device-width,initial-scale=1.0'>
 
+	<title><?= $title ?></title>
+
+	<link rel="canonical" href="<?= $page->url() ?>">
+	<meta name="robots" content="index,follow">
+	<meta name="google" content="notranslate">
+
+	<meta name="generator" content="https://moritzebeling.com">
+	<link rel="archives" href="<?= page('archive')->url() ?>">
+	<link rel="author" href="<?= page('about')->url() ?>">
+	<?php if( $parent = $page->parent() ): ?>
+		<link rel="index" href="<?= $parent->url() ?>">
+	<?php else: ?>
+		<link rel="index" href="<?= $site-url() ?>">
+	<?php endif; ?>
+
 	<?php if( option('cdn-domain') ): ?>
 		<link rel="dns-prefetch" href="<?= option('cdn-domain') ?>">
 		<link rel="preconnect" href="<?= option('cdn-domain') ?>">
 	<?php endif; ?>
 
-	<title>C D A → <?= $page->title()->html(); ?></title>
-
 	<?= css( option('cdn').'/assets/fonts/fonts.css' ) ?>
 	<?= css( option('cdn').'/assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
 
-	<meta name="description" content="<?= $page->description()->html()->or( 'Discover '. $page->title()->html()->value() .' at the Centre for Documentary Architecture' ) ?>">
-
-	<meta name="keywords" content="<?= $page->tags()->value() ?>, architecture, bauhaus, research, data">
+	<meta name="description" content="<?= $description ?>">
+	<meta name="keywords" content="<?= implode(',',$keywords) ?>">
 
 	<?php snippet('header/favicon'); ?>
+
+	<meta property="og:url" content="<?= $site->url() ?>" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="<?= $title ?>" />
+	<meta property="og:description" content="<?= $description ?>" />
+	<meta property="og:site_name" content="<?= $site->title(); ?>" />
 
 	<script>
 		var lieblingHouseWorldContainer;
