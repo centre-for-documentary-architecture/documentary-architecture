@@ -1,0 +1,112 @@
+@import '../variables';
+
+header#top {
+    h1 {
+        font-size: 6rem;
+        z-index: 10;
+        margin: $padding-box;
+        margin-left: 0.75rem;
+    }
+    min-height: 65vh;
+    transition: min-height 1000ms ease;
+    position: relative;
+    display: flex;
+    video {
+        position: absolute;
+        object-fit: cover;
+        object-position: center;
+        outline: none;
+        pointer-events: none;
+        min-width: 100%;
+        min-height: 100%;
+        z-index: 0;
+    }
+    &.video-end {
+        min-height: 100px;
+        video {
+            display: none;
+        }
+    }
+}
+
+nav.bar.history {
+    display: none;
+}
+
+&.scrolled {
+    header#top {
+        margin-top: -$barWidth;
+    }
+    nav.bar.history {
+        display: block;
+    }
+}
+
+.activity {
+    padding: 1px;
+    padding-bottom: 0;
+    .card {
+        > a > div {
+            padding: 0 $padding;
+        }
+        h5 {
+            margin: $padding 0;
+        }
+    }
+    section {
+        ul {
+            position: sticky;
+            top: $barWidth * 1.15;
+        }
+    }
+}
+
+.archive-bar {
+    display: flex;
+    padding: 0 $padding;
+}
+
+#archive-preview {
+
+    section {
+        margin-top: 2rem;
+        margin-bottom: 2rem;
+        > h4 {
+            padding: $padding-text-side;
+        }
+    }
+
+    padding: $padding-box;
+    .cards.grid {
+        padding: 0;
+    }
+
+}
+
+.archive-search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 6rem;
+    margin-bottom: 9rem;
+    h2 {
+        padding-left: 0;
+    }
+    form {
+        background-color: $dark;
+        margin-top: 1rem;
+        display: flex;
+        .input {
+            flex: 1;
+        }
+        input {
+            outline: none;
+        }
+    }
+}
+
+@media (max-width: 38rem) {
+    header#top h1 {
+        font-size: calc(15vw - 0.6rem);
+    }
+}

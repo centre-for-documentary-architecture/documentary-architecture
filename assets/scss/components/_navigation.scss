@@ -1,3 +1,5 @@
+@import '../variables';
+
 //
 // Bars
 //
@@ -57,7 +59,7 @@
 	bottom: -0.1px;
 }
 
-@import '2-navigation/cda';
-@import '2-navigation/history';
-@import '2-navigation/archive';
-@import '2-navigation/pagination';
+@import 'navigation/cda';
+@import 'navigation/history';
+@import 'navigation/archive';
+@import 'navigation/pagination';

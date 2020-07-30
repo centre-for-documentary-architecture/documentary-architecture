@@ -33,7 +33,6 @@ if( isset( $class ) ){
 	<title><?= $page->title()->html(); ?></title>
 
 	<?= css( option('cdn').'/assets/fonts/fonts.css' ) ?>
-	<?= css( option('cdn').'/assets/css/normalize.css') ?>
 	<?= css( option('cdn').'/assets/css/reflex.css') ?>
 	<?= css('assets/css/global.css') ?>
 

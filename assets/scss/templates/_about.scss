@@ -1,0 +1,35 @@
+@import '../variables';
+
+.content {
+    padding: $padding-double;
+}
+section {
+    margin-bottom: 2rem;
+}
+.content li {
+    margin: 0.3em 0;
+    h4 {
+        margin: 0;
+    }
+}
+.supporter-logos {
+    figure {
+        margin-bottom: $padding-double;
+    }
+    img {
+        width: auto;
+        height: 3.5rem;
+    }
+}
+.footer-nav {
+    font-size: $font-small;
+    li {
+        display: inline-block;
+        a {
+            margin-right: $padding-text-inside;
+        }
+    }
+}
+h4 {
+    margin: $padding-text;
+}

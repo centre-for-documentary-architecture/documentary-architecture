@@ -1,0 +1,38 @@
+@import '../variables';
+
+&.black {
+	.subtitle + div {
+		border-color: $white;
+	}
+	.tab .table {
+		border-color: $dark;
+	}
+	.tab + .tab {
+		border-color: $white;
+	}
+}
+
+&.building,
+&.file {
+	header h1 {
+		@include mono;
+	}
+}
+
+&.file {
+	header {
+		h1 {
+			font-size: $font-medium;
+		}
+	}
+}
+
+@media screen and (max-width: 768px){
+	&.file {
+		.panels {
+			main {
+				order: 10;
+			}
+		}
+	}
+}

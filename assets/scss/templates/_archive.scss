@@ -1,0 +1,45 @@
+@import '../variables';
+
+main {
+    input {
+        width: 100%;
+        outline: none;
+        background-color: $dark;
+        &:focus {
+            background-color: $blue;
+        }
+        ::selection,
+        &::selection,
+        &focus::selection,
+        &focus ::selection {
+            background-color: #ccc;
+        }
+        &::placeholder {
+            color: $black;
+        }
+    }
+    button {
+        width: 100%;
+        background-color: $dark;
+        &:hover {
+            background-color: $blue;
+        }
+    }
+    form {
+        margin-top: 1rem;
+        .input {
+            margin-bottom: 2px;
+        }
+    }
+    .filters {
+        .card {
+            background-color: $dark;
+            figure {
+                display: none;
+            }
+        }
+        .active {
+            background-color: $blue;
+        }
+    }
+}

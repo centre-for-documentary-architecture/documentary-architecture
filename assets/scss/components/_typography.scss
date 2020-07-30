@@ -1,27 +1,29 @@
+@import '../variables';
+
 // typography
 
 //
 // font
 //
 body {
-	font-family: $favorit;
+	@include sans;
 }
 pre,
 code,
 blockquote,
 h5,
 .mono {
-	font-family: $mono;
+	@include mono;
 }
 
 .bar.history,
 .bar.archive,
 .bar.controls,
 .bar.pagination {
-	font-family: $mono;
+	@include mono;
 }
 button, .button {
-	font-family: $mono;
+	@include mono;
 	padding: 0.3em 0.6em;
 	// text-transform: uppercase;
 	// letter-spacing: 0.05em;
@@ -106,11 +108,7 @@ dl,
 // word braking
 //
 p {
-	-webkit-hyphenate-limit-chars: auto 9;
-	-webkit-hyphenate-limit-lines: 2;
-	-ms-hyphenate-limit-chars: auto 9;
-	-ms-hyphenate-limit-lines: 1;
-	hyphens: auto;
+	@include hyphens;
 }
 
 .file .title,
@@ -143,13 +141,11 @@ p {
 }
 
 .section--header {
-	-webkit-user-select: none;
-	user-select: none;
-	font-family: $mono;
+	@include noSelect;
+	@include mono;
 }
 
 img {
-	font-family: $mono;
-	font-size: $font-small;
+	@include noSelect;
 	word-break: break-word;
 }

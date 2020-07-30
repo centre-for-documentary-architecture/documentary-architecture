@@ -1,8 +1,10 @@
-@import '4-components/accordion';
-@import '4-components/cards';
-@import '4-components/gallery';
-@import '4-components/list';
-@import '4-components/table';
+@import '../variables';
+
+@import 'collections/accordion';
+@import 'collections/cards';
+@import 'collections/gallery';
+@import 'collections/list';
+@import 'collections/table';
 
 #map .card {
 	width: 40vw;

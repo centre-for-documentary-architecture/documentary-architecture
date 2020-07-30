@@ -1,6 +1,5 @@
-//
-// general layout
-//
+@import '../variables';
+
 
 html,
 body {
@@ -197,16 +196,87 @@ body {
 
 }
 
-@media screen and (max-width: 768px){
-	body.entity.file {
-		.panels {
-			main {
-				order: 10;
-			}
-		}
+.preview .section--header {
+	display: none;
+}
+
+@import '../variables';
+
+.tab.meta {
+	i {
+		font-style: inherit;
+		display: inline-block;
+		margin: 0 0.2em;
 	}
 }
 
-.preview .section--header {
-	display: none;
+main {
+	> .content {
+		padding: $padding $padding-double;
+	}
+	header {
+		.subtitle + div {
+			border-top: $border-thin;
+		}
+	}
+	.tab + .tab {
+		margin-top: 1rem;
+	}
+}
+
+body.multipanel {
+
+	.tab + .tab {
+		border-top: $border-thin;
+	}
+	.tab.info {
+		border-top: none;
+		.section--header {
+			display: none;
+		}
+	}
+
+	.tab .cards {
+		padding: 0;
+	}
+
+	.tab.meta dl.table {
+		font-size: $font-small;
+	}
+	.tab.info,
+	.tab.meta {
+		.section--content {
+			font-family: $mono;
+		}
+	}
+	// .tab.accordion + .tab.meta,
+	.tab.accordion + .tab.list,
+	.tab.info + .tab.meta {
+		margin-top: 0;
+	}
+}
+
+
+.panels.overlap {
+	background-color: $light;
+	header {
+		h1 {
+			hyphens: auto;
+		}
+	}
+	main {
+		.invitation {
+			border-top: none !important;
+			button,
+			.button {
+				display: block;
+				width: 100%;
+			}
+		}
+		.tab.info {
+			div:first-child {
+				border-top: none;
+			}
+		}
+	}
 }
