@@ -4598,7 +4598,7 @@ var app = (function () {
 
     // (108:7) {#each filter.buttons as button}
     function create_each_block_1(ctx) {
-    	var li, button, div, h4, raw_value = ctx.button.title + "", li_class_value, dispose;
+    	var li, button, div, span, t0_value = ctx.button.count || '' + "", t0, t1, h4, raw_value = ctx.button.title + "", li_class_value, dispose;
 
     	function click_handler_1() {
     		return ctx.click_handler_1(ctx);
@@ -4609,8 +4609,13 @@ var app = (function () {
     			li = element("li");
     			button = element("button");
     			div = element("div");
+    			span = element("span");
+    			t0 = text(t0_value);
+    			t1 = space();
     			h4 = element("h4");
-    			add_location(h4, file$b, 112, 11, 2782);
+    			attr_dev(span, "class", "count");
+    			add_location(span, file$b, 111, 11, 2716);
+    			add_location(h4, file$b, 112, 11, 2775);
     			attr_dev(div, "class", "title");
     			add_location(div, file$b, 110, 10, 2685);
     			add_location(button, file$b, 109, 9, 2595);
@@ -4623,12 +4628,19 @@ var app = (function () {
     			insert_dev(target, li, anchor);
     			append_dev(li, button);
     			append_dev(button, div);
+    			append_dev(div, span);
+    			append_dev(span, t0);
+    			append_dev(div, t1);
     			append_dev(div, h4);
     			h4.innerHTML = raw_value;
     		},
 
     		p: function update(changed, new_ctx) {
     			ctx = new_ctx;
+    			if ((changed.page) && t0_value !== (t0_value = ctx.button.count || '' + "")) {
+    				set_data_dev(t0, t0_value);
+    			}
+
     			if ((changed.page) && raw_value !== (raw_value = ctx.button.title + "")) {
     				h4.innerHTML = raw_value;
     			}
@@ -4751,7 +4763,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "class", "is-loading");
-    			add_location(div, file$b, 126, 2, 2988);
+    			add_location(div, file$b, 126, 2, 2981);
     		},
 
     		m: function mount(target, anchor) {
@@ -4908,7 +4920,7 @@ var app = (function () {
     			t2 = text("«\n\t\t\t\t");
     			if (if_block) if_block.c();
     			attr_dev(div, "class", "panel col-sm-9 empty-results");
-    			add_location(div, file$b, 132, 3, 3109);
+    			add_location(div, file$b, 132, 3, 3102);
     		},
 
     		m: function mount(target, anchor) {

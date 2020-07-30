@@ -109,7 +109,7 @@
 								<li class="card {button.filter === archive.filter ? 'active' : ''}">
 									<button on:click={() => { archive.filter = button.filter; archive.search(); }}>
 										<div class="title">
-											<!-- <span class="count">{item.count || ''}</span> -->
+											<span class="count">{button.count || ''}</span>
 											<h4>{@html button.title}</h4>
 										</div>
 									</button>
