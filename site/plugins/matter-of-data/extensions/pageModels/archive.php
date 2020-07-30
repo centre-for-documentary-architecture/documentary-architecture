@@ -50,15 +50,31 @@ class PageArchive extends Page
     }
     public function dataFilters( string $query = '' ): array
     {
-        $filters = $this->site()->archive()->children()->listed()->dataAbstract();
+        $filters = $this->site()->archive()->children()->listed();
+
+        $items = $filters->filter(function ($filter) {
+            return $filter->entity() === 'items';
+        })->dataAbstract();
+
+        $files = $filters->filter(function ($filter) {
+            return $filter->entity() === 'files';
+        })->dataAbstract();
 
         $all = $this->dataAbstract();
         $all['title'] = 'Search all';
-        array_unshift( $filters, $all );
 
         return [
-            'headline' => 'Filters',
-            'content' => $filters
+            [
+                'buttons' => [ $all ]
+            ],
+            [
+                'headline' => 'Items',
+                'buttons' => $items
+            ],
+            [
+                'headline' => 'Files',
+                'buttons' => $files
+            ],
         ];
 
     }

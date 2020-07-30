@@ -99,21 +99,24 @@
 
 			{#if page.archive && page.archive.filters}
 				<section class="filters tab">
-					<h2>Filter</h2>
-					<ul class="list">
-						{#each page.archive.filters.content as item}
-							<li class="card {item.filter === archive.filter ? 'active' : ''}">
-								<button on:click={() => { archive.filter = item.filter; archive.search(); }}>
-									<div class="title">
-
-										<!-- <span class="count">{item.count || ''}</span> -->
-										<h4>{@html item.title}</h4>
-
-									</div>
-								</button>
-							</li>
-						{/each}
-					</ul>
+					<h2>Filters</h2>
+					{#each page.archive.filters as filter}
+						{#if 'headline' in filter}
+							<h3>{filter.headline}</h3>
+						{/if}
+						<ul class="list">
+							{#each filter.buttons as button}
+								<li class="card {button.filter === archive.filter ? 'active' : ''}">
+									<button on:click={() => { archive.filter = button.filter; archive.search(); }}>
+										<div class="title">
+											<!-- <span class="count">{item.count || ''}</span> -->
+											<h4>{@html button.title}</h4>
+										</div>
+									</button>
+								</li>
+							{/each}
+						</ul>
+					{/each}
 				</section>
 			{/if}
 
