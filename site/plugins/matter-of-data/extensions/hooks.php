@@ -12,129 +12,23 @@ return [
 	/*
 	* page
 	*/
-	'page.create:after' => function ($page) {
-		$update = [];
-
-		if( $page->date_created()->exists() ){
-			$update['date_created'] = date('Y-m-d H:i');
-		}
-		if( $page->user_created()->exists() ){
-			$update['user_created'] = Yaml::encode( $this->user()->email() );
-		}
-		if( $page->protocol()->exists() ){
-			// add first entry to protocol
-			$update['protocol'] = Yaml::encode([[
-				'date' => date('Y-m-d H:i'),
-				'user' => $this->user()->email(),
-				'comment' => 'Created'
-			]]);
-		}
-		if( $page->properties()->exists() && $page->depth() > 1 && $page->parent()->type_properties()->exists() ){
-			// copy defaults from parent
-			$update['properties'] = $page->parent()->type_properties();
-		}
-
-		if( !empty( $update ) ){
-			$page->update( $update, 'en');
-		}
-		$page->changeStatus('unlisted');
+	'page.changeNum:after' => function ($newPage) {
+		flushCache( $newPage->id() );
 	},
-
-	'page.update:after' => function ( $page, $oldPage ) {
-		$update = [];
-
-		if( $page->date_modified()->exists() ){
-			// override date
-			$update['date_modified'] = date('Y-m-d H:i');
-		}
-		if( $page->user_modified()->exists() ){
-			// override user
-			$update['user_modified'] = Yaml::encode( $this->user()->email() );
-		}
-		if( $page->protocol()->exists() ){
-			$protocol = $page->protocol()->yaml();
-
-			/*
-			* I tried to collect all the fields that were actually updated and wanted to list them in the comment,
-			* but that seems to be really hard.
-			* for now, it should be enough to only say "Updated", when:
-			* - the last user is the same as right now
-			* - the last edit is more than 15 mins ago
-			*/
-
-			$last = array_pop( $protocol );
-			$new = [
-				'date' => date('Y-m-d H:i'),
-				'user' => $this->user()->email(),
-				'comment' => 'Update'
-			];
-
-			if( $last['user'][0] === $this->user()->email() ){
-				/*
-				* same user as last update
-				*/
-				if( time() > ( strtotime( $last['date'] ) + (60*30) )){
-					/*
-					* last update more than 30 mins ago,
-					* keep the last update and insert a new one
-					*/
-					$protocol[] = $last;
-				} else {
-					/*
-					* last update only few mins ago,
-					* edit the last one
-					*/
-					$new['date'] = $last['date'];
-					$new['comment'] = $last['comment'];
-				}
-			} else {
-				/*
-				* all new update
-				*/
-				$protocol[] = $last;
-			}
-
-			$protocol[] = $new;
-			$update['protocol'] = Yaml::encode( $protocol );
-		}
-
-		if( !empty( $update ) ){
-			$page->update( $update, 'en');
-		}
-
+	'page.changeSlug:after' => function ($newPage, $oldPage) {
+		flushCache( $newPage->id() );
 		require_once __DIR__.'/../functions/syncContexts.php';
-		syncContexts( $page, $oldPage );
-
-		flushCache( $page->id() );
-		$abstract = $page->dataAbstract();
+		syncContexts( $newPage, $oldPage );
 	},
-	'page.duplicate:after' => function ( $page, $oldPage ) {
-		$update = [];
-
-		if( $page->date_created()->exists() ){
-			$update['date_created'] = date('Y-m-d H:i');
-		}
-		if( $page->date_modified()->exists() ){
-			$update['date_modified'] = date('Y-m-d H:i');
-		}
-
-		flushCache( $page->id() );
-
-		if( !empty( $update ) ){
-			$page->update( $update, 'en');
-		}
-
-		require_once __DIR__.'/../functions/syncContexts.php';
-		syncContexts( $page, $oldPage );
+	'page.changeStatus:after' => function ($newPage) {
+		flushCache( $newPage->id() );
 	},
-	'page.changeSlug:after' => function ( $page, $oldPage ) {
-		flushCache( $page->id() );
-		require_once __DIR__.'/../functions/syncContexts.php';
-		syncContexts( $page, $oldPage );
+	'page.changeTemplate:after' => function ($newPage) {
+		flushCache( $newPage->id() );
 	},
-	'page.changeTitle:after' => function ($newPage, $oldPage) {
+	'page.changeTitle:after' => function ($newPage) {
 
-		flushCache( $page->id() );
+		flushCache( $newPage->id() );
 
 		$currentLang = $newPage->kirby()->languageCode();
 		$newTitle = $newPage->content( $currentLang )->title()->value();
@@ -149,19 +43,81 @@ return [
 		}
 
 	},
-	'page.changeNum:after' => function ($page) {
-		flushCache( $page->id() );
-	},
-	'page.changeStatus:after' => function ($page) {
-		flushCache( $page->id() );
+	'page.create:after' => function ($page) {
+		$update = [];
+
+		if( $page->date_created()->exists() ){
+			$update['date_created'] = date('Y-m-d H:i');
+		}
+		if( $page->user_created()->exists() ){
+			$update['user_created'] = Yaml::encode( $this->user()->email() );
+		}
+		if( $page->properties()->exists() && $page->depth() > 1 && $page->parent()->type_properties()->exists() ){
+			// copy defaults from parent
+			$update['properties'] = $page->parent()->type_properties();
+		}
+
+		if( !empty( $update ) ){
+			$page->update( $update, 'en');
+		}
+		$page->changeStatus('unlisted');
 	},
 	'page.delete:after' => function ($page) {
 		flushCache( $page->id() );
+	},
+	'page.duplicate:after' => function ( $duplicatePage ) {
+		$update = [];
+
+		if( $duplicatePage->date_created()->exists() ){
+			$update['date_created'] = date('Y-m-d H:i');
+		}
+		if( $duplicatePage->date_modified()->exists() ){
+			$update['date_modified'] = date('Y-m-d H:i');
+		}
+
+		if( !empty( $update ) ){
+			$duplicatePage->update( $update, 'en');
+		}
+	},
+	'page.update:after' => function ( $newPage, $oldPage ) {
+		$update = [];
+
+		if( $newPage->date_modified()->exists() ){
+			// override date
+			$update['date_modified'] = date('Y-m-d H:i');
+		}
+		if( $newPage->user_modified()->exists() ){
+			// override user
+			$update['user_modified'] = Yaml::encode( $this->user()->email() );
+		}
+
+		if( !empty( $update ) ){
+			$newPage->update( $update, 'en');
+		}
+
+		require_once __DIR__.'/../functions/syncContexts.php';
+		syncContexts( $newPage, $oldPage );
+
+		flushCache( $newPage->id() );
+		$abstract = $newPage->dataAbstract();
 	},
 
 	/*
 	* file
 	*/
+	'file.changeName:after' => function ($newFile, $oldFile) {
+		if( $newFile->template() != 'file_image' ){
+			return;
+		}
+
+		flushCache( $newFile->id() );
+
+		/*
+		* when filename is changed, all pages, where this image is used as thumbnail, should be updated
+		*/
+		searchReplaceFields( $oldFile->id(), $newFile->id(), 'thumbnail' );
+
+	},
 	'file.create:after' => function( $file ){
 		if( $file->template() != 'file_image' ){
 			return;
@@ -172,13 +128,6 @@ return [
 			'date_created' => date('Y-m-d H:i'),
 			'user_created' => Yaml::encode( $this->user()->email() ),
 		];
-
-		// add protocol
-		$update['protocol'] = Yaml::encode([[
-			'date' => $update['date_created'],
-			'user' => $update['user_created'],
-			'comment' => 'Uploaded'
-		]]);
 
 		// reconstruct properties from parent page
 		if( $file->properties()->exists() && $file->parent()->type_properties()->exists() ){
@@ -215,76 +164,28 @@ return [
 		$file->changeName( $name )->update( $update, 'en' );
 
 	},
-	'file.update:after' => function ( $file, $oldFile ) {
-		if( $file->template() != 'file_image' ){
+	'file.delete:after' => function ($file) {
+		flushCache( $file->id() );
+	},
+	'file.replace:after' => function ($newFile) {
+		flushCache( $newFile->id() );
+	},
+	'file.update:after' => function ( $newFile, $oldFile ) {
+		if( $newFile->template() != 'file_image' ){
 			return;
 		}
 
-		flushCache( $file->id() );
+		flushCache( $newFile->id() );
 
 		$update = [
 			'date_modified' => date('Y-m-d H:i'),
 			'user_modified' => Yaml::encode( $this->user()->email() ),
 		];
 
-
-		$protocol = $file->protocol()->yaml();
-		$last = array_pop( $protocol );
-		$new = [
-			'date' => $update['date_modified'],
-			'user' => $update['user_modified'],
-			'comment' => 'Update'
-		];
-		if( $last['user'][0] === $this->user()->email() ){
-			/*
-			* same user as last update
-			*/
-			if( time() > ( strtotime( $last['date'] ) + (60*30) )){
-				/*
-				* last update more than 30 mins ago,
-				* keep the last update and insert a new one
-				*/
-				$protocol[] = $last;
-			} else {
-				/*
-				* last update only few mins ago,
-				* edit the last one
-				*/
-				$new['date'] = $last['date'];
-				$new['comment'] = $last['comment'];
-			}
-		} else {
-			/*
-			* all new update
-			*/
-			$protocol[] = $last;
-		}
-		$protocol[] = $new;
-		$update['protocol'] = Yaml::encode( $protocol );
-
-		$file->update( $update, 'en');
+		$newFile->update( $update, 'en');
 
 		require_once __DIR__.'/../functions/syncContexts.php';
-		syncContexts( $file, $oldFile );
-	},
-	'file.changeName:after' => function ($file, $oldFile) {
-		if( $file->template() != 'file_image' ){
-			return;
-		}
-
-		flushCache( $file->id() );
-
-		/*
-		* when filename is changed, all pages, where this image is used as thumbnail, should be updated
-		*/
-		searchReplaceFields( $oldFile->id(), $file->id(), 'thumbnail' );
-
-	},
-	'file.delte:after' => function ($file) {
-		flushCache( $file->id() );
-	},
-	'file.replace:after' => function ($file) {
-		flushCache( $file->id() );
+		syncContexts( $newFile, $oldFile );
 	},
 
 ];

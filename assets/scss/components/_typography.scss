@@ -1,0 +1,151 @@
+@import '../variables';
+
+// typography
+
+//
+// font
+//
+body {
+	@include sans;
+}
+pre,
+code,
+blockquote,
+h5,
+.mono {
+	@include mono;
+}
+
+.bar.history,
+.bar.archive,
+.bar.controls,
+.bar.pagination {
+	@include mono;
+}
+button, .button {
+	@include mono;
+	padding: 0.3em 0.6em;
+	// text-transform: uppercase;
+	// letter-spacing: 0.05em;
+}
+
+//
+// font sizes
+//
+html {
+	font-size: $font-size;
+}
+h1 {
+	font-size: $font-large;
+	margin: $padding-box-top $padding-text-side;
+	line-height: 0.95;
+}
+h2,
+.highlight {
+	font-size: $font-medium;
+	line-height: 1.1;
+}
+h2,
+h3 {
+	margin: $padding-text;
+}
+body,
+h3,
+h4 {
+	font-size: $font-size;
+	line-height: 1.2;
+}
+h3,
+h4 {
+	margin: $padding-text;
+}
+h5,
+h6 {
+	font-size: $font-small;
+	margin: $padding-text;
+	line-height: 1.3;
+}
+
+.content {
+	padding: 0 $padding-double;
+	h2 {
+		padding-right: 5%;
+	}
+	p {
+		margin: $padding-text;
+	}
+}
+
+//
+// buttons and links
+//
+p,
+dl,
+.text {
+	a {
+		text-decoration: underline;
+		text-decoration-color: $grey-light;
+		// not supported yet
+		text-underline-offset: 0.18em;
+		transition: color 200ms ease, text-decoration-color 200ms ease;
+		&:hover {
+			text-decoration-color: $blue !important;
+			color: $blue;
+		}
+	}
+}
+.black {
+	p,
+	dl,
+	.text {
+		a {
+			text-decoration-color: $grey-dark;
+		}
+	}
+}
+
+//
+// word braking
+//
+p {
+	@include hyphens;
+}
+
+.file .title,
+.filename,
+.url,
+.path {
+	-ms-word-break: break-all;
+	word-break: break-word;
+	-webkit-hyphens: none;
+	-ms-hyphens: none;
+	hyphens: none;
+}
+
+.bodytext {
+	padding: $padding-text;
+	font-size: $font-size;
+	ul {
+		li {
+			list-style: disc inside;
+		}
+	}
+	ol {
+		li {
+			list-style: decimal inside;
+		}
+	}
+	li a {
+		display: inline;
+	}
+}
+
+.section--header {
+	@include noSelect;
+	@include mono;
+}
+
+img {
+	@include noSelect;
+	word-break: break-word;
+}

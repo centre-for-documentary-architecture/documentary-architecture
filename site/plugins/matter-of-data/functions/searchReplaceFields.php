@@ -7,7 +7,7 @@ function searchReplaceFields( $search, $replace, $fieldname = 'thumbnail' ){
 	$fieldname = 'thumbnail';
 
 	// make index search
-	$matches = kirby()->site()->search( $search, $fieldname );
+	$matches = kirby()->site()->search( $search, ['fields' => [$fieldname]] );
 
 	foreach ($matches as $match) {
 

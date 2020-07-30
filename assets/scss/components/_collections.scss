@@ -1,0 +1,52 @@
+@import '../variables';
+
+@import 'collections/accordion';
+@import 'collections/cards';
+@import 'collections/gallery';
+@import 'collections/list';
+@import 'collections/table';
+
+#map .card {
+	width: 40vw;
+	@media screen and (min-width: 768px){
+		width: 20vw;
+	}
+}
+
+.card > button {
+	display: block;
+	.title {
+		padding: 0;
+	}
+}
+
+.presentation .list {
+	padding-right: 4px;
+}
+
+body.black {
+	.presentation.collection .grid {
+		padding-top: 1px;
+	}
+}
+
+.cards.grid {
+	padding: 2px;
+}
+.cards,
+.gallery {
+	.card {
+		padding: 2px;
+	}
+}
+.list {
+	.card + .card {
+		margin-top: 2px;
+	}
+}
+
+.card {
+	h1, h2, h3, p {
+		margin: $padding 0;
+	}
+}

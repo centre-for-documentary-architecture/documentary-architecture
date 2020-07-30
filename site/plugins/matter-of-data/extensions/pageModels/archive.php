@@ -50,15 +50,31 @@ class PageArchive extends Page
     }
     public function dataFilters( string $query = '' ): array
     {
-        $filters = $this->site()->archive()->children()->listed()->dataAbstract();
+        $filters = $this->site()->archive()->children()->listed();
+
+        $items = $filters->filter(function ($filter) {
+            return $filter->entity() === 'items';
+        })->dataAbstract();
+
+        $files = $filters->filter(function ($filter) {
+            return $filter->entity() === 'files';
+        })->dataAbstract();
 
         $all = $this->dataAbstract();
         $all['title'] = 'Search all';
-        array_unshift( $filters, $all );
 
         return [
-            'headline' => 'Filters',
-            'content' => $filters
+            [
+                'buttons' => [ $all ]
+            ],
+            [
+                'headline' => 'Items',
+                'buttons' => $items
+            ],
+            [
+                'headline' => 'Files',
+                'buttons' => $files
+            ],
         ];
 
     }
@@ -82,21 +98,22 @@ class PageArchive extends Page
             return $this->recentActivity()->listed();
         }
 
-        return $this->search( $query, 'title|additional_title|tags|content_text|description|category|transcript|credits|date_start|date_end|location_start|location_end|starring|occupation|sources' )->listed();
+        return $this->entities()->listed()->bettersearch( $query, [
+            'fields' => ['title','additional_title','tags','content_text','description','category','transcript','credits','date_start','date_end','location_start','location_end','starring','occupation','sources']
+        ]);
 
     }
     public function dataAbstract( string $srcset = 'medium' )
     {
 
-    $content = [
-    	'url' => $this->url(),
-    	'title' => 'CDA '.$this->title()->value(),
-    	'template' => 'archive',
-        'classlist' => $this->classlist(),
-        'filter' => '',
-        'worlditem' => null,
-        'count' => $this->countCollection()
-    ];
+        $content = [
+            'url' => $this->url(),
+            'title' => 'CDA '.$this->title()->value(),
+            'template' => 'archive',
+            'classlist' => $this->classlist(),
+            'filter' => '',
+            'worlditem' => null
+        ];
 
 		return $content;
 

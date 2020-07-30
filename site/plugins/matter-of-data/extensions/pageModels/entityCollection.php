@@ -111,13 +111,7 @@ class EntityCollection extends Entity
     }
     public function content_headline(): Kirby\Cms\Field
     {
-        if( $this->content()->content_headline()->isNotEmpty() ){
-
-            return $this->content()->content_headline();
-
-        }
         return new Field( $this, 'content_headline', 'Collection');
-
     }
     public function tabCollection(): array
 	{

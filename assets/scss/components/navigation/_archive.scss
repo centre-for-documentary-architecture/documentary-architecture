@@ -1,0 +1,38 @@
+@import '../../variables';
+
+//
+// Archive Bar bottom
+//
+
+nav.bar.archive {
+
+	position: sticky;
+	bottom: -1px;
+	z-index: 1000;
+	background-color: $black;
+	color: $white;
+
+	a {
+		transition: color 200ms ease;
+		&:hover {
+			color: $blue;
+		}
+	}
+
+	.keywords a {
+		font-size: $font-small;
+		padding-top: 0.45rem;
+		&:before {
+			content: '→';
+			padding-right: 0.2em;
+		}
+	}
+
+}
+body {
+	&.home {
+		nav.bar.archive {
+			display: none;
+		}
+	}
+}

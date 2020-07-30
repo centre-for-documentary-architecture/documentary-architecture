@@ -34,10 +34,7 @@ $publications = $site->archive('publications')->highlights()->toPages();
 				<li class="card">
 					<a href="<?= $item->url() ?>">
 						<div>
-							<h5>
-								Online Collection,
-								<?= $item->date_modified()->toDate('Y') ?>
-							</h5>
+							<h5>Online Collection</h5>
 							<?php if($image = $item->thumbnail()): ?>
 								<figure>
 									<?= $image->responsiveImage('large', false) ?>

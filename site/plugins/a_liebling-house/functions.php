@@ -65,27 +65,3 @@ function getTourData() {
     }
     return $tours;
 }
-
-// function extractTourstopContent($stop) {
-//     $content_collection = $stop->content_collection()->value();
-//     $content = [];
-//     switch ( $content_collection ) {
-//         case 'pages':
-//             $content = $stop->content_pages()->yaml();
-//             break;
-
-//         case 'entities':
-//             $content = $stop->content_entities()->yaml();
-//             break;
-
-//         case 'contexts':
-//         case 'contextualized':
-//             $content = $stop->{$content_collection}()->yaml();
-//             break;
-
-//         case 'children';
-//         default:
-//             break;
-//     }
-//     return $content;
-// }

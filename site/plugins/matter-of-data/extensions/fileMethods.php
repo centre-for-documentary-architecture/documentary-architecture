@@ -51,6 +51,12 @@ return [
 				'title' => 'Go to "'.$this->title().'"'
 		]);
 	},
+	'alt' => function(): string {
+		if( $title = $this->additional_title()->isNotEmpty() ){
+			return $title;
+		}
+		return $this->title();
+	},
 	'thumbnail' => function(){
 		/*
 		* tests if this page matches the given type
@@ -73,14 +79,7 @@ return [
 			'content' => $this->content()->toArray()
 		]);
 	},
-	'responsiveImage' => function( string $srcset = 'medium', bool $lazy = null, string $alt = '' ){
-		if( $alt === '' ){
-			if( $title = $this->additional_title()->isNotEmpty() ){
-				$alt = $title;
-			} else if( $parent = $this->parent()->title() ){
-				$alt = $parent;
-			}
-		}
+	'responsiveImage' => function( string $srcset = 'medium', bool $lazy = null, string $alt = null ){
 		if( $lazy === null ){
 			$size = 80;
 		} else {
@@ -89,7 +88,7 @@ return [
 		return Html::img(
 			$this->thumb(['width' => $size])->url(),
 			[
-				'alt' => $alt,
+				'alt' => $alt === null ? $this->alt( $alt ) : $alt,
 				'class' => 'lazyload',
 				'data-sizes' => 'auto',
 				'data-src' => $this->url(),

@@ -1,0 +1,55 @@
+@import '../../variables';
+
+//
+// accordion
+//
+.accordion {
+	.section--header {
+		cursor: pointer;
+		position: relative;
+
+		&:after {
+			content: '';
+			border: solid $black;
+			border-width: 0 1px 1px 0;
+			display: inline-block;
+			padding: 0.15em;
+			position: absolute;
+			top: 0.3em;
+			right: 0.2rem;
+			transform: rotate(45deg);
+			-webkit-transform: rotate(45deg);
+			pointer-events: none;
+		}
+
+	}
+	.section--content {
+		overflow: hidden;
+	}
+	&.open {
+		.section--header:after {
+			top: 0.5em;
+			transform: rotate(-135deg);
+			-webkit-transform: rotate(-135deg);
+		}
+	}
+}
+.black .accordion .section--header:after {
+	border-color: $white;
+}
+
+.panels.overlap {
+	.accordion {
+		.section--header {
+			&:after {
+				top: 0.8em;
+				right: 0.7rem;
+			}
+		}
+		&.open {
+			.section--header:after {
+				top: 1em;
+			}
+		}
+	}
+}

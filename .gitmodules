@@ -10,3 +10,9 @@
 [submodule "assets/apps/liebling-house"]
 	path = assets/apps/liebling-house
 	url = https://moritzebeling@bitbucket.org/cdaweimar/liebling-house-world.git
+[submodule "site/plugins/kirby-bettersearch"]
+	path = site/plugins/kirby-bettersearch
+	url = https://github.com/bvdputte/kirby-bettersearch.git
+[submodule "site/plugins/kirby-sitemapper"]
+	path = site/plugins/kirby-sitemapper
+	url = https://gitlab.com/cre8ivclick/sitemapper.git
