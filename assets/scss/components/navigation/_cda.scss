@@ -119,15 +119,17 @@ body.about-open {
 }
 
 
-aside#cda.open ~ .page-wrapper {
- transform: translateX( calc( 85vw - #{$barWidth} ) );
-}
-@media screen and (min-width: 768px){
-	aside#cda.open .bar {
-		width: 50vw;
+aside#cda.open {
+	~ .page-wrapper {
+	 transform: translateX( calc( 85vw - #{$barWidth} ) );
+	 @media screen and (min-width: 768px){
+		 transform: translateX( calc( 50vw - #{$barWidth} ) );
+	 }
 	}
-	aside#cda.open ~ .page-wrapper {
-		transform: translateX( calc( 50vw - #{$barWidth} ) );
+	@media screen and (min-width: 768px){
+		.bar {
+			width: 50vw;
+		}
 	}
 }
 

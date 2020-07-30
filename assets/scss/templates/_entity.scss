@@ -25,10 +25,7 @@
 			font-size: $font-medium;
 		}
 	}
-}
-
-@media screen and (max-width: 768px){
-	&.file {
+	@media screen and (max-width: 768px){
 		.panels {
 			main {
 				order: 10;

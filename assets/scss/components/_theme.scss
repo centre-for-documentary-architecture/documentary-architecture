@@ -6,10 +6,6 @@ body {
 	transition: background-color 200ms ease;
 }
 
-//
-// text selection
-//
-
 ::selection {
 	background-color: $blue;
 }
@@ -73,12 +69,12 @@ body.home .archive-bar {
 	}
 }
 
+// body.liebling-house,
+// body.liebling-house.black,
 .white,
 .whites,
 .light,
-.lights,
-body.liebling-house,
-body.liebling-house.black {
+.lights {
 	color: $black;
 	.card {
 		a {
@@ -122,14 +118,18 @@ button,
 	background-color: $blue;
 }
 
+@mixin buttonBlue {
+	color: $white;
+	background-color: $blue;
+	&:hover {
+		background-color: $blue-active;
+	}
+}
+
 button,
 .button {
 	&.blue {
-		color: $white;
-		background-color: $blue;
-		&:hover {
-			background-color: $blue-active;
-		}
+		@include buttonBlue;
 	}
 }
 

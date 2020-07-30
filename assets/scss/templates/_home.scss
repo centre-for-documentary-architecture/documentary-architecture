@@ -2,10 +2,13 @@
 
 header#top {
     h1 {
-        font-size: 6rem;
         z-index: 10;
         margin: $padding-box;
         margin-left: 0.75rem;
+        font-size: 6rem;
+        @media (max-width: 38rem) {
+            font-size: calc(15vw - 0.6rem);
+        }
     }
     min-height: 65vh;
     transition: min-height 1000ms ease;
@@ -102,11 +105,5 @@ nav.bar.history {
         input {
             outline: none;
         }
-    }
-}
-
-@media (max-width: 38rem) {
-    header#top h1 {
-        font-size: calc(15vw - 0.6rem);
     }
 }
