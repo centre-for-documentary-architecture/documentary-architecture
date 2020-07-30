@@ -11,8 +11,12 @@ async function navigateBack( target ) {
 
 	let data = await loadData( target.url );
 
+	let classlist = ['dynamic', data.theme, data.layout, data.template, data.type, data.entity];
+
 	// replace info in page object and history
 	pageStoreSet({...data , loading: false });
+
+	document.body.className = classlist.join(' ');
 
 	// naviWorld( entity.worlditem );
 
