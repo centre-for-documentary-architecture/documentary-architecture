@@ -11248,7 +11248,7 @@ var app = (function () {
     async function loadPage( url = false, title = false ) {
 
     	let state = createStateObject({
-    		title: title || document.title.replace('CDA ',''),
+    		title: title || document.title.replace('C D A → ',''),
     		url: url || window.location.href,
     		template: assumeTemplate( window.location.pathname )
     	});
@@ -11334,7 +11334,7 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			attr_dev(div, "class", "is-loading");
-    			add_location(div, file$q, 70, 19, 1609);
+    			add_location(div, file$q, 70, 19, 1613);
     		},
 
     		m: function mount(target, anchor) {
@@ -11500,7 +11500,7 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			div = element("div");
-    			add_location(div, file$q, 50, 1, 1284);
+    			add_location(div, file$q, 50, 1, 1288);
     		},
 
     		m: function mount(target, anchor) {
@@ -11620,7 +11620,7 @@ var app = (function () {
     function create_fragment$r(ctx) {
     	var title_value, t0, t1, current_block_type_index, if_block, if_block_anchor, current, dispose;
 
-    	document.title = title_value = "CDA " + ctx.page.title;
+    	document.title = title_value = "C D A → " + ctx.page.title;
 
     	var historybar = new HistoryBar({ $$inline: true });
 
@@ -11672,7 +11672,7 @@ var app = (function () {
     		},
 
     		p: function update(changed, ctx) {
-    			if ((!current || changed.page) && title_value !== (title_value = "CDA " + ctx.page.title)) {
+    			if ((!current || changed.page) && title_value !== (title_value = "C D A → " + ctx.page.title)) {
     				document.title = title_value;
     			}
 

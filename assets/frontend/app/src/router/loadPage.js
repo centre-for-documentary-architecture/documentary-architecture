@@ -8,7 +8,7 @@ import { loadData } from './loadData.js';
 export async function loadPage( url = false, title = false ) {
 
 	let state = createStateObject({
-		title: title || document.title.replace('CDA ',''),
+		title: title || document.title.replace('C D A → ',''),
 		url: url || window.location.href,
 		template: assumeTemplate( window.location.pathname )
 	});

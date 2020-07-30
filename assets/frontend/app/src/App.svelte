@@ -33,7 +33,7 @@
 <svelte:window on:popstate={popState} on:click={clickAnyLink}></svelte:window>
 
 <svelte:head>
-	<title>CDA {page.title}</title>
+	<title>C D A → {page.title}</title>
 </svelte:head>
 
 <HistoryBar />
