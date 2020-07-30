@@ -30,7 +30,7 @@ return [
 	'category' => function(): ?string
 	{
 		// select field
-		if( $this->content()->category()->exists() && $this->content()->category()->isNotEmpty() ){
+		if( $this->content()->category()->isNotEmpty() ){
 
 			return $this->content()->category()->toSlug()->value();
 
@@ -57,7 +57,7 @@ return [
 	'keywords' => function( string $fallback = '' ): Kirby\Cms\Field
 	{
 
-		if( $this->content()->keywords()->exists() && $this->content()->keywords()->isNotEmpty() ){
+		if( $this->content()->keywords()->isNotEmpty() ){
 
 			return $this->content()->keywords();
 
@@ -69,7 +69,7 @@ return [
 	'description' => function( string $fallback = '' ): Kirby\Cms\Field
 	{
 
-		if( $this->content()->description()->exists() && $this->content()->description()->isNotEmpty() ){
+		if( $this->content()->description()->isNotEmpty() ){
 
 			return $this->content()->description();
 

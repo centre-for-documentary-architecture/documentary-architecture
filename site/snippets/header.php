@@ -38,7 +38,7 @@ if( isset( $class ) ){
 
 	<meta name="description" content="<?= $page->description()->html()->or( 'Discover '. $page->title()->html()->value() .' at the Centre for Documentary Architecture' ) ?>">
 
-	<meta name="keywords" content="<?= $page->keywords()->value() ?>, architecture, bauhaus, research, data">
+	<meta name="keywords" content="<?= $page->tags()->value() ?>, architecture, bauhaus, research, data">
 
 	<?php snippet('header/favicon'); ?>
 
