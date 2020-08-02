@@ -86,12 +86,12 @@ return [
 			$size = 360;
 		}
 		return Html::img(
-			$this->thumb(['width' => $size])->url(),
+			$this->resize( $size )->url(),
 			[
 				'alt' => $alt === null ? $this->alt( $alt ) : $alt,
 				'class' => 'lazyload',
 				'data-sizes' => 'auto',
-				'data-src' => $this->url(),
+				'data-src' => $this->resize( 2000 ),
 				'data-srcset' => $this->srcset( $srcset ),
 			]
 		);

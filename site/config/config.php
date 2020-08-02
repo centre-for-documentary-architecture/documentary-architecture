@@ -45,6 +45,9 @@ return [
 	],
 	*/
 	'thumbs' => [
+		'thumbs' => [
+			'quality' => 75
+		],
 		'srcsets' => [
 			'mini' => [ 40, 80, 120],
 			'small' => [ 120, 240, 360],
