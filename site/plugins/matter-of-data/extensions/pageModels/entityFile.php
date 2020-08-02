@@ -148,7 +148,7 @@ class EntityFileImage extends EntityFile
                 'type' => 'panorama',
                 'headline' => 'Panorama',
                 'content' => [
-                    'url' => $this->thumbnail()->thumb([ 'width' => 4096, 'height' => 2048, 'crop' => true ])->url()
+                    'url' => $this->thumbnail()->crop( 4096, 2048 )->url()
                 ]
             ];
 
@@ -262,7 +262,7 @@ class EntityFileVideo extends EntityFile
         ];
 
         if( $thumbnail = $this->thumbnail() ){
-            $content['poster'] = $thumbnail->thumb(['width' => 1920])->url();
+            $content['poster'] = $thumbnail->resize( 1920 )->url();
         }
 
         return [
