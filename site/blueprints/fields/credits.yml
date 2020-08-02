@@ -21,4 +21,4 @@ fields:
     type: tags
     label: Name
     options: query
-    query: site.kirby.users.pluck('name',','true)
+    query: site.kirby.users.pluck( "name", ",", true )
