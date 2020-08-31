@@ -6,42 +6,42 @@
 - HTML, (S)CSS, JS
 - [Svelte](https://svelte.dev/) JS Framework
 
-## Install
-Get a shallow clone including all submodules
+## Development
+
+Install
 ```
 git clone --recursive -–depth 1 https://github.com/moritzebeling/documentary-architecture.org.git
-```
-Update modules
-```
-git submodule foreach git pull origin master
-```
-Go there
-```
 cd documentary-architecture.org
-```
-Install sass
-```
+
+# to install sass
 npm install -g sass
-```
-Install svelte
-```
+
+# to install svelte
 cd site/plugins/framework/assets
 npm install
 ```
 
-## Run
-Run PHP
+Update modules
 ```
+git submodule foreach git pull origin master
+```
+
+Run
+```
+# php server
 php -S localhost:8000 kirby/router.php
-```
-Compile SCSS upon save
-```
+
+# compile sass on save
 sass --watch --style=compressed assets/scss:assets/css
-```
-Run Svelte
-```
+
+# svelte
 cd assets/frontend/app
 npm run dev
+```
+
+## Deploy
+Before deploy, compile svelte frontend
+```
 npm run build
 ```
 

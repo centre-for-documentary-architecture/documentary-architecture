@@ -49,7 +49,7 @@ export async function navigateTo( url, target = {}, replace = false ) {
 		data.url = state.url;
 		data.title = state.title;
 		data.template = 'html';
-		classlist = [...classlist, 'reqular', 'black'];
+		classlist = [...classlist, 'regular', 'black'];
 	} else {
 		state = createStateObject( data );
 		// let classlist = ['dynamic', data.theme, data.layout, data.template, data.entity, data.type, data.category ];

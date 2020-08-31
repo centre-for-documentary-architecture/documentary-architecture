@@ -7,7 +7,8 @@ Kirby::plugin('cda/get', [
         'get/',
         'get/start'
       ],
-      'action'  => function () {
+      'language' => '*',
+      'action'  => function ( $language ) {
 
         $kirby = kirby();
 
@@ -30,7 +31,8 @@ Kirby::plugin('cda/get', [
       'pattern' => [
         'get/(:all)'
       ],
-      'action'  => function ( $pathname = '' ) {
+      'language' => '*',
+      'action'  => function ( $language, $pathname = '' ) {
 
         $kirby = kirby();
 
