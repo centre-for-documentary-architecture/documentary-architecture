@@ -1,4 +1,4 @@
-function readHeader( header ){
+function readReturnHeader( header ){
 	if( header.includes('json') ){
 		return 'json';
 	}
@@ -27,7 +27,7 @@ export async function loadData( url ){
 		return false;
 	}
 
-	let format = readHeader( response.headers.get('content-type') );
+	let format = readReturnHeader( response.headers.get('content-type') );
 	let data = {};
 
 	if( format === 'json' ){
