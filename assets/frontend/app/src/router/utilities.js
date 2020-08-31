@@ -1,10 +1,11 @@
 export function createStateObject( obj ){
-  return {
-    url: obj.url,
-    title: obj.title || obj.url.split('/').pop(),
-    template: obj.template || false,
-    worlditem: obj.worlditem || false
-  };
+	let title = obj.title || obj.url.split('/').pop();
+	return {
+		url: obj.url,
+		title: title.replace('C D A → ',''),
+		template: obj.template || false,
+		worlditem: obj.worlditem || false
+	};
 }
 
 export function assumeTemplate( pathname ){
