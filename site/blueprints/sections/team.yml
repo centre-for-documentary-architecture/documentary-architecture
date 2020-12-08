@@ -1,0 +1,21 @@
+type: fields
+fields:
+
+  email:
+    type: email
+    label: Contact
+    width: 1/2
+
+  website:
+    extends: fields/url
+    width: 1/2
+
+  content:
+    type: textarea
+    buttons: false
+
+  info:
+    type: info
+    label: Info
+    text: |
+      Also a user can be linked to using a tag `(-user: email@web.com)`

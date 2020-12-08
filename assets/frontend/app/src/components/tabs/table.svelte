@@ -1,35 +1,34 @@
 <script>
 
-  import { slide } from 'svelte/transition';
+    import { onMount, onDestroy } from 'svelte';
+    import { slide } from 'svelte/transition';
 
-  export let tab;
-  export let category;
-  export let entity;
-  import CollectionList from '../collection/list.svelte';
+    export let tab;
+    export let category;
+    export let entity;
+    import CollectionList from '../collection/list.svelte';
 
-  let open = false;
+    let open = isOpen();
 
-  function cellSize( str ){
+    function cellSize( str ){
+        str = str.replace(/<[^>]+>/g, '');
+        if ( str.length > 160 ){
+            return 'long';
+        }
+        return '';
+    }
 
-      str = str.replace(/<[^>]+>/g, '');
-      if ( str.length > 160 ){
-          return 'long';
-      }
-      return '';
-
-  }
-
-  function tabClass( cl = '' ){
-      cl = cl.toLowerCase();
-      if( cl != 'meta' || entity == 'file' ){
-          open = true;
-      }
-      return cl;
-  }
+    function isOpen() {
+        if( tab.headline.toLowerCase() === 'meta' ){
+            return entity == 'file';
+        } else {
+            return true;
+        }
+    }
 
 </script>
 
-<section class="tab accordion {tabClass( tab.headline )}" class:open>
+<section class="tab accordion {tab.headline.toLowerCase()}" class:open>
     <h3 class="section--header" on:click={() => open = !open}>{ tab.headline || 'Info' }</h3>
     {#if open}
       <dl class="section--content table" transition:slide="{{ duration: 200 }}">

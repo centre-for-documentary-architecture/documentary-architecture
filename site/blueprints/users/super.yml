@@ -43,13 +43,4 @@ permissions:
     delete: true #
     update: true #
 
-fields:
-
-  website:
-    extends: fields/url
-
-  info:
-    type: info
-    label: Info
-    text: |
-      Also a user can be linked to using a tag `(-user: email@web.com)`
+section: sections/team
