@@ -1,4 +1,6 @@
 title: Admin
 description: Everything is possible
 
-section: sections/team
+sections:
+
+  fields: sections/team

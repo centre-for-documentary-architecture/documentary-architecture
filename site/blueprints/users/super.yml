@@ -43,4 +43,6 @@ permissions:
     delete: true #
     update: true #
 
-section: sections/team
+sections:
+
+  fields: sections/team
