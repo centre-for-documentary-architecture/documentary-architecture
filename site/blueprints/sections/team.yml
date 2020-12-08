@@ -18,4 +18,4 @@ fields:
     type: info
     label: Info
     text: |
-      Also a user can be linked to using a tag `(-user: email@web.com)`
+      Also a user can be linked to using a tag `(-user: {{ user.email }})`
