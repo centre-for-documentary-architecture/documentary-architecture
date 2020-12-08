@@ -3,6 +3,6 @@ type: text
 
 label: Additional title
 
-maxlength: 64
+maxlength: 80
 translate: true
 help: Alternative, additional or subtitle of this entity
