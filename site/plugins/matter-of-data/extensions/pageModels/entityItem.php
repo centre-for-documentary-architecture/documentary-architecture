@@ -306,6 +306,10 @@ class EntityItemOrganisation extends EntityItem
 
 class EntityItemPublication extends EntityItem
 {
+    public function theme(): string
+    {
+        return 'white';
+    }
     public function dataIndividualFields(): array
 	{
 
