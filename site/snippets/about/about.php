@@ -93,7 +93,7 @@ if( !isset( $about ) ){
 <nav class="content mono footer-nav">
 	<ul>
 
-		<li><?= $site->homePage()->toLink('Home'); ?></li>
+		<li><?= $site->homePage()->toLink('Start'); ?></li>
 		<li><?= $site->find('imprint-privacy-policy')->toLink(); ?></li>
 
 		<?php
