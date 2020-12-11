@@ -7,6 +7,7 @@ Kirby::plugin('cda/get', [
         'get/',
         'get/start'
       ],
+      'method' => 'GET|OPTIONS',
       'language' => '*',
       'action'  => function ( $language ) {
 
@@ -31,6 +32,7 @@ Kirby::plugin('cda/get', [
       'pattern' => [
         'get/(:all)'
       ],
+      'method' => 'GET|OPTIONS',
       'language' => '*',
       'action'  => function ( $language, $pathname = '' ) {
 
