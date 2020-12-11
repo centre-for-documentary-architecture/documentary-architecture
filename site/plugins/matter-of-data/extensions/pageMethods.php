@@ -143,8 +143,7 @@ return [
 	},
 	'dataGeneral' => function(): array
 	{
-
-		return [
+		$data = [
 			'url' => $this->url(),
 			'id' => $this->id(),
 			'entity' => $this->entity(),
@@ -159,9 +158,11 @@ return [
 			'layout' => $this->layout(),
 			'template' => $this->template()->name(),
 			'worlditem' => $this->worlditem(),
-			// 'breadcrumbs' => $this->dataBreadcrumbs()
 		];
-
+		if( $thumbnail = $this->thumbnail() ){
+			$data['thumbnail'] = $this->thumbnail()->dataThumbnail('medium');
+		}
+		return $data;
 	},
 	'dataSet' => function(): array
 	{
