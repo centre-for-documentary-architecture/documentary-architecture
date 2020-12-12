@@ -3,6 +3,9 @@
     export let entity;
     export let tab;
     export let category;
+    export let image;
+
+    console.log( entity );
 
 </script>
 
@@ -12,6 +15,12 @@
 
     {#if tab.content.h2 }
         <h2 class="subtitle">{@html tab.content.h2}</h2>
+    {/if}
+
+    {#if entity === 'item' && image}
+        <figure>
+            {@html image}
+        </figure>
     {/if}
 
     {#if tab.content.p }

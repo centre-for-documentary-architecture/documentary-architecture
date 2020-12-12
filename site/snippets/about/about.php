@@ -76,6 +76,10 @@ if( !isset( $about ) ){
 		</section>
 
 		<section>
+			<p class="mono">ISSN 2701-567X</p>
+		</section>
+
+		<section>
 			<h2>Supporters</h2>
 			<div class="supporter-logos">
 				<?php foreach( $about->supporter_logos()->toFiles() as $logo ): ?>
@@ -93,7 +97,7 @@ if( !isset( $about ) ){
 <nav class="content mono footer-nav">
 	<ul>
 
-		<li><?= $site->homePage()->toLink('Home'); ?></li>
+		<li><?= $site->homePage()->toLink('Start'); ?></li>
 		<li><?= $site->find('imprint-privacy-policy')->toLink(); ?></li>
 
 		<?php

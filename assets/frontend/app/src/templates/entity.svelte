@@ -76,7 +76,7 @@
         <div class="tabs">
           {#each page.content as tab}
 
-            <svelte:component this={tabs[ tab.type ]} {tab} category="{page.category}" entity="{page.entity}"/>
+            <svelte:component this={tabs[ tab.type ]} {tab} category="{page.category}" entity="{page.entity}" image={page.thumbnail}/>
 
           {/each}
         </div>

@@ -7,15 +7,17 @@ Kirby::plugin('cda/get', [
         'get/',
         'get/start'
       ],
+      'method' => 'GET|OPTIONS',
       'language' => '*',
       'action'  => function ( $language ) {
 
         $kirby = kirby();
+        $cacheId = $language . '/start';
 
         // cache
         $cache = $kirby->cache('get');
         if( option('cache.get',false) ){
-          $cacheData = $cache->get('start');
+          $cacheData = $cache->get($cacheId);
           if( $cacheData !== null ){
             return $cacheData;
           }
@@ -23,7 +25,7 @@ Kirby::plugin('cda/get', [
 
         $return = $kirby->site()->homePage()->render(['get' => true]);
 
-        $cache->set('start', $return, option('cache-expires',1440) );
+        $cache->set($cacheId, $return, option('cache-expires',1440) );
         return $return;
       }
     ],
@@ -31,21 +33,22 @@ Kirby::plugin('cda/get', [
       'pattern' => [
         'get/(:all)'
       ],
+      'method' => 'GET|OPTIONS',
       'language' => '*',
       'action'  => function ( $language, $pathname = '' ) {
 
         $kirby = kirby();
 
         // request path
-        $requestId = $pathname;
-        if( $querystring = $kirby->request()->query()->toString() ){
-          $requestId .= '?' . trim( $querystring, '=' );
+        $cacheId = $pathname;
+        if( $querystring = $language . '/' . $kirby->request()->query()->toString() ){
+          $cacheId .= '?' . trim( $querystring, '=' );
         }
 
         // cache
         $cache = $kirby->cache('get');
         if( option('cache.get',false) ){
-          $cacheData = $cache->get( $requestId );
+          $cacheData = $cache->get( $cacheId );
           if( $cacheData !== null ){
             return $cacheData;
           }
@@ -179,7 +182,7 @@ Kirby::plugin('cda/get', [
 
         }
 
-        $cache->set($requestId, $return, option('cache-expires',1440) );
+        $cache->set($cacheId, $return, option('cache-expires',1440) );
         return $return;
 
       }

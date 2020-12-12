@@ -35,4 +35,6 @@ permissions:
     update: true
   users: false
 
-section: sections/team
+sections:
+
+  fields: sections/team
