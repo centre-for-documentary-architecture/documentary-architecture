@@ -1,0 +1,23 @@
+# Numerous always-ignore extensions
+*.diff
+*.err
+*.log
+*.orig
+*.rej
+*.swo
+*.swp
+*.vi
+*.zip
+*~
+
+# OS folders
+._*
+.cache
+.DS_Store
+Thumbs.db
+
+# Folders to ignore
+/node_modules
+
+# Composer
+.composer.lock

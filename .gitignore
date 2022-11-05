@@ -1,6 +1,9 @@
 # Content files
 # ------------
 
+/kirby
+/vendor
+
 .lock
 .mp4
 *.mp4
