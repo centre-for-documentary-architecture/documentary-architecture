@@ -3,6 +3,7 @@
 
 /kirby
 /vendor
+/storage
 
 .lock
 .mp4
