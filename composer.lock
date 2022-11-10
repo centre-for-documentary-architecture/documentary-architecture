@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f5d9b438bfa3ad64405375753f1ed9c3",
+    "content-hash": "0b5b05c0fac740e50fe298049542678e",
     "packages": [
         {
             "name": "bvdputte/kirby-bettersearch",
@@ -395,41 +395,59 @@
             "time": "2020-12-28T12:54:39+00:00"
         },
         {
-            "name": "kirbyzone/sitemapper",
-            "version": "1.2.1",
+            "name": "getkirby/kql",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/kirbyzone/sitemapper.git",
-                "reference": "f94551265d222bae844ad29d0a6a5b5f3737aa48"
+                "url": "https://github.com/getkirby/kql.git",
+                "reference": "4c8cdd88c076cdef5323efcd4f0fda38c0865eed"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kirbyzone/sitemapper/zipball/f94551265d222bae844ad29d0a6a5b5f3737aa48",
-                "reference": "f94551265d222bae844ad29d0a6a5b5f3737aa48",
+                "url": "https://api.github.com/repos/getkirby/kql/zipball/4c8cdd88c076cdef5323efcd4f0fda38c0865eed",
+                "reference": "4c8cdd88c076cdef5323efcd4f0fda38c0865eed",
                 "shasum": ""
             },
             "require": {
-                "getkirby/composer-installer": "^1.1"
+                "getkirby/composer-installer": "^1.2.1"
             },
             "type": "kirby-plugin",
+            "autoload": {
+                "psr-4": {
+                    "Kirby\\": "src/"
+                }
+            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
             "authors": [
                 {
-                    "name": "Kirbyzone",
-                    "email": "support@kirby.zone",
-                    "homepage": "https://kirby.zone"
+                    "name": "Bastian Allgeier",
+                    "email": "bastian@getkirby.com"
                 }
             ],
-            "description": "Kirbyzone's Automatic Sitemap Generator Plugin for Kirby",
-            "homepage": "https://github.com/kirbyzone/sitemapper",
+            "description": "Kirby Query Language",
+            "homepage": "https://getkirby.com",
+            "keywords": [
+                "api",
+                "cms",
+                "headless",
+                "json",
+                "kirby",
+                "query"
+            ],
             "support": {
-                "issues": "https://github.com/kirbyzone/sitemapper/issues",
-                "source": "https://github.com/kirbyzone/sitemapper"
+                "issues": "https://github.com/getkirby/kql/issues",
+                "source": "https://github.com/getkirby/kql/tree/1.2.0"
             },
-            "time": "2021-08-16T07:29:36+00:00"
+            "funding": [
+                {
+                    "url": "https://getkirby.com/buy",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-10-06T10:44:26+00:00"
         },
         {
             "name": "laminas/laminas-escaper",

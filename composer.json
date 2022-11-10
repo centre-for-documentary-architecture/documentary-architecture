@@ -3,7 +3,7 @@
         "getkirby/cms": "^3.8",
         "timoetting/kirby-builder": "^2.0",
         "bvdputte/kirby-bettersearch": "^1.0",
-        "kirbyzone/sitemapper": "^1.2"
+        "getkirby/kql": "^1.2"
     },
     "config": {
         "optimize-autoloader": true

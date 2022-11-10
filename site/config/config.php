@@ -7,8 +7,12 @@ return [
 		'css' => 'assets/css/panel.css'
 	],
 
+	'kql' => [
+		'auth' => false
+	],
+
 	// development
-	'debug'  => false,
+	'debug'  => true,
 
 	// archive shall render all 404, using the request path as query input
 	'error' => 'error',
@@ -23,7 +27,7 @@ return [
 	// https://getkirby.com/docs/guide/cache
 	'cache' => [
 		'pages' => [
-			'active' => true
+			'active' => false
 		]
 	],
 	'cache-expires' => 1440,
