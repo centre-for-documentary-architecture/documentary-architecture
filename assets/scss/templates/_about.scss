@@ -1,5 +1,15 @@
 @import '../variables';
 
+@mixin arrowBeforeLink {
+    &:before {
+        content: '→';
+        display: inline-block;
+        margin-right: 0.3em;
+    }
+}
+a[target=_blank]{
+    @include arrowBeforeLink;
+}
 .content {
     padding: $padding-double;
 }
@@ -26,11 +36,7 @@ section {
     li {
         display: inline-block;
         a {
-            &:before {
-                content: '→';
-                display: inline-block;
-                margin-right: 0.3em;
-            }
+            @include arrowBeforeLink;
             margin-right: 0.6rem;
         }
     }

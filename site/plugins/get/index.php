@@ -9,7 +9,7 @@ Kirby::plugin('cda/get', [
       ],
       'method' => 'GET|OPTIONS',
       'language' => '*',
-      'action'  => function ( $language ) {
+      'action'  => function ( $language ){
 
         $kirby = kirby();
         $cacheId = $language . '/start';
@@ -31,11 +31,24 @@ Kirby::plugin('cda/get', [
     ],
     [
       'pattern' => [
+        'get/keywords.json',
+      ],
+      'method' => 'GET',
+      'language' => '*',
+      'action'  => function ( $language ){
+
+        $kirby = kirby();
+        return $kirby->site()->index()->pluck('tags', ',', true);
+
+      }
+    ],
+    [
+      'pattern' => [
         'get/(:all)'
       ],
       'method' => 'GET|OPTIONS',
       'language' => '*',
-      'action'  => function ( $language, $pathname = '' ) {
+      'action'  => function ( $language, $pathname = '' ){
 
         $kirby = kirby();
 
@@ -54,9 +67,9 @@ Kirby::plugin('cda/get', [
           }
         }
 
-        if ( $requested = $kirby->page($pathname) ) {
+        if ( $requested = $kirby->page($pathname) ){
           // page
-        } else if( $requested = $kirby->file($pathname)->toImageEntity() ) {
+        } else if( $requested = $kirby->file($pathname)->toImageEntity() ){
           // file
         } else {
           // error

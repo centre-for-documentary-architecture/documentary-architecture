@@ -19,8 +19,12 @@ if( isset( $class ) ){
 }
 
 $title = 'C D A → ' . $page->title()->html();
-$description = $page->description()->html()->or( 'Discover '. $page->title()->html()->value() .' at the Centre for Documentary Architecture' );
-$keywords = array_merge( $page->tags()->split(), ['architecture','bauhaus','research','data','history','media','modernism'] );
+$keywords = array_merge( $page->tags()->split(), $site->tags()->split() );
+
+$description = $site->description();
+if( !$page->isHomePage()){
+	$page->description()->html()->or( 'Discover '. $page->title()->html()->value() .' at the Centre for Documentary Architecture' );
+}
 
 ?>
 <!doctype html>
@@ -42,12 +46,12 @@ $keywords = array_merge( $page->tags()->split(), ['architecture','bauhaus','rese
 		<link rel="index" href="<?= $parent->url() ?>">
 	<?php else: ?>
 		<link rel="index" href="<?= $site->url() ?>">
-	<?php endif; ?>
+	<?php endif ?>
 
 	<?php if( option('cdn-domain') ): ?>
 		<link rel="dns-prefetch" href="<?= option('cdn-domain') ?>">
 		<link rel="preconnect" href="<?= option('cdn-domain') ?>">
-	<?php endif; ?>
+	<?php endif ?>
 
 	<?= css( option('cdn').'/assets/fonts/fonts.css' ) ?>
 	<?= css( option('cdn').'/assets/css/reflex.css') ?>
@@ -56,13 +60,13 @@ $keywords = array_merge( $page->tags()->split(), ['architecture','bauhaus','rese
 	<meta name="description" content="<?= $description ?>">
 	<meta name="keywords" content="<?= implode(',',$keywords) ?>">
 
-	<?php snippet('header/favicon'); ?>
+	<?php snippet('header/favicon') ?>
 
 	<meta property="og:url" content="<?= $site->url() ?>" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="<?= $title ?>" />
 	<meta property="og:description" content="<?= $description ?>" />
-	<meta property="og:site_name" content="<?= $site->title(); ?>" />
+	<meta property="og:site_name" content="<?= $site->title() ?>" />
 
 	<script>
 		var lieblingHouseWorldContainer;
@@ -72,6 +76,6 @@ $keywords = array_merge( $page->tags()->split(), ['architecture','bauhaus','rese
 </head>
 <body class="<?= implode(' ', array_unique($classlist) ) ?>">
 
-	<?php snippet('navigation/cda'); ?>
+	<?php snippet('navigation/cda') ?>
 
 	<div class="page-wrapper" id="frontend">

@@ -25,7 +25,7 @@ options:
 columns:
 
   column_left:
-    width: 1/2
+    width: 2/3
     sections:
 
       left_fields:
@@ -37,44 +37,9 @@ columns:
             label: About
             help: false
 
-          social_media:
-            type: structure
-            label: Social Media Links
-            translate: false
-            fields:
-              link: fields/url
-
-          contact:
-            extends: fields/body
-            label: Contact info
-            help: false
-            translate: false
-            buttons:
-              - link
-              - email
-
   column_right:
-    width: 1/2
+    width: 1/3
     sections:
-
-      right_fields:
-        type: fields
-        fields:
-
-          team:
-            type: users
-            label: Team
-            help: Team members have to be created first
-            translate: false
-
-          supporter_logos:
-            type: files
-            label: Supporter Logos
-            help: SVG, white fill, transparent background
-            query: page.images.filterBy('extension','svg')
-            translate: false
-            image:
-              back: black
 
       section_uploads:
         extends: sections/files_upload

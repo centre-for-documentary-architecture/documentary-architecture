@@ -11,6 +11,8 @@
 .unityweb
 *.unityweb
 
+/assets/css
+
 content/*
 /content/*
 

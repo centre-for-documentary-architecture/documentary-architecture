@@ -1,0 +1,30 @@
+label: Recent edits
+icon: clock
+sections:
+
+  recent:
+    type: pagesdisplay
+    headline: Recent edits
+    query: site.archive.recentActivity.limit(20)
+    layout: table
+    image:
+      query: page.thumbnail
+      cover: true
+    columns:
+      text:
+        label: Title
+        width: 1/2
+        value: "<a href="{{ page.panel.url }}">{{ page.title }}</a>"
+        type: html
+      type:
+        label: Type
+        width: 1/6
+        value: "{{ page.type }}"
+        mobile: false
+      date_modified:
+        label: Date
+        width: 1/6
+      user_modified:
+        label: Editor
+        value: "{{ page.user_modified.toUser.name }}"
+        width: 1/6

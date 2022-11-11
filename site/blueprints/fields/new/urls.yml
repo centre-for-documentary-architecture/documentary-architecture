@@ -1,0 +1,17 @@
+type: structure
+label: Websites
+fields:
+  title:
+    type: text
+    width: 1/3
+  href:
+    label: URL
+    type: url
+    width: 2/3
+    placeholder: https://
+    required: true
+columns:
+  title:
+    width: 1/3
+  href:
+    width: 2/3

@@ -9,7 +9,7 @@ if( !isset( $about ) ){
 <section class="content">
 
 	<div class="highlight">
-		<?= $about->about()->kirbytext(); ?>
+		<?= $about->about()->kirbytext() ?>
 	</div>
 
 </section>
@@ -20,11 +20,9 @@ if( !isset( $about ) ){
 
 		<h2>Team</h2>
 		<ul class="columns-2 mono">
-			<?php foreach( $about->team()->toUsers() as $user ): ?>
-				<li>
-					<?= $user->name() ?>
-				</li>
-			<?php endforeach; ?>
+			<?php foreach( $site->team()->toUsers() as $user ): ?>
+				<li><?= $user->name() ?></li>
+			<?php endforeach ?>
 		</ul>
 
 	</section>
@@ -32,15 +30,15 @@ if( !isset( $about ) ){
 	<div class="content col-sm-6">
 
 		<section class="social-media">
-			<h2>Social Media</h2>
+			<h2>Follow CDA</h2>
 			<ul class="columns-2 mono">
-				<?php foreach( $about->social_media()->toStructure() as $item ): ?>
+				<?php foreach( $site->links()->toStructure() as $item ): ?>
 					<li>
-						<a href="<?= $item->link(); ?>" target="_blank">
-							<h4><?= parse_url( $item->link()->value() )['host']; ?></h4>
-						</a>
+						<h4>
+							<a href="<?= $item->href() ?>" target="_blank" rel="noopener nofollow noreferrer"><?= $item->title()->or( parse_url( (string)$item->href() )['host'] ) ?></a>
+						</h4>
 					</li>
-				<?php endforeach; ?>
+				<?php endforeach ?>
 			</ul>
 		</section>
 
@@ -48,7 +46,7 @@ if( !isset( $about ) ){
 			<h2>Contact</h2>
 			<div class="mono">
 
-				<?php //echo $about->contact()->kirbytext(); ?>
+				<?php //echo $about->contact()->kirbytext() ?>
 				<script type="text/javascript" language="javascript">
 				// Email obfuscator script 2.1 by Tim Williams, University of Arizona
 				// Random encryption key feature coded by Andrew Moulden
@@ -58,12 +56,11 @@ if( !isset( $about ) ){
 				key = "W8leFL4RUB7bPm2AiMsOtvE0jfDk5rNwTzaI6Yq13XHhoCu9GxcdQyJZgpnVSK"
 				shift=coded.length
 				link=""
-				for (i=0; i<coded.length; i++) {
-					if (key.indexOf(coded.charAt(i))==-1) {
+				for (i=0; i<coded.length; i++){
+					if( key.indexOf(coded.charAt(i))==-1 ){
 						ltr = coded.charAt(i)
 						link += (ltr)
-					}
-					else {
+					} else {
 						ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
 						link += (key.charAt(ltr))
 					}
@@ -75,20 +72,24 @@ if( !isset( $about ) ){
 			</div>
 		</section>
 
-		<section>
-			<p class="mono">ISSN 2701-567X</p>
-		</section>
+		<?php if( $site->issn()->isNotEmpty() ): ?>
+			<section>
+				<p class="mono"><?= $site->issn() ?></p>
+			</section>
+		<?php endif ?>
 
-		<section>
-			<h2>Supporters</h2>
-			<div class="supporter-logos">
-				<?php foreach( $about->supporter_logos()->toFiles() as $logo ): ?>
-					<figure>
-						<img src="<?= $logo->url() ?>" alt="Thank you">
-					</figure>
-				<?php endforeach; ?>
-			</div>
-		</section>
+		<?php if( $logos = $site->supporters()->toFiles() ): ?>
+			<section>
+				<h2>Supporters</h2>
+				<div class="supporter-logos">
+					<?php foreach( $logos as $logo ): ?>
+						<figure>
+							<img title="Thank you" src="<?= $logo->url() ?>" alt="<?= $logo->description() ?>">
+						</figure>
+					<?php endforeach ?>
+				</div>
+			</section>
+		<?php endif ?>
 
 	</div>
 
@@ -97,8 +98,8 @@ if( !isset( $about ) ){
 <nav class="content mono footer-nav">
 	<ul>
 
-		<li><?= $site->homePage()->toLink('Start'); ?></li>
-		<li><?= $site->find('imprint-privacy-policy')->toLink(); ?></li>
+		<li><?= $site->homePage()->toLink('Start') ?></li>
+		<li><?= $site->find('imprint-privacy-policy')->toLink() ?></li>
 
 		<?php
 		/*

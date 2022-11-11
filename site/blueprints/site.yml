@@ -50,36 +50,71 @@ tabs:
             create:
               - default
 
-  recent:
-    label: Recent edits
-    icon: users
-    sections:
+  recent: tabs/recent
 
-      recent:
-        type: pagesdisplay
-        headline: Recent edits
-        query: site.archive.recentActivity.limit(20)
-        layout: table
-        image:
-          query: page.thumbnail
-          cover: true
-        columns:
-          text:
-            label: Title
-            width: 1/2
-            value: "<a href="{{ page.panel.url }}">{{ page.title }}</a>"
-            type: html
-          type:
-            label: Type
-            width: 1/6
-            value: "{{ page.type }}"
-            mobile: false
-          date_modified:
-            label: Date
-            width: 1/6
-          user_modified:
-            label: Editor
-            value: "{{ page.user_modified.toUser }}"
-            width: 1/6
+  info:
+    label: Info
+    icon: info
+
+    columns:
+
+      - width: 1/2  
+        fields:
+
+          description:
+            extends: fields/description
+            label: Meta description
+            help: false
+
+          tags:
+            extends: fields/tags
+            label: Meta keywords
+            help: false
+
+          email:
+            label: Contact Email
+            type: email
+
+          issn:
+            type: text
+            label: Publication ID (ISSN)
+            icon: book
+
+          links:
+            extends: fields/new/urls
+            label: Social Media Links
+
+      - width: 1/4
+        sections:
+
+          seo_fields:
+            type: fields
+            fields:
+
+              thumbnail:
+                type: files
+                label: OG Image
+                multiple: false
+
+              supporters:
+                type: files
+                label: Supporter Logos
+                help: SVG, white fill, transparent background
+                query: page.images.filterBy('extension','svg')
+                translate: false
+                image:
+                  back: black
+              
+          uploads:
+            type: files
+            
+      - width: 1/4
+        fields:
+
+          team:
+            type: users
+            label: Team
+            help: Team members have to be created first
+            translate: false
 
   tab3: tabs/help
