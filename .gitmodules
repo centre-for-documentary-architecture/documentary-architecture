@@ -1,6 +1,0 @@
-[submodule "site/plugins/kirby-entitiessection"]
-	path = site/plugins/kirby-entitiessection
-	url = https://github.com/moritzebeling/kirby-entitiessection.git
-[submodule "assets/apps/liebling-house"]
-	path = assets/apps/liebling-house
-	url = https://moritzebeling@bitbucket.org/cdaweimar/liebling-house-world.git
