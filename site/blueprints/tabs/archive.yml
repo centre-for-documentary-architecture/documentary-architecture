@@ -1,5 +1,5 @@
 label: Archive
-icon: menu
+icon: table
 columns:
 
   column_left:
@@ -20,6 +20,8 @@ columns:
             type: entities
             label: Highlights
             query: page.children.listed
+            image:
+              back: white
             max: 4
 
       section_upload: false

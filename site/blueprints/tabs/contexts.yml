@@ -1,7 +1,7 @@
 # https://getkirby.com/docs/guide/blueprints/tabs
 
 label: Contexts
-icon: refresh
+icon: url
 
 columns:
 

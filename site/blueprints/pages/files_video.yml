@@ -56,7 +56,7 @@ tabs:
 
   tab_converter:
     label: Converter Tool
-    icon: video
+    icon: file-video
     sections:
 
       tldr_info:

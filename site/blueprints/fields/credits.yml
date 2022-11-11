@@ -8,7 +8,7 @@ empty: No credits given
 fields:
 
   title:
-    label: Service
+    label: Role
     type: select
     options: query
     help: Options can be defined at parent page
@@ -21,4 +21,5 @@ fields:
     type: tags
     label: Name
     options: query
+    icon: user
     query: site.kirby.users.pluck( "name", ",", true )

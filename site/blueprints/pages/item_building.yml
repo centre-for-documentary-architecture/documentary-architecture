@@ -1,5 +1,5 @@
 title: building
-icon: globe
+icon: home
 
 num: zero
 
@@ -23,6 +23,7 @@ tabs:
                 extends: fields/tags
                 label: Architects
                 options: query
+                icon: users
                 query:
                   fetch: site.find('archive/persons').children
                   text: '{{ page.title }}'
