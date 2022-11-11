@@ -11,12 +11,12 @@ function searchReplaceFields( $search, $replace, $fieldname = 'thumbnail' ){
 
 	foreach ($matches as $match){
 
-		$matchedField = $match->content('en')->{ $fieldname }()->value();
+		$matchedField = $match->content()->{ $fieldname }()->value();
 		$newField = str_replace( $search, $replace, $matchedField );
 
 		$update = [];
 		$update[ $fieldname ] = $newField;
-		$match->update( $update, 'en' );
+		$match->update( $update );
 
 	}
 

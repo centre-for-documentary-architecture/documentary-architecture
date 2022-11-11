@@ -1,5 +1,12 @@
 <?php
 
+Str::$language = [
+	'ß' => 'ss',
+	'ä' => 'ae',
+	'ö' => 'oe',
+	'ü' => 'ue',
+];
+
 return [
 
 	// setting up
@@ -18,10 +25,6 @@ return [
 	'error' => 'error',
 
 	'smartypants' => true,
-
-	// languages
-	'languages' => false,
-	'languages.detect' => false,
 
 	// cache
 	// https://getkirby.com/docs/guide/cache

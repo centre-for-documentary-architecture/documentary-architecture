@@ -495,6 +495,6 @@ class EntitySource extends Page
 {
     public function declaration(): Kirby\Cms\Field
     {
-        return $this->content('en')->declaration()->or( $this->title() );
+        return $this->content()->declaration()->or( $this->title() );
     }
 }

@@ -61,14 +61,9 @@ class EntityFile extends Entity
             'title' => 'Transcript'
         ];
 
-        if( $this->content('en')->transcript()->isNotEmpty() ){
-            $content['en'] = $this->content('en')->transcript()->kirbytext()->value();
-        }
-        if( $this->content('de')->transcript()->isNotEmpty() ){
-            $content['de'] = $this->content('de')->transcript()->kirbytext()->value();
-        }
-
-        if( !isset( $content['en'] ) && !isset( $content['de'] ) ){
+        if( $this->content()->transcript()->isNotEmpty() ){
+            $content['en'] = $this->content()->transcript()->kirbytext()->value();
+        } else {
             return [];
         }
 

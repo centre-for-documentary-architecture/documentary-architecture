@@ -12,6 +12,7 @@
 *.unityweb
 
 /assets/css
+/assets/frontend/bundle**
 
 content/*
 /content/*

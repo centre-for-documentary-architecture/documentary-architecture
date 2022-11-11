@@ -30,17 +30,11 @@ return [
 
 		flushCache( $newPage->id() );
 
-		$currentLang = $newPage->kirby()->languageCode();
-		$newTitle = $newPage->content( $currentLang )->title()->value();
+		$newTitle = $newPage->content()->title()->value();
 
-		foreach( $newPage->kirby()->languages()->codes() as $lang ){
-			if( $currentLang === $lang ){
-				continue;
-			}
-			$newPage->update( [
-				'title' => $newTitle
-			], $lang );
-		}
+		$newPage->update([
+			'title' => $newTitle
+		]);
 
 	},
 	'page.create:after' => function ($page){
@@ -58,7 +52,7 @@ return [
 		}
 
 		if( !empty( $update ) ){
-			$page->update( $update, 'en');
+			$page->update( $update );
 		}
 		$page->changeStatus('unlisted');
 	},
@@ -76,7 +70,7 @@ return [
 		}
 
 		if( !empty( $update ) ){
-			$duplicatePage->update( $update, 'en');
+			$duplicatePage->update( $update );
 		}
 	},
 	'page.update:after' => function ( $newPage, $oldPage ){
@@ -92,7 +86,7 @@ return [
 		}
 
 		if( !empty( $update ) ){
-			$newPage->update( $update, 'en');
+			$newPage->update( $update );
 		}
 
 		require_once __DIR__.'/../functions/syncContexts.php';
@@ -161,7 +155,7 @@ return [
 		* sanitize and change name
 		* update fields
 		*/
-		$file->changeName( $name )->update( $update, 'en' );
+		$file->changeName( $name )->update( $update );
 
 	},
 	'file.delete:after' => function ($file){
@@ -182,7 +176,7 @@ return [
 			'user_modified' => Yaml::encode( $this->user()->email() ),
 		];
 
-		$newFile->update( $update, 'en');
+		$newFile->update( $update );
 
 		require_once __DIR__.'/../functions/syncContexts.php';
 		syncContexts( $newFile, $oldFile );

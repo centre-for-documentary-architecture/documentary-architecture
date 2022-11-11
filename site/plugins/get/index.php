@@ -8,11 +8,10 @@ Kirby::plugin('cda/get', [
         'get/start'
       ],
       'method' => 'GET|OPTIONS',
-      'language' => '*',
-      'action'  => function ( $language ){
+      'action'  => function (){
 
         $kirby = kirby();
-        $cacheId = $language . '/start';
+        $cacheId = '/start';
 
         // cache
         $cache = $kirby->cache('get');
@@ -34,8 +33,7 @@ Kirby::plugin('cda/get', [
         'get/keywords.json',
       ],
       'method' => 'GET',
-      'language' => '*',
-      'action'  => function ( $language ){
+      'action'  => function (){
 
         $kirby = kirby();
         return $kirby->site()->index()->pluck('tags', ',', true);
@@ -47,14 +45,13 @@ Kirby::plugin('cda/get', [
         'get/(:all)'
       ],
       'method' => 'GET|OPTIONS',
-      'language' => '*',
-      'action'  => function ( $language, $pathname = '' ){
+      'action'  => function ( $pathname = '' ){
 
         $kirby = kirby();
 
         // request path
         $cacheId = $pathname;
-        if( $querystring = $language . '/' . $kirby->request()->query()->toString() ){
+        if( $querystring = '/' . $kirby->request()->query()->toString() ){
           $cacheId .= '?' . trim( $querystring, '=' );
         }
 

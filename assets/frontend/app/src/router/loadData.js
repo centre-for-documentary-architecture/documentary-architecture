@@ -13,10 +13,6 @@ export async function loadData( url ){
 	url = location.origin;
 
 	let path = location.pathname;
-	if( location.pathname.substring(0,4) === '/de/' ){
-		url += '/de';
-		path = path.slice(3);
-	}
 	url += '/get' + path + location.search;
 
 	console.log( 'loadData( '+url+' )' );

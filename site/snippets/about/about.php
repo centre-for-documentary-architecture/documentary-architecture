@@ -97,21 +97,7 @@ if( !isset( $about ) ){
 
 <nav class="content mono footer-nav">
 	<ul>
-
 		<li><?= $site->homePage()->toLink('Start') ?></li>
 		<li><?= $site->find('imprint-privacy-policy')->toLink() ?></li>
-
-		<?php
-		/*
-		foreach($kirby->languages() as $language): ?>
-		<li <?php e($kirby->language() === $language, ' class="active"') ?>>
-			<a href="<?= $page->url($language->code()) ?>" hreflang="<?php echo $language->code() ?>">
-				<?= html($language->name()) ?>
-			</a>
-		</li>
-		<?php endforeach;
-		*/
-		?>
-
 	</ul>
 </nav>
