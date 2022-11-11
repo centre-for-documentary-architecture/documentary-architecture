@@ -1,6 +1,0 @@
-title: Public
-description: Public website access without login.
-# used for open api access
-permissions:
-  access:
-    panel: false

@@ -1,5 +1,5 @@
 title: Team member
-description: Panel access without editing permissions
+description: No write permissions, but can login
 permissions:
 
   access:

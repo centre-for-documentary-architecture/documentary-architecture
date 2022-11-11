@@ -1,5 +1,5 @@
 title: Editor
-description: Editors with limited permissions
+description: Limited write permissions
 permissions:
 
   access:

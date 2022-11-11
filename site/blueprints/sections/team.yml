@@ -1,21 +1,24 @@
 type: fields
 fields:
 
-  email:
-    type: email
-    label: Contact
-    width: 1/2
+  show_email:
+    type: toggle
+    label: Show email address
+    width: 1/3
+    icon: email
+    text:
+      - 'No'
+      - 'Yes'
 
-  website:
-    extends: fields/url
-    width: 1/2
+  links:
+    extends: fields/new/urls
+    width: 2/3
 
-  content:
-    type: textarea
-    buttons: false
+  bio:
+    extends: fields/new/writer
 
   info:
     type: info
-    label: Info
-    text: |
-      Also a user can be linked to using a tag `(-user: {{ user.email }})`
+    label: Kirbytag
+    theme: white
+    text: "(-user: {{ user.email }})"
