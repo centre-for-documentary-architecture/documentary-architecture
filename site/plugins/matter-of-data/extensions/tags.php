@@ -11,7 +11,7 @@ return [
 		* custom kirbytag (tag: Tel Aviv) that creates an archive query
 		*/
 		'attr' => [],
-		'html' => function($tag) {
+		'html' => function($tag){
 			return toKeyword( $tag->value );
 		}
 	],
@@ -20,7 +20,7 @@ return [
 		* alias of tag
 		*/
 		'attr' => [],
-		'html' => function($tag) {
+		'html' => function($tag){
 			return toKeyword( $tag->value );
 		}
 	],
@@ -29,7 +29,7 @@ return [
 		* overriding (date: YYYY-MM-DD) that creates 3 query links
 		*/
 		'attr' => [],
-		'html' => function($tag) {
+		'html' => function($tag){
 			return toDateKeyword( $tag->date );
 		}
 	],
@@ -40,7 +40,7 @@ return [
 		'attr' => [
 			'street', 'zip', 'city', 'country', 'lat', 'lon'
 		],
-		'html' => function($tag) {
+		'html' => function($tag){
 			return toLocation([
 				'title' => $tag->value,
 				'streetaddress' => $tag->street,
@@ -65,7 +65,7 @@ return [
             'title',
             'text',
         ],
-		'html' => function ($tag) {
+		'html' => function ($tag){
 
 			// check if external link
 			if( $domain = parse_url( $tag->value ) ){
@@ -104,7 +104,7 @@ return [
 		* custom kirbytag (user: Moritz Ebeling) that creates a link to that user profile
 		*/
 		'attr' => [],
-		'html' => function($tag) {
+		'html' => function($tag){
 
 			return toKeyword( $tag->value );
 
@@ -114,7 +114,7 @@ return [
 		'attr' => [
 			'author', 'date', 'publisher', 'website', 'country'
 		],
-		'html' => function($tag) {
+		'html' => function($tag){
 
 			if( $page = kirby()->page( $tag->value ) ){
 				$tag->value = $page->title();

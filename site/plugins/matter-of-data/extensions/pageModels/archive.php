@@ -11,11 +11,11 @@ class PageArchive extends Page
     }
     public function template()
     {
-        if ($this->template !== null) {
+        if ($this->template !== null){
             return $this->template;
         }
         $intended = $this->kirby()->template('archive');
-        if ($intended->exists() === true) {
+        if ($intended->exists() === true){
             return $this->template = $intended;
         }
         return $this->template = $this->kirby()->template('default');
@@ -24,11 +24,11 @@ class PageArchive extends Page
     {
 
         if( !$unlisted ){
-            return $this->index()->listed()->sortBy(function ($page) {
+            return $this->index()->listed()->sortBy(function ($page){
                 return $page->date_modified()->toDate();
             }, 'desc');
         } else {
-            return $this->index()->sortBy(function ($page) {
+            return $this->index()->sortBy(function ($page){
                 return $page->date_modified()->toDate();
             }, 'desc');
         }
@@ -40,7 +40,7 @@ class PageArchive extends Page
     }
     public function items()
     {
-        return $this->children()->listed()->filter(function ($child) {
+        return $this->children()->listed()->filter(function ($child){
             return str::startsWith($child->intendedTemplate(), 'items_');
         });
     }
@@ -52,11 +52,11 @@ class PageArchive extends Page
     {
         $filters = $this->site()->archive()->children()->listed();
 
-        $items = $filters->filter(function ($filter) {
+        $items = $filters->filter(function ($filter){
             return $filter->entity() === 'items';
         })->dataAbstract();
 
-        $files = $filters->filter(function ($filter) {
+        $files = $filters->filter(function ($filter){
             return $filter->entity() === 'files';
         })->dataAbstract();
 
@@ -124,11 +124,11 @@ class PageArchiveFilter extends PageArchive
 {
     public function template(): Kirby\Cms\Template
     {
-        if ($this->template !== null) {
+        if ($this->template !== null){
             return $this->template;
         }
         $intended = $this->kirby()->template('archive');
-        if ($intended->exists() === true) {
+        if ($intended->exists() === true){
             return $this->template = $intended;
         }
         return $this->template = $this->kirby()->template('default');
@@ -159,7 +159,7 @@ class PageArchiveImages extends PageArchiveFilter
     {
         $images = [];
 
-        foreach ( $this->images() as $image ) {
+        foreach ( $this->images() as $image ){
 
             $images[] = [
                 'slug'     => $image->filename(),

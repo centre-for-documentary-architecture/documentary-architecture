@@ -6,7 +6,7 @@
 */
 
 return [
-	'archive' => function ( $type = false ) {
+	'archive' => function ( $type = false ){
 		/*
 		* returns the archive page or any given sub archive
 		*/

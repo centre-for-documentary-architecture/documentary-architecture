@@ -5,5 +5,5 @@
 </header>
 
 <main class="black">
-    <?php snippet('about/about',[ 'about' => $page ]); ?>
+    <?php snippet('about/about',[ 'about' => $page ]) ?>
 </main>

@@ -24,14 +24,14 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
     ],
 
     'siteMethods' => [
-        'lieblingHouse' => function () {
+        'lieblingHouse' => function (){
             return $this->page('1937-doka-32-073-34-770');
         }
     ],
 
     'controllers' => [
-        'collection_liebling-house' => function ($page) {
-            switch ( $page->depth() ) {
+        'collection_liebling-house' => function ($page){
+            switch ( $page->depth() ){
                 case 3:
                     $category = 'tourstop';
                     $collection = $page->contextualized()->toEntities();
@@ -55,14 +55,14 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
     'routes' => [
         [
             'pattern' => 'i/liebling-house/worlditems.json',
-            'action'  => function () {
+            'action'  => function (){
 
                 $cached = true;
                 $kirbyCache = kirby()->cache('worlditems');
                 $cacheContent  = $kirbyCache->get('liste4');
 
                 // there's nothing in the cache, so let's fetch it
-                if ($cacheContent === null) {
+                if( $cacheContent === null ){
 
                     $cacheContent = [
                         'entities' => getBoundEntityData(),

@@ -8,7 +8,7 @@ $publications = $site->archive('publications')->highlights()->toPages();
 
 	<h1><?= $site->title() ?></h1>
 
-	<?php $root = option('cdn').'/assets/videos/'; ?>
+	<?php $root = option('cdn').'/assets/videos/' ?>
 	<video autoplay muted preload="auto" id="introvideo">
 		<source src="<?= $root ?>CDA-intro-short-1080.mp4" type='video/mp4'/>
 		<source src="<?= $root ?>CDA-intro-short-720.mp4" type='video/mp4' media="all and (max-width: 1280px)" />
@@ -17,7 +17,7 @@ $publications = $site->archive('publications')->highlights()->toPages();
 	</video>
 	<script>
 	var introvideo = document.getElementById('introvideo');
-	introvideo.onended = function() {
+	introvideo.onended = function(){
 		introvideo.closest('header').classList.add('video-end');
 	};
 	</script>
@@ -86,8 +86,8 @@ $publications = $site->archive('publications')->highlights()->toPages();
 							<?php endif ?>
 							<h2><?= $item->title()->wbr() ?></h2>
 							<?php if( $item->additional_title()->isNotEmpty() ): ?>
-								<h4><?= $item->additional_title()->html(); ?></h4>
-							<?php endif; ?>
+								<h4><?= $item->additional_title()->html() ?></h4>
+							<?php endif ?>
 						</div>
 					</a>
 				</li>
@@ -115,7 +115,7 @@ $publications = $site->archive('publications')->highlights()->toPages();
 			snippet('home/archivePreview', [
 				'preview' => $preview
 			]);
-		endforeach; ?>
+		endforeach ?>
 
 	</div>
 
@@ -127,15 +127,15 @@ $publications = $site->archive('publications')->highlights()->toPages();
 			snippet('home/archivePreview', [
 				'preview' => $preview
 			]);
-		endforeach; ?>
+		endforeach ?>
 
 	</div>
 
 	<div class="offset-md-3 col-md-6 archive-search">
 
 		<div>
-			<?php $count = $site->archive()->index()->listed()->count(); ?>
-			<h2><a href="<?= $site->archive()->url() ?>">Explore all <?= $count; ?> archived elements&nbsp;→</a></h2>
+			<?php $count = $site->archive()->index()->listed()->count() ?>
+			<h2><a href="<?= $site->archive()->url() ?>">Explore all <?= $count ?> archived elements&nbsp;→</a></h2>
 
 			<form id="search" action="archive" autocomplete="off">
 				<input class="input" type="search" name="research" placeholder="Keyword" autocomplete="off">

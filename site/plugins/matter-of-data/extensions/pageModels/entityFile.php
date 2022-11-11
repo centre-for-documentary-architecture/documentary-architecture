@@ -142,7 +142,7 @@ class EntityFileImage extends EntityFile
     public function dataView()
 	{
 
-        if ( $this->view() === 'panorama' ) {
+        if ( $this->view() === 'panorama' ){
 
             $return = [
                 'type' => 'panorama',

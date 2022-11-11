@@ -32,7 +32,7 @@ function toKeywords( $terms, string $delimiter = ',', string $glue = ', ' ){
 		$terms = explode( $delimiter, $terms );
 	}
 	$return = [];
-	foreach ($terms as $term) {
+	foreach ($terms as $term){
 		$return[] = toKeyword( $term );
 	}
 	return implode( $glue, $return );

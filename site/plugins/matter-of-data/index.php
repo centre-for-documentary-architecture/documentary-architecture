@@ -45,13 +45,13 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 	'routes' => [
         [
 			'pattern' => 'archive/images/(:any)',
-			'action'  => function ( $any ) {
+			'action'  => function ( $any ){
 				return kirby()->file('archive/images/'.$any)->toImageEntity();
 			}
 		],
 		[
             'pattern' => 'team/(:any)',
-            'action'  => function ( $any ) {
+            'action'  => function ( $any ){
 
 				$user = kirby()->users()->filter(function($user) use ($any){
 					return Str::slug( $user->name() ) === $any;
@@ -72,14 +72,14 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 		[
             'pattern' => 'media/plugins/(:any)/(:any)/(:all).(json|map|unityweb)',
             'env'     => 'media',
-            'action'  => function (string $provider, string $pluginName, string $filename, string $extension) {
+            'action'  => function (string $provider, string $pluginName, string $filename, string $extension){
                 return PluginAssets::resolve($provider . '/' . $pluginName, $filename . '.' . $extension);
             }
         ],
 	],
 
 	'components' => [
-		'file::url' => function (Kirby $kirby, $file) {
+		'file::url' => function (Kirby $kirby, $file){
             if( $file->type() === 'video' ){
                 return $kirby->url() . '/content/' . $file->parent()->diruri() . '/' . $file->filename();
             } else {

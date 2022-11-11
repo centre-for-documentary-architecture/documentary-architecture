@@ -160,7 +160,7 @@ class EntityCollection extends Entity
     public function dataView() //: ?array
 	{
 
-        switch ( $this->view() ) {
+        switch ( $this->view() ){
             case 'image':
 
                 return [
@@ -197,7 +197,7 @@ class EntityCollection extends Entity
                     }
                 }
 
-                switch ($layout) {
+                switch ($layout){
                     case 'gallery':
 
                         $output = $output->dataPreview();
@@ -279,7 +279,7 @@ class LieblingHouseCollection extends EntityCollection
     public function category(): string
     {
 
-        switch ( $this->depth() ) {
+        switch ( $this->depth() ){
             case 1:
                 return 'overview';
                 break;
@@ -295,7 +295,7 @@ class LieblingHouseCollection extends EntityCollection
     public function content_layout(): Kirby\Cms\Field
     {
 
-        switch ( $this->depth() ) {
+        switch ( $this->depth() ){
             case 1:
                 return new Field( $this, 'content_layout', 'cards');
                 break;
@@ -336,7 +336,7 @@ class LieblingHouseCollection extends EntityCollection
 		$cache = $this->kirby()->cache('abstract');
 		$data  = $cache->get( $id );
 
-		if ($data === null) {
+		if ($data === null){
 
 			$data = [
                 'url' => $this->url(),

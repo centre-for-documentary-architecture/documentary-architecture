@@ -117,7 +117,7 @@ return [
 		$cache = $this->kirby()->cache('abstract');
 		$data  = $cache->get( $id );
 
-		if ($data === null) {
+		if ($data === null){
 
 			$data = [
 				'url' => $this->url(),

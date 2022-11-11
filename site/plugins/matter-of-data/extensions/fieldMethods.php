@@ -7,28 +7,28 @@
 
 return [
 
-	'toLink' => function ($field, $text = false) {
+	'toLink' => function ($field, $text = false){
 		return toLink( $field->value, $text );
 	},
-	'toKeyword' => function ($field) {
+	'toKeyword' => function ($field){
 		return toKeyword( $field->value );
 	},
-	'toKeywords' => function ($field) {
+	'toKeywords' => function ($field){
 		return toKeywords( $field->value );
 	},
-	'toDateKeyword' => function ($field) {
+	'toDateKeyword' => function ($field){
 		return toDateKeyword( $field->value() );
 	},
-	'toLocation' => function ($field, $glue = "<br>") {
+	'toLocation' => function ($field, $glue = "<br>"){
 		return toLocation( $field->yaml()[0], $glue );
 	},
-	'toUserOrKeyword' => function ($field) {
+	'toUserOrKeyword' => function ($field){
 		return toUserOrKeyword( $field->value() );
 	},
-	'toEntities' => function ($field) {
+	'toEntities' => function ($field){
 		$entities = new Entities();
 		$kirby = kirby();
-		foreach ($field->toData('yaml') as $link) {
+		foreach ($field->toData('yaml') as $link){
 			if( $page = $kirby->page( $link ) ){
 				// this is a page
 				$entities->add( $page );
@@ -39,11 +39,11 @@ return [
 		}
 		return $entities;
 	},
-	'toEntity' => function ($field) {
+	'toEntity' => function ($field){
 		return $field->toEntities()->first();
 	},
 
-	'toSources' => function ($field) {
+	'toSources' => function ($field){
 		$sources = [];
 		foreach( $field->toPages() as $source ){
 			$sources[] = toSource( $source->content('en')->declaration()->value(), $source->content('en')->website()->value(), $source->content('en')->title() );
@@ -51,9 +51,9 @@ return [
 		return $sources;
 	},
 
-	'after' => function ($field, $text = '') {
+	'after' => function ($field, $text = ''){
 
-		if ($field->isEmpty()) {
+		if ($field->isEmpty()){
             return null;
         }
 		$field->value = $field->value() . $text;
@@ -61,9 +61,9 @@ return [
 
 	},
 
-	'before' => function ($field, $text = '') {
+	'before' => function ($field, $text = ''){
 
-		if ($field->isEmpty()) {
+		if ($field->isEmpty()){
             return null;
         }
 		$field->value = $text . $field->value();
@@ -71,9 +71,9 @@ return [
 
 	},
 
-	'toSlug' => function ($field) {
+	'toSlug' => function ($field){
 
-		if ($field->isEmpty()) {
+		if ($field->isEmpty()){
             return null;
         }
 		$field->value = Str::slug( $field->value() );
@@ -81,9 +81,9 @@ return [
 
 	},
 
-	'wbr' => function ($field) {
+	'wbr' => function ($field){
 
-		if ($field->isEmpty()) {
+		if ($field->isEmpty()){
             return null;
         }
 		$field->value = wbr( $field->value() );

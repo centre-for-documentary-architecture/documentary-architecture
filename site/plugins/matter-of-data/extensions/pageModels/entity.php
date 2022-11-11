@@ -72,11 +72,11 @@ class Entity extends Page
     }
     public function template(): Kirby\Cms\Template
     {
-        if ($this->template !== null) {
+        if ($this->template !== null){
             return $this->template;
         }
         $intended = $this->kirby()->template('entity');
-        if ($intended->exists() === true) {
+        if ($intended->exists() === true){
             return $this->template = $intended;
         }
         return $this->template = $this->kirby()->template('default');
@@ -220,7 +220,7 @@ class Entity extends Page
     public function tabContexts(): ?array
 	{
 
-        if( $contexts = $this->contexts()->dataAbstract('small') ) {} else {
+        if( $contexts = $this->contexts()->dataAbstract('small') ){} else {
             return null;
         }
 		return [
@@ -362,7 +362,7 @@ class Entity extends Page
                 ];
                 foreach( $block->kombi()->toBuilderBlocks() as $field ){
 
-                    switch ($field->_key()) {
+                    switch ($field->_key()){
                         case 'text':
 
                             $line['value'][] = $field->value()->kirbytext()->value();
@@ -414,7 +414,7 @@ class Entity extends Page
     public function dataView()
 	{
 
-        switch ( $this->view() ) {
+        switch ( $this->view() ){
             case 'image':
 
                 return [

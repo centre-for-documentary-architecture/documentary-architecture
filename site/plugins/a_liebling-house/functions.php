@@ -1,12 +1,12 @@
 <?php
 
-function getBoundEntityData() {
+function getBoundEntityData(){
     /**
      * Entities are bound to world items by selecting them from a list. Once
      * selected an entity is bound to an item. This function looks at the field
      * 'worlditem' and determines whether or not it has a value.
      */
-    $boundEntities = kirby()->site()->index()->filter(function ($page) {
+    $boundEntities = kirby()->site()->index()->filter(function ($page){
         return $page->worlditem() != '';
     });
 
@@ -22,7 +22,7 @@ function getBoundEntityData() {
         ];
 
         $image = $entity->thumbnail();
-        if( $entity->type() === 'image' && $image !== null ) {
+        if( $entity->type() === 'image' && $image !== null ){
             $data[ 'imageResources' ] = [
                 'high' => $image->thumb(['width'=>2048])->url(),
                 'medium' => $image->thumb(['width'=>1024])->url(),
@@ -34,7 +34,7 @@ function getBoundEntityData() {
     return $entities;
 }
 
-function getTourData() {
+function getTourData(){
     $tours = [];
     foreach( kirby()->site()->lieblingHouse()->children()->listed() as $tour){
         $stops = [];

@@ -4,7 +4,7 @@
 
 		<h1>Imprint</h1>
 		<div>
-			<?= $page->imprint()->kirbytext(); ?>
+			<?= $page->imprint()->kirbytext() ?>
 		</div>
 
 	</section>
@@ -13,7 +13,7 @@
 
 		<h1>Privacy Policy</h1>
 		<div>
-			<?= $page->privacy()->kirbytext(); ?>
+			<?= $page->privacy()->kirbytext() ?>
 		</div>
 
 	</section>

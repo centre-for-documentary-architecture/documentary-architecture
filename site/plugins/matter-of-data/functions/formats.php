@@ -21,7 +21,7 @@ function toDateKeyword( string $date ){
 	// YYYY(-MM)(-DD)
 	$return = [];
 	$key = '';
-	foreach ($dates as $date) {
+	foreach ($dates as $date){
 		if($key){
 			$key .= '-';
 		}

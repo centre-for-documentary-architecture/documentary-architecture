@@ -37,7 +37,7 @@ if( $preview === 'images' ){
 					<figure>
 						<?php if( $image ): ?>
 							<?= $image->responsiveImage( 'medium' ) ?>
-						<?php endif; ?>
+						<?php endif ?>
 					</figure>
 
 					<div class="title">

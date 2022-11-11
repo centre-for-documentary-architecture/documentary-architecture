@@ -9,7 +9,7 @@ function searchReplaceFields( $search, $replace, $fieldname = 'thumbnail' ){
 	// make index search
 	$matches = kirby()->site()->search( $search, ['fields' => [$fieldname]] );
 
-	foreach ($matches as $match) {
+	foreach ($matches as $match){
 
 		$matchedField = $match->content('en')->{ $fieldname }()->value();
 		$newField = str_replace( $search, $replace, $matchedField );

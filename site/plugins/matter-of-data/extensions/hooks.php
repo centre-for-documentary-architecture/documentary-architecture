@@ -12,21 +12,21 @@ return [
 	/*
 	* page
 	*/
-	'page.changeNum:after' => function ($newPage) {
+	'page.changeNum:after' => function ($newPage){
 		flushCache( $newPage->id() );
 	},
-	'page.changeSlug:after' => function ($newPage, $oldPage) {
+	'page.changeSlug:after' => function ($newPage, $oldPage){
 		flushCache( $newPage->id() );
 		require_once __DIR__.'/../functions/syncContexts.php';
 		syncContexts( $newPage, $oldPage );
 	},
-	'page.changeStatus:after' => function ($newPage) {
+	'page.changeStatus:after' => function ($newPage){
 		flushCache( $newPage->id() );
 	},
-	'page.changeTemplate:after' => function ($newPage) {
+	'page.changeTemplate:after' => function ($newPage){
 		flushCache( $newPage->id() );
 	},
-	'page.changeTitle:after' => function ($newPage) {
+	'page.changeTitle:after' => function ($newPage){
 
 		flushCache( $newPage->id() );
 
@@ -43,7 +43,7 @@ return [
 		}
 
 	},
-	'page.create:after' => function ($page) {
+	'page.create:after' => function ($page){
 		$update = [];
 
 		if( $page->date_created()->exists() ){
@@ -62,10 +62,10 @@ return [
 		}
 		$page->changeStatus('unlisted');
 	},
-	'page.delete:after' => function ($page) {
+	'page.delete:after' => function ($page){
 		flushCache( $page->id() );
 	},
-	'page.duplicate:after' => function ( $duplicatePage ) {
+	'page.duplicate:after' => function ( $duplicatePage ){
 		$update = [];
 
 		if( $duplicatePage->date_created()->exists() ){
@@ -79,7 +79,7 @@ return [
 			$duplicatePage->update( $update, 'en');
 		}
 	},
-	'page.update:after' => function ( $newPage, $oldPage ) {
+	'page.update:after' => function ( $newPage, $oldPage ){
 		$update = [];
 
 		if( $newPage->date_modified()->exists() ){
@@ -105,7 +105,7 @@ return [
 	/*
 	* file
 	*/
-	'file.changeName:after' => function ($newFile, $oldFile) {
+	'file.changeName:after' => function ($newFile, $oldFile){
 		if( $newFile->template() != 'file_image' ){
 			return;
 		}
@@ -164,13 +164,13 @@ return [
 		$file->changeName( $name )->update( $update, 'en' );
 
 	},
-	'file.delete:after' => function ($file) {
+	'file.delete:after' => function ($file){
 		flushCache( $file->id() );
 	},
-	'file.replace:after' => function ($newFile) {
+	'file.replace:after' => function ($newFile){
 		flushCache( $newFile->id() );
 	},
-	'file.update:after' => function ( $newFile, $oldFile ) {
+	'file.update:after' => function ( $newFile, $oldFile ){
 		if( $newFile->template() != 'file_image' ){
 			return;
 		}

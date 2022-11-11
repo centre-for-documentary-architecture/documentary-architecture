@@ -6,7 +6,7 @@
 */
 
 return [
-	'pluckStructure' => function ( $structureField, $innerField = false ) {
+	'pluckStructure' => function ( $structureField, $innerField = false ){
 		/*
 		* needed to suggest autocompletes for fields within structures
 		* $field: name of the structure field you want to pluck
