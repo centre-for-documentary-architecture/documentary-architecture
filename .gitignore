@@ -10,6 +10,7 @@
 *.mp4
 .unityweb
 *.unityweb
+*.zip
 
 /assets/css
 /assets/frontend/bundle**

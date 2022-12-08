@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Cms\App as Kirby;
+
 Kirby::plugin('cda/redirects', [
     'routes' => [
         [
@@ -8,7 +10,7 @@ Kirby::plugin('cda/redirects', [
             */
             'pattern' => '/de/(:all)',
             'action'  => function( string $path ){
-                return '<meta http-equiv="Refresh" content="0; URL='.kirby()->site()->url().'/'.$path.'" />';
+                go( '/'.$path, 301 );
             }
         ],
     ]
