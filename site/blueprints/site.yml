@@ -17,7 +17,7 @@ tabs:
             text: "{{ page.title }}"
             image:
               query: false
-              back: white
+              back: '#f9f9f9'
             sortable: true
             templates:
               - collection
@@ -35,7 +35,7 @@ tabs:
             status: listed
             image:
               query: false
-              back: white
+              back: '#f9f9f9'
             sortable: false
             templates:
               - archive
@@ -44,6 +44,7 @@ tabs:
             extends: sections/pages
             headline: Other pages
             templates:
+              - home
               - default
               - about
               - imprint
@@ -101,12 +102,13 @@ tabs:
                 label: Supporter Logos
                 help: SVG, white fill, transparent background
                 query: page.images.filterBy('extension','svg')
-                translate: false
                 image:
                   back: black
               
           uploads:
             type: files
+            image:
+              back: black
             
       - width: 1/4
         fields:
@@ -114,7 +116,5 @@ tabs:
           team:
             type: users
             label: Team
-            help: Team members have to be created first
-            translate: false
 
   tab3: tabs/help

@@ -31,6 +31,9 @@ tabs:
             info: false
             sortBy: title desc
             limit: 40
+            image:
+              cover: false
+              back: black
             templates:
               - file
 

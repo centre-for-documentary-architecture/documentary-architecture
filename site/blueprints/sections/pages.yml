@@ -9,5 +9,5 @@ templates:
   - default
 image:
   query: page.thumbnail
-  back: white
+  back: '#f9f9f9'
   cover: false

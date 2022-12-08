@@ -4,11 +4,10 @@ type: files
 label: Thumbnail
 # https://schema.org/photo
 
-translate: false
 multiple: false
 layout: cards
 query: site.find('archive/images').images.add( page.images )
 help: Select image from archive or upload directly to this entity
+size: large
 image:
-  back: white
-  ratio: 1/1
+  back: black

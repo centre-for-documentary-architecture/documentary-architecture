@@ -5,7 +5,6 @@ headline: Direct uploads
 info: "{{ file.template }}"
 image:
   cover: false
-  back: white
-  ratio: 1/1
+  back: '#f9f9f9'
 sortBy: date_created desc
 sortable: false

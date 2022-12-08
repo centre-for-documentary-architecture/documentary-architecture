@@ -3,7 +3,9 @@ type: entities
 
 label: Contexts
 empty: No contexts yet
-translate: false
 help: Other entities that provide context to this entity
 # image: icon
-image: page.thumbnail
+image:
+  query: page.thumbnail
+  cover: true
+  back: '#f9f9f9'

@@ -15,7 +15,6 @@ columns:
           represents_entity_switch:
             label: Represents another entity
             type: toggle
-            translate: false
             text:
               - Not connected
               - This directly represents another entity
@@ -27,6 +26,9 @@ columns:
             help: Select an entity this collection is about, e.g. Max Liebling House
             when:
               represents_entity_switch: true
+            image:
+              cover: true
+              back: '#f9f9f9'
 
           line3: fields/line
 
@@ -50,7 +52,6 @@ columns:
           content_collection:
             type: select
             label: Type of content
-            translate: false
             options:
               children: Create sub collections
               pages: Curate a list of Entities
@@ -61,7 +62,6 @@ columns:
             type: select
             label: Content Layout
             width: 1/2
-            translate: false
             options:
               list: List
               cards: Cards
@@ -72,7 +72,6 @@ columns:
             type: select
             label: Card Size
             width: 1/2
-            translate: false
             options:
               small: Small
               large: Large

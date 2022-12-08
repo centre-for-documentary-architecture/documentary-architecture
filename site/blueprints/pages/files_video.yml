@@ -25,6 +25,8 @@ tabs:
       column_left:
         sections:
           section_pool:
+            image:
+              cover: true
             templates:
               - file_video
 

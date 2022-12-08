@@ -9,7 +9,7 @@ sortBy: title asc
 info: "{{ page.uid }}"
 image:
   query: page.thumbnail
-  back: white
+  back: '#f9f9f9'
   cover: false
 templates:
   - item

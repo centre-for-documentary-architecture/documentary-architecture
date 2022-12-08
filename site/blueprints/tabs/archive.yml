@@ -21,7 +21,8 @@ columns:
             label: Highlights
             query: page.children.listed
             image:
-              back: white
+              cover: true
+              back: '#f9f9f9'
             max: 4
 
       section_upload: false
