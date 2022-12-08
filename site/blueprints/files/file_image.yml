@@ -43,7 +43,6 @@ tabs:
                 label: Starring
                 help: People, Objects, Buildings, ...
                 options: query
-                translate: false
                 query:
                   fetch: site.archive.items.children
                   text: '{{ page.title }}'
@@ -91,7 +90,6 @@ tabs:
               is_360:
                 label: Panorama photo
                 type: toggle
-                translate: false
                 help: Panoramas will be cropped to 4096 x 2048 pixels
                 text:
                     - Normal

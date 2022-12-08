@@ -3,7 +3,6 @@ type: select
 
 label: Licence
 default: cc04
-translate: false
 options:
   - value: "CC BY-NC-SA 4.0"
     text: "CC BY-NC-SA 4.0"

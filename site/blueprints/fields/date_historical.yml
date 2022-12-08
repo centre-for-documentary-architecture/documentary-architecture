@@ -4,7 +4,6 @@ type: text
 label: Date
 # https://schema.org/Date
 
-translate: false
 help: YYYY(-MM)(-DD), YYYY(s)(-YYYY)
 placeholder: YYYY-MM-DD
 icon: calendar

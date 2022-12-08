@@ -3,7 +3,6 @@ type: select
 
 label: Category
 
-translate: false
 help: Optional categorization within this type. Define options at parent page.
 # disabled: true
 options: query

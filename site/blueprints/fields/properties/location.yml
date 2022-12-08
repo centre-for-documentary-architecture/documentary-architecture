@@ -1,12 +1,10 @@
 name: Location
 label: "Location: {{title}}"
-translate: false
 fields:
 
   title:
     extends: fields/location/title
     width: 2/3
-    translate: false
 
   addressCountry:
     extends: fields/location/country

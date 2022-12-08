@@ -33,7 +33,6 @@ tabs:
               occupation:
                 type: tags
                 label: Occupation
-                translate: false
                 options: query
                 query: site.find('archive/persons').children.pluck('occupation',',',true)
 
@@ -50,13 +49,11 @@ tabs:
                 extends: fields/body
                 label: Biography
                 buttons: false
-                translate: false
                 help: false
 
               education:
                 type: structure
                 label: Education
-                translate: false
                 fields:
 
                   date_start:

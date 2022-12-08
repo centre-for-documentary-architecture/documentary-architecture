@@ -3,6 +3,5 @@ type: pages
 
 label: Entity
 
-translate: false
 multiple: true
 image: page.thumbnail

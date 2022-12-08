@@ -24,7 +24,6 @@ fields:
 
   declaration:
     extends: fields/description
-    translate: false
     label: Source decleration
     help: false
 

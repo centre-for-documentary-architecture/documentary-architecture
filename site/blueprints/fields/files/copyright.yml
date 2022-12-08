@@ -3,7 +3,6 @@ type: tags
 
 label: Copyright
 
-translate: false
 before: ©
 help: Rights holding subject or organization
 options: query

@@ -28,7 +28,6 @@ tabs:
               timeline:
                 type: structure
                 label: Timeline
-                translate: false
                 fields:
 
                   date_start:

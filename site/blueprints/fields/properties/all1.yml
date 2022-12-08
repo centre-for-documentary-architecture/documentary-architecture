@@ -1,6 +1,5 @@
 name: Kombi field 1
 label: "Kombi 1: {{title}}"
-translate: false
 fields:
 
   list:

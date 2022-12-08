@@ -12,7 +12,6 @@ columns:
           type_categories:
             type: structure
             label: Type Categories
-            translate: false
             help: Define categories that entities of this type can be assigned to.
             fields:
               title:
@@ -22,7 +21,6 @@ columns:
           credit_roles:
             type: structure
             label: Credit roles
-            translate: false
             help: Define fields of activity that can be chosen from when editing credits. Instead of "Photographer" use "Photography".
             fields:
               title:

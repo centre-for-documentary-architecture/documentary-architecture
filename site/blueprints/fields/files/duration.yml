@@ -5,7 +5,6 @@ label: Duration
 # https://schema.org/duration
 
 step: 1
-translate: false
 help: Play time of media, format like MM:SS or H:MM:SS
 placeholder: MM:SS
 validate:

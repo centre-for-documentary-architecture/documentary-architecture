@@ -1,12 +1,9 @@
 name: Date
 label: "Date: {{title}}"
-translate: false
 fields:
   title:
     label: Title
     type: text
-    translate: false
   value:
     extends: fields/date_historical
     label: Date
-    translate: false

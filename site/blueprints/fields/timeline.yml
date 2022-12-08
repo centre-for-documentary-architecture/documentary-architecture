@@ -3,7 +3,6 @@ type: structure
 
 label: Timeline
 
-translate: false
 sortable: false
 sortBy: date asc
 help: Subject that created or contributed to the production of this entity

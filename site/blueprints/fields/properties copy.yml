@@ -3,7 +3,6 @@ type: builder
 
 # https://github.com/TimOetting/kirby-builder
 
-translate: false
 columns: 1
 fieldsets:
 

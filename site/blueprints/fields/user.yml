@@ -3,5 +3,4 @@ type: users
 
 label: Editor
 multiple: false
-translate: false
 disabled: true

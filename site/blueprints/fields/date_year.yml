@@ -4,7 +4,6 @@ type: text
 label: Year
 # https://schema.org/Date
 
-translate: false
 placeholder: YYYY
 validate:
   match: /^((1\d|20)[0-9x]{2})?$/

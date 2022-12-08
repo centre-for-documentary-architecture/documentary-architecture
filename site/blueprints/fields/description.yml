@@ -6,5 +6,4 @@ label: Description
 
 buttons: false
 maxlength: 400
-translate: true
 help: Unformatted short description of this entity

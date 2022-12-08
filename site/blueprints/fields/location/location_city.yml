@@ -4,7 +4,6 @@ type: structure
 label: Location
 
 multiple: false
-translate: false
 
 columns:
   addressLocality:

@@ -1,7 +1,6 @@
 type: toggle
 # https://getkirby.com/docs/reference/panel/fields/toggle
 
-translate: false
 label: File download
 default: false
 help: A file can never be truely protected against download

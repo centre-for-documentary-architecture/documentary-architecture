@@ -4,4 +4,3 @@ width: 1/2
 step: .0001
 min: -180
 max: 180
-translate: false

@@ -17,14 +17,16 @@ tabs:
                 label: 3D file selection
                 type: files
                 max: 1
-                translate: false
+                image:
+                  back: '#f9f9f9'
 
               content_texture:
                 label: Texture selection
                 type: files
                 max: 1
                 query: page.images
-                translate: false
+                image:
+                  back: '#f9f9f9'
 
           file_info:
             type: info

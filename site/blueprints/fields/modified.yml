@@ -5,7 +5,6 @@ label: Date
 # https://schema.org/Date
 
 time: true
-translate: false
 disabled: true
 default: now
 step: 1

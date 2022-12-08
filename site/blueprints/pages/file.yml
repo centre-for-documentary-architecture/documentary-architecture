@@ -52,7 +52,6 @@ tabs:
                 label: Starring
                 help: People, Objects, Buildings, ...
                 options: query
-                translate: false
                 query:
                   fetch: site.archive.items.children
                   text: '{{ page.title }}'

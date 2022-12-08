@@ -4,6 +4,5 @@ type: files
 label: Files
 # https://schema.org/photo
 
-translate: false
 help: Representational figure of this entity
 query: page.images

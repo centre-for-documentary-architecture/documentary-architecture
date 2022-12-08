@@ -1,6 +1,5 @@
 name: Mixed Property
 label: "Property: {{title}}"
-translate: false
 fields:
 
   title:

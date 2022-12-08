@@ -3,5 +3,4 @@ type: url
 
 label: External website
 
-translate: false
 placeholder: 'https://'

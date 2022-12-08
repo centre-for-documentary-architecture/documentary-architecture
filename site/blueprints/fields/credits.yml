@@ -3,7 +3,6 @@ type: structure
 
 # https://github.com/TimOetting/kirby-builder
 
-translate: false
 empty: No credits given
 fields:
 
