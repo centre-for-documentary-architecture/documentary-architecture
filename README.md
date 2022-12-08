@@ -29,7 +29,7 @@ git submodule foreach git pull origin master
 Run
 ```
 # php server
-php -S localhost:8000 kirby/router.php
+composer start
 
 # compile sass on save
 sass --watch --style=compressed assets/scss:assets/css
@@ -64,5 +64,5 @@ The website offeres some public APIs
 - To get a list of all Liebling-House Tours and Tourstops and all 3D-world-linked elements, call
 
 ```
-http://localhost:8000/i/liebling-house/worlditems.json
+/i/liebling-house/worlditems.json
 ```

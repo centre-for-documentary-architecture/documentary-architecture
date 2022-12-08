@@ -69,12 +69,7 @@ Options +FollowSymlinks
   # Header Set Access-Control-Allow-Origin "https://documentary-architecture.fra1.digitaloceanspaces.com"
   # Header Set Access-Control-Allow-Origin "https://documentary-architecture.org"
   # Header Set Access-Control-Allow-Origin "https://jolly-nightingale-a56ab5.netlify.app"
-  # Header Set Access-Control-Allow-Origin "http://localhost:8000"
-  # Header Set Access-Control-Allow-Origin "http://localhost:5000"
-  # Header Set Access-Control-Allow-Origin "http://localhost:3000"
-  # Header Set Access-Control-Allow-Origin "http://localhost:80"
-  # Header Set Access-Control-Allow-Origin "http://localhost"
-  # Header Set Access-Control-Allow-Origin "localhost"
+  # Header Set Access-Control-Allow-Origin "http://documentary-architecture.test"
 
   Header add Access-Control-Allow-Origin "*"
   Header add Access-Control-Allow-Headers "X-Requested-With, Content-Type, Authorization, Origin, Accept, Cache-Control, Pragma"
