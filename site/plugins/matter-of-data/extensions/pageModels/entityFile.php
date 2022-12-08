@@ -56,19 +56,20 @@ class EntityFile extends Entity
     }
     public function dataTranscript(): ?array
 	{
-
-        $content = [
-            'title' => 'Transcript'
-        ];
-
-        if( $this->content()->transcript()->isNotEmpty() ){
-            $content['en'] = $this->content()->transcript()->kirbytext()->value();
-        } else {
-            return [];
+        $transcripts = $this->content()->transcript()->toStructure();
+        if( $transcripts->count() < 1 ){
+            return null;
         }
 
+        $content = [];
+        foreach( $transcripts as $transcript ){
+            $content[] = [
+                'language' => (string)$transcript->language(),
+                'text' => (string)$transcript->text()
+            ];
+        }
+        
 		return $content;
-
     }
     public function dataIndividualFields(): array
 	{

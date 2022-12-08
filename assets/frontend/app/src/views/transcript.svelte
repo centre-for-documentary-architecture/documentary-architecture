@@ -2,28 +2,19 @@
 
     export let transcript;
 
-    console.log( transcript );
+    let cols = transcript.length === 2 ? 6 : 12;
 
-    function columnWidth(){
-        if ( transcript.en && transcript.de ){
-            return 6;
-        }
-        return 12;
+    function code( lang ){
+        return lang.slice(0,2).toLowerCase();
     }
 
 </script>
 
 <div class="transcript grid">
-    {#if transcript.en}
-        <div class="en col-sm-{columnWidth()}">
-            <h4>EN</h4>
-            {@html transcript.en}
+    {#each transcript as item}
+        <div class="{code(item.language)} col-sm-{cols}">
+            <h4>{item.language}</h4>
+            {@html item.text}
         </div>
-    {/if}
-    {#if transcript.de}
-        <div class="de col-sm-{columnWidth()}">
-            <h4>DE</h4>
-            {@html transcript.de}
-        </div>
-    {/if}
+    {/each}
 </div>

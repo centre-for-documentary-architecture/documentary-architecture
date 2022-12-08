@@ -46,7 +46,7 @@
 	</div>
 
 	{#if transcript}
-		<Transcript transcript={transcript} />
+		<Transcript {transcript} />
 	{/if}
 
 </section>
