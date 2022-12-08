@@ -34,13 +34,17 @@ section {
 .footer-nav {
     font-size: $font-small;
     li {
-        display: inline-block;
         a {
             @include arrowBeforeLink;
-            margin-right: 0.6rem;
         }
     }
 }
 h4 {
     margin: $padding-text;
+}
+a {
+    transition: opacity 300ms ease;
+    &:hover {
+        opacity: 0.7;
+    }
 }

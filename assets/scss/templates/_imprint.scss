@@ -1,0 +1,14 @@
+@import '../variables';
+
+.content {
+    p + h1 {
+        margin-top: 1em;
+    }
+    h4 {
+        margin-bottom: 0em;
+        @include mono;
+    }
+    h4 + p {
+        margin-top: 0em;
+    }
+}

@@ -67,6 +67,9 @@ if( !$page->isHomePage()){
 	<meta property="og:title" content="<?= $title ?>" />
 	<meta property="og:description" content="<?= $description ?>" />
 	<meta property="og:site_name" content="<?= $site->title() ?>" />
+	<?php if($image = $site->thumbnail()->toFile()): ?>
+		<meta property="og:image" content="<?= $image->url() ?>" />
+	<?php endif ?>
 
 	<script>
 		var lieblingHouseWorldContainer;

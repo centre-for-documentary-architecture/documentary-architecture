@@ -25,6 +25,9 @@ body {
     &.entity {
         @import 'templates/entity';
     }
+    &.imprint {
+        @import 'templates/imprint';
+    }
 }
 
 body.about,

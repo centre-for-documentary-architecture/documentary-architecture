@@ -45,38 +45,9 @@ if( !isset( $about ) ){
 		<section class="contact">
 			<h2>Contact</h2>
 			<div class="mono">
-
-				<?php //echo $about->contact()->kirbytext() ?>
-				<script type="text/javascript" language="javascript">
-				// Email obfuscator script 2.1 by Tim Williams, University of Arizona
-				// Random encryption key feature coded by Andrew Moulden
-				// This code is freeware provided these four comment lines remain intact
-				// A wizard to generate this code is at http://www.jottings.com/obfuscator/
-				{ coded = "0qwZlq@jM0OGqwZRlD-Rl0idZq0ZOlq.Mlr"
-				key = "W8leFL4RUB7bPm2AiMsOtvE0jfDk5rNwTzaI6Yq13XHhoCu9GxcdQyJZgpnVSK"
-				shift=coded.length
-				link=""
-				for (i=0; i<coded.length; i++){
-					if( key.indexOf(coded.charAt(i))==-1 ){
-						ltr = coded.charAt(i)
-						link += (ltr)
-					} else {
-						ltr = (key.indexOf(coded.charAt(i))-shift+key.length) % key.length
-						link += (key.charAt(ltr))
-					}
-				}
-				document.write("<a href='mailto:"+link+"'>"+link+"</a>")
-				}
-				</script><noscript>Switch on JavaScript to see the email address.</noscript>
-
+				<a href="mailto:<?= $site->email() ?>"><?= $site->email() ?></a>
 			</div>
 		</section>
-
-		<?php if( $site->issn()->isNotEmpty() ): ?>
-			<section>
-				<p class="mono"><?= $site->issn() ?></p>
-			</section>
-		<?php endif ?>
 
 		<?php if( $logos = $site->supporters()->toFiles() ): ?>
 			<section>
@@ -95,9 +66,15 @@ if( !isset( $about ) ){
 
 </div>
 
-<nav class="content mono footer-nav">
-	<ul>
+<nav class="content mono footer-nav grid">
+	<ul class="col-6">
 		<li><?= $site->homePage()->toLink('Start') ?></li>
 		<li><?= $site->find('imprint-privacy-policy')->toLink() ?></li>
+	</ul>
+	<ul class="col-6">
+		<?php if( $site->issn()->isNotEmpty() ): ?>
+			<li><?= $site->issn() ?></li>
+		<?php endif ?>
+		<li>© 2019-<?= date('Y') ?></li>
 	</ul>
 </nav>
