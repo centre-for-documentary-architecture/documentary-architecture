@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "d1251e8add3e2d4aeac56e6cc38e054d",
+    "content-hash": "5e1ecf52b463c180d576eb075fb95c0b",
     "packages": [
         {
             "name": "bvdputte/kirby-bettersearch",
@@ -1040,57 +1040,6 @@
                 }
             ],
             "time": "2022-05-24T11:49:31+00:00"
-        },
-        {
-            "name": "timoetting/kirby-builder",
-            "version": "2.0.16",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/TimOetting/kirby-builder.git",
-                "reference": "6e8f6f4239dfe9836a394d32c2aeb9ceb5800780"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/TimOetting/kirby-builder/zipball/6e8f6f4239dfe9836a394d32c2aeb9ceb5800780",
-                "reference": "6e8f6f4239dfe9836a394d32c2aeb9ceb5800780",
-                "shasum": ""
-            },
-            "require": {
-                "getkirby/composer-installer": "^1.1",
-                "php": ">=7.1.0"
-            },
-            "type": "kirby-plugin",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tim Ötting",
-                    "email": "email@tim-oetting.de"
-                }
-            ],
-            "description": "This versatile plugin for Kirby CMS (v3) lets you predefine content blocks with different field sets that can then be added, edited and arranged inside Kirby's panel.",
-            "keywords": [
-                "builder",
-                "kirby-builder",
-                "kirby3",
-                "kirby3-cms",
-                "kirby3-plugin",
-                "page-builder"
-            ],
-            "support": {
-                "issues": "https://github.com/TimOetting/kirby-builder/issues",
-                "source": "https://github.com/TimOetting/kirby-builder/tree/v2.0.16"
-            },
-            "funding": [
-                {
-                    "url": "https://paypal.me/TimOetting/10",
-                    "type": "custom"
-                }
-            ],
-            "abandoned": true,
-            "time": "2020-11-18T23:15:15+00:00"
         }
     ],
     "packages-dev": [],
@@ -1101,5 +1050,5 @@
     "prefer-lowest": false,
     "platform": [],
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.3.0"
 }
