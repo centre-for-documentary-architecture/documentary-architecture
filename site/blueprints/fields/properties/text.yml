@@ -1,9 +1,0 @@
-name: Info
-label: "Info: {{title}}"
-fields:
-  title:
-    label: Title
-    type: text
-  value:
-    label: Value
-    type: text

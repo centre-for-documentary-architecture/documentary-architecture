@@ -1,9 +1,0 @@
-name: Date
-label: "Date: {{title}}"
-fields:
-  title:
-    label: Title
-    type: text
-  value:
-    extends: fields/date_historical
-    label: Date

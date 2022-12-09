@@ -1,0 +1,5 @@
+label: Individual Properties
+type: blocks
+fieldsets:
+  - text
+  - entities

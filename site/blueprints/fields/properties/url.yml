@@ -1,9 +1,0 @@
-name: Website
-label: "Website: {{title}}"
-fields:
-  title:
-    label: Title
-    type: text
-  value:
-    label: URL
-    type: url

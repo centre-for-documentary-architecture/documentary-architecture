@@ -37,6 +37,6 @@ columns:
       info_section_fields3:
         type: fields
         fields:
-
-          properties:
-            extends: fields/properties
+          
+          properties_blocks:
+            extends: fields/properties_blocks

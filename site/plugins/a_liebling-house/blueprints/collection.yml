@@ -105,10 +105,10 @@ tabs:
 
           info_section_fields3:
             type: fields
-            fields:
-
-              properties:
-                extends: fields/properties           
+            fields:         
+              
+              properties_blocks:
+                extends: fields/properties_blocks           
 
   tab_contexts:
     extends: tabs/contexts

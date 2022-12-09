@@ -1,5 +1,8 @@
 <?php
 
+use Kirby\Cms\Collection;
+use Kirby\Cms\Page;
+
 /*
 * Entities
 * collection of entities
@@ -350,63 +353,37 @@ class Entity extends Page
     }
     public function dataProperties(): array
 	{
-
 		$content = [];
-		if( $this->content()->properties()->exists() ){
+        foreach( $this->properties_blocks()->toBlocks() as $block ){
+            $title = false;
+            $value = false;
 
-			foreach( $this->properties()->toBuilderBlocks() as $block ){
-
-                $line = [
-                    'key' => $block->title()->value(),
-                    'value' => []
-                ];
-                foreach( $block->kombi()->toBuilderBlocks() as $field ){
-
-                    switch ($field->_key()){
-                        case 'text':
-
-                            $line['value'][] = $field->value()->kirbytext()->value();
-
-                            break;
-                        case 'pages':
-
-                            $line['value'][] = $field->value()->toEntities()->toLinks();
-
-                            break;
-                        case 'location':
-
-                            if( $loc = $field->value()->yaml() ){
-                                $line['value'][] = toLocation( $loc[0] );
-                            }
-
-                            break;
-                        case 'date':
-
-                            $line['value'][] = $field->value()->toDateKeyword();
-
-                            break;
-                        case 'website':
-
-                            $line['value'][] = $field->value()->toLink();
-
-                            break;
-                        default:
-                            break;
-                    }
-
+            if( $block->title()->isNotEmpty() ){
+                $title = (string)$block->title();
+            }
+            if( $block->type() === 'text' && $block->text()->isNotEmpty() ){
+                $value = (string)$block->text()->kirbytext();
+            }
+            if( $block->type() === 'entities' ){
+                $value = '';
+                foreach( $block->entities()->toPages() as $entity ){
+                    $value .= Html::tag('p',[
+                        Html::tag('a', $entity->title(), [
+                            'href' => $entity->url()
+                        ])
+                    ]);
                 }
-                if( count( $line['value'] ) === 1 ){
-                    $line['value'] = $line['value'][0];
-                }
-                if( $line['value'] !== [] ){
-                    $content[] = $line;
-                }
+            }
 
-			}
-
-		}
+            if( !$value ){
+                continue;
+            }
+            $content[] = [
+                'key' => $title,
+                'value' => $value
+            ];
+        }
 		return $content;
-
     }
     /*
     * view

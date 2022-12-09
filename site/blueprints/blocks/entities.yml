@@ -1,9 +1,11 @@
-name: Entity
-label: "Entity: {{title}}"
+name: Entities
+label: "{{title}}"
 fields:
+
   title:
     label: Title
     type: text
-  value:
+
+  entities:
     label: Entity
-    type: pages
+    type: entities

@@ -1,13 +1,14 @@
 name: Text
-label: "Text: {{title}}"
+label: "{{title}}"
 fields:
+
   title:
     label: Title
     type: text
-  value:
-    label: Value
+
+  text:
     type: textarea
-    maxlength: 800
+    label: Text
     buttons:
       - italic
       - link

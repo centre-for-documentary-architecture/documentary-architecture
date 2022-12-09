@@ -45,7 +45,7 @@ tabs:
 
               body: fields/body
 
-              properties: false
+              properties_blocks: false
   
   tab_meta:
     extends: tabs/meta
