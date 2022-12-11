@@ -32,9 +32,9 @@ return [
 		]
 	],
 	'cache-expires' => 1440,
-	'cache.abstract' => true,
+	'cache.abstract' => false,
 	'cache.worlditems' => true,
-	'cache.get' => true,
+	'cache.get' => false,
 
 	// other configuration
 	'thumbs' => [
