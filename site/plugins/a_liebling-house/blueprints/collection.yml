@@ -107,8 +107,8 @@ tabs:
             type: fields
             fields:         
               
-              properties_blocks:
-                extends: fields/properties_blocks           
+              properties:
+                extends: fields/properties
 
   tab_contexts:
     extends: tabs/contexts

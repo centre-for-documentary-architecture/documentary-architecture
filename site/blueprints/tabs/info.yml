@@ -38,5 +38,5 @@ columns:
         type: fields
         fields:
           
-          properties_blocks:
-            extends: fields/properties_blocks
+          properties:
+            extends: fields/properties

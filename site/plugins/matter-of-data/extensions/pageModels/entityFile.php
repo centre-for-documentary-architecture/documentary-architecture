@@ -65,7 +65,7 @@ class EntityFile extends Entity
         foreach( $transcripts as $transcript ){
             $content[] = [
                 'language' => (string)$transcript->language(),
-                'text' => (string)$transcript->text()
+                'text' => (string)$transcript->text()->kirbytext()
             ];
         }
         

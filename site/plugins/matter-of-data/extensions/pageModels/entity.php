@@ -354,7 +354,7 @@ class Entity extends Page
     public function dataProperties(): array
 	{
 		$content = [];
-        foreach( $this->properties_blocks()->toBlocks() as $block ){
+        foreach( $this->properties()->toBlocks() as $block ){
             $title = false;
             $value = false;
 
