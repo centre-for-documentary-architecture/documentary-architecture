@@ -67,5 +67,4 @@ tabs:
 
               sources: false
 
-              tags:
-                extends: fields/tags
+              tags: fields/tags

@@ -21,4 +21,4 @@ fields:
     type: info
     label: Kirbytag
     theme: white
-    text: "(-user: {{ user.email }})"
+    text: "(&af;user: {{ user.email }})"

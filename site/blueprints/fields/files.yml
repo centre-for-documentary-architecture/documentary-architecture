@@ -6,3 +6,5 @@ label: Files
 
 help: Representational figure of this entity
 query: page.images
+image:
+  back: '#f9f9f9'

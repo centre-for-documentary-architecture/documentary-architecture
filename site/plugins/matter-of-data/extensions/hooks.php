@@ -46,10 +46,6 @@ return [
 		if( $page->user_created()->exists() ){
 			$update['user_created'] = Yaml::encode( $this->user()->email() );
 		}
-		if( $page->properties()->exists() && $page->depth() > 1 && $page->parent()->type_properties()->exists() ){
-			// copy defaults from parent
-			$update['properties'] = $page->parent()->type_properties();
-		}
 
 		if( !empty( $update ) ){
 			$page->update( $update );
@@ -122,12 +118,6 @@ return [
 			'date_created' => date('Y-m-d H:i'),
 			'user_created' => Yaml::encode( $this->user()->email() ),
 		];
-
-		// reconstruct properties from parent page
-		if( $file->properties()->exists() && $file->parent()->type_properties()->exists() ){
-			// copy defaults from parent
-			$update['properties'] = $file->parent()->type_properties();
-		}
 
 		$name = Str::slug( F::name( $file->filename() ) );
 		$exif = $file->exif();

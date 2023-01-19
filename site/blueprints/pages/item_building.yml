@@ -20,11 +20,10 @@ tabs:
                 extends: fields/location/location
 
               architects:
-                extends: fields/tags
+                type: tags
                 label: Architects
-                options: query
-                icon: users
-                query:
-                  fetch: site.find('archive/persons').children
+                options:
+                  type: query
+                  query: site.archive('persons').children
                   text: '{{ page.title }}'
                   value: '{{ page.id }}'

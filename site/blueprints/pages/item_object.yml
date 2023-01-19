@@ -17,7 +17,7 @@ tabs:
               3d_object:
                 extends: fields/pages
                 label: 3D Object
-                query: site.find('archive/3d-objects').children
+                query: site.archive('3d-objects').children
 
       column_right:
         sections:
@@ -30,19 +30,19 @@ tabs:
               location_start: false
 
               material:
-                extends: fields/tags
                 label: Material
-                options: query
-                query:
-                  fetch: site.find('archive/materials').children
+                type: tags
+                options:
+                  type: query
+                  query: site.archive('materials').children
                   text: '{{ page.title }}'
                   value: '{{ page.id }}'
 
               manufacturer:
-                extends: fields/tags
                 label: Manufacturer
-                options: query
-                query:
-                  fetch: site.find('archive/organisations').children
+                type: tags
+                options:
+                  type: query
+                  query: site.archive('organisations').children
                   text: '{{ page.title }}'
                   value: '{{ page.id }}'

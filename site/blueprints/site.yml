@@ -68,9 +68,9 @@ tabs:
             help: false
 
           tags:
-            extends: fields/tags
+            type: tags
             label: Meta keywords
-            help: false
+            max: 12
 
           email:
             label: Contact Email
@@ -96,6 +96,8 @@ tabs:
                 type: files
                 label: OG Image
                 multiple: false
+                image:
+                  back: black
 
               supporters:
                 type: files
@@ -116,5 +118,7 @@ tabs:
           team:
             type: users
             label: Team
+            image:
+              back: '#f9f9f9'
 
   tab3: tabs/help

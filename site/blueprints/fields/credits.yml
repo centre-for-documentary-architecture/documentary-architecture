@@ -9,16 +9,17 @@ fields:
   title:
     label: Role
     type: select
-    options: query
     help: Options can be defined at parent page
-    query:
-      fetch: page.parent.credit_roles.toStructure
+    options:
+      type: query
+      query: page.parent.credit_roles.toStructure
       text: "{{ structureItem.title }}"
       value: "{{ structureItem.title }}"
 
   person:
     type: tags
     label: Name
-    options: query
     icon: user
-    query: site.kirby.users.pluck( "name", ",", true )
+    options:
+      type: query
+      query: site.kirby.users.pluck( "name", ",", true )

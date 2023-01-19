@@ -1,0 +1,8 @@
+type: info
+label: Signature
+theme: white
+text: |
+  **{{ page.id }}**
+  
+  Kirbytag: (&af;link: {{ page.id }})
+  Permanent URL: {{ page.permalink }}

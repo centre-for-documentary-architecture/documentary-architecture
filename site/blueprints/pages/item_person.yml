@@ -25,23 +25,26 @@ tabs:
               location_start:
                 extends: fields/location/location_city
                 label: Place of Birth
+                max: 1
 
               location_end:
                 extends: fields/location/location_city
                 label: Place of Death
+                max: 1
 
               occupation:
                 type: tags
                 label: Occupation
-                options: query
-                query: site.find('archive/persons').children.pluck('occupation',',',true)
+                options:
+                  type: query
+                  query: page.siblings.pluck('occupation',',',true)
 
               projects:
-                extends: fields/tags
+                type: tags
                 label: Projects
-                options: query
-                query:
-                  fetch: site.find('archive/buildings').children
+                options:
+                  type: query
+                  query: site.archive('buildings').children
                   text: '{{ page.title }}'
                   value: '{{ page.id }}'
               

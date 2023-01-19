@@ -9,6 +9,7 @@ sections:
     layout: table
     image:
       query: page.thumbnail
+      back: '#f9f9f9'
       cover: true
     columns:
       text:

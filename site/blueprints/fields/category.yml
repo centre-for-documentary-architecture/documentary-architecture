@@ -3,10 +3,8 @@ type: select
 
 label: Category
 
-help: Optional categorization within this type. Define options at parent page.
-# disabled: true
-options: query
-query:
-  fetch: page.parent.type_categories.toStructure
+options:
+  type: query
+  query: page.parent.type_categories.toStructure
   text: "{{ structureItem.title }}"
   value: "{{ structureItem.title }}"

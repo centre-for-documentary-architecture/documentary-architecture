@@ -1,11 +1,8 @@
 type: text
-# https://getkirby.com/docs/reference/panel/fields/time
-
-label: Duration
-# https://schema.org/duration
-
+icon: clock
+label: Playback duration
 step: 1
-help: Play time of media, format like MM:SS or H:MM:SS
-placeholder: MM:SS
+before: MM:SS
+required: true
 validate:
   match: /^(((\d:[0-5])?|[0-5])(\d:[0-5]\d))?$/

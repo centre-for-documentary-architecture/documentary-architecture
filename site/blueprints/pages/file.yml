@@ -51,9 +51,9 @@ tabs:
                 type: tags
                 label: Starring
                 help: People, Objects, Buildings, ...
-                options: query
-                query:
-                  fetch: site.archive.items.children
+                options:
+                  type: query
+                  query: site.archive.items.children
                   text: '{{ page.title }}'
                   value: '{{ page.id }}'
 
@@ -64,8 +64,7 @@ tabs:
 
       transcript: fields/files/transcript
 
-  tab_contexts:
-    extends: tabs/contexts
+  tab_contexts: tabs/contexts
   
   tab_meta:
     extends: tabs/meta
@@ -76,14 +75,8 @@ tabs:
             fields:
 
               credits:
-                label: Credits
-                help: People who helped creating this file
+                label: Credits for creating this file
 
               copyright: fields/files/copyright
 
-              allowDownload: fields/files/allow_download
-
-              licence:
-                extends: fields/files/licence
-                when:
-                  allowDownload: true
+              showDownloadButton: fields/files/showDownloadButton

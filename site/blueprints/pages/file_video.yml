@@ -61,28 +61,7 @@ tabs:
                     text: >
                       Kirby cannot see the contents of the remote file host. So the above fields have to be correct. Additionally, all files uploaded to DO have to be public.
 
-          file_info:
-            type: info
-            headline: Info on video files
-            text: |
-              **File naming convention:**
-              `{filename}-{height-in-pixels}.mp4`
-              e.g.: `my-video-720.mp4`
-
-              Include the `.mp4` in the name of this archive entity.
-
-              To make a video accessible for many devices, it should be availible in 4 quality version:
-              • MP4 1080p: 1920 x 1080
-              • MP4 720p: 1280 x 720 (most important)
-              • MP4 480p: 854 x 480
-              • MP4 360p: 640 x 360
-
-              CDA owns a dedicated Digital Ovean Spaces file hosting service. Upload videos in the following pattern:
-              `cda/archive/videos/{filename}/{filename}-{size}.mp4`
-
-              **Thumbnails**
-              Thumbnails should have the same aspect ratio as the original video (e.g. 16:9), but can have best quality.
-              `{video-name}-thumb.jpg`
+          wiki: sections/service/wiki
 
       column_right:
         sections:
@@ -98,7 +77,4 @@ tabs:
           meta_section_fields1:
             fields:
 
-              duration:
-                extends: fields/files/duration
-                label: Video play time
-                required: true
+              duration: fields/files/duration

@@ -2,6 +2,7 @@
 
 use Kirby\Cms\Collection;
 use Kirby\Cms\Page;
+use Kirby\Template\Template;
 
 /*
 * Entities
@@ -73,7 +74,7 @@ class Entity extends Page
         return 'collection';
 
     }
-    public function template(): Kirby\Cms\Template
+    public function template(): Kirby\Template\Template
     {
         if ($this->template !== null){
             return $this->template;

@@ -1,6 +1,0 @@
-type: info
-label: Signature
-text: |
-  **{{ page.id }}**
-  `(-link: {{ page.id }})`
-  Change via "Settings → Change URL" (may lead to broken links)

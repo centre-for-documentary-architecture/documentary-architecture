@@ -41,10 +41,4 @@ tabs:
             templates:
               - item
 
-      column_right:
-        sections:
-          section_info:
-            headline: About creating items
-
-  tab_settings:
-    extends: tabs/settings
+  tab_settings: tabs/settings

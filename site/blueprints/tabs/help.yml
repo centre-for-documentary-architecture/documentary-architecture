@@ -1,11 +1,6 @@
 label: help
 icon: smile
 
-fields:
+sections:
 
-  info:
-    type: info
-    label: Wiki
-    text: |
-      The help section now has moved to the GitHub Wiki:
-      (link: https://github.com/centre-for-documentary-architecture/documentary-architecture.org/wiki text: https://github.com/centre-for-documentary-architecture/documentary-architecture.org/wiki)
+  wiki: sections/service/wiki

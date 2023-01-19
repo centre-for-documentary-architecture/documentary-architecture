@@ -4,6 +4,13 @@ label: Meta
 icon: dots
 
 columns:
+
+  meta_column_top:
+    fields:
+
+      signature:
+        extends: fields/service/signature
+
   meta_column_left:
     width: 1/2
     sections:
@@ -23,8 +30,7 @@ columns:
           sources:
             extends: fields/sources
 
-          tags:
-            extends: fields/tags
+          tags: fields/tags
 
           worlditem:
             extends: liebling-house/fields/worlditem
@@ -37,18 +43,13 @@ columns:
         type: fields
         fields:
 
-          signature:
-            extends: fields/signature
-
           date_created:
-            extends: fields/modified
-            label: Entity created
-            width: 1/2
+            extends: fields/service/modified
+            label: Dataset created
 
           date_modified:
-            extends: fields/modified
-            label: Entity modified
-            width: 1/2
+            extends: fields/service/modified
+            label: Dataset modified
 
           user_created:
             extends: fields/user

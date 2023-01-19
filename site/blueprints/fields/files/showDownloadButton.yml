@@ -1,0 +1,5 @@
+type: toggle
+label: Show file download button
+text:
+  - No, but file is not secure anyway
+  - Show download button

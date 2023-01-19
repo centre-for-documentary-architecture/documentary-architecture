@@ -1,6 +1,4 @@
 type: structure
-# https://getkirby.com/docs/reference/panel/fields/structure
-
 label: Timeline
 
 sortable: false
@@ -36,8 +34,9 @@ fields:
     when:
       dateType: other
     layout: list
-    options: query
-    query: site.index.pluckStructure('timeline','title')
+    options:
+      type: query
+      query: site.index.pluckStructure('timeline','title')
 
   location:
     extends: fields/location

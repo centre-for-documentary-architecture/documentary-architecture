@@ -39,8 +39,7 @@ tabs:
 
               location_end: false
 
-  tab_contexts:
-    extends: tabs/contexts
+  tab_contexts: tabs/contexts
   
   tab_meta:
     extends: tabs/meta

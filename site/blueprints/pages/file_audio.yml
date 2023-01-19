@@ -18,12 +18,8 @@ tabs:
                 type: files
                 query: page.audio
                 max: 1
-
-              soundcloud:
-                extends: fields/url
-                label: SoundCloud Link
-                disabled: true
-                placeholder: 'https://soundcloud.com/...'
+                image:
+                  back: '#f9f9f9'
 
           file_info:
             type: info
@@ -45,7 +41,4 @@ tabs:
           meta_section_fields1:
             fields:
 
-              duration:
-                extends: fields/files/duration
-                label: Audio play time
-                required: true
+              duration: fields/files/duration

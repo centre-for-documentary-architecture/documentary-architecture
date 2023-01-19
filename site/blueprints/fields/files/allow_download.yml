@@ -1,9 +1,0 @@
-type: toggle
-# https://getkirby.com/docs/reference/panel/fields/toggle
-
-label: File download
-default: false
-help: A file can never be truely protected against download
-text:
-  - Normal
-  - Show Download button

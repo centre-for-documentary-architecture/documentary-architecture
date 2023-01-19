@@ -36,8 +36,7 @@ tabs:
   tab_content:
     extends: tabs/content
 
-  tab_contexts:
-    extends: tabs/contexts
+  tab_contexts: tabs/contexts
 
   tab_meta:
     extends: tabs/meta
@@ -46,6 +45,8 @@ tabs:
         sections:
           meta_section_fields1:
             fields:
+
+              category: false
 
               credits:
                 fields:

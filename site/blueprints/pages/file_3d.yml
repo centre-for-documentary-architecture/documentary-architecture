@@ -14,22 +14,16 @@ tabs:
             fields:
 
               content_files:
-                label: 3D file selection
+                label: 3D .fbx file
                 type: files
                 max: 1
                 image:
                   back: '#f9f9f9'
 
               content_texture:
-                label: Texture selection
+                label: Texture image
                 type: files
                 max: 1
                 query: page.images
                 image:
                   back: '#f9f9f9'
-
-          file_info:
-            type: info
-            headline: Info on 3D object files
-            text: |
-              3D files should be uploaded as **Fbx**. Please also upload the texture image and a thumbnail of the object.

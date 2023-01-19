@@ -1,0 +1,6 @@
+type: date
+label: Date
+time: true
+disabled: true
+default: now
+step: 1

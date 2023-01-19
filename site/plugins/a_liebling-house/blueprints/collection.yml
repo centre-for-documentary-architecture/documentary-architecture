@@ -46,7 +46,6 @@ tabs:
               category:
                 type: select
                 label: Category
-                translate: false
                 options:
                   overview: Liebling House Overview
                   tour: Tour
@@ -82,7 +81,6 @@ tabs:
               represents_entity_switch:
                 label: Represents another entity
                 type: toggle
-                translate: false
                 text:
                   - Not connected
                   - This directly represents another entity
@@ -110,8 +108,7 @@ tabs:
               properties:
                 extends: fields/properties
 
-  tab_contexts:
-    extends: tabs/contexts
+  tab_contexts: tabs/contexts
 
   tab_meta:
     extends: tabs/meta

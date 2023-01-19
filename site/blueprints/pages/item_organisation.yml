@@ -27,10 +27,10 @@ tabs:
                 label: Home location
 
               members:
-                extends: fields/tags
+                type: tags
                 label: Members
-                options: query
-                query:
-                  fetch: site.find('archive/persons').children
+                options:
+                  type: query
+                  query: site.archive('persons').children
                   text: '{{ page.title }}'
                   value: '{{ page.id }}'

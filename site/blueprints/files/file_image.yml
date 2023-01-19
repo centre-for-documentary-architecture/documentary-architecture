@@ -42,9 +42,9 @@ tabs:
                 type: tags
                 label: Starring
                 help: People, Objects, Buildings, ...
-                options: query
-                query:
-                  fetch: site.archive.items.children
+                options:
+                  type: query
+                  query: site.archive.items.children
                   text: '{{ page.title }}'
                   value: '{{ page.id }}'
 
@@ -55,37 +55,39 @@ tabs:
 
       transcript: fields/files/transcript
 
-  tab_contexts:
-    extends: tabs/contexts
+  tab_contexts: tabs/contexts
   
   tab_meta:
     extends: tabs/meta
     columns:
+      meta_column_top:
+        fields:
+          signature:
+            text: |
+              **{{ file.id }}**
+              
+              Kirbytag: (&af;link: {{ file.id }})
+              Permanent URL: {{ file.permalink }}
+
       meta_column_left:
         sections:
           meta_section_fields1:
             fields:
 
               category:
-                query:
-                  fetch: file.parent.type_categories.toStructure
+                options:
+                  query: file.parent.type_categories.toStructure
 
               credits:
-                label: Credits
-                help: People who helped creating this file
+                label: Credits for creating this file
                 fields:
                   title:
-                    query:
-                      fetch: file.parent.credit_roles.toStructure
+                    options:
+                      query: file.parent.credit_roles.toStructure
 
               copyright: fields/files/copyright
 
-              allowDownload: fields/files/allow_download
-
-              licence:
-                extends: fields/files/licence
-                when:
-                  allowDownload: true
+              showDownloadButton: fields/files/showDownloadButton
 
               is_360:
                 label: Panorama photo
@@ -94,12 +96,3 @@ tabs:
                 text:
                     - Normal
                     - 'This is a 360° panorama'
-
-      meta_column_right:
-        sections:
-          meta_section_fields3:
-            fields:
-              signature:
-                text: |
-                  **{{ file.id }}**
-                  `(-link: {{ file.id }})`

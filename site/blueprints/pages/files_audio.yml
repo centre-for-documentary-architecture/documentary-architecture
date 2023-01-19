@@ -29,14 +29,3 @@ tabs:
               back: '#f9f9f9'
             templates:
               - file_audio
-
-      column_right:
-        sections:
-          
-          section_info1:
-            type: info
-            headline: About uploading audio files
-            text: | 
-              Audio files should be provided as **Mp3** preferable with
-              • 44.1 sample rate
-              • 160 or 192 kbps bitrate with joint stereo
