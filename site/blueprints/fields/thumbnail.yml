@@ -1,9 +1,5 @@
 type: files
-# https://getkirby.com/docs/reference/panel/fields/files
-
 label: Thumbnail
-# https://schema.org/photo
-
 multiple: false
 layout: cards
 query: site.archive('images').images.add( page.images )

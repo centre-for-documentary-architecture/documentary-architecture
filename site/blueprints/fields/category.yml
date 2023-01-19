@@ -1,8 +1,5 @@
 type: select
-# https://getkirby.com/docs/reference/panel/fields/text
-
 label: Category
-
 options:
   type: query
   query: page.parent.type_categories.toStructure

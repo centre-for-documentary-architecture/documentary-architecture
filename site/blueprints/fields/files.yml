@@ -1,9 +1,5 @@
 type: files
-# https://getkirby.com/docs/reference/panel/fields/files
-
 label: Files
-# https://schema.org/photo
-
 help: Representational figure of this entity
 query: page.images
 image:

@@ -1,5 +1,2 @@
 type: date
-# https://getkirby.com/docs/reference/panel/fields/date
-
 label: Date
-# https://schema.org/Date

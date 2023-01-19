@@ -1,6 +1,4 @@
 type: users
-# https://getkirby.com/docs/reference/panel/fields/users
-
 label: Editor
 multiple: false
 disabled: true

@@ -1,9 +1,5 @@
 type: text
-# https://getkirby.com/docs/reference/panel/fields/date
-
 label: Date
-# https://schema.org/Date
-
 help: YYYY(-MM)(-DD), YYYY(s)(-YYYY)
 placeholder: YYYY-MM-DD
 icon: calendar

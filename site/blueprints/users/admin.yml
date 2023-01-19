@@ -1,6 +1,8 @@
 title: Admin
 description: All permissions, can edit other users
 
+permissions: true
+
 sections:
 
   fields: sections/team

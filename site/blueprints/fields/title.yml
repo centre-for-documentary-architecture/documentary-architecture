@@ -1,7 +1,4 @@
 type: text
-# https://getkirby.com/docs/reference/panel/fields/text
-
 label: Additional title
-
 maxlength: 80
 help: Alternative, additional or subtitle of this entity

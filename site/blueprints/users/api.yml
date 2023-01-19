@@ -1,6 +1,4 @@
 title: API
 description: Database read permissions
 
-permissions:
-  access:
-    panel: false
+permissions: false

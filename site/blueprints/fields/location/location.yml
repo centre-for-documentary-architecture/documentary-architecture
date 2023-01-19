@@ -1,8 +1,5 @@
 type: structure
-# https://getkirby.com/docs/reference/panel/fields/structure
-
 label: Location
-
 max: 1
 help: Physical location or address
 

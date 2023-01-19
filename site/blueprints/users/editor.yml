@@ -4,36 +4,23 @@ permissions:
 
   access:
     panel: true
+    users: false
     site: true
     settings: false
-    users: false
-  files:
-    create: true
-    changeName: true
-    delete: true
-    replace: true
-    update: true
-  site:
-    update: false
-  pages:
-    create: true
-    changeTemplate: false
-    changeTitle: true
-    changeSlug: true
-    delete: true
-    hide: true
-    sort: true
-    update: true
+    languages: false
+  files: true
+  pages: true
+  site: false
+  users: false
   user:
-    create: false
-    changeName: false
-    changeEmail: false
+    changeEmail: true
     changeLanguage: true
+    changeName: true
     changePassword: true
     changeRole: false
+    create: false
     delete: false
     update: true
-  users: false
 
 sections:
 

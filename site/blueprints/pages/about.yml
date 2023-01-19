@@ -11,15 +11,12 @@ options:
   # only allow some users
   update:
     *: false
-    super: true
     admin: true
   changeSlug:
     *: false
-    super: true
     admin: true
   changeTitle:
     *: false
-    super: true
     admin: true
 
 columns:

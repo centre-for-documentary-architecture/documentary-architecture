@@ -14,15 +14,12 @@ options:
   # only allow some users
   changeSlug:
     *: false
-    super: true
     admin: true
   changeTitle:
     *: false
-    super: true
     admin: true
   delete:
     *: false
-    super: true
     admin: true
 
 tabs:

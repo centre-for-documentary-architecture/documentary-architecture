@@ -1,9 +1,5 @@
 type: text
-# https://getkirby.com/docs/reference/panel/fields/date
-
 label: Year
-# https://schema.org/Date
-
 placeholder: YYYY
 validate:
   match: /^((1\d|20)[0-9x]{2})?$/

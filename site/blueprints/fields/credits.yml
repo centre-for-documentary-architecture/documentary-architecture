@@ -1,8 +1,5 @@
 label: Credits
 type: structure
-
-# https://github.com/TimOetting/kirby-builder
-
 empty: No credits given
 fields:
 

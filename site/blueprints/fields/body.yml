@@ -1,6 +1,4 @@
 type: textarea
-# https://getkirby.com/docs/reference/panel/fields/textarea
-
 label: Content
 buttons: true
 buttons:

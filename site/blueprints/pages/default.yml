@@ -8,23 +8,18 @@ options:
   # only allow some users
   changeTemplate:
     *: false
-    super: true
     admin: true
   changeSlug:
     *: false
-    super: true
     admin: true
   changeStatus:
     *: true
-    super: true
     admin: true
   changeTitle:
     *: false
-    super: true
     admin: true
   delete:
     *: false
-    super: true
     admin: true
 
 tabs:
