@@ -66,6 +66,7 @@ tabs:
             extends: fields/description
             label: Meta description
             help: false
+            required: true
 
           tags:
             type: tags
@@ -75,6 +76,7 @@ tabs:
           email:
             label: Contact Email
             type: email
+            required: true
 
           issn:
             type: text

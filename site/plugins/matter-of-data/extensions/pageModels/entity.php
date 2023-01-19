@@ -465,6 +465,34 @@ class Entity extends Page
 
     }
 
+    public function schema(): array {
+        $schema = array_merge( parent::schema(),[
+            'headline' => (string)$this->additional_title(),
+            'dateModified' => $this->date_modified()->toDate('Y-m-d'),
+            'datePublished' => $this->date_created()->toDate('Y-m-d'),
+            'description' => (string)$this->description(),
+            'editor' => [],
+        ]);
+
+        if( $this->copyright()->isNotEmpty() ){
+            $schema['copyrightYear'] = $this->date_created()->toDate('Y-m-d');
+            $schema['copyrightHolder'] = (string)$this->copyright();
+        }
+        
+        if( $user = $this->user_modified()->toUser() ){
+            $schema['editor'][] = [
+                '@type' => 'Person',
+                'name' => (string)$user->name(),
+            ];
+        }
+
+        if( $image = $this->thumbnail()->toFile() ){
+            $schema['image'] = $image->url();
+        }
+
+        return $schema;
+    }
+
 }
 
 

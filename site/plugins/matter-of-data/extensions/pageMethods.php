@@ -82,9 +82,7 @@ return [
 	{
 
 		if( $file = $this->content()->thumbnail()->toFile() ){
-
 			return $file;
-
 		}
 
 		return null;
@@ -198,6 +196,40 @@ return [
 	'worlditem' => function(): ?string
 	{
 		return null;
+	},
+	'schema' => function(): array {
+
+		$breadcrumbs = [];
+		$i = 1;
+		foreach( $this->parents()->flip() as $parent ){
+			$breadcrumbs[] = [
+				'@type' => 'ListItem',
+				'position' => $i,
+				'item' => [
+					'@id' => $parent->url(),
+					'name' => (string)$parent->title(),
+					'url' => $parent->url()
+				],
+			];
+			$i++;
+		}
+		$breadcrumbs = $i > 1 ? [
+			'@context' => 'https://schema.org',
+			'@type' => 'BreadcrumbList',
+			'itemListElement' => $breadcrumbs
+		] : null;
+
+		return [
+			'@context' => 'https://schema.org',
+			'@type' => 'WebPage',
+			'@id' => $this->url(),
+			'breadcrumb' => $breadcrumbs,
+			'inLanguage' => 'en',
+			'name' => (string)$this->title(),
+			'publisher' => [
+				'@id' => $this->site()->url(),
+			]
+		];
 	},
 
 

@@ -76,6 +76,9 @@ if( !$page->isHomePage()){
 		var lieblingHouseWorldInstance;
 	</script>
 
+	<script type="application/ld+json"><?= json_encode( $site->schema(), JSON_NUMERIC_CHECK | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ?></script>
+	<script type="application/ld+json"><?= json_encode( $page->schema(), JSON_NUMERIC_CHECK | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES ) ?></script>
+
 </head>
 <body class="<?= implode(' ', array_unique($classlist) ) ?>">
 
