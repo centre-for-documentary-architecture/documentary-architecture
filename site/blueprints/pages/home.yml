@@ -1,2 +1,12 @@
 title: Home
 icon: home
+
+fields:
+
+  intro_video:
+    extends: fields/files/remove_video
+    label: Intro video
+    max: 1
+    fields:
+      filename:
+        help: "DigitalOcean: cda/assets/videos/{filename}-{size}.mp4"

@@ -18,48 +18,7 @@ tabs:
                   ratio: 16/9
                 help: Provide Thumbnail in best quality and same aspect ratio as video (16:9)
 
-              remote_file:
-                type: structure
-                label: Remote files on Digital Ocean Space
-                multiple: false
-                columns:
-                  filename:
-                    width: 1/2
-                  sizes:
-                    width: 1/2
-                fields:
-
-                  filename:
-                    type: text
-                    label: Filename
-                    required: true
-                    placeholder: filename
-                    help: "Digital Ocean: cda/archive/videos/{filename}/{filename}-{size}.mp4"
-
-                  sizes:
-                    type: checkboxes
-                    label: Sizes
-                    options:
-                      - value: '1080'
-                        text: 1080
-                      - value: '720'
-                        text: 720
-                      - value: '480'
-                        text: 480
-                      - value: '360'
-                        text: 360
-                    default:
-                      - '1080'
-                      - '720'
-                      - '480'
-                      - '360'
-                    help: Check those sizes, that are uploaded to DO
-
-                  info:
-                    type: info
-                    label: Info
-                    text: >
-                      Kirby cannot see the contents of the remote file host. So the above fields have to be correct. Additionally, all files uploaded to DO have to be public.
+              remote_file: fields/files/remove_video
 
           wiki: sections/service/wiki
 

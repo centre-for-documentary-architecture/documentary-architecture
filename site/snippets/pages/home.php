@@ -8,20 +8,36 @@ $publications = $site->archive('publications')->highlights()->toPages();
 
 	<h1><?= $site->title() ?></h1>
 
-	<?php $root = option('cdn').'/assets/videos/' ?>
-	<video autoplay muted preload="auto" id="introvideo">
-		<source src="<?= $root ?>CDA-intro-short-1080.mp4" type='video/mp4'/>
-		<source src="<?= $root ?>CDA-intro-short-720.mp4" type='video/mp4' media="all and (max-width: 1280px)" />
-		<source src="<?= $root ?>CDA-intro-short-480.mp4" type='video/mp4' media="all and (max-width: 854px)" />
-		<source src="<?= $root ?>CDA-intro-short-360.mp4" type='video/mp4' media="all and (max-width: 640px)" />
-	</video>
-	<script>
-	var introvideo = document.getElementById('introvideo');
-	introvideo.onended = function(){
-		introvideo.closest('header').classList.add('video-end');
-	};
-	</script>
-
+	<?php
+	$root = option('cdn').'/assets/videos';
+	$videos = $page->intro_video()->yaml();
+	if( count($videos) > 0 ): ?>
+		<video autoplay muted preload="auto" id="introvideo">
+		<?php foreach( $videos as $video ):
+			$sizes = explode( ', ', $video['sizes'] );
+			$first = true;
+			foreach( $sizes as $size ):
+				if( $first === true ){
+                    $first = false;
+                    $media = '';
+                    $width = 9999999;
+                } else {
+                    $width = ceil( $size / 9 * 16 );
+                    $media = 'all and (max-width:'.$width.'px)';
+                }
+				?>
+				<source src="<?= $root ?>/<?= $video['filename'] ?>-<?= $size ?>.mp4" type='video/mp4' media="<?= $media ?>"/>
+			<?php endforeach;
+		endforeach; ?>
+		</video>
+		<script>
+			var introvideo = document.getElementById('introvideo');
+			introvideo.onended = function(){
+				introvideo.closest('header').classList.add('video-end');
+			};
+		</script>
+	<?php endif ?>
+	
 </header>
 
 <div class="grid white activity">

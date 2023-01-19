@@ -1,0 +1,41 @@
+type: structure
+label: Remote files on DigitalOcean CDN
+multiple: false
+columns:
+  filename:
+    width: 1/2
+  sizes:
+    width: 1/2
+fields:
+
+  filename:
+    type: text
+    label: Filename
+    required: true
+    placeholder: filename
+    help: "DigitalOcean: cda/archive/videos/{filename}/{filename}-{size}.mp4"
+
+  sizes:
+    type: checkboxes
+    label: Sizes
+    options:
+      - value: '1080'
+        text: 1080
+      - value: '720'
+        text: 720
+      - value: '480'
+        text: 480
+      - value: '360'
+        text: 360
+    default:
+      - '1080'
+      - '720'
+      - '480'
+      - '360'
+    help: Check those sizes, that are uploaded to DO
+
+  info:
+    type: info
+    label: Info
+    text: >
+      Kirby cannot see the contents of the remote file host. So the above fields have to be correct. Additionally, all files have to be public (777).
