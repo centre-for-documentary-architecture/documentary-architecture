@@ -5,7 +5,8 @@ sections:
   recent:
     type: pagesdisplay
     headline: Recent edits
-    query: site.archive.recentActivity.limit(20)
+    limit: 50
+    query: site.archive.recentActivity.limit(50)
     layout: table
     image:
       query: page.thumbnail

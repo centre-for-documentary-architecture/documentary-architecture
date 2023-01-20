@@ -2,7 +2,7 @@ type: entities
 label: Contexts
 empty: No contexts yet
 help: Other entities that provide context to this entity
-# image: icon
+search: true
 image:
   query: page.thumbnail
   cover: true

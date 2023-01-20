@@ -28,9 +28,9 @@ tabs:
           section_pool:
             extends: sections/pages_pool
             headline: Files
-            info: false
             sortBy: title desc
             limit: 40
+            search: true
             image:
               cover: false
               back: black

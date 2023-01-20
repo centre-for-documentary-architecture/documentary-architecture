@@ -6,7 +6,7 @@ status: all
 empty: Empty
 sortable: false
 sortBy: title asc
-info: "{{ page.uid }}"
+search: true
 image:
   query: page.thumbnail
   back: '#f9f9f9'
