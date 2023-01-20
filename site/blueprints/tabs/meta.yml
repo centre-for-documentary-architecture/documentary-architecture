@@ -30,6 +30,8 @@ columns:
           sources:
             extends: fields/sources
 
+          research_methods: fields/research_methods
+
           tags: fields/tags
 
           worlditem:

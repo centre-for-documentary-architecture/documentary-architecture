@@ -53,4 +53,6 @@ tabs:
 
               sources: false
 
+              research_methods: fields/research_methods
+
               tags: fields/tags

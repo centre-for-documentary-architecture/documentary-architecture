@@ -1,0 +1,6 @@
+type: tags
+label: Research methods
+max: 10
+options:
+  type: query
+  query: site.index.pluck( "research_methods", ",", true )

@@ -125,7 +125,7 @@ return [
 				'worlditem' => $this->worlditem(),
 				'count' => $this->countCollection(),
 				'info' => $this->entityInfo(),
-				'keywords' => $this->tags()->split(),
+				'keywords' => $this->research_methods()->split(),
 			];
 
 			if( $srcset && $thumbnail = $this->thumbnail() ){
@@ -149,7 +149,7 @@ return [
 			'category' => $this->category(),
 
 			'title' => $this->title()->value(),
-			'keywords' => $this->tags()->split(),
+			'keywords' => $this->research_methods()->split(),
 			'description' => $this->description()->value(),
 
 			'theme' => $this->theme(),
