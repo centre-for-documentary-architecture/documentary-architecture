@@ -26,17 +26,6 @@ class HomePage extends Page
         $publications = $this->site()->archive('publications')->highlights()->toPages();
 
 		return array_merge($data,[
-            'header' => [
-                'text' => (string)$this->site()->title(),
-                'video' => [
-                    'sizes' => [
-                        1080 => option('cdn').'/assets/videos/CDA-intro-short-1080.mp4',
-                        720 => option('cdn').'/assets/videos/CDA-intro-short-720.mp4',
-                        480 => option('cdn').'/assets/videos/CDA-intro-short-480.mp4',
-                        360 => option('cdn').'/assets/videos/CDA-intro-short-360.mp4'
-                    ],
-                ]
-            ],
             'projects' => $projects->json(),
             'publications' => $publications->json(),
         ]);

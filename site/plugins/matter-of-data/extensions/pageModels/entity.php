@@ -290,10 +290,10 @@ class Entity extends Page
             ];
         }
 
-        if( $this->tags()->isNotEmpty() ){
+        if( $this->research_methods()->isNotEmpty() ){
             $content[] = [
                 'key' => 'Keywords',
-                'value' => $this->content()->tags()->toKeywords()
+                'value' => $this->content()->research_methods()->toKeywords()
             ];
         }
 
@@ -486,7 +486,7 @@ class Entity extends Page
             ];
         }
 
-        if( $image = $this->thumbnail()->toFile() ){
+        if( $image = $this->thumbnail() ){
             $schema['image'] = $image->url();
         }
 
