@@ -32,7 +32,7 @@ columns:
             extends: fields/description
             label: File caption
 
-          sources:
+          source:
             type: text
             label: Source, Copyright, Author
 

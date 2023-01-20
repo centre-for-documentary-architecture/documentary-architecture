@@ -1,9 +1,8 @@
 label: Sources
-type: entities
-empty: No sources selected
-entity:
-  type: 
-  label: File as Source
-image:
-  cover: true
-  back: '#f9f9f9'
+type: structure
+fields:
+
+  text:
+    label: Source
+    type: textarea
+    buttons: false

@@ -205,12 +205,16 @@ class Entity extends Page
     public function tabInfo(): ?array
 	{
         $info = array_merge( $this->dataIndividualFields(), $this->dataProperties() );
-        if( $this->content()->sources()->isNotEmpty() ){
-            $info[] = [
-                'key' => 'Sources',
-                'value' => $this->content()->sources()->toSources()
-            ];
-        }
+
+        // sources todo
+        // $sources = $this->content()->sources()->toStructure();
+        // if( $sources->count() > 0 ){
+        //     $info[] = [
+        //         'key' => 'Sources',
+        //         'value' => $this->content()->sources_legacy()->toSources()
+        //     ];
+        // }
+        
         if( empty($info) ){
             return null;
         }

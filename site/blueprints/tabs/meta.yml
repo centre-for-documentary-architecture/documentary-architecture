@@ -27,8 +27,7 @@ columns:
           credits:
             extends: fields/credits
 
-          sources:
-            extends: fields/sources
+          sources: fields/sources
 
           research_methods: fields/research_methods
 
