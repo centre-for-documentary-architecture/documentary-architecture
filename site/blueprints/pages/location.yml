@@ -1,0 +1,22 @@
+title: Location
+icon: globe
+
+num: zero
+
+options:
+  duplicate: false
+
+columns:
+
+  - width: 1/2
+    fields:
+
+      location:
+        label: Search on map
+        type: locator
+        language: en
+        display:
+          - lat
+          - lon
+          - city
+          - country

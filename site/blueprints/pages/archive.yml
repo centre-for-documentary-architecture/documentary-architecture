@@ -59,12 +59,13 @@ columns:
             - files_3d
             - files
 
-        section_sources:
+        others:
           extends: sections/pages
-          headline: External sources
+          headline: Others
           sortable: false
           sortBy: title asc
-          info: "{{ page.childrenAndDrafts.count }} Sources"
+          info: "{{ page.childrenAndDrafts.count }}"
           status: unlisted
           templates:
             - items_source
+            - locations
