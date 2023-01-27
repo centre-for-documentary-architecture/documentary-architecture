@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "5e1ecf52b463c180d576eb075fb95c0b",
+    "content-hash": "3a83ac8c75ab35c6bdacdbfae0916157",
     "packages": [
         {
             "name": "bvdputte/kirby-bettersearch",
@@ -788,6 +788,44 @@
                 "source": "https://github.com/rasteiner/k3-pagesdisplay-section/tree/0.2.4"
             },
             "time": "2022-12-15T13:27:55+00:00"
+        },
+        {
+            "name": "sylvainjule/locator",
+            "version": "1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/sylvainjule/kirby-locator.git",
+                "reference": "e1b721fd8df5d705542a110323bc4c72e8820dd4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/sylvainjule/kirby-locator/zipball/e1b721fd8df5d705542a110323bc4c72e8820dd4",
+                "reference": "e1b721fd8df5d705542a110323bc4c72e8820dd4",
+                "shasum": ""
+            },
+            "require": {
+                "getkirby/composer-installer": "^1.1"
+            },
+            "type": "kirby-plugin",
+            "extra": {
+                "installer-name": "locator"
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sylvain Julé",
+                    "email": "contact@sylvain-jule.fr"
+                }
+            ],
+            "description": "A map & geolocation field, built on top of open-source services / Mapbox",
+            "support": {
+                "issues": "https://github.com/sylvainjule/kirby-locator/issues",
+                "source": "https://github.com/sylvainjule/kirby-locator/tree/1.1.2"
+            },
+            "time": "2022-02-26T16:00:22+00:00"
         },
         {
             "name": "symfony/polyfill-intl-idn",
