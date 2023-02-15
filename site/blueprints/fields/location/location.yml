@@ -21,10 +21,10 @@ fields:
 
   address:
     type: text
-    label: Address
+    label: Address (override)
     width: 1/2
 
   city:
     type: text
-    label: City
+    label: City (override)
     width: 1/2

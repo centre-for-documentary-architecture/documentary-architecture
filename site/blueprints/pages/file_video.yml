@@ -26,8 +26,8 @@ tabs:
         sections:
           info_section_fields5:
             fields:
-              location_start:
-                multiple: true
+
+              locations: fields/location/locations
 
   tab_meta:
     columns:
