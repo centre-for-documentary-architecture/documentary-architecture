@@ -34,8 +34,8 @@ tabs:
               date_end: false
 
               location_start:
-                extends: fields/location/location_city
-                label: Location
+                extends: fields/location/legacy/location_city
+                label: Location (Legacy)
 
               location_end: false
 

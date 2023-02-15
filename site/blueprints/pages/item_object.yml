@@ -27,6 +27,10 @@ tabs:
               date_start:
                 label: Manufacturing date
 
+              location_new:
+                extends: fields/location/location
+                label: Manufacturing Location
+
               location_start: false
 
               material:

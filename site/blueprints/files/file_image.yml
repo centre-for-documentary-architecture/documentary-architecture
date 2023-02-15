@@ -34,9 +34,12 @@ tabs:
                 label: Date of recording
 
               location_start:
-                extends: fields/location/location
+                extends: fields/location/legacy/location
                 label: Location of recording
-                # select building
+              
+              location_new:
+                extends: fields/location/location
+                label: Location (New)
 
               starring:
                 type: tags

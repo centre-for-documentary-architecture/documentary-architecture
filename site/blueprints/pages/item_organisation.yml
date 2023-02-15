@@ -22,9 +22,12 @@ tabs:
                 label: Termination
                 width: 1/2
 
+              location_new:
+                extends: fields/location/location
+                label: Primary Location
+
               location_start:
-                extends: fields/location/location_city
-                label: Home location
+                extends: fields/location/legacy/location_city
 
               members:
                 type: tags

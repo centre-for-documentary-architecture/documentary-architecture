@@ -1,5 +1,5 @@
 type: select
-label: Country
+label: Country (Legacy)
 width: 1/2
 options:
   af: Afghanistan

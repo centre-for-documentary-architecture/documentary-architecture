@@ -14,10 +14,13 @@ tabs:
             fields:
 
               date_start:
-                label: Contruction date
+                label: Construction date
+
+              location_new:
+                extends: fields/location/location
 
               location_start:
-                extends: fields/location/location
+                extends: fields/location/legacy/location
 
               architects:
                 type: tags

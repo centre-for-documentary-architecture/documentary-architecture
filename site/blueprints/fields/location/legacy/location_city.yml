@@ -1,5 +1,5 @@
 type: structure
-label: Location
+label: Location (Legacy)
 multiple: false
 
 columns:
@@ -11,10 +11,10 @@ columns:
 fields:
 
   addressLocality:
-    extends: fields/location/city
+    extends: fields/location/legacy/city
 
   addressCountry:
-    extends: fields/location/country
+    extends: fields/location/legacy/country
 
   addressCountryHistoric:
-    extends: fields/location/country_historic
+    extends: fields/location/legacy/country_historic

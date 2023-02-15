@@ -15,6 +15,9 @@ tabs:
 
               date_start: false
 
-              location_start:
-                extends: fields/location/location_city
+              location_new:
+                extends: fields/location/location
                 label: Origin
+
+              location_start:
+                extends: fields/location/legacy/location_city

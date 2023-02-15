@@ -1,0 +1,14 @@
+type: structure
+label: Locations (Neu)
+fields:
+
+  title:
+    type: text
+
+  text: true
+
+  location: fields/location/location
+  
+  showOnMap:
+    label: Show on map
+    type: toggle

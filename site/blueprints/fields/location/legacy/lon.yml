@@ -1,5 +1,5 @@
 type: number
-label: Longitude
+label: Longitude (Legacy)
 width: 1/2
 step: .0001
 min: -180

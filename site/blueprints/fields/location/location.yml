@@ -1,40 +1,30 @@
-type: structure
-label: Location
-max: 1
-help: Physical location or address
-
-columns:
-  title:
-    width: 1/3
-  addressLocality:
-    width: 1/3
-  addressCountry:
-    width: 1/3
+type: object
+label: Location (Neu)
 
 fields:
 
-  title:
-    extends: fields/location/title
+  inherit:
+    extends: fields/pages
+    label: Inherit location
+    multiple: false
 
-  addressCountry:
-    extends: fields/location/country
+  location:
+    type: locator
+    language: en
+    display:
+      - lat
+      - lon
+      - address
+      - number
+      - city
+      - country
 
-  addressCountryHistoric:
-    extends: fields/location/country_historic
-    
-  streetAddress:
-    extends: fields/location/street
+  address:
+    type: text
+    label: Address
+    width: 1/2
 
-  postalCode:
-    extends: fields/location/zip
-    width: 1/3
-    
-  addressLocality:
-    extends: fields/location/city
-    width: 2/3
-
-  lat:
-    extends: fields/location/lat
-
-  lon:
-    extends: fields/location/lon
+  city:
+    type: text
+    label: City
+    width: 1/2

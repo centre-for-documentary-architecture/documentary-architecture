@@ -26,6 +26,8 @@ tabs:
               date_start:
                 label: Release date
 
+              location_new: fields/location/location
+
               location_start: false
 
               credits:

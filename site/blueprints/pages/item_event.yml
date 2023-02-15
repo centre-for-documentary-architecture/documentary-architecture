@@ -22,8 +22,11 @@ tabs:
                 label: Closing date
                 width: 1/2
 
+              timeline_new:
+                extends: fields/location/timeline
+
               location_start:
-                extends: fields/location/location
+                extends: fields/location/legacy/location
 
               timeline:
                 type: structure
@@ -41,7 +44,7 @@ tabs:
                     width: 1/2
 
                   location:
-                    extends: fields/location/location
+                    extends: fields/location/legacy/location
                     multiple: false
 
               credits:

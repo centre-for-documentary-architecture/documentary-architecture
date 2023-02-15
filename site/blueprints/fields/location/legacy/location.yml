@@ -1,0 +1,40 @@
+type: structure
+label: Location (Legacy)
+max: 1
+help: Physical location or address
+
+columns:
+  title:
+    width: 1/3
+  addressLocality:
+    width: 1/3
+  addressCountry:
+    width: 1/3
+
+fields:
+
+  title:
+    extends: fields/location/legacy/title
+
+  addressCountry:
+    extends: fields/location/legacy/country
+
+  addressCountryHistoric:
+    extends: fields/location/legacy/country_historic
+    
+  streetAddress:
+    extends: fields/location/legacy/street
+
+  postalCode:
+    extends: fields/location/legacy/zip
+    width: 1/3
+    
+  addressLocality:
+    extends: fields/location/legacy/city
+    width: 2/3
+
+  lat:
+    extends: fields/location/legacy/lat
+
+  lon:
+    extends: fields/location/legacy/lon

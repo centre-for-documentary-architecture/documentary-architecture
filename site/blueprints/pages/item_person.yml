@@ -13,23 +13,41 @@ tabs:
           info_section_fields5:
             fields:
 
+              date_new:
+                label: Date (New)
+                extends: fields/date_historical
+
               date_start:
-                label: Date of Birth
+                label: Date of Birth (Legacy)
                 width: 1/2
 
               date_end:
                 extends: fields/date_historical
-                label: Date of death
+                label: Date of death (Legacy)
                 width: 1/2
 
+              timeline:
+                type: structure
+                label: Location timeline (Neu)
+                fields:
+                  title:
+                    type: text
+                  text: true
+                  date:
+                    extends: fields/date_historical
+                  location: fields/location/location
+                  showOnMap:
+                    label: Show on map
+                    type: toggle
+
               location_start:
-                extends: fields/location/location_city
-                label: Place of Birth
+                extends: fields/location/legacy/location_city
+                label: Place of Birth (Legacy)
                 max: 1
 
               location_end:
-                extends: fields/location/location_city
-                label: Place of Death
+                extends: fields/location/legacy/location_city
+                label: Place of Death (Legacy)
                 max: 1
 
               occupation:
@@ -68,5 +86,5 @@ tabs:
                     buttons: false
 
                   location:
-                    extends: fields/location/location_city
+                    extends: fields/location/legacy/location_city
                     multiple: false

@@ -1,0 +1,17 @@
+type: structure
+label: Location timeline (Neu)
+fields:
+
+  title:
+    type: text
+
+  text: true
+
+  date:
+    extends: fields/date_historical
+
+  location: fields/location/location
+  
+  showOnMap:
+    label: Show on map
+    type: toggle

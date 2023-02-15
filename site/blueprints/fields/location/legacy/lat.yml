@@ -1,5 +1,5 @@
 type: number
-label: Latitude
+label: Latitude (Legacy)
 width: 1/2
 step: .0001
 min: -90
