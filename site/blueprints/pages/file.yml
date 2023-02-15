@@ -44,7 +44,6 @@ tabs:
 
               location_start:
                 extends: fields/location/legacy/location_city
-                label: Location of recording (Legacy)
 
               starring:
                 type: tags

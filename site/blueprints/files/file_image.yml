@@ -35,7 +35,6 @@ tabs:
 
               location_start:
                 extends: fields/location/legacy/location
-                label: Location of recording
               
               location_new:
                 extends: fields/location/location
