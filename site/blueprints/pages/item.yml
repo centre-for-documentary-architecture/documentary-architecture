@@ -27,11 +27,9 @@ tabs:
             type: fields
             fields:
 
-              date_start:
+              date_new:
+                label: Date (New)
                 extends: fields/date_historical
-                label: Date
-
-              date_end: false
 
               location_start:
                 extends: fields/location/legacy/location_city

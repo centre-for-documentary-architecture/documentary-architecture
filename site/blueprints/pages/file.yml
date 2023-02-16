@@ -38,12 +38,13 @@ tabs:
             type: fields
             fields:
 
-              date_start:
+              date_new:
                 extends: fields/date_historical
-                label: Date of recording
 
               location_start:
                 extends: fields/location/legacy/location_city
+              
+              location_new: fields/location/location
 
               starring:
                 type: tags

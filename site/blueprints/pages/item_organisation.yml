@@ -13,18 +13,7 @@ tabs:
           info_section_fields5:
             fields:
 
-              date_start:
-                label: Foundation date
-                width: 1/2
-
-              date_end:
-                extends: fields/date_historical
-                label: Termination
-                width: 1/2
-
-              location_new:
-                extends: fields/location/location
-                label: Primary Location
+              location_new: fields/location/location
 
               location_start:
                 extends: fields/location/legacy/location_city

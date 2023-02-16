@@ -99,7 +99,7 @@ class PageArchive extends Page
         }
 
         return $this->entities()->listed()->bettersearch( $query, [
-            'fields' => ['title','additional_title','research_methods','tags','content_text','description','category','transcript','credits','date_start','date_end','location_start','location_end','starring','occupation','sources']
+            'fields' => ['title','additional_title','research_methods','tags','content_text','description','category','transcript','credits','date_new','date_end','location_start','location_end','starring','occupation','sources']
         ]);
 
     }

@@ -29,6 +29,8 @@ tabs:
 
               locations: fields/location/locations
 
+              location_new: false
+
   tab_meta:
     columns:
       meta_column_left:

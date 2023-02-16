@@ -76,10 +76,10 @@ class EntityFile extends Entity
 
         $content = [];
 
-        if( $this->date_start()->isNotEmpty() ){
+        if( $this->date_new()->isNotEmpty() ){
             $content[] = [
                 'key' => 'Date of recording',
-                'value' => $this->content()->date_start()->toDateKeyword()
+                'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
         if( $this->location_start()->isNotEmpty() ){

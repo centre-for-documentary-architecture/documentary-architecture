@@ -13,19 +13,6 @@ tabs:
           info_section_fields5:
             fields:
 
-              date_new:
-                label: Date (New)
-                extends: fields/date_historical
-
-              date_start:
-                label: Date of Birth (Legacy)
-                width: 1/2
-
-              date_end:
-                extends: fields/date_historical
-                label: Date of death (Legacy)
-                width: 1/2
-
               timeline:
                 type: structure
                 label: Location timeline (Neu)
@@ -72,19 +59,4 @@ tabs:
                 buttons: false
                 help: false
 
-              education:
-                type: structure
-                label: Education
-                fields:
-
-                  date_start:
-                    extends: fields/date_historical
-                    label: Date
-
-                  text:
-                    type: textarea
-                    buttons: false
-
-                  location:
-                    extends: fields/location/legacy/location_city
-                    multiple: false
+              education: fields/legacy/education

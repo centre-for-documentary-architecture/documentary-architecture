@@ -13,11 +13,7 @@ tabs:
           info_section_fields5:
             fields:
 
-              date_start:
-                label: Construction date
-
-              location_new:
-                extends: fields/location/location
+              location_new: fields/location/location
 
               location_start:
                 extends: fields/location/legacy/location

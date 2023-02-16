@@ -13,45 +13,13 @@ tabs:
           info_section_fields5:
             fields:
 
-              date_start:
-                label: Opening date
-                width: 1/2
-
-              date_end:
-                extends: fields/date_historical
-                label: Closing date
-                width: 1/2
-
               timeline_new:
                 extends: fields/location/timeline
 
               location_start:
                 extends: fields/location/legacy/location
 
-              timeline:
-                type: structure
-                label: Timeline
-                fields:
-
-                  date_start:
-                    extends: fields/date_historical
-                    label: Opening date
-                    width: 1/2
-
-                  date_end:
-                    extends: fields/date_historical
-                    label: Closing date
-                    width: 1/2
-
-                  location:
-                    extends: fields/location/legacy/location
-                    multiple: false
-
-              credits:
-                extends: fields/credits
-                label: Credits
-
-
+              timeline: fields/legacy/timeline
 
   tab_meta:
     columns:
@@ -65,8 +33,6 @@ tabs:
 
               category:
                 extends: fields/category
-
-              credits: false
 
               sources: false
 

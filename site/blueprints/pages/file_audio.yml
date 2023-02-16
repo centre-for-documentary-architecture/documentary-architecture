@@ -26,14 +26,7 @@ tabs:
             headline: Info on audio files
             text: |
               Audio files must be provided as mp3. After uploading, it can be assigned under the **File selection** field. Alternatively, the file could also be uploaded to SoundCloud.
-
-      column_right:
-        sections:
-          info_section_fields5:
-            fields:
-              location_start:
-                multiple: true
-
+              
   tab_meta:
     columns:
       meta_column_left:

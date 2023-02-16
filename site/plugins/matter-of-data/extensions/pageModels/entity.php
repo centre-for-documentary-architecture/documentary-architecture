@@ -340,16 +340,16 @@ class Entity extends Page
 
         $content = [];
 
-        if( $this->date_start()->isNotEmpty() ){
+        if( $this->date_new()->isNotEmpty() ){
             $content[] = [
-                'key' => 'Date start',
-                'value' => $this->content()->date_start()->toDateKeyword()
+                'key' => 'Date',
+                'value' => $this->date_new()->toDateKeyword()
             ];
         }
         if( $this->location_start()->isNotEmpty() ){
             $content[] = [
                 'key' => 'Location start',
-                'value' => $this->content()->location_start()->toLocation()
+                'value' => $this->location_start()->toLocation()
             ];
         }
 

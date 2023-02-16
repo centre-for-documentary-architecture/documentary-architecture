@@ -35,8 +35,8 @@ class EntityItemPerson extends EntityItem
         $content = [];
 
         $dates = [];
-        if( $this->date_start()->isNotEmpty() ){
-            $dates[] = $this->content()->date_start()->toDateKeyword();
+        if( $this->date_new()->isNotEmpty() ){
+            $dates[] = $this->date_new()->toDateKeyword();
         }
         if( $this->location_start()->isNotEmpty() ){
             $dates[] = $this->content()->location_start()->toLocation();
@@ -51,7 +51,6 @@ class EntityItemPerson extends EntityItem
         $dates = [];
         if( $this->date_end()->isNotEmpty() ){
             $dates[] = $this->content()->date_end()->toDateKeyword();
-
         }
         if( $this->location_end()->isNotEmpty() ){
             $dates[] = $this->content()->location_end()->toLocation();
@@ -121,10 +120,10 @@ class EntityItemBuilding extends EntityItem
 
         $content = [];
 
-        if( $this->date_start()->isNotEmpty() ){
+        if( $this->date_new()->isNotEmpty() ){
             $content[] = [
                 'key' => 'Construction',
-                'value' => $this->content()->date_start()->toDateKeyword()
+                'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
         if( $this->location_start()->isNotEmpty() ){
@@ -177,8 +176,8 @@ class EntityItemBuilding extends EntityItem
             ]));
         }
 
-        if( $this->date_start()->isNotEmpty() ){
-            $info[] = $this->content()->date_start()->value();
+        if( $this->date_new()->isNotEmpty() ){
+            $info[] = $this->content()->date_new()->value();
         }
 
         return implode( '<br />', $info );
@@ -195,10 +194,10 @@ class EntityItemObject extends EntityItem
 
         $content = [];
 
-        if( $this->date_start()->isNotEmpty() ){
+        if( $this->date_new()->isNotEmpty() ){
             $content[] = [
                 'key' => 'Production date',
-                'value' => $this->content()->date_start()->toDateKeyword()
+                'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
 
@@ -262,10 +261,10 @@ class EntityItemOrganisation extends EntityItem
 
         $content = [];
 
-        if( $this->date_start()->isNotEmpty() ){
+        if( $this->date_new()->isNotEmpty() ){
             $content[] = [
                 'key' => 'Founded',
-                'value' => $this->content()->date_start()->toDateKeyword()
+                'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
 
@@ -315,10 +314,10 @@ class EntityItemPublication extends EntityItem
 
         $content = [];
 
-        if( $this->date_start()->isNotEmpty() ){
+        if( $this->date_new()->isNotEmpty() ){
             $content[] = [
                 'key' => 'Release',
-                'value' => $this->content()->date_start()->toDateKeyword()
+                'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
 
@@ -353,8 +352,8 @@ class EntityItemEvent extends EntityItem
 
         $content = [];
 
-        if( $this->date_start()->isNotEmpty() ){
-            $date = $this->content()->date_start()->toDateKeyword();
+        if( $this->date_new()->isNotEmpty() ){
+            $date = $this->content()->date_new()->toDateKeyword();
             if( $this->date_end()->isNotEmpty() ){
                 $date .= ' &minus; '.$this->date_end()->toDateKeyword();
             }

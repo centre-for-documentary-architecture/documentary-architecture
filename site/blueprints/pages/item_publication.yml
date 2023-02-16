@@ -23,16 +23,12 @@ tabs:
           info_section_fields5:
             fields:
 
-              date_start:
-                label: Release date
-
               location_new: fields/location/location
 
               location_start: false
 
               credits:
                 extends: fields/credits
-                label: Authors and Editors
 
               publisher:
                 label: Publisher
