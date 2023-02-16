@@ -4,6 +4,6 @@ multiple: false
 layout: cards
 query: site.archive('images').images.add( page.images )
 help: Select image from archive or upload directly to this entity
-size: large
+size: huge
 image:
   back: black

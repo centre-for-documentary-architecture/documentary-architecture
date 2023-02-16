@@ -27,8 +27,9 @@ tabs:
 
               location_start: false
 
-              credits:
+              details:
                 extends: fields/credits
+                label: Authors & Editors
 
               publisher:
                 label: Publisher
@@ -46,8 +47,6 @@ tabs:
 
               category:
                 extends: fields/category
-
-              credits: false
 
               sources: false
 

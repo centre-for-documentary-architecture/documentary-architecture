@@ -321,8 +321,8 @@ class EntityItemPublication extends EntityItem
             ];
         }
 
-        if( $this->content()->credits()->isNotEmpty() ){
-            foreach( $this->content()->credits()->yaml() as $credit ){
+        if( $this->content()->details()->isNotEmpty() ){
+            foreach( $this->content()->details()->yaml() as $credit ){
                 $content[] = [
                     'key' => $credit['title'],
                     'value' => $credit['person']
