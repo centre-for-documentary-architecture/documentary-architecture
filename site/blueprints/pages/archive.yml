@@ -34,7 +34,6 @@ columns:
           - items_organisation
           - items_object
           - items_material
-          - items_document
           - items_publication
           - items
         create:

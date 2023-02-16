@@ -1,6 +1,0 @@
-title: Document
-icon: file-document
-
-num: zero
-
-extends: pages/item

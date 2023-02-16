@@ -30,13 +30,15 @@ columns:
               cover: true
               back: '#f9f9f9'
 
-          line3: fields/line
+          line3:
+            type: line
 
           content_text:
             extends: fields/body
             label: Text content
 
-          line2: fields/line
+          line2:
+            type: line
 
           content_presentation:
             extends: fields/presentation
@@ -76,7 +78,8 @@ columns:
               small: Small
               large: Large
 
-          line1: fields/line
+          line1:
+            type: line
 
       section_content_children:
         extends: sections/pages
