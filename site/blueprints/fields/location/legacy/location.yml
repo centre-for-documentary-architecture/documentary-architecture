@@ -1,7 +1,6 @@
 type: structure
 label: Location (Legacy)
 max: 1
-help: Physical location or address
 
 columns:
   title:

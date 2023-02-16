@@ -6,7 +6,9 @@ num: zero
 extends: pages/file
 
 tabs:
+
   tab_info:
+
     columns:
       column_left:
         sections:
@@ -27,3 +29,5 @@ tabs:
                 query: page.images
                 image:
                   back: '#f9f9f9'
+
+  tab_content: false

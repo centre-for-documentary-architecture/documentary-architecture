@@ -1,5 +1,4 @@
 title: Image entity
-# https://getkirby.com/docs/reference/panel/blueprints/file
 
 accept: image/*
 
@@ -31,10 +30,10 @@ tabs:
 
               date_new: fields/date_historical
 
+              location_new: fields/location/location
+              
               location_start:
                 extends: fields/location/legacy/location
-              
-              location_new: fields/location/location
 
               starring:
                 type: tags
@@ -45,13 +44,6 @@ tabs:
                   query: site.archive.items.children
                   text: '{{ page.title }}'
                   value: '{{ page.id }}'
-
-  tab_content:
-    label: Transcript
-    icon: text
-    fields:
-
-      transcript: fields/files/transcript
 
   tab_contexts: tabs/contexts
   

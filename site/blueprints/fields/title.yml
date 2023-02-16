@@ -1,4 +1,3 @@
 type: text
-label: Additional title
+label: Additional title or subtitle
 maxlength: 80
-help: Alternative, additional or subtitle of this entity

@@ -1,8 +1,8 @@
 type: text
 icon: clock
-label: Playback duration
+label: Media playback duration
 step: 1
-before: MM:SS
+placeholder: MM:SS
 required: true
 validate:
   match: /^(((\d:[0-5])?|[0-5])(\d:[0-5]\d))?$/

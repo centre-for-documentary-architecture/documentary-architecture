@@ -1,41 +1,32 @@
 title: File as part of entity
 
-# https://getkirby.com/docs/reference/panel/blueprints/file
-
 options:
   changeName: true
   delete: true
   replace: true
   update: true
 
-columns:
-  column_left:
-    width: 1/2
-    sections:
+sections:
 
-      help:
-        type: info
-        headline: Help
-        text: |
-          This file is a direct upload to:
-          **{{ file.parent.id }}**
+  help:
+    type: info
+    headline: Help
+    theme: white
+    text: |
+      This file is a direct upload to: **{{ file.parent.id }}**
+      Permanent URL: {{ file.permalink }}
 
-  column_right:
-    width: 1/2
-    sections:
+  fields:
+    fields:
 
-      info_section_fields3:
-        type: fields
-        fields:
+      description:
+        extends: fields/description
+        label: File caption
 
-          description:
-            extends: fields/description
-            label: File caption
+      source:
+        type: text
+        label: File credits (source, copyright, author)
 
-          source:
-            type: text
-            label: Source, Copyright, Author
-
-          link:
-            extends: fields/url
-            label: Link to external Website
+      link:
+        extends: fields/url
+        label: Link to external Website

@@ -1,5 +1,4 @@
 type: textarea
-label: Description
+label: Short description
 buttons: false
 maxlength: 400
-help: Unformatted short description of this entity

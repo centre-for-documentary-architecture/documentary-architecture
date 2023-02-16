@@ -1,5 +1,3 @@
-# https://getkirby.com/docs/guide/blueprints/tabs
-
 label: Meta
 icon: dots
 
@@ -32,6 +30,8 @@ columns:
           research_methods: fields/research_methods
 
           tags: fields/tags
+
+          password: fields/new/password
 
           worlditem:
             extends: liebling-house/fields/worlditem

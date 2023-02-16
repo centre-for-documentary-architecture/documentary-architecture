@@ -13,9 +13,15 @@ tabs:
         sections:
           info_section_fields1:
             fields:
+
               additional_title:
                 type: textarea
                 buttons: false
+
+              document_attatchment:
+                extends: fields/files
+                label: Attatched documents for download
+                query: page.documents
 
       column_right:
         sections:

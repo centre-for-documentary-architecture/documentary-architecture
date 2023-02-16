@@ -41,10 +41,10 @@ tabs:
               date_new:
                 extends: fields/date_historical
 
+              location_new: fields/location/location
+              
               location_start:
                 extends: fields/location/legacy/location_city
-              
-              location_new: fields/location/location
 
               starring:
                 type: tags

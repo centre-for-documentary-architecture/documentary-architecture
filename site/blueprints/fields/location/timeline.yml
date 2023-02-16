@@ -1,11 +1,12 @@
 type: structure
-label: Location timeline (Neu)
+label: Location timeline (New)
 fields:
 
   title:
     type: text
 
-  text: true
+  text:
+    label: Description
 
   date:
     extends: fields/date_historical

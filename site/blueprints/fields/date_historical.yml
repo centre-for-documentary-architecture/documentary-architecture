@@ -1,6 +1,7 @@
 type: text
 label: Date
-help: YYYY(-MM)(-DD), YYYY(s)(-YYYY)
+help: >
+  [Formatting help](https://github.com/centre-for-documentary-architecture/documentary-architecture/wiki/Date-formatting)
 placeholder: YYYY-MM-DD
 icon: calendar
 # validate:

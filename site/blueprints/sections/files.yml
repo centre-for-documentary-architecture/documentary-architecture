@@ -1,6 +1,4 @@
 type: files
-# https://getkirby.com/docs/reference/panel/sections/files
-
 headline: Direct uploads
 info: "{{ file.template }}"
 image:

@@ -27,9 +27,9 @@ tabs:
           info_section_fields5:
             fields:
 
-              locations: fields/location/locations
-
               location_new: false
+
+              locations: fields/location/locations
 
   tab_meta:
     columns:

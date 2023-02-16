@@ -13,19 +13,7 @@ tabs:
           info_section_fields5:
             fields:
 
-              timeline:
-                type: structure
-                label: Location timeline (Neu)
-                fields:
-                  title:
-                    type: text
-                  text: true
-                  date:
-                    extends: fields/date_historical
-                  location: fields/location/location
-                  showOnMap:
-                    label: Show on map
-                    type: toggle
+              timeline: fields/location/timeline
 
               location_start:
                 extends: fields/location/legacy/location_city

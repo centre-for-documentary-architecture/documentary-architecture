@@ -9,16 +9,6 @@ tabs:
   tab_info:
     columns:
 
-      column_left:
-        sections:
-          info_section_fields1:
-            fields:
-
-              3d_object:
-                extends: fields/pages
-                label: 3D Object
-                query: site.archive('3d-objects').children
-
       column_right:
         sections:
           info_section_fields5:
