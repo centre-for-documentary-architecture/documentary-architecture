@@ -6,20 +6,20 @@ Kirby::plugin('cda/migrate', [
     'routes' => [
         [
             'pattern' => '/migrate-locations',
-            'action'  => function(){
+            'action'  => function () {
 
                 $kirby = kirby();
                 $archive = $kirby->site()->archive('images');
-                
+
                 $result = [];
 
                 $n = 0;
 
-                foreach( $archive->images()->offset($n)->limit(50) as $item ) {
+                foreach ($archive->images()->offset($n)->limit(50) as $item) {
 
                     $contexts = $item->contexts()->toPages()->filterBy('intendedTemplate', 'item_building');
 
-                    if( $contexts->count() !== 1 ) {
+                    if ($contexts->count() !== 1) {
                         continue;
                     }
 
@@ -28,9 +28,9 @@ Kirby::plugin('cda/migrate', [
                     $location = $item->location_new()->yaml();
 
                     $new = $location;
-                    $new['inherit'] = [ (string)$context->uuid() ];
+                    $new['inherit'] = [(string)$context->uuid()];
 
-                    if( $new['inherit'] ){
+                    if ($new['inherit']) {
                         $new['location'] = [];
                     } else {
                         continue;
@@ -46,11 +46,9 @@ Kirby::plugin('cda/migrate', [
                         'old' => $location,
                         'new' => $new
                     ];
-                    
                 }
 
                 return $result;
-
             }
         ],
     ]

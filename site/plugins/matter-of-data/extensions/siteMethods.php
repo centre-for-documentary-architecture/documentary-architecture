@@ -6,11 +6,11 @@
 */
 
 return [
-	'archive' => function ( $type = false ){
+	'archive' => function ($type = false) {
 		/*
 		* returns the archive page or any given sub archive
 		*/
-		if( $page = $this->page('archive/'.$type) ){
+		if ($page = $this->page('archive/' . $type)) {
 			// returns /archive/slug
 			return $page;
 		} else {
@@ -18,26 +18,25 @@ return [
 			return $this->page('archive');
 		}
 	},
-	'dataAbstract' => function( string $srcset = 'medium' ){
+	'dataAbstract' => function (string $srcset = 'medium') {
 
 		$content = $this->homePage()->dataAbstract();
 		$content['title'] = $this->title()->value();
 
 		return $content;
-
 	},
-	'schema' => function(): array {
+	'schema' => function (): array {
 
 		$image = $this->thumbnail()->toFile();
 		$image = $image ? $image->url() : null;
 
 		$links = [];
-		foreach( $this->links()->toStructure() as $link ){
+		foreach ($this->links()->toStructure() as $link) {
 			$links[] = (string)$link->href();
 		}
 
 		$members = [];
-		foreach( $this->team()->toUsers() as $user ){
+		foreach ($this->team()->toUsers() as $user) {
 			$members[] = [
 				'@type' => 'Person',
 				'name' => (string)$user->name(),
@@ -63,7 +62,7 @@ return [
 				'country' => 'Germany',
 			],
 			'keywords' => $this->tags()->split(),
-			'knowsLanguage' => ['en','de'],
+			'knowsLanguage' => ['en', 'de'],
 			'legalName' => 'Centre for Documentary Architecture e.V.',
 			'location' => [
 				'@type' => 'PostalAddress',

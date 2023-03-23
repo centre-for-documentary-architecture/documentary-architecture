@@ -1,6 +1,7 @@
 <?php
 
-function migrateLocation( $old ){
+function migrateLocation($old)
+{
 
     $cc_map = [
         'il' => 'Israel',
@@ -26,20 +27,19 @@ function migrateLocation( $old ){
         'fi' => 'Finland',
     ];
 
-    $country = array_key_exists('addresscountry',$old) ? $old['addresscountry'] : '';
-    $country = array_key_exists($country,$cc_map) ? $cc_map[$country] : $country;
-    
+    $country = array_key_exists('addresscountry', $old) ? $old['addresscountry'] : '';
+    $country = array_key_exists($country, $cc_map) ? $cc_map[$country] : $country;
+
     $number = '';
     $street = '';
 
-    if( array_key_exists('streetaddress',$old) ){
+    if (array_key_exists('streetaddress', $old)) {
 
         preg_match("/\s\d+$|^\d+\s/", $old['streetaddress'], $number_match);
-        if( $number_match ){
+        if ($number_match) {
             $number = trim($number_match[0]);
-            $street = trim(str_replace( $number_match, '', $old['streetaddress'] ));
+            $street = trim(str_replace($number_match, '', $old['streetaddress']));
         }
-
     }
 
     $new = [

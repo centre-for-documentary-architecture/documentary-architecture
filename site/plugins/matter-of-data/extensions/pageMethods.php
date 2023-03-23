@@ -10,112 +10,87 @@ return [
 	/*
 	* general information about this page
 	*/
-	'entity' => function(): string
-	{
+	'entity' => function (): string {
 		// collection|item|file
-		return explode( '_', $this->intendedTemplate() )[0];
-
+		return explode('_', $this->intendedTemplate())[0];
 	},
-	'type' => function(): string
-	{
+	'type' => function (): string {
 		// image|video|building|liebling-house
-		$e = explode( '_', $this->intendedTemplate() );
-		return end( $e );
-
+		$e = explode('_', $this->intendedTemplate());
+		return end($e);
 	},
-	'classlist' => function(): string
-	{
-		return $this->entity().' '.$this->type();
+	'classlist' => function (): string {
+		return $this->entity() . ' ' . $this->type();
 	},
-	'category' => function(): ?string
-	{
+	'category' => function (): ?string {
 		// select field
-		if( $this->content()->category()->isNotEmpty() ){
+		if ($this->content()->category()->isNotEmpty()) {
 
 			return $this->content()->category()->toSlug()->value();
-
 		}
 		return null;
-
 	},
-	'theme' => function(): string
-	{
+	'theme' => function (): string {
 
 		return 'black';
-
 	},
-	'layout' => function(): string
-	{
+	'layout' => function (): string {
 
 		return 'regular';
-
 	},
 
 	/*
 	* generic fields all pages should have
 	*/
-	'keywords' => function( string $fallback = '' ): Kirby\Cms\Field
-	{
+	'keywords' => function (string $fallback = ''): Kirby\Cms\Field {
 
-		if( $this->content()->keywords()->isNotEmpty() ){
+		if ($this->content()->keywords()->isNotEmpty()) {
 
 			return $this->content()->keywords();
-
 		}
 
-		return new Field( $this, 'keywords', $fallback );
-
+		return new Field($this, 'keywords', $fallback);
 	},
-	'description' => function( string $fallback = '' ): Kirby\Cms\Field
-	{
+	'description' => function (string $fallback = ''): Kirby\Cms\Field {
 
-		if( $this->content()->description()->isNotEmpty() ){
+		if ($this->content()->description()->isNotEmpty()) {
 
 			return $this->content()->description();
-
 		}
 
-		return new Field( $this, 'description', $fallback );
-
+		return new Field($this, 'description', $fallback);
 	},
-	'thumbnail' => function(): ?Kirby\Cms\File
-	{
+	'thumbnail' => function (): ?Kirby\Cms\File {
 
-		if( $file = $this->content()->thumbnail()->toFile() ){
+		if ($file = $this->content()->thumbnail()->toFile()) {
 			return $file;
 		}
 
 		return null;
-
 	},
-	'countCollection' => function(): int
-	{
+	'countCollection' => function (): int {
 
-		if( $c = $this->collection() ){
+		if ($c = $this->collection()) {
 
 			return $c->count();
-
 		}
 		return 1;
-
 	},
-	'entityInfo' => function(): string
-	{
+	'entityInfo' => function (): string {
 
 		return '';
-
 	},
 
 	/*
 	* general data representations on the current page
 	*/
-	'dataAbstract' => function( string $srcset = 'medium' ){
+	'dataAbstract' => function (string $srcset = 'medium') {
 
 		$id = $this->id();
 		$cache = $this->kirby()->cache('abstract');
-		$data  = $cache->get( $id );
+		$data  = $cache->get($id);
 
-		if ($data === null){
+		if ($data === null) {
 
 			$data = [
 				'url' => $this->url(),
@@ -128,19 +103,16 @@ return [
 				'keywords' => $this->research_methods()->split(),
 			];
 
-			if( $srcset && $thumbnail = $this->thumbnail() ){
-				$data['thumbnail'] = $this->thumbnail()->dataThumbnail( $srcset );
+			if ($srcset && $thumbnail = $this->thumbnail()) {
+				$data['thumbnail'] = $this->thumbnail()->dataThumbnail($srcset);
 			}
 
-			$cache->set($id, $data, option('cache-expires',1440) );
-
+			$cache->set($id, $data, option('cache-expires', 1440));
 		}
 
 		return $data;
-
 	},
-	'dataGeneral' => function(): array
-	{
+	'dataGeneral' => function (): array {
 		$data = [
 			'url' => $this->url(),
 			'id' => $this->id(),
@@ -157,51 +129,44 @@ return [
 			'template' => $this->template()->name(),
 			'worlditem' => $this->worlditem(),
 		];
-		if( $thumbnail = $this->thumbnail() ){
+		if ($thumbnail = $this->thumbnail()) {
 			$data['thumbnail'] = $this->thumbnail()->dataThumbnail('medium');
 		}
 		return $data;
 	},
-	'dataSet' => function(): array
-	{
+	'dataSet' => function (): array {
 		/*
 		* this shall be overridden by pageModels to include individual sets of information
 		*/
 		return $this->dataGeneral();
-
 	},
-	'dataBreadcrumbs' => function(): array
-	{
+	'dataBreadcrumbs' => function (): array {
 		// get all parents and flip the order
 		$crumbs = $this->parents()->flip();
 
-        // add the home page
-		$crumbs->prepend( $this->site()->homePage() );
+		// add the home page
+		$crumbs->prepend($this->site()->homePage());
 
-		$crumbs->add( $this );
+		$crumbs->add($this);
 
-		return $crumbs->dataAbstract( false );
+		return $crumbs->dataAbstract(false);
 	},
-	'collection' => function()
-	{
+	'collection' => function () {
 
-		if( $this->hasChildren() ){
+		if ($this->hasChildren()) {
 
-            return $this->children()->listed();
-
+			return $this->children()->listed();
 		}
 		return [];
-
 	},
-	'worlditem' => function(): ?string
-	{
+	'worlditem' => function (): ?string {
 		return null;
 	},
-	'schema' => function(): array {
+	'schema' => function (): array {
 
 		$breadcrumbs = [];
 		$i = 1;
-		foreach( $this->parents()->flip() as $parent ){
+		foreach ($this->parents()->flip() as $parent) {
 			$breadcrumbs[] = [
 				'@type' => 'ListItem',
 				'position' => $i,
@@ -238,20 +203,20 @@ return [
 	*/
 
 
-	'entityType' => function(){
+	'entityType' => function () {
 		/*
 		* returns array of all types, this page is part of
 		* requires that blueprints are named like type1_type2, eg. item_building.yml
 		*/
-		return explode( '_', $this->intendedTemplate() );
+		return explode('_', $this->intendedTemplate());
 	},
-	'isType' => function( $type ){
+	'isType' => function ($type) {
 		/*
 		* tests if this page matches the given type
 		*/
-		return in_array( $type, explode( '_', $this->intendedTemplate() ));
+		return in_array($type, explode('_', $this->intendedTemplate()));
 	},
-	'toLink' => function( $text = false ){
+	'toLink' => function ($text = false) {
 		/*
 		* creates a link to this page
 		*/
@@ -259,13 +224,14 @@ return [
 			$this->url(),
 			$text ? $text : $this->title(),
 			$attr = [
-				'title' => 'Go to "'.$this->title().'"'
-		]);
+				'title' => 'Go to "' . $this->title() . '"'
+			]
+		);
 	},
-	'filetitle' => function(){
+	'filetitle' => function () {
 		/*
 		* inserts word break hints <wbr> into filenames
 		*/
-		return wbr( $this->title() );
+		return wbr($this->title());
 	},
 ];

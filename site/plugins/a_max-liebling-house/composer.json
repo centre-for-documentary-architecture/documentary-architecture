@@ -1,0 +1,9 @@
+{
+    "name": "cda/max-liebling-house",
+    "type": "kirby-plugin",
+    "authors": [
+        {
+            "name": "CDA"
+        }
+    ]
+}

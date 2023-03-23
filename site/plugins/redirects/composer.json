@@ -1,0 +1,9 @@
+{
+    "name": "cda/redirects",
+    "type": "kirby-plugin",
+    "authors": [
+        {
+            "name": "CDA"
+        }
+    ]
+}

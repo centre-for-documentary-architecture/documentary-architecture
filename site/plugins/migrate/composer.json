@@ -1,0 +1,9 @@
+{
+    "name": "cda/migrate",
+    "type": "kirby-plugin",
+    "authors": [
+        {
+            "name": "CDA"
+        }
+    ]
+}

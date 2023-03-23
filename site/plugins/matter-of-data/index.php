@@ -1,41 +1,37 @@
 <?php
 
 use Kirby\Cms\PluginAssets;
-
-/**
-* matter-of-data plugin
-*/
+use Kirby\Cms\App as Kirby;
 
 // import functions
-require_once __DIR__.'/functions/helpers.php';
-require_once __DIR__.'/functions/anchors.php';
-require_once __DIR__.'/functions/formats.php';
-require_once __DIR__.'/functions/searchReplaceFields.php';
+require_once __DIR__ . '/functions/helpers.php';
+require_once __DIR__ . '/functions/anchors.php';
+require_once __DIR__ . '/functions/formats.php';
+require_once __DIR__ . '/functions/searchReplaceFields.php';
 
 // import models
-require_once __DIR__.'/extensions/pageModels/page.php';
-require_once __DIR__.'/extensions/pageModels/archive.php';
-require_once __DIR__.'/extensions/pageModels/entity.php';
-require_once __DIR__.'/extensions/pageModels/entityCollection.php';
-require_once __DIR__.'/extensions/pageModels/entityItem.php';
-require_once __DIR__.'/extensions/pageModels/entityFile.php';
+require_once __DIR__ . '/extensions/pageModels/page.php';
+require_once __DIR__ . '/extensions/pageModels/archive.php';
+require_once __DIR__ . '/extensions/pageModels/entity.php';
+require_once __DIR__ . '/extensions/pageModels/entityCollection.php';
+require_once __DIR__ . '/extensions/pageModels/entityItem.php';
+require_once __DIR__ . '/extensions/pageModels/entityFile.php';
 
-function flushCache( $id, $cache = true ){
+function flushCache($id, $cache = true)
+{
 
 	$kirby = kirby();
-	if( $cache === true ){
+	if ($cache === true) {
 
-		$kirby->cache('abstract')->remove( $id );
-		$kirby->cache('get')->remove( $id );
+		$kirby->cache('abstract')->remove($id);
+		$kirby->cache('get')->remove($id);
 		// $kirby->cache('worlditems')->remove( $id );
 		return;
-
 	}
-	$kirby->cache($cache)->remove( $id );
-
+	$kirby->cache($cache)->remove($id);
 }
 
-Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
+Kirby::plugin('cda/matter-of-data', [
 
 	'options' => [
 		'pagination' => 40,
@@ -43,18 +39,18 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 	],
 
 	'routes' => [
-        [
+		[
 			'pattern' => 'archive/images/(:any)',
-			'action'  => function ( $any ){
-				return kirby()->file('archive/images/'.$any)->toImageEntity();
+			'action'  => function ($any) {
+				return kirby()->file('archive/images/' . $any)->toImageEntity();
 			}
 		],
 		[
-            'pattern' => 'team/(:any)',
-            'action'  => function ( $any ){
+			'pattern' => 'team/(:any)',
+			'action'  => function ($any) {
 
-				$user = kirby()->users()->filter(function($user) use ($any){
-					return Str::slug( $user->name() ) === $any;
+				$user = kirby()->users()->filter(function ($user) use ($any) {
+					return Str::slug($user->name()) === $any;
 				})->first();
 
 				$content = $user->content()->toArray();
@@ -66,25 +62,24 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 					'content' => $content,
 					'query' => $any
 				]);
-
-            }
+			}
 		],
 		[
-            'pattern' => 'media/plugins/(:any)/(:any)/(:all).(json|map|unityweb)',
-            'env'     => 'media',
-            'action'  => function (string $provider, string $pluginName, string $filename, string $extension){
-                return PluginAssets::resolve($provider . '/' . $pluginName, $filename . '.' . $extension);
-            }
-        ],
+			'pattern' => 'media/plugins/(:any)/(:any)/(:all).(json|map|unityweb)',
+			'env'     => 'media',
+			'action'  => function (string $provider, string $pluginName, string $filename, string $extension) {
+				return PluginAssets::resolve($provider . '/' . $pluginName, $filename . '.' . $extension);
+			}
+		],
 	],
 
 	'components' => [
-		'file::url' => function (Kirby $kirby, $file){
-            if( $file->type() === 'video' ){
-                return $kirby->url() . '/content/' . $file->parent()->diruri() . '/' . $file->filename();
-            } else {
-                return $file->mediaUrl();
-            }
+		'file::url' => function (Kirby $kirby, $file) {
+			if ($file->type() === 'video') {
+				return $kirby->url() . '/content/' . $file->parent()->diruri() . '/' . $file->filename();
+			} else {
+				return $file->mediaUrl();
+			}
 		}
 	],
 
@@ -137,18 +132,18 @@ Kirby::plugin('centre-for-documentary-architecture/matter-of-data', [
 		'home' => 'HomePage'
 
 	],
-	'pageMethods'  => require_once __DIR__.'/extensions/pageMethods.php',
-	'pagesMethods' => require_once __DIR__.'/extensions/pagesMethods.php',
+	'pageMethods'  => require_once __DIR__ . '/extensions/pageMethods.php',
+	'pagesMethods' => require_once __DIR__ . '/extensions/pagesMethods.php',
 
-	'siteMethods'  => require_once __DIR__.'/extensions/siteMethods.php',
+	'siteMethods'  => require_once __DIR__ . '/extensions/siteMethods.php',
 
-	'fileMethods' =>  require_once __DIR__.'/extensions/fileMethods.php',
-	'userMethods' =>  require_once __DIR__.'/extensions/userMethods.php',
+	'fileMethods' =>  require_once __DIR__ . '/extensions/fileMethods.php',
+	'userMethods' =>  require_once __DIR__ . '/extensions/userMethods.php',
 
-	'fields'       => require_once __DIR__.'/extensions/fields.php',
-	'fieldMethods' => require_once __DIR__.'/extensions/fieldMethods.php',
+	'fields'       => require_once __DIR__ . '/extensions/fields.php',
+	'fieldMethods' => require_once __DIR__ . '/extensions/fieldMethods.php',
 
-	'hooks' 	   => require_once __DIR__.'/extensions/hooks.php',
-	'tags' 		   => require_once __DIR__.'/extensions/tags.php',
+	'hooks' 	   => require_once __DIR__ . '/extensions/hooks.php',
+	'tags' 		   => require_once __DIR__ . '/extensions/tags.php',
 
 ]);

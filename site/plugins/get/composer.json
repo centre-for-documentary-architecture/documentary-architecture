@@ -1,0 +1,9 @@
+{
+    "name": "cda/get",
+    "type": "kirby-plugin",
+    "authors": [
+        {
+            "name": "CDA"
+        }
+    ]
+}

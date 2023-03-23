@@ -9,8 +9,8 @@ Kirby::plugin('cda/redirects', [
             redirect /de/* urls to regular urls
             */
             'pattern' => '/de/(:all)',
-            'action'  => function( string $path ){
-                go( '/'.$path, 301 );
+            'action'  => function (string $path) {
+                go('/' . $path, 301);
             }
         ],
     ]

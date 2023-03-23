@@ -1,17 +1,18 @@
 <?php
 
-function getBoundEntityData(){
+function getBoundEntityData()
+{
     /**
      * Entities are bound to world items by selecting them from a list. Once
      * selected an entity is bound to an item. This function looks at the field
      * 'worlditem' and determines whether or not it has a value.
      */
-    $boundEntities = kirby()->site()->index()->filter(function ($page){
+    $boundEntities = kirby()->site()->index()->filter(function ($page) {
         return $page->worlditem() != '';
     });
 
     $entities = [];
-    foreach( $boundEntities as $entity ){
+    foreach ($boundEntities as $entity) {
         $data = [
             'id' => $entity->id(),
             'slug' => $entity->uid(),
@@ -22,11 +23,11 @@ function getBoundEntityData(){
         ];
 
         $image = $entity->thumbnail();
-        if( $entity->type() === 'image' && $image !== null ){
-            $data[ 'imageResources' ] = [
-                'high' => $image->thumb(['width'=>2048])->url(),
-                'medium' => $image->thumb(['width'=>1024])->url(),
-                'low' => $image->thumb(['width'=>512])->url()
+        if ($entity->type() === 'image' && $image !== null) {
+            $data['imageResources'] = [
+                'high' => $image->thumb(['width' => 2048])->url(),
+                'medium' => $image->thumb(['width' => 1024])->url(),
+                'low' => $image->thumb(['width' => 512])->url()
             ];
         }
         array_push($entities, $data);
@@ -34,13 +35,14 @@ function getBoundEntityData(){
     return $entities;
 }
 
-function getTourData(){
+function getTourData()
+{
     $tours = [];
-    foreach( kirby()->site()->lieblingHouse()->children()->listed() as $tour){
+    foreach (kirby()->site()->lieblingHouse()->children()->listed() as $tour) {
         $stops = [];
         // $worldItems = [];
         $i = 1;
-        foreach( $tour->children()->listed() as $stop ){
+        foreach ($tour->children()->listed() as $stop) {
             array_push($stops, [
                 'slug' => $stop->uid(),
                 'num' => $i,
@@ -54,7 +56,7 @@ function getTourData(){
             $i++;
         }
 
-        $tours[ $tour->uid() ] = [
+        $tours[$tour->uid()] = [
             'id' => $tour->id(),
             'type' => 'tour',
             'title' => $tour->title()->value(),

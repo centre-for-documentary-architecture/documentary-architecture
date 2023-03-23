@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Cms\App as Kirby;
+
 /**
  * liebling-house 3d world
  *
@@ -8,9 +10,9 @@
  * it deosn’t seem to be possible to consume the .unityweb files from the cdn :(
  */
 
-require_once __DIR__.'/functions.php';
+require_once __DIR__ . '/functions.php';
 
-Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
+Kirby::plugin('cda/max-liebling-house', [
 
     'options' => [
         // https://documentary-architecture.fra1.cdn.digitaloceanspaces.com/cda/
@@ -24,14 +26,14 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
     ],
 
     'siteMethods' => [
-        'lieblingHouse' => function (){
+        'lieblingHouse' => function () {
             return $this->page('1937-doka-32-073-34-770');
         }
     ],
 
     'controllers' => [
-        'collection_liebling-house' => function ($page){
-            switch ( $page->depth() ){
+        'collection_liebling-house' => function ($page) {
+            switch ($page->depth()) {
                 case 3:
                     $category = 'tourstop';
                     $collection = $page->contextualized()->toEntities();
@@ -55,23 +57,22 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
     'routes' => [
         [
             'pattern' => 'i/liebling-house/worlditems.json',
-            'action'  => function (){
+            'action'  => function () {
 
                 $cached = true;
                 $kirbyCache = kirby()->cache('worlditems');
                 $cacheContent  = $kirbyCache->get('liste4');
 
                 // there's nothing in the cache, so let's fetch it
-                if( $cacheContent === null ){
+                if ($cacheContent === null) {
 
                     $cacheContent = [
                         'entities' => getBoundEntityData(),
                         'tours' => getTourData()
                     ];
 
-                    $kirbyCache->set('liste4', $cacheContent, option('cache-expires', 1440) );
+                    $kirbyCache->set('liste4', $cacheContent, option('cache-expires', 1440));
                     $cached = false;
-
                 }
 
                 return [
@@ -79,7 +80,6 @@ Kirby::plugin('centre-for-documentary-architecture/liebling-house', [
                     'cache' => $cached,
                     'data'   => $cacheContent
                 ];
-
             }
         ]
     ],

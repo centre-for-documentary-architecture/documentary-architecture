@@ -11,8 +11,8 @@ return [
 		* custom kirbytag (tag: Tel Aviv) that creates an archive query
 		*/
 		'attr' => [],
-		'html' => function($tag){
-			return toKeyword( $tag->value );
+		'html' => function ($tag) {
+			return toKeyword($tag->value);
 		}
 	],
 	'keyword' => [
@@ -20,8 +20,8 @@ return [
 		* alias of tag
 		*/
 		'attr' => [],
-		'html' => function($tag){
-			return toKeyword( $tag->value );
+		'html' => function ($tag) {
+			return toKeyword($tag->value);
 		}
 	],
 	'date' => [
@@ -29,8 +29,8 @@ return [
 		* overriding (date: YYYY-MM-DD) that creates 3 query links
 		*/
 		'attr' => [],
-		'html' => function($tag){
-			return toDateKeyword( $tag->date );
+		'html' => function ($tag) {
+			return toDateKeyword($tag->date);
 		}
 	],
 	'location' => [
@@ -40,7 +40,7 @@ return [
 		'attr' => [
 			'street', 'zip', 'city', 'country', 'lat', 'lon'
 		],
-		'html' => function($tag){
+		'html' => function ($tag) {
 			return toLocation([
 				'title' => $tag->value,
 				'streetaddress' => $tag->street,
@@ -53,50 +53,47 @@ return [
 		}
 	],
 	/**
-     * Link
-     */
+	 * Link
+	 */
 	'link' => [
 		'attr' => [
-            'class',
-            'lang',
-            'rel',
-            'role',
-            'target',
-            'title',
-            'text',
-        ],
-		'html' => function ($tag){
+			'class',
+			'lang',
+			'rel',
+			'role',
+			'target',
+			'title',
+			'text',
+		],
+		'html' => function ($tag) {
 
 			// check if external link
-			if( $domain = parse_url( $tag->value ) ){
+			if ($domain = parse_url($tag->value)) {
 
-				if( isset( $domain['host'] ) ){
+				if (isset($domain['host'])) {
 
-					if ( empty( $tag->text ) ){
+					if (empty($tag->text)) {
 						$tag->text = $domain['host'];
 					}
 
-					return toLink( $tag->value, $tag->text );
-
+					return toLink($tag->value, $tag->text);
 				}
-
 			}
 
 			// check if page exists internally
-			if( $page = kirby()->page( $tag->value ) ){
+			if ($page = kirby()->page($tag->value)) {
 
 				// take title as link text
-				if ( empty($tag->text) ){
+				if (empty($tag->text)) {
 					$tag->text = $page->title();
 				}
 
 				return Html::a($tag->value, $tag->text, [
-					'title'  => 'Go to "'.$tag->text.'"'
+					'title'  => 'Go to "' . $tag->text . '"'
 				]);
-
 			}
 
-			return toKeyword( $tag->value, $tag->text );
+			return toKeyword($tag->value, $tag->text);
 		}
 	],
 	'user' => [
@@ -104,19 +101,18 @@ return [
 		* custom kirbytag (user: Moritz Ebeling) that creates a link to that user profile
 		*/
 		'attr' => [],
-		'html' => function($tag){
+		'html' => function ($tag) {
 
-			return toKeyword( $tag->value );
-
+			return toKeyword($tag->value);
 		}
 	],
 	'source' => [
 		'attr' => [
 			'author', 'date', 'publisher', 'website', 'country'
 		],
-		'html' => function($tag){
+		'html' => function ($tag) {
 
-			if( $page = kirby()->page( $tag->value ) ){
+			if ($page = kirby()->page($tag->value)) {
 				$tag->value = $page->title();
 				$tag->website = $page->url();
 			}
@@ -129,7 +125,6 @@ return [
 				'website' => $tag->website,
 				'country' => $tag->country
 			]);
-
 		}
 	],
 ];

@@ -11,9 +11,9 @@ class EntityItem extends Entity
     }
     public function view(): ?string
     {
-        if( $this->collection()->count() > 0 ){
+        if ($this->collection()->count() > 0) {
             return 'collection';
-        } else if ( $this->thumbnail() ){
+        } else if ($this->thumbnail()) {
             return 'image';
         }
         return null;
@@ -30,18 +30,18 @@ class EntityItem extends Entity
 class EntityItemPerson extends EntityItem
 {
     public function dataIndividualFields(): array
-	{
+    {
 
         $content = [];
 
         $dates = [];
-        if( $this->date_new()->isNotEmpty() ){
+        if ($this->date_new()->isNotEmpty()) {
             $dates[] = $this->date_new()->toDateKeyword();
         }
-        if( $this->location_start()->isNotEmpty() ){
+        if ($this->location_start()->isNotEmpty()) {
             $dates[] = $this->content()->location_start()->toLocation();
         }
-        if( $dates !== [] ){
+        if ($dates !== []) {
             $content[] = [
                 'key' => 'Born',
                 'value' => implode('<br />', $dates)
@@ -49,32 +49,32 @@ class EntityItemPerson extends EntityItem
         }
 
         $dates = [];
-        if( $this->date_end()->isNotEmpty() ){
+        if ($this->date_end()->isNotEmpty()) {
             $dates[] = $this->content()->date_end()->toDateKeyword();
         }
-        if( $this->location_end()->isNotEmpty() ){
+        if ($this->location_end()->isNotEmpty()) {
             $dates[] = $this->content()->location_end()->toLocation();
         }
-        if( $dates !== [] ){
+        if ($dates !== []) {
             $content[] = [
                 'key' => 'Died',
                 'value' => implode('<br />', $dates)
             ];
         }
 
-        if( $this->occupation()->isNotEmpty() ){
+        if ($this->occupation()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Occupation',
                 'value' => $this->content()->occupation()->toKeywords()
             ];
         }
-        if( $this->projects()->isNotEmpty() ){
+        if ($this->projects()->isNotEmpty()) {
             $projects = [];
-            foreach( $this->content()->projects()->split() as $project ){
-                if( $entity = entity( $project ) ){
+            foreach ($this->content()->projects()->split() as $project) {
+                if ($entity = entity($project)) {
                     $projects[] = $entity->dataAbstract();
                 } else {
-                    $projects[] = keywordDataAbstract( $project );
+                    $projects[] = keywordDataAbstract($project);
                 }
             }
             $content[] = [
@@ -82,14 +82,15 @@ class EntityItemPerson extends EntityItem
                 'type' => 'collection',
                 'value' => $projects
             ];
-
         }
-        if( $this->education()->isNotEmpty() ){
+        if ($this->education()->isNotEmpty()) {
             $values = [];
-            foreach( $this->education()->toStructure() as $stop ){
-                $ed = $stop->date_start()->toDateKeyword().'. ';
-                if( $ed === '. ' ){ $ed = ''; }
-                $ed .= $stop->text()->kirbytextinline().', ';
+            foreach ($this->education()->toStructure() as $stop) {
+                $ed = $stop->date_start()->toDateKeyword() . '. ';
+                if ($ed === '. ') {
+                    $ed = '';
+                }
+                $ed .= $stop->text()->kirbytextinline() . ', ';
                 $ed .= $stop->location()->toLocation(', ');
                 $values[] = $ed;
             }
@@ -98,15 +99,14 @@ class EntityItemPerson extends EntityItem
                 'value' => $values
             ];
         }
-        if( $this->bio()->isNotEmpty() ){
+        if ($this->bio()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Bio',
                 'value' => $this->content()->bio()->kirbytext()->value()
             ];
         }
 
-		return $content;
-
+        return $content;
     }
 }
 
@@ -116,29 +116,29 @@ class EntityItemPerson extends EntityItem
 class EntityItemBuilding extends EntityItem
 {
     public function dataIndividualFields(): array
-	{
+    {
 
         $content = [];
 
-        if( $this->date_new()->isNotEmpty() ){
+        if ($this->date_new()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Construction',
                 'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
-        if( $this->location_start()->isNotEmpty() ){
+        if ($this->location_start()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Location',
                 'value' => $this->content()->location_start()->toLocation()
             ];
         }
-        if( $this->architects()->isNotEmpty() ){
+        if ($this->architects()->isNotEmpty()) {
             $architects = [];
-            foreach( $this->content()->architects()->split() as $architect ){
-                if( $entity = entity( $architect ) ){
+            foreach ($this->content()->architects()->split() as $architect) {
+                if ($entity = entity($architect)) {
                     $architects[] = $entity->dataAbstract();
                 } else {
-                    $architects[] = keywordDataAbstract( $architect );
+                    $architects[] = keywordDataAbstract($architect);
                 }
             }
             $content[] = [
@@ -148,39 +148,38 @@ class EntityItemBuilding extends EntityItem
             ];
         }
 
-		return $content;
-
+        return $content;
     }
     public function entityInfo(): string
     {
         $info = [];
 
-        if( $this->architects()->isNotEmpty() ){
+        if ($this->architects()->isNotEmpty()) {
             $architects = [];
-            foreach( $this->content()->architects()->split() as $architect ){
-                if( $page = $this->kirby()->page( $architect )){
+            foreach ($this->content()->architects()->split() as $architect) {
+                if ($page = $this->kirby()->page($architect)) {
                     $architects[] = $page->title();
                 } else {
                     $architects[] = $architect;
                 }
             }
-            $info[] = implode(', ', $architects );
+            $info[] = implode(', ', $architects);
         }
 
-        if( $this->location_start()->isNotEmpty() ){
+        if ($this->location_start()->isNotEmpty()) {
             $loc = $this->content()->location_start()->yaml()[0];
             $info[] = implode(', ', array_filter([
                 $loc['streetaddress'],
-                trim( $loc['postalcode'] .' '. $loc['addresslocality'] ),
-                strtoupper( $loc['addresscountry'] )
+                trim($loc['postalcode'] . ' ' . $loc['addresslocality']),
+                strtoupper($loc['addresscountry'])
             ]));
         }
 
-        if( $this->date_new()->isNotEmpty() ){
+        if ($this->date_new()->isNotEmpty()) {
             $info[] = $this->content()->date_new()->value();
         }
 
-        return implode( '<br />', $info );
+        return implode('<br />', $info);
     }
 }
 
@@ -190,21 +189,21 @@ class EntityItemBuilding extends EntityItem
 class EntityItemObject extends EntityItem
 {
     public function dataIndividualFields(): array
-	{
+    {
 
         $content = [];
 
-        if( $this->date_new()->isNotEmpty() ){
+        if ($this->date_new()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Production date',
                 'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
 
-        if( $this->material()->isNotEmpty() ){
+        if ($this->material()->isNotEmpty()) {
             $materials = [];
-            foreach( $this->content()->material()->split() as $material ){
-                $materials[] = toPageOrKeyword( $material );
+            foreach ($this->content()->material()->split() as $material) {
+                $materials[] = toPageOrKeyword($material);
             }
             $content[] = [
                 'key' => 'Material',
@@ -212,10 +211,10 @@ class EntityItemObject extends EntityItem
             ];
         }
 
-        if( $this->manufacturer()->isNotEmpty() ){
+        if ($this->manufacturer()->isNotEmpty()) {
             $manufacturers = [];
-            foreach( $this->content()->manufacturer()->split() as $manufacturer ){
-                $manufacturers[] = toPageOrKeyword( $manufacturer );
+            foreach ($this->content()->manufacturer()->split() as $manufacturer) {
+                $manufacturers[] = toPageOrKeyword($manufacturer);
             }
             $content[] = [
                 'key' => 'Manufacturer',
@@ -223,8 +222,7 @@ class EntityItemObject extends EntityItem
             ];
         }
 
-		return $content;
-
+        return $content;
     }
 }
 
@@ -234,19 +232,18 @@ class EntityItemObject extends EntityItem
 class EntityItemMaterial extends EntityItem
 {
     public function dataIndividualFields(): array
-	{
+    {
 
         $content = [];
 
-        if( $this->location_start()->isNotEmpty() ){
+        if ($this->location_start()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Origin',
                 'value' => $this->content()->location_start()->toLocation()
             ];
         }
 
-		return $content;
-
+        return $content;
     }
 }
 
@@ -257,28 +254,28 @@ class EntityItemMaterial extends EntityItem
 class EntityItemOrganisation extends EntityItem
 {
     public function dataIndividualFields(): array
-	{
+    {
 
         $content = [];
 
-        if( $this->date_new()->isNotEmpty() ){
+        if ($this->date_new()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Founded',
                 'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
 
-        if( $this->date_end()->isNotEmpty() ){
+        if ($this->date_end()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Terminated',
                 'value' => $this->content()->date_end()->toDateKeyword()
             ];
         }
 
-        if( $this->location_start()->isNotEmpty() ){
+        if ($this->location_start()->isNotEmpty()) {
             $locations = [];
-            foreach( $this->content()->location_start()->yaml() as $location ){
-                $locations[] = toLocation( $location );
+            foreach ($this->content()->location_start()->yaml() as $location) {
+                $locations[] = toLocation($location);
             }
             $content[] = [
                 'key' => 'Location',
@@ -286,10 +283,10 @@ class EntityItemOrganisation extends EntityItem
             ];
         }
 
-        if( $this->members()->isNotEmpty() ){
+        if ($this->members()->isNotEmpty()) {
             $members = [];
-            foreach( $this->content()->members()->split() as $member ){
-                $members[] = toPageOrKeyword( $member );
+            foreach ($this->content()->members()->split() as $member) {
+                $members[] = toPageOrKeyword($member);
             }
             $content[] = [
                 'key' => 'Members',
@@ -297,8 +294,7 @@ class EntityItemOrganisation extends EntityItem
             ];
         }
 
-		return $content;
-
+        return $content;
     }
 }
 
@@ -310,19 +306,19 @@ class EntityItemPublication extends EntityItem
         return 'white';
     }
     public function dataIndividualFields(): array
-	{
+    {
 
         $content = [];
 
-        if( $this->date_new()->isNotEmpty() ){
+        if ($this->date_new()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Release',
                 'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
 
-        if( $this->content()->details()->isNotEmpty() ){
-            foreach( $this->content()->details()->yaml() as $credit ){
+        if ($this->content()->details()->isNotEmpty()) {
+            foreach ($this->content()->details()->yaml() as $credit) {
                 $content[] = [
                     'key' => $credit['title'],
                     'value' => $credit['person']
@@ -330,15 +326,14 @@ class EntityItemPublication extends EntityItem
             }
         }
 
-        if( $this->publisher()->isNotEmpty() ){
+        if ($this->publisher()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Published by',
                 'value' => $this->publisher()->value()
             ];
         }
 
-		return $content;
-
+        return $content;
     }
 }
 
@@ -348,14 +343,14 @@ class EntityItemPublication extends EntityItem
 class EntityItemEvent extends EntityItem
 {
     public function dataIndividualFields(): array
-	{
+    {
 
         $content = [];
 
-        if( $this->date_new()->isNotEmpty() ){
+        if ($this->date_new()->isNotEmpty()) {
             $date = $this->content()->date_new()->toDateKeyword();
-            if( $this->date_end()->isNotEmpty() ){
-                $date .= ' &minus; '.$this->date_end()->toDateKeyword();
+            if ($this->date_end()->isNotEmpty()) {
+                $date .= ' &minus; ' . $this->date_end()->toDateKeyword();
             }
             $content[] = [
                 'key' => 'Dates',
@@ -363,34 +358,33 @@ class EntityItemEvent extends EntityItem
             ];
         }
 
-        if( $this->location_start()->isNotEmpty() ){
+        if ($this->location_start()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Location',
                 'value' => $this->content()->location_start()->toLocation()
             ];
         }
 
-        if( $this->timeline()->isNotEmpty() ){
+        if ($this->timeline()->isNotEmpty()) {
             $timeline = [];
-            foreach( $this->timeline()->yaml() as $event ){
+            foreach ($this->timeline()->yaml() as $event) {
 
                 $date = false;
-                if( isset( $event['date_start'] ) ){
-                    $date = toDateKeyword( $event['date_start'] );
-                    if( isset( $event['date_end'] ) ){
-                        if( $end = toDateKeyword( $event['date_end'] ) ){
+                if (isset($event['date_start'])) {
+                    $date = toDateKeyword($event['date_start']);
+                    if (isset($event['date_end'])) {
+                        if ($end = toDateKeyword($event['date_end'])) {
                             $date .= ' &minus; ' . $end;
                         }
                     }
                 }
 
                 $location = false;
-                if( isset( $event['location'] ) ){
-                    $location = toLocation( $event['location'][0] );
+                if (isset($event['location'])) {
+                    $location = toLocation($event['location'][0]);
                 }
 
                 $timeline[] = implode('<br />', [$date, $location]);
-
             }
             $content[] = [
                 'key' => 'Timeline',
@@ -398,7 +392,6 @@ class EntityItemEvent extends EntityItem
             ];
         }
 
-		return $content;
-
+        return $content;
     }
 }

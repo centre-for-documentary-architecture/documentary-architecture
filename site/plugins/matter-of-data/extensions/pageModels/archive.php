@@ -11,29 +11,28 @@ class PageArchive extends Page
     }
     public function template()
     {
-        if ($this->template !== null){
+        if ($this->template !== null) {
             return $this->template;
         }
         $intended = $this->kirby()->template('archive');
-        if ($intended->exists() === true){
+        if ($intended->exists() === true) {
             return $this->template = $intended;
         }
         return $this->template = $this->kirby()->template('default');
     }
-    public function recentlyEditedPages( $unlisted = false )
+    public function recentlyEditedPages($unlisted = false)
     {
         $pages = $unlisted ? $this->index() : $this->index()->listed();
-        return $pages->sortBy(function ($child){
+        return $pages->sortBy(function ($child) {
             return $child->date_modified()->toDate();
         }, 'desc');
     }
-    public function pagesWithIncompleteDataset( $unlisted = false )
+    public function pagesWithIncompleteDataset($unlisted = false)
     {
         $pages = $unlisted ? $this->index() : $this->index()->listed();
-        return $pages->filter(function ($child){
+        return $pages->filter(function ($child) {
 
             return $child->date_new()->isEmpty();
-
         }, 'desc');
     }
     public function entities()
@@ -42,7 +41,7 @@ class PageArchive extends Page
     }
     public function items()
     {
-        return $this->children()->listed()->filter(function ($child){
+        return $this->children()->listed()->filter(function ($child) {
             return str::startsWith($child->intendedTemplate(), 'items_');
         });
     }
@@ -50,15 +49,15 @@ class PageArchive extends Page
     {
         return '';
     }
-    public function dataFilters( string $query = '' ): array
+    public function dataFilters(string $query = ''): array
     {
         $filters = $this->site()->archive()->children()->listed();
 
-        $items = $filters->filter(function ($filter){
+        $items = $filters->filter(function ($filter) {
             return $filter->entity() === 'items';
         })->dataAbstract();
 
-        $files = $filters->filter(function ($filter){
+        $files = $filters->filter(function ($filter) {
             return $filter->entity() === 'files';
         })->dataAbstract();
 
@@ -67,7 +66,7 @@ class PageArchive extends Page
 
         return [
             [
-                'buttons' => [ $all ]
+                'buttons' => [$all]
             ],
             [
                 'headline' => 'Items',
@@ -78,11 +77,10 @@ class PageArchive extends Page
                 'buttons' => $files
             ],
         ];
-
     }
-    public function filter( string $filter = '' )
+    public function filter(string $filter = '')
     {
-        if( $found = $this->find( $filter ) ){
+        if ($found = $this->find($filter)) {
             return $found;
         }
         return $this;
@@ -94,65 +92,63 @@ class PageArchive extends Page
     /*
     * results
     */
-    public function results( string $query = '' ){
+    public function results(string $query = '')
+    {
 
-        if( $query === '' ){
+        if ($query === '') {
             return $this->recentlyEditedPages();
         }
 
-        return $this->entities()->listed()->bettersearch( $query, [
-            'fields' => ['title','additional_title','research_methods','tags','content_text','description','category','transcript','credits','date_new','date_end','location_start','location_end','starring','occupation','sources']
+        return $this->entities()->listed()->bettersearch($query, [
+            'fields' => ['title', 'additional_title', 'research_methods', 'tags', 'content_text', 'description', 'category', 'transcript', 'credits', 'date_new', 'date_end', 'location_start', 'location_end', 'starring', 'occupation', 'sources']
         ]);
-
     }
-    public function dataAbstract( string $srcset = 'medium' )
+    public function dataAbstract(string $srcset = 'medium')
     {
 
         $content = [
             'url' => $this->url(),
-            'title' => 'CDA '.$this->title()->value(),
+            'title' => 'CDA ' . $this->title()->value(),
             'template' => 'archive',
             'classlist' => $this->classlist(),
             'filter' => '',
             'worlditem' => null
         ];
 
-		return $content;
-
-	}
+        return $content;
+    }
 }
 
 class PageArchiveFilter extends PageArchive
 {
     public function template(): Kirby\Cms\Template
     {
-        if ($this->template !== null){
+        if ($this->template !== null) {
             return $this->template;
         }
         $intended = $this->kirby()->template('archive');
-        if ($intended->exists() === true){
+        if ($intended->exists() === true) {
             return $this->template = $intended;
         }
         return $this->template = $this->kirby()->template('default');
     }
-    public function dataAbstract( string $srcset = '' ): array
+    public function dataAbstract(string $srcset = ''): array
     {
 
         $content = [
-            'url' => $this->parent()->url().'?filter='.$this->slug(),
+            'url' => $this->parent()->url() . '?filter=' . $this->slug(),
             'filter' => $this->slug(),
             'template' => 'archive',
             'title' => $this->title()->value(),
             'count' => $this->countCollection()
-		];
+        ];
 
         return $content;
-
     }
     public function dataBreadcrumbs(): array
-	{
-		return $this->parent()->dataBreadcrumbs();
-	}
+    {
+        return $this->parent()->dataBreadcrumbs();
+    }
 }
 
 class PageArchiveImages extends PageArchiveFilter
@@ -161,7 +157,7 @@ class PageArchiveImages extends PageArchiveFilter
     {
         $images = [];
 
-        foreach ( $this->images() as $image ){
+        foreach ($this->images() as $image) {
 
             $images[] = [
                 'slug'     => $image->filename(),
@@ -170,7 +166,6 @@ class PageArchiveImages extends PageArchiveFilter
                 'template' => 'file_image',
                 'content'  => $image->content()->toArray()
             ];
-
         }
 
         return Pages::factory($images, $this);

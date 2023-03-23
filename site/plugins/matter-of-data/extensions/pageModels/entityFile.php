@@ -23,80 +23,77 @@ class EntityFile extends Entity
     }
     public function fileinfo(): ?string
     {
-        if( $file = $this->file() ){
-            return $file->extension() . ', ' . F::nicesize( F::size( $file->root() ));
+        if ($file = $this->file()) {
+            return $file->extension() . ', ' . F::nicesize(F::size($file->root()));
         }
         return null;
     }
     public function dataSet(): array
-	{
+    {
 
         $content = $this->dataGeneral();
         $content['content'] = $this->dataContent();
         $content['view'] = $this->dataView();
 
-        if( $transcript = $this->dataTranscript() ){
+        if ($transcript = $this->dataTranscript()) {
             $content['transcript'] = $transcript;
         }
 
-		return $content;
-
-	}
+        return $content;
+    }
     public function dataContent(): array
-	{
+    {
 
-		$content = [
+        $content = [
             $this->tabHeader(),
             $this->tabInfo(),
             $this->tabContexts(),
-			$this->tabMeta()
-		];
-		return array_values( array_filter( $content ) );
-
+            $this->tabMeta()
+        ];
+        return array_values(array_filter($content));
     }
     public function dataTranscript(): ?array
-	{
+    {
         $transcripts = $this->content()->transcript()->toStructure();
-        if( $transcripts->count() < 1 ){
+        if ($transcripts->count() < 1) {
             return null;
         }
 
         $content = [];
-        foreach( $transcripts as $transcript ){
+        foreach ($transcripts as $transcript) {
             $content[] = [
                 'language' => (string)$transcript->language(),
                 'text' => (string)$transcript->text()->kirbytext()
             ];
         }
-        
-		return $content;
+
+        return $content;
     }
     public function dataIndividualFields(): array
-	{
+    {
 
         $content = [];
 
-        if( $this->date_new()->isNotEmpty() ){
+        if ($this->date_new()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Date of recording',
                 'value' => $this->content()->date_new()->toDateKeyword()
             ];
         }
-        if( $this->location_start()->isNotEmpty() ){
+        if ($this->location_start()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Place of recording',
                 'value' => $this->content()->location_start()->toLocation()
             ];
         }
-        if( $this->starring()->isNotEmpty() ){
+        if ($this->starring()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Starring',
                 'value' => $this->content()->starring()->toKeywords()
             ];
         }
 
-		return $content;
-
+        return $content;
     }
 }
 
@@ -115,39 +112,37 @@ class EntityFileImage extends EntityFile
         return 'image';
     }
     public function classlist(): string
-	{
-		return 'file image '.$this->category();
-	}
+    {
+        return 'file image ' . $this->category();
+    }
     public function filename(): string
     {
         return $this->uid();
     }
     public function title(): Kirby\Cms\Field
     {
-        return new Field( $this, 'title', $this->uid() );
+        return new Field($this, 'title', $this->uid());
     }
     public function view(): ?string
     {
-        if( $this->content()->is_360()->isTrue() ){
+        if ($this->content()->is_360()->isTrue()) {
 
             return 'panorama';
-
         }
         return 'image';
     }
     public function dataView()
-	{
+    {
 
-        if ( $this->view() === 'panorama' ){
+        if ($this->view() === 'panorama') {
 
             $return = [
                 'type' => 'panorama',
                 'headline' => 'Panorama',
                 'content' => [
-                    'url' => $this->thumbnail()->crop( 4096, 2048 )->url()
+                    'url' => $this->thumbnail()->crop(4096, 2048)->url()
                 ]
             ];
-
         } else {
 
             $return = [
@@ -157,26 +152,24 @@ class EntityFileImage extends EntityFile
                     'html' => $this->thumbnail()->responsiveImage('large')
                 ]
             ];
-
         }
 
         return $return;
-
     }
     /*
     * files
     */
-    public function file( string $filename = null, string $in = 'files' ): Kirby\Cms\File
+    public function file(string $filename = null, string $in = 'files'): Kirby\Cms\File
     {
-        return $this->kirby()->file( $this->id() );
+        return $this->kirby()->file($this->id());
     }
-    public function image( string $filename = null ): Kirby\Cms\File
+    public function image(string $filename = null): Kirby\Cms\File
     {
         return $this->file();
     }
     public function thumbnail(): Kirby\Cms\File
     {
-        return $this->kirby()->file( $this->id() );
+        return $this->kirby()->file($this->id());
     }
     /*
     * panel
@@ -212,29 +205,29 @@ class EntityFileVideo extends EntityFile
 
         $sources = $this->content()->remote_file();
 
-        if( !$sources->exists() || $sources->isEmpty() ){
+        if (!$sources->exists() || $sources->isEmpty()) {
             return [];
         }
 
-        foreach( $sources->yaml() as $source ){
+        foreach ($sources->yaml() as $source) {
 
-            $sizes = explode( ', ', $source['sizes'] );
+            $sizes = explode(', ', $source['sizes']);
 
             $srcset = [];
             $first = true;
 
-            foreach( $sizes as $size ){
+            foreach ($sizes as $size) {
 
-                if( $first === true ){
+                if ($first === true) {
                     $first = false;
                     $media = '';
                     $width = 9999999;
                 } else {
-                    $width = ceil( $size / 9 * 16 );
-                    $media = 'all and (max-width:'.$width.'px)';
+                    $width = ceil($size / 9 * 16);
+                    $media = 'all and (max-width:' . $width . 'px)';
                 }
 
-                $url = option('cdn') . '/archive/videos/' . $source['filename'] .'/'. $source['filename'] .'-'. $size.'.mp4';
+                $url = option('cdn') . '/archive/videos/' . $source['filename'] . '/' . $source['filename'] . '-' . $size . '.mp4';
 
                 $srcset[] = [
                     'mime' => 'video/mp4',
@@ -242,23 +235,20 @@ class EntityFileVideo extends EntityFile
                     'media' => $media,
                     'width' => $width
                 ];
-
             }
 
-            return array_reverse( $srcset );
-
+            return array_reverse($srcset);
         }
-
     }
     public function dataView(): ?array
-	{
+    {
 
         $content = [
             'srcset' => $this->srcset()
         ];
 
-        if( $thumbnail = $this->thumbnail() ){
-            $content['poster'] = $thumbnail->resize( 1920 )->url();
+        if ($thumbnail = $this->thumbnail()) {
+            $content['poster'] = $thumbnail->resize(1920)->url();
         }
 
         return [
@@ -266,13 +256,12 @@ class EntityFileVideo extends EntityFile
             'headline' => 'Video',
             'content' => $content
         ];
-
     }
     public function fileinfo(): ?string
     {
         $info = 'mp4';
-        if( $dur = $this->content()->duration()->value() ){
-            $info =  $dur.', '.$info;
+        if ($dur = $this->content()->duration()->value()) {
+            $info =  $dur . ', ' . $info;
         }
         return null;
     }
@@ -293,20 +282,18 @@ class EntityFile3d extends EntityFile
     public function view(): ?string
     {
 
-        if( $file = $this->content()->content_files()->toFile() ){
-            if( $file->extension() === 'fbx' ){
+        if ($file = $this->content()->content_files()->toFile()) {
+            if ($file->extension() === 'fbx') {
 
                 return '3d';
-
             }
         }
         return 'image';
-
     }
     public function dataView(): ?array
-	{
+    {
 
-        if( $this->view() === 'image' ){
+        if ($this->view() === 'image') {
 
             return [
                 'type' => 'image',
@@ -315,7 +302,6 @@ class EntityFile3d extends EntityFile
                     'html' => $this->thumbnail()->responsiveImage('large')
                 ]
             ];
-
         }
 
         $url = $this->site()->url();
@@ -327,13 +313,12 @@ class EntityFile3d extends EntityFile
                 'url' => $this->content()->content_files()->toFile()->url(),
             ]
         ];
-
     }
     public function fileinfo(): ?string
     {
         $info = 'fbx';
-        if( $file = $this->content_files()->toFile() ){
-            return $info . ', ' . F::nicesize( F::size( $file->root() ));
+        if ($file = $this->content_files()->toFile()) {
+            return $info . ', ' . F::nicesize(F::size($file->root()));
         }
         return $info;
     }
@@ -353,15 +338,15 @@ class EntityFileAudio extends EntityFile
     }
     public function view(): ?string
     {
-        if( $this->audio()->count() > 0 ){
+        if ($this->audio()->count() > 0) {
             return 'audio';
         }
         return null;
     }
     public function dataView(): ?array
-	{
+    {
 
-        if( $this->view() != 'audio' ){
+        if ($this->view() != 'audio') {
             return null;
         }
         $file = $this->audio()->first();
@@ -375,13 +360,12 @@ class EntityFileAudio extends EntityFile
                 'duration' => $this->content()->duration()->or('1:00')->value()
             ]
         ];
-
     }
     public function fileinfo(): ?string
     {
-        if( $file = $this->file() ){
-            $info = $this->content()->duration()->value(). ', ';
-            return $info . $file->extension() . ', ' . F::nicesize( F::size( $file->root() ));
+        if ($file = $this->file()) {
+            $info = $this->content()->duration()->value() . ', ';
+            return $info . $file->extension() . ', ' . F::nicesize(F::size($file->root()));
         }
         return null;
     }
