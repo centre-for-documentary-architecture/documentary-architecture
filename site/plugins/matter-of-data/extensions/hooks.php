@@ -88,7 +88,6 @@ return [
 		syncContexts($newPage, $oldPage);
 
 		flushCache($newPage->id());
-		$abstract = $newPage->dataAbstract();
 	},
 
 	/*

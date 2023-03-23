@@ -86,28 +86,19 @@ return [
 	*/
 	'dataAbstract' => function (string $srcset = 'medium') {
 
-		$id = $this->id();
-		$cache = $this->kirby()->cache('abstract');
-		$data  = $cache->get($id);
+		$data = [
+			'url' => $this->url(),
+			'title' => $this->title()->value(),
+			'template' => $this->template()->name(),
+			'classlist' => $this->classlist(),
+			'worlditem' => $this->worlditem(),
+			'count' => $this->countCollection(),
+			'info' => $this->entityInfo(),
+			'keywords' => $this->research_methods()->split(),
+		];
 
-		if ($data === null) {
-
-			$data = [
-				'url' => $this->url(),
-				'title' => $this->title()->value(),
-				'template' => $this->template()->name(),
-				'classlist' => $this->classlist(),
-				'worlditem' => $this->worlditem(),
-				'count' => $this->countCollection(),
-				'info' => $this->entityInfo(),
-				'keywords' => $this->research_methods()->split(),
-			];
-
-			if ($srcset && $thumbnail = $this->thumbnail()) {
-				$data['thumbnail'] = $this->thumbnail()->dataThumbnail($srcset);
-			}
-
-			$cache->set($id, $data, option('cache-expires', 1440));
+		if ($srcset && $thumbnail = $this->thumbnail()) {
+			$data['thumbnail'] = $this->thumbnail()->dataThumbnail($srcset);
 		}
 
 		return $data;

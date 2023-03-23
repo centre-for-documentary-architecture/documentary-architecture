@@ -38,7 +38,7 @@ function getBoundEntityData()
 function getTourData()
 {
     $tours = [];
-    foreach (kirby()->site()->lieblingHouse()->children()->listed() as $tour) {
+    foreach (kirby()->site()->maxLieblingHouse()->children()->listed() as $tour) {
         $stops = [];
         // $worldItems = [];
         $i = 1;

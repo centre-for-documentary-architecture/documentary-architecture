@@ -12,7 +12,7 @@ Str::$language = [
 return [
 
 	// setting up
-	'panel' =>[
+	'panel' => [
 		'css' => 'assets/css/panel.css'
 	],
 
@@ -25,16 +25,12 @@ return [
 	'smartypants' => true,
 
 	// cache
-	// https://getkirby.com/docs/guide/cache
 	'cache' => [
 		'pages' => [
 			'active' => false
 		]
 	],
-	'cache-expires' => 1440,
-	'cache.abstract' => false,
-	'cache.worlditems' => true,
-	'cache.get' => false,
+	'cda.get.cache' => false,
 
 	// other configuration
 	'thumbs' => [
@@ -42,12 +38,12 @@ return [
 			'quality' => 75
 		],
 		'srcsets' => [
-			'mini' => [ 40, 80, 120],
-			'small' => [ 120, 240, 360],
+			'mini' => [40, 80, 120],
+			'small' => [120, 240, 360],
 			'medium' => [360, 640, 1200],
 			'large' => [640, 1200, 2000],
 			'full' => [640, 1200, 2000, 3000],
-			'all' => [ 80, 360, 640, 1200, 2000, 3000],
+			'all' => [80, 360, 640, 1200, 2000, 3000],
 		]
 	],
 

@@ -3,6 +3,11 @@
 use Kirby\Cms\App as Kirby;
 
 Kirby::plugin('cda/get', [
+
+    'options' => [
+        'cache' => true
+    ],
+
     'routes' => [
         [
             'pattern' => [
@@ -10,36 +15,8 @@ Kirby::plugin('cda/get', [
                 'get/',
                 'get/start'
             ],
-            'method' => 'GET|OPTIONS',
             'action'  => function () {
-
-                $kirby = kirby();
-                $cacheId = '/start';
-
-                // cache
-                $cache = $kirby->cache('get');
-                if (option('cache.get', false)) {
-                    $cacheData = $cache->get($cacheId);
-                    if ($cacheData !== null) {
-                        return $cacheData;
-                    }
-                }
-
-                $return = $kirby->site()->homePage()->render(['get' => true]);
-
-                $cache->set($cacheId, $return, option('cache-expires', 1440));
-                return $return;
-            }
-        ],
-        [
-            'pattern' => [
-                'get/keywords.json',
-            ],
-            'method' => 'GET',
-            'action'  => function () {
-
-                $kirby = kirby();
-                return $kirby->site()->index()->pluck('tags', ',', true);
+                go('/');
             }
         ],
         [
@@ -58,8 +35,8 @@ Kirby::plugin('cda/get', [
                 }
 
                 // cache
-                $cache = $kirby->cache('get');
-                if (option('cache.get', false)) {
+                $cache = $kirby->cache('cda.get');
+                if (option('cda.get.cache', false)) {
                     $cacheData = $cache->get($cacheId);
                     if ($cacheData !== null) {
                         return $cacheData;
@@ -181,14 +158,13 @@ Kirby::plugin('cda/get', [
 
                     // ------------------------------
 
-
                 } else {
 
                     // html page
                     $return = $requested->render(['get' => true]);
                 }
 
-                $cache->set($cacheId, $return, option('cache-expires', 1440));
+                $cache->set($cacheId, $return, 1440);
                 return $return;
             }
         ]

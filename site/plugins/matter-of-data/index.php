@@ -19,13 +19,9 @@ require_once __DIR__ . '/extensions/pageModels/entityFile.php';
 
 function flushCache($id, $cache = true)
 {
-
 	$kirby = kirby();
 	if ($cache === true) {
-
-		$kirby->cache('abstract')->remove($id);
-		$kirby->cache('get')->remove($id);
-		// $kirby->cache('worlditems')->remove( $id );
+		$kirby->cache('cda.get')->remove($id);
 		return;
 	}
 	$kirby->cache($cache)->remove($id);

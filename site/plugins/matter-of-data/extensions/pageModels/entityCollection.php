@@ -312,28 +312,16 @@ class LieblingHouseCollection extends EntityCollection
     }
     public function dataAbstract(string $srcset = ''): array
     {
+        $data = [
+            'url' => $this->url(),
+            'title' => $this->title()->value(),
+            'template' => $this->template()->name(),
+            'worlditem' => $this->worlditem(),
+            'count' => $this->countCollection()
+        ];
 
-        $id = $this->id();
-        $cache = $this->kirby()->cache('abstract');
-        $data  = $cache->get($id);
-
-        if ($data === null) {
-
-            $data = [
-                'url' => $this->url(),
-                'title' => $this->title()->value(),
-                'template' => $this->template()->name(),
-                'worlditem' => $this->worlditem(),
-                'count' => $this->countCollection()
-            ];
-
-            if ($srcset && $thumbnail = $this->thumbnail()) {
-                $data['thumbnail'] = $this->thumbnail()->dataThumbnail($srcset);
-            }
-
-            return $data;
-
-            $cache->set($id, $data, option('cache-expires', 1440));
+        if ($srcset && $thumbnail = $this->thumbnail()) {
+            $data['thumbnail'] = $this->thumbnail()->dataThumbnail($srcset);
         }
 
         return $data;
