@@ -1,12 +1,12 @@
-label: Recent edits
+label: Incomplete
 icon: clock
 sections:
 
-  recent:
+  incomplete:
     type: pagesdisplay
-    headline: Recent edits
+    headline: Incomplete datasets
     limit: 50
-    query: site.archive.recentlyEditedPages( true ).limit(50)
+    query: site.archive.pagesWithIncompleteDataset
     layout: table
     image:
       query: page.thumbnail
@@ -15,18 +15,11 @@ sections:
     columns:
       text:
         label: Title
-        width: 1/2
         value: "<a href="{{ page.panel.url }}">{{ page.title }}</a>"
         type: html
+        width: 1/2
       type:
         label: Type
-        width: 1/6
         value: "{{ page.type }}"
         mobile: false
-      date_modified:
-        label: Date
-        width: 1/6
-      user_modified:
-        label: Editor
-        value: "{{ page.user_modified.toUser.name }}"
-        width: 1/6
+        width: 1/2

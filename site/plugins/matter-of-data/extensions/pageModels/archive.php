@@ -20,19 +20,21 @@ class PageArchive extends Page
         }
         return $this->template = $this->kirby()->template('default');
     }
-    public function recentActivity( $unlisted = false )
+    public function recentlyEditedPages( $unlisted = false )
     {
+        $pages = $unlisted ? $this->index() : $this->index()->listed();
+        return $pages->sortBy(function ($child){
+            return $child->date_modified()->toDate();
+        }, 'desc');
+    }
+    public function pagesWithIncompleteDataset( $unlisted = false )
+    {
+        $pages = $unlisted ? $this->index() : $this->index()->listed();
+        return $pages->filter(function ($child){
 
-        if( !$unlisted ){
-            return $this->index()->listed()->sortBy(function ($page){
-                return $page->date_modified()->toDate();
-            }, 'desc');
-        } else {
-            return $this->index()->sortBy(function ($page){
-                return $page->date_modified()->toDate();
-            }, 'desc');
-        }
+            return $child->date_new()->isEmpty();
 
+        }, 'desc');
     }
     public function entities()
     {
@@ -95,7 +97,7 @@ class PageArchive extends Page
     public function results( string $query = '' ){
 
         if( $query === '' ){
-            return $this->recentActivity()->listed();
+            return $this->recentlyEditedPages();
         }
 
         return $this->entities()->listed()->bettersearch( $query, [

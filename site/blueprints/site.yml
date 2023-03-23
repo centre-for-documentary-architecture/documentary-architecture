@@ -51,8 +51,6 @@ tabs:
             create:
               - default
 
-  recent: tabs/recent
-
   info:
     label: Info
     icon: info
@@ -122,5 +120,9 @@ tabs:
             label: Team
             image:
               back: '#f9f9f9'
+
+  recent: tabs/recent
+
+  incomplete: tabs/incomplete
 
   tab3: tabs/help
