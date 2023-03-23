@@ -249,7 +249,7 @@ class LieblingHouseCollection extends EntityCollection
     {
 
         $url = $this->kirby()->site()->url();
-        $assetPath = option('cda.liebling-house.path');
+        $assetPath = option('cda.max-liebling-house.path');
         return [
             'type' => 'liebling-house',
             'headline' => 'Virtual 3D World',

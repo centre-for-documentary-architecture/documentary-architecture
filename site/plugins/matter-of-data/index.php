@@ -1,6 +1,5 @@
 <?php
 
-use Kirby\Cms\PluginAssets;
 use Kirby\Cms\App as Kirby;
 
 // import functions
@@ -31,7 +30,6 @@ Kirby::plugin('cda/matter-of-data', [
 
 	'options' => [
 		'pagination' => 40,
-		'expires' => 5,
 	],
 
 	'routes' => [
@@ -59,14 +57,7 @@ Kirby::plugin('cda/matter-of-data', [
 					'query' => $any
 				]);
 			}
-		],
-		[
-			'pattern' => 'media/plugins/(:any)/(:any)/(:all).(json|map|unityweb)',
-			'env'     => 'media',
-			'action'  => function (string $provider, string $pluginName, string $filename, string $extension) {
-				return PluginAssets::resolve($provider . '/' . $pluginName, $filename . '.' . $extension);
-			}
-		],
+		]
 	],
 
 	'components' => [

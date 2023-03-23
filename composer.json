@@ -2,7 +2,7 @@
     "require": {
         "getkirby/cms": "^3.8",
         "bvdputte/kirby-bettersearch": "^1.0",
-        "getkirby/kql": "^1.2",
+        "getkirby/kql": "^2.0",
         "rasteiner/k3-pagesdisplay-section": "^0.2.3",
         "sylvainjule/locator": "^1.1"
     },
