@@ -4,51 +4,47 @@ options:
   # valid for all users
   preview: true
   read:	true
-  update: true
+  duplicate: false
+  changeStatus: false
+  changeTemplate: false
+  delete: false
   # only allow some users
-  changeTemplate:
+  update:
     *: false
     admin: true
   changeSlug:
     *: false
     admin: true
-  changeStatus:
-    *: true
-    admin: true
   changeTitle:
     *: false
     admin: true
-  delete:
-    *: false
-    admin: true
 
-tabs:
+columns:
 
-  tab_info:
-    extends: tabs/info
-    columns:
-      column_left:
-        sections:
+  column_left:
+    width: 2/3
+    sections:
 
-          info_section_fields1: false
+      left_fields:
+        type: fields
+        fields:
 
-      column_right:
-        sections:
+          text:
+            extends: fields/body
+            label: Content
+            help: false
 
-          info_section_fields3:
-            fields:
+  column_right:
+    width: 1/3
+    sections:
 
-              body: fields/body
-
-              properties: false
-  
-  tab_meta:
-    extends: tabs/meta
-    columns:
-      meta_column_left:
-        sections:
-          meta_section_fields1:
-            fields:
-
-              category: false
-              credits: false
+      section_pages:
+        extends: sections/pages
+        headline: Subpages
+        image:
+          back: black
+      
+      section_uploads:
+        extends: sections/files_upload
+        image:
+          back: black

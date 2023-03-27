@@ -1,9 +1,16 @@
 <?php
 
+header("Access-Control-Allow-Origin: *");
+
 return [
 
 	'kql' => [
-		'auth' => false
+		'auth' => false,
+		'methods' => [
+			'allowed' => [
+				'Kirby\Cms\Users::findByNameSlug',
+			]
+		],
 	],
 
 	'debug'  => true,

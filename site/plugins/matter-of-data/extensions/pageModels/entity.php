@@ -1,8 +1,8 @@
 <?php
 
+namespace Kirby\Cms;
+
 use Kirby\Cms\Collection;
-use Kirby\Cms\Page;
-use Kirby\Template\Template;
 
 /*
 * Entities

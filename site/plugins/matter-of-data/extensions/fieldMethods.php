@@ -1,10 +1,5 @@
 <?php
 
-/*
-* fieldMethods
-* https://getkirby.com/docs/reference/plugins/extensions/field-methods
-*/
-
 return [
 
 	'toLink' => function ($field, $text = false) {
@@ -66,15 +61,6 @@ return [
 			return null;
 		}
 		$field->value = $text . $field->value();
-		return $field;
-	},
-
-	'toSlug' => function ($field) {
-
-		if ($field->isEmpty()) {
-			return null;
-		}
-		$field->value = Str::slug($field->value());
 		return $field;
 	},
 

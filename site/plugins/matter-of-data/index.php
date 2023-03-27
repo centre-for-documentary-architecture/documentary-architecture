@@ -73,50 +73,50 @@ Kirby::plugin('cda/matter-of-data', [
 	'pageModels'   => [
 
 		// archive
-		'archive'            => 'PageArchive',
+		'archive'            => 'Kirby\Cms\PageArchive',
 
-		'items'              => 'PageArchiveFilter',
-		'items_building'     => 'PageArchiveFilter',
-		'items_material'     => 'PageArchiveFilter',
-		'items_object'       => 'PageArchiveFilter',
-		'items_organisation' => 'PageArchiveFilter',
-		'items_person'       => 'PageArchiveFilter',
-		'items_publication'  => 'PageArchiveFilter',
+		'items'              => 'Kirby\Cms\PageArchiveFilter',
+		'items_building'     => 'Kirby\Cms\PageArchiveFilter',
+		'items_material'     => 'Kirby\Cms\PageArchiveFilter',
+		'items_object'       => 'Kirby\Cms\PageArchiveFilter',
+		'items_organisation' => 'Kirby\Cms\PageArchiveFilter',
+		'items_person'       => 'Kirby\Cms\PageArchiveFilter',
+		'items_publication'  => 'Kirby\Cms\PageArchiveFilter',
 
-		'files'              => 'PageArchiveFilter',
-		'files_3d'           => 'PageArchiveFilter',
-		'files_audio'        => 'PageArchiveFilter',
-		'files_video'        => 'PageArchiveFilter',
-		'files_image'        => 'PageArchiveImages',
+		'files'              => 'Kirby\Cms\PageArchiveFilter',
+		'files_3d'           => 'Kirby\Cms\PageArchiveFilter',
+		'files_audio'        => 'Kirby\Cms\PageArchiveFilter',
+		'files_video'        => 'Kirby\Cms\PageArchiveFilter',
+		'files_image'        => 'Kirby\Cms\PageArchiveImages',
 
-		'author'             => 'PageArchiveFilter',
+		'author'             => 'Kirby\Cms\PageArchiveFilter',
 
 		// entity
 
 		// collection
-		'collection'		 => 'EntityCollection',
-		'collection_liebling-house' => 'LieblingHouseCollection',
+		'collection'		 => 'Kirby\Cms\EntityCollection',
+		'collection_liebling-house' => 'Kirby\Cms\LieblingHouseCollection',
 
 		// item
-		'item'               => 'EntityItem',
-		'item_building'      => 'EntityItemBuilding',
-		'item_material'      => 'EntityItemMaterial',
-		'item_object'        => 'EntityItemObject',
-		'item_organisation'  => 'EntityItemOrganisation',
-		'item_person'        => 'EntityItemPerson',
-		'item_event'         => 'EntityItemEvent',
-		'item_publication'   => 'EntityItemPublication',
+		'item'               => 'Kirby\Cms\EntityItem',
+		'item_building'      => 'Kirby\Cms\EntityItemBuilding',
+		'item_material'      => 'Kirby\Cms\EntityItemMaterial',
+		'item_object'        => 'Kirby\Cms\EntityItemObject',
+		'item_organisation'  => 'Kirby\Cms\EntityItemOrganisation',
+		'item_person'        => 'Kirby\Cms\EntityItemPerson',
+		'item_event'         => 'Kirby\Cms\EntityItemEvent',
+		'item_publication'   => 'Kirby\Cms\EntityItemPublication',
 
 		// file
-		'file'               => 'EntityFile',
-		'file_3d'            => 'EntityFile3d',
-		'file_audio'         => 'EntityFileAudio',
-		'file_video'         => 'EntityFileVideo',
-		'file_image'         => 'EntityFileImage',
+		'file'               => 'Kirby\Cms\EntityFile',
+		'file_3d'            => 'Kirby\Cms\EntityFile3d',
+		'file_audio'         => 'Kirby\Cms\EntityFileAudio',
+		'file_video'         => 'Kirby\Cms\EntityFileVideo',
+		'file_image'         => 'Kirby\Cms\EntityFileImage',
 
-		'item_source'        => 'EntitySource',
+		'item_source'        => 'Kirby\Cms\EntitySource',
 
-		'home' => 'HomePage'
+		'home' => 'Kirby\Cms\HomePage'
 
 	],
 	'pageMethods'  => require_once __DIR__ . '/extensions/pageMethods.php',

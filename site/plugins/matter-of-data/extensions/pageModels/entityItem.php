@@ -1,5 +1,7 @@
 <?php
 
+namespace Kirby\Cms;
+
 /*
 * Entity > Item
 */

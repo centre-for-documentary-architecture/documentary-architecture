@@ -1,5 +1,8 @@
 <?php
 
+use Kirby\Toolkit\Str;
+use Kirby\Toolkit\Html;
+
 /*
 * tags
 * https://getkirby.com/docs/reference/plugins/extensions/kirbytags
@@ -102,8 +105,16 @@ return [
 		*/
 		'attr' => [],
 		'html' => function ($tag) {
-
-			return toKeyword($tag->value);
+			if( $user = kirby()->users()->findByNameSlug( Str::slug($tag->user) ) ){
+				return Html::a(
+					'/info/team/' . Str::slug($tag->user),
+					$user->name(),
+					[
+						'title' => 'Go to "' . $user->name() . '"'
+					]
+				);
+			}
+			return $tag->user;
 		}
 	],
 	'source' => [

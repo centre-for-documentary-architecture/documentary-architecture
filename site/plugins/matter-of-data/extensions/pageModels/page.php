@@ -1,6 +1,6 @@
 <?php
 
-// https://getkirby.com/docs/reference/plugins/extensions/page-models
+namespace Kirby\Cms;
 
 class HomePage extends Page
 {

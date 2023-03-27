@@ -1,6 +1,8 @@
 <?php
 
-// https://getkirby.com/docs/reference/plugins/extensions/page-models
+namespace Kirby\Cms;
+
+use Kirby\Template\Template;
 
 // archive
 class PageArchive extends Page
@@ -121,7 +123,7 @@ class PageArchive extends Page
 
 class PageArchiveFilter extends PageArchive
 {
-    public function template(): Kirby\Cms\Template
+    public function template(): Template
     {
         if ($this->template !== null) {
             return $this->template;
