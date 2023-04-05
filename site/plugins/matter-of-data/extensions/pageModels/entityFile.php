@@ -1,6 +1,7 @@
 <?php
 
 namespace Kirby\Cms;
+use Kirby\Filesystem\F;
 
 /*
 * Entity > File
@@ -21,7 +22,7 @@ class EntityFile extends Entity
     }
     public function collection()
     {
-        return $this->contexts();
+        return $this->contexts()->toEntities();
     }
     public function fileinfo(): ?string
     {
@@ -121,7 +122,7 @@ class EntityFileImage extends EntityFile
     {
         return $this->uid();
     }
-    public function title(): Kirby\Cms\Field
+    public function title(): Field
     {
         return new Field($this, 'title', $this->uid());
     }
@@ -161,15 +162,15 @@ class EntityFileImage extends EntityFile
     /*
     * files
     */
-    public function file(string $filename = null, string $in = 'files'): Kirby\Cms\File
+    public function file(string $filename = null, string $in = 'files'): File
     {
         return $this->kirby()->file($this->id());
     }
-    public function image(string $filename = null): Kirby\Cms\File
+    public function image(string $filename = null): File
     {
         return $this->file();
     }
-    public function thumbnail(): Kirby\Cms\File
+    public function thumbnail(): File
     {
         return $this->kirby()->file($this->id());
     }

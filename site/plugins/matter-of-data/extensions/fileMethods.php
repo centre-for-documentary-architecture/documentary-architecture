@@ -1,9 +1,8 @@
 <?php
 
-/*
-* fileMethods
-* https://getkirby.com/docs/reference/plugins/extensions/file-methods
-*/
+use Kirby\Cms\Html;
+use Kirby\Cms\Page;
+use Kirby\Cms\Field;
 
 return [
 	'entityType' => function () {

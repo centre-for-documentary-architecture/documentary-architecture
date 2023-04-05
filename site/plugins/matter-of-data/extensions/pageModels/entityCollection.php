@@ -31,7 +31,7 @@ class EntityCollection extends Entity
                     return $this->contextualized();
 
                 case 'contexts':
-                    return $this->contexts();
+                    return $this->contexts()->toEntities();
 
                 case 'pages':
                     $collection = $this->content_pages()->toPages()->listed();
@@ -104,7 +104,7 @@ class EntityCollection extends Entity
         $content[] = $this->tabMeta();
         return array_values(array_filter($content));
     }
-    public function content_headline(): Kirby\Cms\Field
+    public function content_headline(): Field
     {
         return new Field($this, 'content_headline', 'Collection');
     }
@@ -278,7 +278,7 @@ class LieblingHouseCollection extends EntityCollection
                 break;
         }
     }
-    public function content_layout(): Kirby\Cms\Field
+    public function content_layout(): Field
     {
 
         switch ($this->depth()) {
@@ -293,7 +293,7 @@ class LieblingHouseCollection extends EntityCollection
                 break;
         }
     }
-    public function content_headline(): Kirby\Cms\Field
+    public function content_headline(): Field
     {
 
         if ($this->depth() === 1) {

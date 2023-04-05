@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Cms\Entities;
+
 return [
 
 	'toLink' => function ($field, $text = false) {

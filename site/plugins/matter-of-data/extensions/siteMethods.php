@@ -1,10 +1,5 @@
 <?php
 
-/*
-* siteMethods
-* https://getkirby.com/docs/reference/plugins/extensions/site-methods
-*/
-
 return [
 	'archive' => function ($type = false) {
 		/*

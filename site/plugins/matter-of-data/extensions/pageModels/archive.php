@@ -3,6 +3,7 @@
 namespace Kirby\Cms;
 
 use Kirby\Template\Template;
+use Kirby\Toolkit\Str;
 
 // archive
 class PageArchive extends Page
@@ -44,7 +45,7 @@ class PageArchive extends Page
     public function items()
     {
         return $this->children()->listed()->filter(function ($child) {
-            return str::startsWith($child->intendedTemplate(), 'items_');
+            return Str::startsWith($child->intendedTemplate(), 'items_');
         });
     }
     public function category(): string

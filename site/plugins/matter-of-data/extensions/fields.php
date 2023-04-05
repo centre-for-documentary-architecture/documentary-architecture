@@ -1,10 +1,6 @@
 <?php
 
-/*
-* fields
-* https://getkirby.com/docs/reference/plugins/extensions/fields
-* kirby/config/fields/pages.php
-*/
+use Kirby\Data\Yaml;
 
 return [
 

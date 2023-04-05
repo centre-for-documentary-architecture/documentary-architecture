@@ -1,11 +1,8 @@
 <?php
 
-/*
-* hooks
-* https://getkirby.com/docs/reference/plugins/extensions/hooks
-*/
-
-
+use Kirby\Data\Yaml;
+use Kirby\Toolkit\Str;
+use Kirby\Filesystem\F;
 
 return [
 

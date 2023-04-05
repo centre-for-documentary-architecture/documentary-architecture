@@ -1,10 +1,5 @@
 <?php
 
-/*
-* pagesMethods
-* https://getkirby.com/docs/reference/plugins/extensions/pages-methods
-*/
-
 return [
 	'pluckStructure' => function ($structureField, $innerField = false) {
 		/*

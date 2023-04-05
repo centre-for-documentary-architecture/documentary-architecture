@@ -22,8 +22,8 @@ $title = 'C D A → ' . $page->title()->html();
 $keywords = array_merge( $page->tags()->split(), $site->tags()->split() );
 
 $description = $site->description();
-if( !$page->isHomePage()){
-	$page->description()->html()->or( 'Discover '. $page->title()->html()->value() .' at the Centre for Documentary Architecture' );
+if( !$page->isHomePage() ){
+	$description = $page->description()->html()->or( 'Discover '. $page->title()->html()->value() .' at the Centre for Documentary Architecture' );
 }
 
 ?>
@@ -41,7 +41,7 @@ if( !$page->isHomePage()){
 
 	<meta name="generator" content="https://moritzebeling.com">
 	<link rel="archives" href="<?= page('archive')->url() ?>">
-	<link rel="author" href="<?= page('about')->url() ?>">
+	<link rel="author" href="<?= page('info')->url() ?>">
 	<?php if( $parent = $page->parent() ): ?>
 		<link rel="index" href="<?= $parent->url() ?>">
 	<?php else: ?>

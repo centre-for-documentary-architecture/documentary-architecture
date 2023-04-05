@@ -4,7 +4,7 @@ namespace Kirby\Cms;
 
 class HomePage extends Page
 {
-    public function title(): Kirby\Cms\Field
+    public function title(): Field
     {
         // return $this->site()->title();
         return new Field($this, 'title', 'Start');

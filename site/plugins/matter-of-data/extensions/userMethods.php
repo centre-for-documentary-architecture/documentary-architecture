@@ -1,9 +1,7 @@
 <?php
 
-/*
-* pageMethods
-* https://getkirby.com/docs/reference/plugins/extensions/page-methods
-*/
+use Kirby\Cms\Html;
+use Kirby\Toolkit\Str;
 
 return [
 	'toLink' => function ($text = false) {

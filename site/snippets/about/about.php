@@ -1,7 +1,7 @@
 <?php
 
 if( !isset( $about ) ){
-	$about = $site->find('about');
+	$about = $site->find('info');
 }
 
 ?>
@@ -69,7 +69,7 @@ if( !isset( $about ) ){
 <nav class="content mono footer-nav grid">
 	<ul class="col-6">
 		<li><?= $site->homePage()->toLink('Start') ?></li>
-		<li><?= $site->find('imprint-privacy-policy')->toLink() ?></li>
+		<li><?= $site->find('info/imprint')->toLink() ?></li>
 	</ul>
 	<ul class="col-6">
 		<?php if( $site->issn()->isNotEmpty() ): ?>

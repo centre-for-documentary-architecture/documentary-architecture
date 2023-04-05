@@ -2,6 +2,7 @@
 
 namespace Kirby\Cms;
 
+use Kirby\Template\Template;
 use Kirby\Cms\Collection;
 
 /*
@@ -71,7 +72,7 @@ class Entity extends Page
         }
         return 'collection';
     }
-    public function template(): Kirby\Template\Template
+    public function template(): Template
     {
         if ($this->template !== null) {
             return $this->template;
@@ -85,11 +86,11 @@ class Entity extends Page
     /*
     * entity concepts
     */
-    public function contexts()
-    {
-        // entities
-        return $this->content()->contexts()->toEntities();
-    }
+    // public function contexts()
+    // {
+    //     // entities
+    //     return $this->content()->contexts()->toEntities();
+    // }
     public function contextualized()
     {
 
@@ -214,7 +215,7 @@ class Entity extends Page
     public function tabContexts(): ?array
     {
 
-        if ($contexts = $this->contexts()->dataAbstract('small')) {
+        if ($contexts = $this->contexts()->toEntities()->dataAbstract('small')) {
         } else {
             return null;
         }
@@ -483,7 +484,7 @@ class Entity extends Page
 
 class EntitySource extends Page
 {
-    public function declaration(): Kirby\Cms\Field
+    public function declaration(): Field
     {
         return $this->content()->declaration()->or($this->title());
     }

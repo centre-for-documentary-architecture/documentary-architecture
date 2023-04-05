@@ -1,9 +1,8 @@
 <?php
 
-/*
-* pageMethods
-* https://getkirby.com/docs/reference/plugins/extensions/page-methods
-*/
+use Kirby\Cms\Field;
+use Kirby\Cms\File;
+use Kirby\Cms\Html;
 
 return [
 
@@ -42,7 +41,7 @@ return [
 	/*
 	* generic fields all pages should have
 	*/
-	'keywords' => function (string $fallback = ''): Kirby\Cms\Field {
+	'keywords' => function (string $fallback = ''): Field {
 
 		if ($this->content()->keywords()->isNotEmpty()) {
 
@@ -51,7 +50,7 @@ return [
 
 		return new Field($this, 'keywords', $fallback);
 	},
-	'description' => function (string $fallback = ''): Kirby\Cms\Field {
+	'description' => function (string $fallback = ''): Field {
 
 		if ($this->content()->description()->isNotEmpty()) {
 
@@ -60,7 +59,7 @@ return [
 
 		return new Field($this, 'description', $fallback);
 	},
-	'thumbnail' => function (): ?Kirby\Cms\File {
+	'thumbnail' => function (): ?File {
 
 		if ($file = $this->content()->thumbnail()->toFile()) {
 			return $file;
