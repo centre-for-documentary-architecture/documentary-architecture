@@ -15,16 +15,6 @@ tabs:
 
               timeline: fields/location/timeline
 
-              location_start:
-                extends: fields/location/legacy/location_city
-                label: Place of Birth (Legacy)
-                max: 1
-
-              location_end:
-                extends: fields/location/legacy/location_city
-                label: Place of Death (Legacy)
-                max: 1
-
               occupation:
                 type: tags
                 label: Occupation
@@ -46,5 +36,3 @@ tabs:
                 label: Biography
                 buttons: false
                 help: false
-
-              education: fields/legacy/education

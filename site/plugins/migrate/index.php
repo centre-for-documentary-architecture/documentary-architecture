@@ -5,50 +5,42 @@ use Kirby\Cms\App as Kirby;
 Kirby::plugin('cda/migrate', [
     'routes' => [
         [
-            'pattern' => '/migrate-locations',
+            'pattern' => '/remove-field',
             'action'  => function () {
 
                 $kirby = kirby();
-                $archive = $kirby->site()->archive('images');
+                $kirby->impersonate('kirby');
 
-                $result = [];
+                $pages = $kirby->site()->archive()->children()->index( true );
+                // $files = $kirby->site()->archive('images')->images();
 
-                $n = 0;
-
-                foreach ($archive->images()->offset($n)->limit(50) as $item) {
-
-                    $contexts = $item->contexts()->toPages()->filterBy('intendedTemplate', 'item_building');
-
-                    if ($contexts->count() !== 1) {
-                        continue;
+                $collection = $pages->filter(function( $item ){
+                    if( $item->date_end()->isNotEmpty() ){
+                        return true;
                     }
+                    return false;
+                });
 
-                    $context = $contexts->first();
-
-                    $location = $item->location_new()->yaml();
-
-                    $new = $location;
-                    $new['inherit'] = [(string)$context->uuid()];
-
-                    if ($new['inherit']) {
-                        $new['location'] = [];
-                    } else {
-                        continue;
-                    }
-
-                    // $item->update([
-                    //     'location_new' => $new
-                    // ]);
-
-                    $result[] = [
-                        'title' => (string)$item->title(),
-                        'context' => (string)$context->title(),
-                        'old' => $location,
-                        'new' => $new
-                    ];
+                dump( $collection );
+                
+                if( $collection->count() < 1 ){
+                    echo 'done';
+                    exit;
                 }
 
-                return $result;
+                foreach( $collection->limit( 10 ) as $item ){
+
+                    $item->update([
+                        'date_end' => null,
+                    ]);
+
+                    echo 'updated: ' . $item->title() . '<br>';
+
+                }
+
+                echo '<meta http-equiv="refresh" content="1">';
+                exit;
+
             }
         ],
     ]

@@ -13,13 +13,8 @@ tabs:
           info_section_fields5:
             fields:
 
-              timeline_new:
+              timeline:
                 extends: fields/location/timeline
-
-              location_start:
-                extends: fields/location/legacy/location
-
-              timeline: fields/legacy/timeline
 
   tab_meta:
     columns:

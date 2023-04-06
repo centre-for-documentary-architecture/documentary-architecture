@@ -13,10 +13,7 @@ tabs:
           info_section_fields5:
             fields:
 
-              location_new: fields/location/location
-
-              location_start:
-                extends: fields/location/legacy/location
+              location: fields/location/location
 
               architects:
                 type: tags

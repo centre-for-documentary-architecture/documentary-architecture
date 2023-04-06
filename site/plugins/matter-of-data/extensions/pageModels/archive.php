@@ -35,7 +35,7 @@ class PageArchive extends Page
         $pages = $unlisted ? $this->index() : $this->index()->listed();
         return $pages->filter(function ($child) {
 
-            return $child->date_new()->isEmpty();
+            return $child->date()->isEmpty();
         }, 'desc');
     }
     public function entities()
@@ -103,7 +103,7 @@ class PageArchive extends Page
         }
 
         return $this->entities()->listed()->bettersearch($query, [
-            'fields' => ['title', 'additional_title', 'research_methods', 'tags', 'content_text', 'description', 'category', 'transcript', 'credits', 'date_new', 'date_end', 'location_start', 'location_end', 'starring', 'occupation', 'sources']
+            'fields' => ['title', 'additional_title', 'research_methods', 'tags', 'content_text', 'description', 'category', 'transcript', 'credits', 'date', 'starring', 'occupation', 'sources']
         ]);
     }
     public function dataAbstract(string $srcset = 'medium')

@@ -82,15 +82,11 @@ $publications = $site->archive('publications')->highlights()->toPages();
 									} else {
 										echo ucwords( $item->type() );
 									}
-									if( $item->date_new()->isNotEmpty() ){
+									if( $item->date()->isNotEmpty() ){
 
 										echo '<br />';
 
-										echo $item->date_new()->value();
-
-										if( $item->date_end()->isNotEmpty() ){
-											echo ' – '.$item->date_end()->value();
-										}
+										echo $item->date()->value();
 
 									}
 								?>

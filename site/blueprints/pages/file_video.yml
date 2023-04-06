@@ -27,7 +27,7 @@ tabs:
           info_section_fields5:
             fields:
 
-              location_new: false
+              location: false
 
               locations: fields/location/locations
 

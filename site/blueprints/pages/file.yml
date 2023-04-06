@@ -38,13 +38,10 @@ tabs:
             type: fields
             fields:
 
-              date_new:
+              date:
                 extends: fields/date_historical
 
-              location_new: fields/location/location
-              
-              location_start:
-                extends: fields/location/legacy/location_city
+              location: fields/location/location
 
               starring:
                 type: tags

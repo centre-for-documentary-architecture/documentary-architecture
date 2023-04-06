@@ -1,5 +1,0 @@
-type: text
-label: Year
-placeholder: YYYY
-validate:
-  match: /^((1\d|20)[0-9x]{2})?$/

@@ -37,11 +37,8 @@ class EntityItemPerson extends EntityItem
         $content = [];
 
         $dates = [];
-        if ($this->date_new()->isNotEmpty()) {
-            $dates[] = $this->date_new()->toDateKeyword();
-        }
-        if ($this->location_start()->isNotEmpty()) {
-            $dates[] = $this->content()->location_start()->toLocation();
+        if ($this->date()->isNotEmpty()) {
+            $dates[] = $this->date()->toDateKeyword();
         }
         if ($dates !== []) {
             $content[] = [
@@ -51,12 +48,6 @@ class EntityItemPerson extends EntityItem
         }
 
         $dates = [];
-        if ($this->date_end()->isNotEmpty()) {
-            $dates[] = $this->content()->date_end()->toDateKeyword();
-        }
-        if ($this->location_end()->isNotEmpty()) {
-            $dates[] = $this->content()->location_end()->toLocation();
-        }
         if ($dates !== []) {
             $content[] = [
                 'key' => 'Died',
@@ -85,22 +76,6 @@ class EntityItemPerson extends EntityItem
                 'value' => $projects
             ];
         }
-        if ($this->education()->isNotEmpty()) {
-            $values = [];
-            foreach ($this->education()->toStructure() as $stop) {
-                $ed = $stop->date_start()->toDateKeyword() . '. ';
-                if ($ed === '. ') {
-                    $ed = '';
-                }
-                $ed .= $stop->text()->kirbytextinline() . ', ';
-                $ed .= $stop->location()->toLocation(', ');
-                $values[] = $ed;
-            }
-            $content[] = [
-                'key' => 'Education',
-                'value' => $values
-            ];
-        }
         if ($this->bio()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Bio',
@@ -122,16 +97,10 @@ class EntityItemBuilding extends EntityItem
 
         $content = [];
 
-        if ($this->date_new()->isNotEmpty()) {
+        if ($this->date()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Construction',
-                'value' => $this->content()->date_new()->toDateKeyword()
-            ];
-        }
-        if ($this->location_start()->isNotEmpty()) {
-            $content[] = [
-                'key' => 'Location',
-                'value' => $this->content()->location_start()->toLocation()
+                'value' => $this->content()->date()->toDateKeyword()
             ];
         }
         if ($this->architects()->isNotEmpty()) {
@@ -168,8 +137,8 @@ class EntityItemBuilding extends EntityItem
             $info[] = implode(', ', $architects);
         }
 
-        if ($this->location_start()->isNotEmpty()) {
-            $loc = $this->content()->location_start()->yaml()[0];
+        if ($this->location()->isNotEmpty()) {
+            $loc = $this->content()->location()->yaml()[0];
             $info[] = implode(', ', array_filter([
                 $loc['streetaddress'],
                 trim($loc['postalcode'] . ' ' . $loc['addresslocality']),
@@ -195,10 +164,10 @@ class EntityItemObject extends EntityItem
 
         $content = [];
 
-        if ($this->date_new()->isNotEmpty()) {
+        if ($this->date()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Production date',
-                'value' => $this->content()->date_new()->toDateKeyword()
+                'value' => $this->content()->date()->toDateKeyword()
             ];
         }
 
@@ -231,23 +200,7 @@ class EntityItemObject extends EntityItem
 /*
 * Entity > Item > Material
 */
-class EntityItemMaterial extends EntityItem
-{
-    public function dataIndividualFields(): array
-    {
-
-        $content = [];
-
-        if ($this->location_start()->isNotEmpty()) {
-            $content[] = [
-                'key' => 'Origin',
-                'value' => $this->content()->location_start()->toLocation()
-            ];
-        }
-
-        return $content;
-    }
-}
+class EntityItemMaterial extends EntityItem {}
 
 
 /*
@@ -260,10 +213,10 @@ class EntityItemOrganisation extends EntityItem
 
         $content = [];
 
-        if ($this->date_new()->isNotEmpty()) {
+        if ($this->date()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Founded',
-                'value' => $this->content()->date_new()->toDateKeyword()
+                'value' => $this->date()->toDateKeyword()
             ];
         }
 
@@ -312,10 +265,10 @@ class EntityItemPublication extends EntityItem
 
         $content = [];
 
-        if ($this->date_new()->isNotEmpty()) {
+        if ($this->date()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Release',
-                'value' => $this->content()->date_new()->toDateKeyword()
+                'value' => $this->content()->date()->toDateKeyword()
             ];
         }
 
@@ -349,8 +302,8 @@ class EntityItemEvent extends EntityItem
 
         $content = [];
 
-        if ($this->date_new()->isNotEmpty()) {
-            $date = $this->content()->date_new()->toDateKeyword();
+        if ($this->date()->isNotEmpty()) {
+            $date = $this->content()->date()->toDateKeyword();
             if ($this->date_end()->isNotEmpty()) {
                 $date .= ' &minus; ' . $this->date_end()->toDateKeyword();
             }
@@ -360,26 +313,11 @@ class EntityItemEvent extends EntityItem
             ];
         }
 
-        if ($this->location_start()->isNotEmpty()) {
-            $content[] = [
-                'key' => 'Location',
-                'value' => $this->content()->location_start()->toLocation()
-            ];
-        }
-
         if ($this->timeline()->isNotEmpty()) {
             $timeline = [];
             foreach ($this->timeline()->yaml() as $event) {
 
                 $date = false;
-                if (isset($event['date_start'])) {
-                    $date = toDateKeyword($event['date_start']);
-                    if (isset($event['date_end'])) {
-                        if ($end = toDateKeyword($event['date_end'])) {
-                            $date .= ' &minus; ' . $end;
-                        }
-                    }
-                }
 
                 $location = false;
                 if (isset($event['location'])) {

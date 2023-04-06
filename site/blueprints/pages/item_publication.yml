@@ -29,9 +29,7 @@ tabs:
           info_section_fields5:
             fields:
 
-              location_new: fields/location/location
-
-              location_start: false
+              location: fields/location/location
 
               details:
                 extends: fields/credits

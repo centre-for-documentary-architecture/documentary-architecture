@@ -28,12 +28,9 @@ tabs:
             type: fields
             fields:
 
-              date_new: fields/date_historical
+              date: fields/date_historical
 
-              location_new: fields/location/location
-              
-              location_start:
-                extends: fields/location/legacy/location
+              location: fields/location/location
 
               starring:
                 type: tags

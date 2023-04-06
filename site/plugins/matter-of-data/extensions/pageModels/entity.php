@@ -326,16 +326,10 @@ class Entity extends Page
 
         $content = [];
 
-        if ($this->date_new()->isNotEmpty()) {
+        if ($this->date()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Date',
-                'value' => $this->date_new()->toDateKeyword()
-            ];
-        }
-        if ($this->location_start()->isNotEmpty()) {
-            $content[] = [
-                'key' => 'Location start',
-                'value' => $this->location_start()->toLocation()
+                'value' => $this->date()->toDateKeyword()
             ];
         }
 
@@ -424,6 +418,7 @@ class Entity extends Page
     public function geoJson(): ?array
     {
 
+        // @todo
         // https://geojson.org
         if (!$this->content()->location_start()->exists()) {
             return null;

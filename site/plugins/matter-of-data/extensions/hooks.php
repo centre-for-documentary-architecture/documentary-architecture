@@ -122,18 +122,19 @@ return [
 
 		if (isset($matches[0])) {
 			// extract date from filename
-			$update['date_new'] = $matches[0];
+			$update['date'] = $matches[0];
 		} else if ($timestamp = $exif->timestamp()) {
 			// extract date fron exif
-			$update['date_new'] = date('Y-m-d', $timestamp);
+			$update['date'] = date('Y-m-d', $timestamp);
 		}
 
-		if ($exif->location()->lat() && $exif->location()->lng()) {
-			$update['location_start'] = Yaml::encode([[
-				'lat' => $exif->location()->lat(),
-				'lon' => $exif->location()->lng()
-			]]);
-		}
+		// @todo extract location from exif and save into file
+		// if ($exif->location()->lat() && $exif->location()->lng()) {
+		// 	$update['location_start'] = Yaml::encode([[
+		// 		'lat' => $exif->location()->lat(),
+		// 		'lon' => $exif->location()->lng()
+		// 	]]);
+		// }
 
 		/*
 		* sanitize and change name
