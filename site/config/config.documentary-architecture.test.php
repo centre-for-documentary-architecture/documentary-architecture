@@ -4,15 +4,6 @@ header("Access-Control-Allow-Origin: *");
 
 return [
 
-	'kql' => [
-		'auth' => false,
-		'methods' => [
-			'allowed' => [
-				'Kirby\Cms\Users::findByNameSlug',
-			]
-		],
-	],
-
 	'debug'  => true,
 
 	'cache' => [

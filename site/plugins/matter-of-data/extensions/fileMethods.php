@@ -6,13 +6,6 @@ use Kirby\Cms\Field;
 use Kirby\Data\Yaml;
 
 return [
-	'entityType' => function () {
-		/*
-		* returns array of all types, this page is part of
-		* requires that blueprints are named like type1_type2, eg. item_building.yml
-		*/
-		return explode('_', $this->template());
-	},
 	'title' => function () {
 		/*
 		* returns the filename as title, making $file mor compatible to $page templates

@@ -99,24 +99,6 @@ return [
 			return toKeyword($tag->value, $tag->text);
 		}
 	],
-	'user' => [
-		/*
-		* custom kirbytag (user: Moritz Ebeling) that creates a link to that user profile
-		*/
-		'attr' => [],
-		'html' => function ($tag) {
-			if( $user = kirby()->users()->findByNameSlug( Str::slug($tag->user) ) ){
-				return Html::a(
-					'/info/team/' . Str::slug($tag->user),
-					$user->name(),
-					[
-						'title' => 'Go to "' . $user->name() . '"'
-					]
-				);
-			}
-			return $tag->user;
-		}
-	],
 	'source' => [
 		'attr' => [
 			'author', 'date', 'publisher', 'website', 'country'
@@ -138,4 +120,23 @@ return [
 			]);
 		}
 	],
+
+	/*
+	refactored
+	*/
+
+	'user' => [
+		/*
+		(user: Moritz Ebeling)
+		creates link to user profile
+		*/
+		'attr' => [],
+		'html' => function ($tag) {
+			if( $user = kirby()->users()->findBySlug( Str::slug($tag->user) ) ){
+				return $user->toLink();
+			}
+			return $tag->user;
+		}
+	],
+
 ];

@@ -4,42 +4,48 @@ use Kirby\Cms\Html;
 use Kirby\Toolkit\Str;
 
 return [
-	'toLink' => function ($text = false) {
-		return toKeyword($this->name());
-		/*
-		* creates a link to this page
-		*/
+
+	/*
+	all refactored and approved 2023-04-06
+	*/
+
+	'toLink' => function () {
+		$name = $this->name();
 		return Html::a(
 			$this->url(),
-			$text ? $text : $this->title(),
-			$attr = [
-				'title' => 'Go to "' . $this->title() . '"'
+			$name,
+			[
+				'title' => "Profile of $name"
 			]
 		);
 	},
-	'title' => function () {
-		return $this->name();
-	},
-	'slug' => function () {
-		return Str::slug($this->name());
-	},
-	'url' => function () {
-		return 'team/' . Str::slug($this->name());
-	},
-	'entityType' => function () {
-		return ['user'];
+
+	'url' => function ( bool $absolute = false ) {
+		$url = '/info/team/' . $this->slug();
+		if( $absolute === true ){
+			$url = $this->kirby()->url() . $url;
+		}
+		return $url;
 	},
 
-	/*
-	new
-	*/
+	'slug' => function () {
+		return Str::slug( $this->name() );
+	},
 
 	'schema' => function (): array {
-		return [
+		$data = [
 			'@context' => 'https://schema.org',
 			'@type' => 'Person',
 			'name' => (string)$this->name(),
+			'url' => $this->url( true ),
+			'worksFor' => 'Centre for Documentary Architecture',
+			'jobTitle' => (string)$this->profession(),
+			'sameAs' => $this->links()->structureToLinks( false )
 		];
+		if( $this->show_email()->isTrue() ){
+			$data['email'] = $this->email();
+		}
+		return $data;
 	},
 	
 ];

@@ -101,19 +101,3 @@ function toPageOrKeyword(string $id)
 		return toKeyword($id);
 	}
 }
-
-function toUserOrKeyword(string $id)
-{
-	/*
-	* currently there are no user pages
-	*/
-	return toKeyword($id);
-
-	if ($user = kirby()->users()->search($id)->first()) {
-
-		return $user->toLink();
-	} else {
-
-		return toKeyword($id);
-	}
-}

@@ -213,19 +213,10 @@ return [
 		]);
 	},
 
-
 	/*
 	* legacy
 	*/
 
-
-	'entityType' => function () {
-		/*
-		* returns array of all types, this page is part of
-		* requires that blueprints are named like type1_type2, eg. item_building.yml
-		*/
-		return explode('_', $this->intendedTemplate());
-	},
 	'isType' => function ($type) {
 		/*
 		* tests if this page matches the given type

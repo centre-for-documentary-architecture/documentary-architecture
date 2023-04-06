@@ -14,14 +14,18 @@ Kirby::plugin('cda/kql-methods', [
             return $field;
         },
 
-        'structureToLinks' => function ($field) {
+        'structureToLinks' => function ($field, bool $includeTitle = true ) {
 
             $links = [];
             foreach( $field->toStructure() as $row ){
-                $links[] = [
-                    'href' => (string)$row->href(),
-                    'title' => $row->title()->isNotEmpty() ? (string)$row->title() : parse_url($row->href())['host'],
-                ];
+                if( $includeTitle ){
+                    $links[] = [
+                        'href' => (string)$row->href(),
+                        'title' => $row->title()->isNotEmpty() ? (string)$row->title() : parse_url($row->href())['host']
+                    ];
+                } else {
+                    $links[] = (string)$row->href();
+                }
             }
 
             return $links;
@@ -29,27 +33,18 @@ Kirby::plugin('cda/kql-methods', [
         },
         
         'ifTrueThen' => function ($field, $fallback) {
-
             if (!$field->isTrue()) {
-                return $field;
+                return null;
             }
-    
-            if ($fallback instanceof self) {
-                return $fallback;
-            }
-    
-            $field = clone $field;
-            $field->value = $fallback;
-            return $field;
-    
+            return $fallback;    
         },
         
     ],
     
     'usersMethods' => [
-        'findByNameSlug' => function ( string $slug ) {
-            return $this->filter(function ($user) use ($slug) {
-                return $slug == Str::slug( $user->name() );
+        'findBySlug' => function ( string $query ) {
+            return $this->filter(function ($user) use ($query) {
+                return $query == $user->slug();
             })->first();
         }
     ]

@@ -15,6 +15,9 @@ fields:
       - 'No'
       - 'Yes'
 
+  profession:
+    type: text
+
   links:
     extends: fields/new/urls
 

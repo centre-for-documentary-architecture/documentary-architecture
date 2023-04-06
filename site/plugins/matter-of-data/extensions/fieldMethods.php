@@ -19,9 +19,6 @@ return [
 	'toLocation' => function ($field, $glue = "<br>") {
 		return toLocation($field->yaml()[0], $glue);
 	},
-	'toUserOrKeyword' => function ($field) {
-		return toUserOrKeyword($field->value());
-	},
 	'toEntities' => function ($field) {
 		$entities = new Entities();
 		$kirby = kirby();

@@ -19,6 +19,17 @@ return [
 	// development
 	'debug'  => false,
 
+	'kql' => [
+		'auth' => false,
+		'methods' => [
+			'allowed' => [
+				'Kirby\Cms\Users::findBySlug',
+				'Kirby\Cms\User::slug',
+				'Kirby\Cms\User::schema',
+			]
+		],
+	],
+
 	// archive shall render all 404, using the request path as query input
 	'error' => 'error',
 
