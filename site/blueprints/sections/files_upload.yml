@@ -4,5 +4,5 @@ info: "{{ file.template }}"
 image:
   cover: false
   back: '#f9f9f9'
-sortBy: date_created desc
+sortBy: date_modified.toObject.created desc
 sortable: false

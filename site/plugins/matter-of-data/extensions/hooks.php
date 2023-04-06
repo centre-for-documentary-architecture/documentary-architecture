@@ -1,117 +1,57 @@
 <?php
 
-use Kirby\Data\Yaml;
 use Kirby\Toolkit\Str;
 use Kirby\Filesystem\F;
 
 return [
 
-	/*
-	* page
-	*/
-	'page.changeNum:after' => function ($newPage) {
-		flushCache($newPage->id());
-	},
 	'page.changeSlug:after' => function ($newPage, $oldPage) {
-		flushCache($newPage->id());
 		require_once __DIR__ . '/../functions/syncContexts.php';
 		syncContexts($newPage, $oldPage);
 	},
-	'page.changeStatus:after' => function ($newPage) {
-		flushCache($newPage->id());
-	},
-	'page.changeTemplate:after' => function ($newPage) {
-		flushCache($newPage->id());
-	},
+
 	'page.changeTitle:after' => function ($newPage) {
-
-		flushCache($newPage->id());
-
 		$newTitle = $newPage->content()->title()->value();
 
 		$newPage->update([
 			'title' => $newTitle
 		]);
 	},
+
 	'page.create:after' => function ($page) {
-		$update = [];
-
-		if ($page->date_created()->exists()) {
-			$update['date_created'] = date('Y-m-d H:i');
-		}
-		if ($page->user_created()->exists()) {
-			$update['user_created'] = Yaml::encode($this->user()->email());
-		}
-
-		if (!empty($update)) {
-			$page->update($update);
-		}
-		$page->changeStatus('unlisted');
+		$page->updateDateModified( true );
 	},
-	'page.delete:after' => function ($page) {
-		flushCache($page->id());
-	},
+
 	'page.duplicate:after' => function ($duplicatePage) {
-		$update = [];
-
-		if ($duplicatePage->date_created()->exists()) {
-			$update['date_created'] = date('Y-m-d H:i');
-		}
-		if ($duplicatePage->date_modified()->exists()) {
-			$update['date_modified'] = date('Y-m-d H:i');
-		}
-
-		if (!empty($update)) {
-			$duplicatePage->update($update);
-		}
+		$duplicatePage->updateDateModified( true );
 	},
+
 	'page.update:after' => function ($newPage, $oldPage) {
-		$update = [];
-
-		if ($newPage->date_modified()->exists()) {
-			// override date
-			$update['date_modified'] = date('Y-m-d H:i');
-		}
-		if ($newPage->user_modified()->exists()) {
-			// override user
-			$update['user_modified'] = Yaml::encode($this->user()->email());
-		}
-
-		if (!empty($update)) {
-			$newPage->update($update);
-		}
+		$newPage->updateDateModified();
 
 		require_once __DIR__ . '/../functions/syncContexts.php';
 		syncContexts($newPage, $oldPage);
-
-		flushCache($newPage->id());
 	},
 
-	/*
-	* file
-	*/
 	'file.changeName:after' => function ($newFile, $oldFile) {
+		
 		if ($newFile->template() != 'file_image') {
 			return;
 		}
-
-		flushCache($newFile->id());
 
 		/*
 		* when filename is changed, all pages, where this image is used as thumbnail, should be updated
 		*/
 		searchReplaceFields($oldFile->id(), $newFile->id(), 'thumbnail');
 	},
+
 	'file.create:after' => function ($file) {
+
 		if ($file->template() != 'file_image') {
 			return;
 		}
 
-		// basic info
-		$update = [
-			'date_created' => date('Y-m-d H:i'),
-			'user_created' => Yaml::encode($this->user()->email()),
-		];
+		$update = $file->updateDateModified( true, true );
 
 		$name = Str::slug(F::name($file->filename()));
 		$exif = $file->exif();
@@ -142,28 +82,18 @@ return [
 		*/
 		$file->changeName($name)->update($update);
 	},
-	'file.delete:after' => function ($file) {
-		flushCache($file->id());
-	},
-	'file.replace:after' => function ($newFile) {
-		flushCache($newFile->id());
-	},
+
 	'file.update:after' => function ($newFile, $oldFile) {
+		
 		if ($newFile->template() != 'file_image') {
 			return;
 		}
 
-		flushCache($newFile->id());
-
-		$update = [
-			'date_modified' => date('Y-m-d H:i'),
-			'user_modified' => Yaml::encode($this->user()->email()),
-		];
-
-		$newFile->update($update);
+		$newFile->updateDateModified();
 
 		require_once __DIR__ . '/../functions/syncContexts.php';
 		syncContexts($newFile, $oldFile);
+
 	},
 
 ];

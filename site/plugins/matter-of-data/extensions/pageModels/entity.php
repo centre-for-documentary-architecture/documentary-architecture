@@ -268,19 +268,6 @@ class Entity extends Page
             }
         }
 
-        if ($this->content()->date_modified()->isNotEmpty()) {
-            $content[] = [
-                'key' => 'Dataset modified',
-                'value' => $this->date_modified()->toDateKeyword()
-            ];
-        }
-        if ($this->content()->date_created()->isNotEmpty()) {
-            $content[] = [
-                'key' => 'Dataset created',
-                'value' => $this->date_created()->toDateKeyword()
-            ];
-        }
-
         if ($this->research_methods()->isNotEmpty()) {
             $content[] = [
                 'key' => 'Keywords',
@@ -447,24 +434,28 @@ class Entity extends Page
 
     public function schema(): array
     {
+
+        $modified = $this->date_modified()->toObject();
+
+        $editors = [];
+        if ($user = $modified->created_by()->toUser()) {
+            $editors[] = $user->schema();
+        }
+        if ($user = $modified->modified_by()->toUser()) {
+            $editors[] = $user->schema();
+        }
+
         $schema = array_merge(parent::schema(), [
             'headline' => (string)$this->additional_title(),
-            'dateModified' => $this->date_modified()->toDate('Y-m-d'),
-            'datePublished' => $this->date_created()->toDate('Y-m-d'),
+            'dateModified' => $modified->modified()->toDate('Y-m-d'),
+            'datePublished' => $modified->created()->toDate('Y-m-d'),
             'description' => (string)$this->description(),
-            'editor' => [],
+            'editor' => $editors,
         ]);
 
         if ($this->copyright()->isNotEmpty()) {
-            $schema['copyrightYear'] = $this->date_created()->toDate('Y-m-d');
+            $schema['copyrightYear'] = $modified->created()->toDate('Y-m-d');
             $schema['copyrightHolder'] = (string)$this->copyright();
-        }
-
-        if ($user = $this->user_modified()->toUser()) {
-            $schema['editor'][] = [
-                '@type' => 'Person',
-                'name' => (string)$user->name(),
-            ];
         }
 
         if ($image = $this->thumbnail()) {

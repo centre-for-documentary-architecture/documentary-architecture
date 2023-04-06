@@ -44,20 +44,4 @@ columns:
         type: fields
         fields:
 
-          date_created:
-            extends: fields/service/modified
-            label: Dataset created
-
-          date_modified:
-            extends: fields/service/modified
-            label: Dataset modified
-
-          user_created:
-            extends: fields/user
-            label: Created by
-            width: 1/2
-
-          user_modified:
-            extends: fields/user
-            label: Last modified by
-            width: 1/2
+          date_modified: fields/service/dateModified

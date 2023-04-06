@@ -1,6 +1,8 @@
 <?php
 
 use Kirby\Cms\App as Kirby;
+use Kirby\Toolkit\Str;
+use Kirby\Cms\Page;
 
 // import functions
 require_once __DIR__ . '/functions/helpers.php';
@@ -15,16 +17,6 @@ require_once __DIR__ . '/extensions/pageModels/entity.php';
 require_once __DIR__ . '/extensions/pageModels/entityCollection.php';
 require_once __DIR__ . '/extensions/pageModels/entityItem.php';
 require_once __DIR__ . '/extensions/pageModels/entityFile.php';
-
-function flushCache($id, $cache = true)
-{
-	$kirby = kirby();
-	if ($cache === true) {
-		$kirby->cache('cda.get')->remove($id);
-		return;
-	}
-	$kirby->cache($cache)->remove($id);
-}
 
 Kirby::plugin('cda/matter-of-data', [
 
@@ -119,6 +111,7 @@ Kirby::plugin('cda/matter-of-data', [
 		'home' => 'Kirby\Cms\HomePage'
 
 	],
+
 	'pageMethods'  => require_once __DIR__ . '/extensions/pageMethods.php',
 	'pagesMethods' => require_once __DIR__ . '/extensions/pagesMethods.php',
 

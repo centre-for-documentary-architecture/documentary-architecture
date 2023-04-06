@@ -13,20 +13,25 @@ sections:
       back: '#f9f9f9'
       cover: true
     columns:
+
       text:
         label: Title
         width: 1/2
         value: "<a href="{{ page.panel.url }}">{{ page.title }}</a>"
         type: html
+
       type:
         label: Type
         width: 1/6
         value: "{{ page.type }}"
         mobile: false
-      date_modified:
+
+      modified:
         label: Date
+        value: "{{ page.date_modified.toObject.modified.toDate('Y-m-d') }}"
         width: 1/6
-      user_modified:
+
+      modified_by:
         label: Editor
-        value: "{{ page.user_modified.toUser.name }}"
+        value: "{{ page.date_modified.toObject.modified_by.toUser.name }}"
         width: 1/6

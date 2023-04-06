@@ -29,4 +29,17 @@ return [
 	'entityType' => function () {
 		return ['user'];
 	},
+
+	/*
+	new
+	*/
+
+	'schema' => function (): array {
+		return [
+			'@context' => 'https://schema.org',
+			'@type' => 'Person',
+			'name' => (string)$this->name(),
+		];
+	},
+	
 ];

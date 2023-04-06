@@ -1,0 +1,31 @@
+label: Created and modified
+type: object
+fields:
+
+  created:
+    label: Created
+    type: date
+    time: true
+    default: now
+    step: 1
+    width: 1/2
+
+  modified:
+    label: Modified
+    type: date
+    time: true
+    default: now
+    step: 1
+    width: 1/2
+
+  created_by:
+    label: Created by
+    type: users
+    width: 1/2
+    multiple: false
+
+  modified_by:
+    label: Modified by
+    type: users
+    width: 1/2
+    multiple: false

@@ -23,13 +23,18 @@ class PageArchive extends Page
         }
         return $this->template = $this->kirby()->template('default');
     }
+
     public function recentlyEditedPages($unlisted = false)
     {
+        
         $pages = $unlisted ? $this->index() : $this->index()->listed();
+
         return $pages->sortBy(function ($child) {
-            return $child->date_modified()->toDate();
+            return $child->date_modified()->toObject()->modified()->toDate();
         }, 'desc');
+
     }
+
     public function pagesWithIncompleteDataset($unlisted = false)
     {
         $pages = $unlisted ? $this->index() : $this->index()->listed();
@@ -103,7 +108,21 @@ class PageArchive extends Page
         }
 
         return $this->entities()->listed()->bettersearch($query, [
-            'fields' => ['title', 'additional_title', 'research_methods', 'tags', 'content_text', 'description', 'category', 'transcript', 'credits', 'date', 'starring', 'occupation', 'sources']
+            'fields' => [
+                'title',
+                'additional_title',
+                'research_methods',
+                'tags',
+                'content_text',
+                'description',
+                'category',
+                'transcript',
+                'credits',
+                'date',
+                'starring',
+                'occupation',
+                'sources'
+            ]
         ]);
     }
     public function dataAbstract(string $srcset = 'medium')

@@ -3,6 +3,7 @@
 use Kirby\Cms\Html;
 use Kirby\Cms\Page;
 use Kirby\Cms\Field;
+use Kirby\Data\Yaml;
 
 return [
 	'entityType' => function () {
@@ -119,6 +120,31 @@ return [
 		];
 
 		return $content;
+	},
+
+	/*
+	new
+	*/
+
+	'updateDateModified' => function ( bool $created = false, bool $return = false ){
+		
+		$modified = Yaml::decode( $this->date_modified()->value() );
+
+		$modified['modified']    = date('Y-m-d H:i');
+		$modified['modified_by'] = (string)$this->kirby()->user()->uuid();
+
+		if ( $created === true ) {
+			$modified['created']    = $modified['modified'];
+			$modified['created_by'] = $modified['modified_by'];
+		}
+
+		if( $return === true ){
+			return $modified;
+		}
+
+		$this->update([
+			'date_modified' => Yaml::encode($modified)
+		]);
 	},
 
 ];
