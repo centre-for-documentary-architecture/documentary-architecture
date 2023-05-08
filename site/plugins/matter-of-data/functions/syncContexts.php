@@ -35,7 +35,7 @@ function syncContexts($page, $oldPage)
 			}
 
 			// get other pages contextualized entities and remove this
-			if ($contextualized_old = $removeFromEntity->content()->contextualized()->yaml()) {
+			if ($contextualized_old = $removeFromEntity->contextualized()->yaml()) {
 				$contextualized = array_diff($contextualized_old, [$pageId]);
 				$removeFromEntity->update(['contextualized' => Yaml::encode($contextualized)]);
 			}
@@ -49,7 +49,7 @@ function syncContexts($page, $oldPage)
 				continue;
 			}
 
-			$contextualized = $addToEntity->content()->contextualized()->yaml();
+			$contextualized = $addToEntity->contextualized()->yaml();
 			if (!in_array($pageId, $contextualized)) {
 				// add to other page, if not listed already
 				$contextualized[] = $pageId;

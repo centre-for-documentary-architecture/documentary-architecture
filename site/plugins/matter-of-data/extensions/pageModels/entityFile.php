@@ -2,6 +2,7 @@
 
 namespace Kirby\Cms;
 use Kirby\Filesystem\F;
+use Kirby\Cms\Field;
 
 /*
 * Entity > File
@@ -164,9 +165,16 @@ class EntityFileImage extends EntityFile
     {
         return $this->file();
     }
-    public function thumbnail(): File
+    /**
+     * @kql-allowed
+     */
+    public function thumbnail(): Field
     {
-        return $this->kirby()->file($this->id());
+        return new Field(
+            $this,
+            'thumbnail',
+            $this->id()
+        );
     }
     /*
     * panel

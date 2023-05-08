@@ -6,12 +6,16 @@ use Kirby\Cms\Field;
 use Kirby\Data\Yaml;
 
 return [
+	/**
+     * @kql-allowed
+     */
 	'title' => function () {
 		/*
 		* returns the filename as title, making $file mor compatible to $page templates
 		*/
 		return $this->filename();
 	},
+	
 	'filetitle' => function () {
 		/*
 		* returns the filename as title, making $file mor compatible to $page templates
@@ -51,6 +55,9 @@ return [
 		}
 		return $this->title();
 	},
+	/**
+     * @kql-allowed
+     */
 	'thumbnail' => function () {
 		/*
 		* tests if this page matches the given type

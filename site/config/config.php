@@ -23,6 +23,7 @@ return [
 		'auth' => false,
 		'methods' => [
 			'allowed' => [
+				'Kirby\Cms\Page::type',
 				'Kirby\Cms\Users::findBySlug',
 				'Kirby\Cms\User::slug',
 				'Kirby\Cms\User::schema',

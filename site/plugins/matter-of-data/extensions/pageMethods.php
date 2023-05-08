@@ -6,36 +6,49 @@ use Kirby\Cms\Html;
 use Kirby\Data\Yaml;
 
 return [
-
-	/*
-	* general information about this page
-	*/
+	
+	/**
+     * @kql-allowed
+     */
 	'entity' => function (): string {
 		// collection|item|file
 		return explode('_', $this->intendedTemplate())[0];
 	},
-	'type' => function (): string {
-		// image|video|building|liebling-house
-		$e = explode('_', $this->intendedTemplate());
-		return end($e);
-	},
-	'classlist' => function (): string {
-		return $this->entity() . ' ' . $this->type();
-	},
+
+	/**
+     * @kql-allowed
+     */
 	'category' => function (): ?string {
 		// select field
 		if ($this->content()->category()->isNotEmpty()) {
-
 			return $this->content()->category()->toSlug()->value();
 		}
 		return null;
 	},
-	'theme' => function (): string {
+	
+	/**
+     * @kql-allowed
+     */
+	'type' => function (): string {
+		$types = explode( '_', $this->intendedTemplate() );
 
+		if ($this->content()->category()->isNotEmpty()) {
+			$types[] = $this->content()->category()->toSlug()->value();
+		}
+
+		return implode( '/', $types );
+	},
+
+
+
+
+	'classlist' => function (): string {
+		return $this->entity() . ' ' . $this->type();
+	},
+	'theme' => function (): string {
 		return 'black';
 	},
 	'layout' => function (): string {
-
 		return 'regular';
 	},
 
@@ -68,14 +81,7 @@ return [
 
 		return null;
 	},
-	'countCollection' => function (): int {
-
-		if ($c = $this->collection()) {
-
-			return $c->count();
-		}
-		return 1;
-	},
+	
 	'entityInfo' => function (): string {
 
 		return '';

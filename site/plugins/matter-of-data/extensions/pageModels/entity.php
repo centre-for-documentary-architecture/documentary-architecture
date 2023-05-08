@@ -91,21 +91,24 @@ class Entity extends Page
     //     // entities
     //     return $this->content()->contexts()->toEntities();
     // }
-    public function contextualized()
-    {
 
-        // entities
-        return $this->content()->contextualized()->toEntities();
-    }
     public function collection()
     {
-
         if ($this->hasChildren()) {
 
             return $this->children()->listed();
         }
         return $this->contextualized();
     }
+    /**
+     * @kql-allowed
+     */
+	public function countCollection() {
+		if ($this->hasChildren()) {
+            return $this->children()->count();
+        }
+		return $this->contextualized()->toEntities()->count() ?? 1;
+	}
     public function worlditem(): ?string
     {
         // entities

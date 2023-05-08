@@ -22,12 +22,12 @@
   RewriteBase /
 
   # remove www and add https
-  RewriteCond %{HTTP_HOST} ^www.documentary-architecture.org$ [NC]
-  RewriteRule ^(.*)$ https://documentary-architecture.org/$1 [R=301,L]
+  # RewriteCond %{HTTP_HOST} ^www.documentary-architecture.org$ [NC]
+  # RewriteRule ^(.*)$ https://documentary-architecture.org/$1 [R=301,L]
 
   # force https
-  RewriteCond %{HTTPS} off
-  RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+  # RewriteCond %{HTTPS} off
+  # RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
 
   # favicon
   RewriteRule ^favicon\.ico$ /assets/favicon/favicon.ico [L]
