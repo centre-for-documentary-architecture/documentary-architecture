@@ -5,6 +5,17 @@ namespace Kirby\Cms;
 class EntityCollection extends Entity
 {
 
+    /**
+     * @kql-allowed
+     */
+	public function image(?string $filename = null) {
+
+        if( $image = $this->thumbnail()->toFile() ){
+            return $image;
+        }
+
+	}
+
     public function entity(): string
     {
         return 'collection';

@@ -85,23 +85,12 @@ class EntityFileImage extends EntityFile
     }
 
     /**
+     * @kql-allowed
      * alias to $this->file()
      */
     public function image(string $filename = null): File
     {
         return $this->file();
-    }
-
-    /**
-     * @kql-allowed
-     */
-    public function thumbnail(): Field
-    {
-        return new Field(
-            $this,
-            'thumbnail',
-            $this->id()
-        );
     }
 
     /**

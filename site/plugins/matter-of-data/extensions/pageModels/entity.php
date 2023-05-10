@@ -24,7 +24,7 @@ class Entity extends Page
 
     public function view(): ?string
     {
-        if ($this->thumbnail()) {
+        if ($this->image()) {
             return 'image';
         }
         return 'collection';
@@ -40,6 +40,17 @@ class Entity extends Page
             + $this->contexts()->toEntities()->count();
 
 		return $count ?? 1;
+	}
+    
+    /**
+     * @kql-allowed
+     */
+	public function image(?string $filename = null) {
+
+        if( $image = $this->thumbnail()->toFile() ){
+            return $image;
+        }
+
 	}
 
     /**
@@ -91,7 +102,7 @@ class Entity extends Page
             $schema['copyrightHolder'] = (string)$this->copyright();
         }
 
-        if ($image = $this->thumbnail()) {
+        if ($image = $this->image()) {
             $schema['image'] = $image->url();
         }
 

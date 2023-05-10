@@ -4,6 +4,5 @@ empty: No contexts yet
 help: Other entities that this entity provides context to
 search: true
 image:
-  query: page.thumbnail
   cover: true
   back: '#f9f9f9'

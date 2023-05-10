@@ -11,7 +11,7 @@ return [
 
 	'schema' => function (): array {
 
-		$image = $this->thumbnail()->toFile();
+		$image = $this->image();
 		$image = $image ? $image->url() : null;
 
 		$links = [];

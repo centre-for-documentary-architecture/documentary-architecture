@@ -45,15 +45,6 @@ return [
 		return implode( '/', $types );
 	},
 
-	'thumbnail' => function (): ?File {
-
-		if ($file = $this->content()->thumbnail()->toFile()) {
-			return $file;
-		}
-
-		return null;
-	},
-
 	'schema' => function (): array {
 
 		$breadcrumbs = [];

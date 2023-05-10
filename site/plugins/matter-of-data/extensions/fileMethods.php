@@ -51,18 +51,8 @@ return [
 	/**
      * @kql-allowed
      */
-	'thumbnail' => function () {
-		/**
-		 */
-		if ($this->content()->thumbnail()->exists() && $thumbnail = $this->content()->thumbnail()->isNotEmpty()) {
-			return $thumbnail;
-		} else {
-			return new Field(
-				$this,
-				'thumbnail',
-				$this->id()
-			);
-		}
+	'image' => function () {
+		return $this;
 	},
 
 	'updateDateModified' => function ( bool $created = false, bool $return = false ){

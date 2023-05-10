@@ -2,6 +2,5 @@ type: pages
 label: Entity
 multiple: true
 image:
-  query: page.thumbnail
   back: '#f9f9f9'
   cover: false

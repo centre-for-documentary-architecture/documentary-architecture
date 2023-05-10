@@ -23,7 +23,7 @@ function getBoundEntityData()
             'worlditem' => $entity->worlditem(),
         ];
 
-        $image = $entity->thumbnail();
+        $image = $entity->image();
         if ($entity->type() === 'image' && $image !== null) {
             $data['imageResources'] = [
                 'high' => $image->thumb(['width' => 2048])->url(),

@@ -2,7 +2,7 @@ type: files
 label: Thumbnail
 multiple: false
 layout: cards
-query: site.archive('images').images.add( page.images )
+query: site.archive('images').images.prepend( page.images )
 size: huge
 image:
   back: black

@@ -15,9 +15,6 @@ tabs:
             extends: sections/pages
             headline: Projects (Collections)
             text: "{{ page.title }}"
-            image:
-              query: false
-              back: '#f9f9f9'
             sortable: true
             templates:
               - collection
@@ -35,7 +32,6 @@ tabs:
             status: listed
             image:
               query: false
-              back: '#f9f9f9'
             sortable: false
             templates:
               - archive
@@ -43,6 +39,8 @@ tabs:
           section_pages:
             extends: sections/pages
             headline: Other pages
+            image:
+              query: false
             templates:
               - home
               - default

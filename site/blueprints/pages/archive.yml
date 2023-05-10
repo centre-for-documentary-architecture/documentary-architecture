@@ -32,6 +32,8 @@ tabs:
             sortBy: title asc
             info: "{{ page.childrenAndDrafts.count }} Items"
             create: false
+            image:
+              query: false
             templates:
               - items_building
               - items_person
@@ -40,7 +42,6 @@ tabs:
               - items_material
               - items_publication
               - items
-
 
       column_right:
           width: 1/2
@@ -53,6 +54,8 @@ tabs:
               status: listed
               sortBy: title asc
               create: false
+              image:
+                query: false
               info: "{{ page.childrenAndDrafts.count }} Files"
               templates:
                 - files_image

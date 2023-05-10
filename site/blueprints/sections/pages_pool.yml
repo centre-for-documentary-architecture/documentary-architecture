@@ -8,6 +8,5 @@ search: true
 templates:
   - item
 image:
-  query: page.thumbnail
   back: '#f9f9f9'
-  cover: false
+  cover: true
