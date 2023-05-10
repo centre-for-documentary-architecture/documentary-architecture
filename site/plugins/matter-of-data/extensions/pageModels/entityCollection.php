@@ -6,21 +6,16 @@ class EntityCollection extends Entity
 {
 
     /**
-     * @kql-allowed
+     * @todo
      */
-	public function image(?string $filename = null) {
-
-        if( $image = $this->thumbnail()->toFile() ){
-            return $image;
-        }
-
-	}
-
     public function entity(): string
     {
         return 'collection';
     }
 
+    /**
+     * @todo
+     */
     public function collection()
     {
         // select options
@@ -55,17 +50,22 @@ class EntityCollection extends Entity
         }
         return $this->contextualized()->toEntities();
     }
-
 }
 
 class LieblingHouseCollection extends EntityCollection
 {
 
+    /**
+     * @todo
+     */
     public function type(): string
     {
         return 'liebling-house';
     }
 
+    /**
+     * @todo
+     */
     public function category(): string
     {
         switch ($this->depth()) {
@@ -80,5 +80,4 @@ class LieblingHouseCollection extends EntityCollection
                 break;
         }
     }
-
 }

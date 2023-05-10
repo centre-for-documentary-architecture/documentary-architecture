@@ -15,6 +15,7 @@ return [
 	
 	/**
      * @kql-allowed
+	 * @todo what does it to and where is it used?
      */
 	'entity' => function (): string {
 		// collection|item|file
@@ -23,6 +24,7 @@ return [
 
 	/**
      * @kql-allowed
+	 * @todo what does it to and where is it used?
      */
 	'category' => function (): ?string {
 		// select field
@@ -34,6 +36,7 @@ return [
 	
 	/**
      * @kql-allowed
+	 * @todo what does it to and where is it used?
      */
 	'type' => function (): string {
 		$types = explode( '_', $this->intendedTemplate() );
@@ -115,6 +118,7 @@ return [
 
 	/**
 	 * creates a link to this page
+	 * @todo is this used?
 	 */
 	'toLink' => function ($text = false) {
 		return Html::a(

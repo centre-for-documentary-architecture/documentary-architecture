@@ -11,15 +11,15 @@ return [
 	},
 
 	'page.changeTitle:after' => function ($newPage) {
-		$newPage->updateDateModified( true );
+		$newPage->updateDateModified(true);
 	},
 
 	'page.create:after' => function ($page) {
-		$page->updateDateModified( true );
+		$page->updateDateModified(true);
 	},
 
 	'page.duplicate:after' => function ($duplicatePage) {
-		$duplicatePage->updateDateModified( true );
+		$duplicatePage->updateDateModified(true);
 	},
 
 	'page.update:after' => function ($newPage, $oldPage) {
@@ -31,19 +31,18 @@ return [
 
 	'file.create:after' => function ($file) {
 		if ($file->template() == 'file_image') {
-			
-			$filename = Str::slug( F::name( $this->filename() ) );
 
-			$update = $file->updateDateModified( true, true );
-			
-			$date = $file->extractDateFromFilenameOrExif( $filename );
-			if( $date ){
+			$filename = Str::slug(F::name($this->filename()));
+
+			$update = $file->updateDateModified(true, true);
+
+			$date = $file->extractDateFromFilenameOrExif($filename);
+			if ($date) {
 				$update['date'] = $date;
 			}
 
 			$file->changeName($filename)->update($update);
-
-		}		
+		}
 	},
 
 	'file.update:after' => function ($newFile, $oldFile) {
@@ -53,7 +52,6 @@ return [
 
 			require_once __DIR__ . '/../functions/syncContexts.php';
 			syncContexts($newFile, $oldFile);
-
 		}
 	},
 

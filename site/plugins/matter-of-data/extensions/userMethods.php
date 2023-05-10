@@ -8,6 +8,7 @@ return [
 	/**
 	 * used by
 	 * (user: ) kirbytag
+	 * @todo is this needed?
 	 */
 	'toLink' => function () {
 		$name = $this->name();
@@ -24,32 +25,33 @@ return [
 	 * used by
 	 * $user->toLink()
 	 * $user->schema()
+	 * @todo is this needed?
 	 */
-	'url' => function ( bool $absolute = false ) {
+	'url' => function (bool $absolute = false) {
 		$url = '/info/team/' . $this->slug();
-		if( $absolute === true ){
+		if ($absolute === true) {
 			$url = $this->kirby()->url() . $url;
 		}
 		return $url;
 	},
 
 	/**
-     * @kql-allowed
-     */
+	 * @kql-allowed
+	 */
 	'schema' => function (): array {
 		$data = [
 			'@context' => 'https://schema.org',
 			'@type' => 'Person',
 			'name' => (string)$this->name(),
-			'url' => $this->url( true ),
+			'url' => $this->url(true),
 			'worksFor' => 'Centre for Documentary Architecture',
 			'jobTitle' => (string)$this->profession(),
-			'sameAs' => $this->links()->structureToLinks( false )
+			'sameAs' => $this->links()->structureToLinks(false)
 		];
-		if( $this->show_email()->isTrue() ){
+		if ($this->show_email()->isTrue()) {
 			$data['email'] = $this->email();
 		}
 		return $data;
 	},
-	
+
 ];

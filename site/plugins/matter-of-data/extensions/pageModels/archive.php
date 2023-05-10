@@ -4,12 +4,15 @@ namespace Kirby\Cms;
 
 class PageArchive extends Page
 {
-    
+
     public function entities()
     {
         return $this->children()->children();
     }
 
+    /**
+     * @todo
+     */
     public function results(string $query = '')
     {
 
@@ -35,10 +38,11 @@ class PageArchive extends Page
             ]
         ]);
     }
-
 }
 
-class PageArchiveFilter extends PageArchive {}
+class PageArchiveFilter extends PageArchive
+{
+}
 
 class PageArchiveImages extends PageArchiveFilter
 {
@@ -60,5 +64,4 @@ class PageArchiveImages extends PageArchiveFilter
         }
         return Pages::factory($images, $this);
     }
-
 }

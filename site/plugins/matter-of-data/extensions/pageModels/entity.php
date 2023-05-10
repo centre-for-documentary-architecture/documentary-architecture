@@ -7,6 +7,9 @@ use Kirby\Cms\Collection;
 class Entities extends Collection
 {
 
+    /**
+     * @todo is this actuall used? and where?
+     */
     public function toLinks(): string
     {
         $links = [];
@@ -16,12 +19,14 @@ class Entities extends Collection
         }
         return implode(', ', $links);
     }
-
 }
 
 class Entity extends Page
 {
 
+    /**
+     * @todo
+     */
     public function view(): ?string
     {
         if ($this->image()) {
@@ -29,17 +34,17 @@ class Entity extends Page
         }
         return 'collection';
     }
-    
+
     /**
      * @kql-allowed
      */
-	public function image(?string $filename = null) {
+    public function image(?string $filename = null)
+    {
 
-        if( $image = $this->thumbnail()->toFile() ){
+        if ($image = $this->thumbnail()->toFile()) {
             return $image;
         }
-
-	}
+    }
 
     /**
      * @todo
@@ -100,19 +105,18 @@ class Entity extends Page
     public function emptyFields()
     {
         $fields = [];
-        if( $this->date()->isEmpty() ){
+        if ($this->date()->isEmpty()) {
             $fields[] = 'Date';
         }
-        if( $this->intendedTemplate() == 'item_person' && $this->description()->isEmpty() ){
+        if ($this->intendedTemplate() == 'item_person' && $this->description()->isEmpty()) {
             $fields[] = 'Description';
         }
-        if( !$this->image() ){
+        if (!$this->image()) {
             $fields[] = 'Image';
         }
-        if( $this->location()->isEmpty() && $this->locations()->isEmpty() ){
+        if ($this->location()->isEmpty() && $this->locations()->isEmpty()) {
             $fields[] = 'Location';
         }
-        return implode(', ',$fields);
+        return implode(', ', $fields);
     }
-
 }

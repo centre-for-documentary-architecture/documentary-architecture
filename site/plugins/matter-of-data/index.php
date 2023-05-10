@@ -1,12 +1,11 @@
 <?php
 
 namespace Kirby\Cms;
+
 use Kirby\Cms\App as Kirby;
 
 require_once __DIR__ . '/functions/helpers.php';
 require_once __DIR__ . '/functions/anchors.php';
-
-class HomePage extends Page {}
 
 require_once __DIR__ . '/extensions/pageModels/archive.php';
 require_once __DIR__ . '/extensions/pageModels/entity.php';
@@ -53,8 +52,6 @@ Kirby::plugin('cda/matter-of-data', [
 		'file_audio'         => 'Kirby\Cms\EntityFileAudio',
 		'file_video'         => 'Kirby\Cms\EntityFileVideo',
 		'file_image'         => 'Kirby\Cms\EntityFileImage',
-
-		'home' => 'Kirby\Cms\HomePage'
 
 	],
 

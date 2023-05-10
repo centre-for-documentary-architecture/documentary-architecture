@@ -1,11 +1,15 @@
 <?php
 
 namespace Kirby\Cms;
+
 use Kirby\Cms\Field;
 
 class EntityFile extends Entity
 {
 
+    /**
+     * @todo
+     */
     public function entity(): string
     {
         return 'file';
@@ -43,7 +47,6 @@ class EntityFile extends Entity
 
         return $content;
     }
-
 }
 
 /**
@@ -53,6 +56,9 @@ class EntityFile extends Entity
 class EntityFileImage extends EntityFile
 {
 
+    /**
+     * @todo
+     */
     public function type(): string
     {
         return 'image';
@@ -68,6 +74,9 @@ class EntityFileImage extends EntityFile
         return new Field($this, 'title', $this->uid());
     }
 
+    /**
+     * @todo
+     */
     public function view(): ?string
     {
         if ($this->is_360()->isTrue()) {
@@ -100,22 +109,30 @@ class EntityFileImage extends EntityFile
     {
         return $this->file()->panel()->url();
     }
-
 }
 
 class EntityFileVideo extends EntityFile
 {
 
+    /**
+     * @todo
+     */
     public function type(): string
     {
         return 'video';
     }
 
+    /**
+     * @todo
+     */
     public function view(): ?string
     {
         return 'video';
     }
 
+    /**
+     * @todo
+     */
     public function srcset(): ?array
     {
 
@@ -165,17 +182,22 @@ class EntityFileVideo extends EntityFile
         }
         return implode(', ', $info);
     }
-
 }
 
 class EntityFile3d extends EntityFile
 {
 
+    /**
+     * @todo
+     */
     public function type(): string
     {
         return '3d';
     }
 
+    /**
+     * @todo
+     */
     public function view(): ?string
     {
         if ($file = $this->content_files()->toFile()) {
@@ -194,17 +216,22 @@ class EntityFile3d extends EntityFile
         }
         return implode(', ', $info);
     }
-
 }
 
 class EntityFileAudio extends EntityFile
 {
 
+    /**
+     * @todo
+     */
     public function type(): string
     {
         return 'audio';
     }
 
+    /**
+     * @todo
+     */
     public function view(): ?string
     {
         if ($this->audio()->count() > 0) {
@@ -216,7 +243,7 @@ class EntityFileAudio extends EntityFile
     public function fileinfo(): string
     {
         $info = [];
-        if( $this->duration()->isNotEmpty() ) {
+        if ($this->duration()->isNotEmpty()) {
             $info[] = $this->duration();
         }
         if ($file = $this->file()) {
@@ -225,5 +252,4 @@ class EntityFileAudio extends EntityFile
         }
         return implode(', ', $info);
     }
-    
 }

@@ -11,10 +11,12 @@ return [
 		'extends' => 'pages',
 		'methods' => [
 			'toPages' => function ($value = null) {
+
 				$pages = [];
 				$kirby = kirby();
 
 				foreach (Yaml::decode($value) as $id) {
+
 					if (is_array($id) === true) {
 						$id = $id['id'] ?? null;
 					}
