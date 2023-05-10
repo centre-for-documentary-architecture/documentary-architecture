@@ -18,7 +18,7 @@ tabs:
                   ratio: 16/9
                 help: Provide Thumbnail in best quality and same aspect ratio as video (16:9)
 
-              remote_file: fields/files/remove_video
+              remote_file: fields/files/remote_video
 
           wiki: sections/service/wiki
 

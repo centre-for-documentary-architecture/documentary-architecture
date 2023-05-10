@@ -5,9 +5,9 @@ empty: Empty
 sortable: false
 sortBy: title asc
 search: true
+templates:
+  - item
 image:
   query: page.thumbnail
   back: '#f9f9f9'
   cover: false
-templates:
-  - item

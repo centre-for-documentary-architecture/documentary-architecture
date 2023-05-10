@@ -16,44 +16,51 @@ options:
   delete: false
   duplicate: false
 
+tabs:
 
-columns:
-  column_left:
-    width: 1/2
-    sections:
+  archive:
+    icon: table
+    columns:
+      column_left:
+        width: 1/2
+        sections:
 
-      section_item_types:
-        extends: sections/pages
-        headline: Item entities
-        sortable: false
-        sortBy: title asc
-        info: "{{ page.childrenAndDrafts.count }} Items"
-        templates:
-          - items_building
-          - items_person
-          - items_organisation
-          - items_object
-          - items_material
-          - items_publication
-          - items
-        create:
-          - items
+          section_item_types:
+            extends: sections/pages
+            headline: Item entities
+            sortable: false
+            sortBy: title asc
+            info: "{{ page.childrenAndDrafts.count }} Items"
+            create: false
+            templates:
+              - items_building
+              - items_person
+              - items_organisation
+              - items_object
+              - items_material
+              - items_publication
+              - items
 
 
-  column_right:
-      width: 1/2
-      sections:
+      column_right:
+          width: 1/2
+          sections:
 
-        section_file_types:
-          extends: sections/pages
-          headline: File entities
-          sortable: false
-          status: listed
-          sortBy: title asc
-          info: "{{ page.childrenAndDrafts.count }} Files"
-          templates:
-            - files_image
-            - files_video
-            - files_audio
-            - files_3d
-            - files
+            section_file_types:
+              extends: sections/pages
+              headline: File entities
+              sortable: false
+              status: listed
+              sortBy: title asc
+              create: false
+              info: "{{ page.childrenAndDrafts.count }} Files"
+              templates:
+                - files_image
+                - files_video
+                - files_audio
+                - files_3d
+                - files
+
+  recent: tabs/recent
+
+  incomplete: tabs/incomplete

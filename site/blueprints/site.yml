@@ -121,8 +121,4 @@ tabs:
             image:
               back: '#f9f9f9'
 
-  recent: tabs/recent
-
-  incomplete: tabs/incomplete
-
-  tab3: tabs/help
+  help: tabs/help

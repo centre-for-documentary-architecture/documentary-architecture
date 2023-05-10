@@ -4,7 +4,7 @@ icon: home
 fields:
 
   intro_video:
-    extends: fields/files/remove_video
+    extends: fields/files/remote_video
     label: Intro video
     max: 1
     fields:

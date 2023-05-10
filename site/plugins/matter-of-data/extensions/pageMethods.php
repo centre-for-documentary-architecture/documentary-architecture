@@ -10,6 +10,13 @@ return [
 	/**
      * @kql-allowed
      */
+	'adminUrl' => function (): string {
+		return $this->panel()->url();
+	},
+	
+	/**
+     * @kql-allowed
+     */
 	'entity' => function (): string {
 		// collection|item|file
 		return explode('_', $this->intendedTemplate())[0];

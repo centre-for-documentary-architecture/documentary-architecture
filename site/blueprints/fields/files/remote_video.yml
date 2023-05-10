@@ -32,7 +32,7 @@ fields:
       - '720'
       - '480'
       - '360'
-    help: Check those sizes, that are uploaded to DO
+    help: Check those sizes, that are uploaded to DigitalOcean
 
   info:
     type: info

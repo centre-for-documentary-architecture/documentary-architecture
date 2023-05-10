@@ -103,14 +103,12 @@ class EntityFileImage extends EntityFile
         );
     }
 
-    public function panelPath(): string
+    /**
+     * @kql-allowed
+     */
+    public function adminUrl(): string
     {
-        return 'files/' . $this->uid();
-    }
-
-    public function panelUrl(bool $relative = false): string
-    {
-        return $this->parent()->panelUrl($relative) . '/' . $this->panelPath();
+        return $this->file()->panel()->url();
     }
 
 }

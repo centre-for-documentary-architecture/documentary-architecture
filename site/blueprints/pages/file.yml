@@ -49,7 +49,7 @@ tabs:
                 help: People, Objects, Buildings, ...
                 options:
                   type: query
-                  query: site.archive.items.children
+                  query: site.archive.entities
                   text: '{{ page.title }}'
                   value: '{{ page.id }}'
 
