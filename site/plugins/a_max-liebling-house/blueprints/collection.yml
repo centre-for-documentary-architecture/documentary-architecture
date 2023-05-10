@@ -55,6 +55,7 @@ tabs:
                 type: info
                 label: Contextualized entities for Tourstops
                 text: "Contextualized" are used as content
+                theme: white
                 when:
                   category: tourstop
 

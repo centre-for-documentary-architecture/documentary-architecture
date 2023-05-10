@@ -121,4 +121,13 @@ class Entity extends Page
 
         return $schema;
     }
+
+    public function contentIsIncomplete(): bool
+    {
+        if( $this->date()->isEmpty() ){
+            return true;
+        }
+        return false;
+    }
+
 }

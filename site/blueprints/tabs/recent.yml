@@ -4,14 +4,15 @@ sections:
 
   recent:
     type: pagesdisplay
-    headline: Recent edits
-    limit: 50
-    query: site.archive.recentlyEditedPages( true ).limit(50)
+    headline: Recently edited pages
+    query: kirby.collection("recentEdits").limit(100)
     layout: table
+    search: true
     image:
       query: page.thumbnail
       back: '#f9f9f9'
       cover: true
+      
     columns:
 
       text:

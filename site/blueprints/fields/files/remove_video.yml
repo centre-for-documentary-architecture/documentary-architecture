@@ -36,6 +36,7 @@ fields:
 
   info:
     type: info
+    theme: white
     label: Info
     text: >
       Kirby cannot see the contents of the remote file host. So the above fields have to be correct. Additionally, all files have to be public (777).

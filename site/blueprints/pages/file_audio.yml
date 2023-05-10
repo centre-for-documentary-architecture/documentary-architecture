@@ -24,6 +24,7 @@ tabs:
           file_info:
             type: info
             headline: Info on audio files
+            theme: white
             text: |
               Audio files must be provided as mp3. After uploading, it can be assigned under the **File selection** field. Alternatively, the file could also be uploaded to SoundCloud.
               

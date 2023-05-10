@@ -1,17 +1,18 @@
 label: Incomplete
-icon: clock
+icon: alert
 sections:
 
   incomplete:
     type: pagesdisplay
     headline: Incomplete datasets
-    limit: 50
-    query: site.archive.pagesWithIncompleteDataset
+    query: kirby.collection("incomplete")
     layout: table
+    search: true
     image:
       query: page.thumbnail
       back: '#f9f9f9'
       cover: true
+      
     columns:
       text:
         label: Title
@@ -23,3 +24,11 @@ sections:
         value: "{{ page.type }}"
         mobile: false
         width: 1/2
+
+  info_incomplete:
+    headline: Info
+    type: info
+    theme: white
+    text: |
+      A page is considered incomplete when the following fields are empty:
+      Date

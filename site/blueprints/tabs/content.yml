@@ -100,6 +100,7 @@ columns:
 
       section_content_contextualized:
         type: info
+        theme: white
         headline: Contextualized entities
         text: Entities that are listed under "Contextualized" are used as content
         when:
@@ -107,6 +108,7 @@ columns:
 
       section_content_contexts:
         type: info
+        theme: white
         headline: Context entities
         text: Entities that are listed under "Contexts" are used as content
         when:
