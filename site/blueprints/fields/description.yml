@@ -1,4 +1,4 @@
-type: textarea
+extends: fields/textarea
 label: Short description
 buttons: false
 maxlength: 400

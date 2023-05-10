@@ -53,7 +53,7 @@ tabs:
             text: |
               **{{ file.id }}**
               
-              Kirbytag: (&af;link: {{ file.id }})
+              Kirbytag: &#40;link: {{ file.id }})
               Permanent URL: {{ file.permalink }}
 
       meta_column_left:

@@ -1,9 +1,9 @@
 type: text
 label: Date
-help: >
-  [Formatting help](https://github.com/centre-for-documentary-architecture/documentary-architecture/wiki/Date-formatting)
 placeholder: YYYY-MM-DD
 icon: calendar
+help: >
+  [Formatting help](https://github.com/centre-for-documentary-architecture/documentary-architecture/wiki/Formatting-guide)
 # validate:
   # YYY0s or YYYY or YYYY-MM ir YYYY-MM-DD
   # match: /^((1[5-9]|20)[0-9](0s|[0-9]((-(0[1-9]|1[012]))(-(0[1-9]|[12][0-9]|3[01]))?)?))?$/

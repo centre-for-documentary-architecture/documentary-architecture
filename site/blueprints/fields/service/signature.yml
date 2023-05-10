@@ -4,5 +4,5 @@ theme: white
 text: |
   **{{ page.id }}**
   
-  Kirbytag: (&af;link: {{ page.id }})
+  Kirbytag: &#40;link: {{ page.id }})
   Permanent URL: {{ page.permalink }}

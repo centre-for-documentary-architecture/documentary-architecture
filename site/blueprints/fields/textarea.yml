@@ -1,8 +1,6 @@
 type: textarea
-label: Content
-buttons: true
 buttons:
-  - italic
   - link
+  - italic
 help: >
   [Formatting help](https://github.com/centre-for-documentary-architecture/documentary-architecture/wiki/Kirbytags-and-Markdown)

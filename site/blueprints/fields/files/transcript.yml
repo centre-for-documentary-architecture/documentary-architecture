@@ -10,7 +10,7 @@ fields:
     type: text
     required: true
   text:
-    type: textarea
+    extends: fields/textarea
     buttons:
       - italic
       - link

@@ -22,7 +22,7 @@ options:
 fields:
 
   imprint:
-    type: textarea
+    extends: fields/textarea
     label: Imprint
     width: 1/2
     buttons:
@@ -35,7 +35,7 @@ fields:
       - ul
 
   privacy:
-    type: textarea
+    extends: fields/textarea
     label: Privacy Policy
     width: 1/2
     buttons:

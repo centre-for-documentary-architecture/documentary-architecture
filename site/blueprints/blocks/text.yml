@@ -6,9 +6,4 @@ fields:
     label: Title
     type: text
 
-  text:
-    type: textarea
-    label: Text
-    buttons:
-      - italic
-      - link
+  text: fields/textarea

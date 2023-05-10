@@ -1,5 +1,7 @@
 <?php
 
+use Kirby\Data\Yaml;
+
 /*
 * update contextualized of contexts ;)
 *
