@@ -3,12 +3,8 @@
 use Kirby\Toolkit\Str;
 use Kirby\Toolkit\Html;
 
-/*
-* tags
-* https://getkirby.com/docs/reference/plugins/extensions/kirbytags
-*/
-
 return [
+
 	'tag' => [
 		/*
 		* custom kirbytag (tag: Tel Aviv) that creates an archive query
@@ -18,6 +14,7 @@ return [
 			return toKeyword($tag->value);
 		}
 	],
+
 	'keyword' => [
 		/*
 		* alias of tag
@@ -27,6 +24,7 @@ return [
 			return toKeyword($tag->value);
 		}
 	],
+
 	'date' => [
 		/*
 		* overriding (date: YYYY-MM-DD) that creates 3 query links
@@ -36,28 +34,7 @@ return [
 			return toDateKeyword($tag->date);
 		}
 	],
-	'location' => [
-		/*
-		* custom kirbytag (location: Tel Aviv, country: IL) that opens several archive queries
-		*/
-		'attr' => [
-			'street', 'zip', 'city', 'country', 'lat', 'lon'
-		],
-		'html' => function ($tag) {
-			return toLocation([
-				'title' => $tag->value,
-				'streetaddress' => $tag->street,
-				'postalcode' => $tag->zip,
-				'addresslocality' => $tag->city,
-				'addresscountry' => $tag->country,
-				'lat' => $tag->lat,
-				'lon' => $tag->lon
-			]);
-		}
-	],
-	/**
-	 * Link
-	 */
+
 	'link' => [
 		'attr' => [
 			'class',
@@ -97,27 +74,6 @@ return [
 			}
 
 			return toKeyword($tag->value, $tag->text);
-		}
-	],
-	'source' => [
-		'attr' => [
-			'author', 'date', 'publisher', 'website', 'country'
-		],
-		'html' => function ($tag) {
-
-			if ($page = kirby()->page($tag->value)) {
-				$tag->value = $page->title();
-				$tag->website = $page->url();
-			}
-
-			return toSource([
-				'title' => $tag->value,
-				'author' => $tag->author,
-				'date' => $tag->date,
-				'publisher' => $tag->publisher,
-				'website' => $tag->website,
-				'country' => $tag->country
-			]);
 		}
 	],
 

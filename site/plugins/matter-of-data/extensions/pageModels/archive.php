@@ -2,31 +2,13 @@
 
 namespace Kirby\Cms;
 
-use Kirby\Template\Template;
 use Kirby\Toolkit\Str;
 
-// archive
 class PageArchive extends Page
 {
-    public function layout(): string
-    {
-        return 'multipanel';
-    }
-    public function template()
-    {
-        if ($this->template !== null) {
-            return $this->template;
-        }
-        $intended = $this->kirby()->template('archive');
-        if ($intended->exists() === true) {
-            return $this->template = $intended;
-        }
-        return $this->template = $this->kirby()->template('default');
-    }
 
     public function recentlyEditedPages($unlisted = false)
     {
-        
         $pages = $unlisted ? $this->index() : $this->index()->listed();
 
         return $pages->sortBy(function ($child) {
@@ -43,49 +25,24 @@ class PageArchive extends Page
             return $child->date()->isEmpty();
         }, 'desc');
     }
+
     public function entities()
     {
         return $this->children()->children();
     }
+
     public function items()
     {
         return $this->children()->listed()->filter(function ($child) {
             return Str::startsWith($child->intendedTemplate(), 'items_');
         });
     }
+
     public function category(): string
     {
         return '';
     }
-    public function dataFilters(string $query = ''): array
-    {
-        $filters = $this->site()->archive()->children()->listed();
 
-        $items = $filters->filter(function ($filter) {
-            return $filter->entity() === 'items';
-        })->dataAbstract();
-
-        $files = $filters->filter(function ($filter) {
-            return $filter->entity() === 'files';
-        })->dataAbstract();
-
-        $all = $this->dataAbstract();
-        $all['title'] = 'Search all';
-
-        return [
-            [
-                'buttons' => [$all]
-            ],
-            [
-                'headline' => 'Items',
-                'buttons' => $items
-            ],
-            [
-                'headline' => 'Files',
-                'buttons' => $files
-            ],
-        ];
-    }
     public function filter(string $filter = '')
     {
         if ($found = $this->find($filter)) {
@@ -93,13 +50,16 @@ class PageArchive extends Page
         }
         return $this;
     }
+
     public function archive()
     {
         return $this->site()->archive();
     }
+
     /*
     * results
     */
+
     public function results(string $query = '')
     {
 
@@ -125,60 +85,17 @@ class PageArchive extends Page
             ]
         ]);
     }
-    public function dataAbstract(string $srcset = 'medium')
-    {
 
-        $content = [
-            'url' => $this->url(),
-            'title' => 'CDA ' . $this->title()->value(),
-            'template' => 'archive',
-            'classlist' => $this->classlist(),
-            'filter' => '',
-            'worlditem' => null
-        ];
-
-        return $content;
-    }
 }
 
-class PageArchiveFilter extends PageArchive
-{
-    public function template(): Template
-    {
-        if ($this->template !== null) {
-            return $this->template;
-        }
-        $intended = $this->kirby()->template('archive');
-        if ($intended->exists() === true) {
-            return $this->template = $intended;
-        }
-        return $this->template = $this->kirby()->template('default');
-    }
-    public function dataAbstract(string $srcset = ''): array
-    {
-
-        $content = [
-            'url' => $this->parent()->url() . '?filter=' . $this->slug(),
-            'filter' => $this->slug(),
-            'template' => 'archive',
-            'title' => $this->title()->value(),
-            'count' => $this->countCollection()
-        ];
-
-        return $content;
-    }
-    public function dataBreadcrumbs(): array
-    {
-        return $this->parent()->dataBreadcrumbs();
-    }
-}
+class PageArchiveFilter extends PageArchive {}
 
 class PageArchiveImages extends PageArchiveFilter
 {
+
     public function children()
     {
         $images = [];
-
         foreach ($this->images() as $image) {
 
             $images[] = [
@@ -192,4 +109,5 @@ class PageArchiveImages extends PageArchiveFilter
 
         return Pages::factory($images, $this);
     }
+
 }

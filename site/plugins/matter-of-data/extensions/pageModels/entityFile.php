@@ -1,61 +1,36 @@
 <?php
 
 namespace Kirby\Cms;
-use Kirby\Filesystem\F;
 use Kirby\Cms\Field;
 
-/*
-* Entity > File
-*/
 class EntityFile extends Entity
 {
+
     public function entity(): string
     {
         return 'file';
     }
-    public function view(): ?string
-    {
-        return 'image';
-    }
+
     public function filename()
     {
         return $this->title();
     }
+
     public function collection()
     {
         return $this->contexts()->toEntities();
     }
-    public function fileinfo(): ?string
+
+    public function fileinfo(): string
     {
+        $info = [];
         if ($file = $this->file()) {
-            return $file->extension() . ', ' . F::nicesize(F::size($file->root()));
+            $info[] = $file->extension();
+            $info[] = $file->niceSize();
         }
-        return null;
+        return implode(', ', $info);
     }
-    public function dataSet(): array
-    {
 
-        $content = $this->dataGeneral();
-        $content['content'] = $this->dataContent();
-        $content['view'] = $this->dataView();
-
-        if ($transcript = $this->dataTranscript()) {
-            $content['transcript'] = $transcript;
-        }
-
-        return $content;
-    }
-    public function dataContent(): array
-    {
-
-        $content = [
-            $this->tabHeader(),
-            $this->tabInfo(),
-            $this->tabContexts(),
-            $this->tabMeta()
-        ];
-        return array_values(array_filter($content));
-    }
     public function dataTranscript(): ?array
     {
         $transcripts = $this->content()->transcript()->toStructure();
@@ -73,98 +48,49 @@ class EntityFile extends Entity
 
         return $content;
     }
-    public function dataIndividualFields(): array
-    {
 
-        $content = [];
-
-        if ($this->date()->isNotEmpty()) {
-            $content[] = [
-                'key' => 'Date of recording',
-                'value' => $this->content()->date()->toDateKeyword()
-            ];
-        }
-        if ($this->starring()->isNotEmpty()) {
-            $content[] = [
-                'key' => 'Starring',
-                'value' => $this->content()->starring()->toKeywords()
-            ];
-        }
-
-        return $content;
-    }
 }
 
 /*
 * Entity > File > Image
 * this class lets an image imitate page behaviour
-*
 */
 class EntityFileImage extends EntityFile
 {
-    /*
-    * general
-    */
+
     public function type(): string
     {
         return 'image';
     }
-    public function classlist(): string
-    {
-        return 'file image ' . $this->category();
-    }
+
     public function filename(): string
     {
         return $this->uid();
     }
+
     public function title(): Field
     {
         return new Field($this, 'title', $this->uid());
     }
+
     public function view(): ?string
     {
-        if ($this->content()->is_360()->isTrue()) {
-
+        if ($this->is_360()->isTrue()) {
             return 'panorama';
         }
         return 'image';
     }
-    public function dataView()
-    {
 
-        if ($this->view() === 'panorama') {
-
-            $return = [
-                'type' => 'panorama',
-                'headline' => 'Panorama',
-                'content' => [
-                    'url' => $this->thumbnail()->crop(4096, 2048)->url()
-                ]
-            ];
-        } else {
-
-            $return = [
-                'type' => 'image',
-                'headline' => 'Preview',
-                'content' => [
-                    'html' => $this->thumbnail()->responsiveImage('large')
-                ]
-            ];
-        }
-
-        return $return;
-    }
-    /*
-    * files
-    */
     public function file(string $filename = null, string $in = 'files'): File
     {
         return $this->kirby()->file($this->id());
     }
+
     public function image(string $filename = null): File
     {
         return $this->file();
     }
+
     /**
      * @kql-allowed
      */
@@ -176,35 +102,32 @@ class EntityFileImage extends EntityFile
             $this->id()
         );
     }
-    /*
-    * panel
-    */
+
     public function panelPath(): string
     {
         return 'files/' . $this->uid();
     }
+
     public function panelUrl(bool $relative = false): string
     {
         return $this->parent()->panelUrl($relative) . '/' . $this->panelPath();
     }
+
 }
 
-/*
-* Entity > File > Video
-*/
 class EntityFileVideo extends EntityFile
 {
-    /*
-    * general
-    */
+
     public function type(): string
     {
         return 'video';
     }
+
     public function view(): ?string
     {
         return 'video';
     }
+
     public function srcset(): ?array
     {
 
@@ -245,102 +168,55 @@ class EntityFileVideo extends EntityFile
             return array_reverse($srcset);
         }
     }
-    public function dataView(): ?array
+
+    public function fileinfo(): string
     {
-
-        $content = [
-            'srcset' => $this->srcset()
-        ];
-
-        if ($thumbnail = $this->thumbnail()) {
-            $content['poster'] = $thumbnail->resize(1920)->url();
+        $info = ['mp4'];
+        if ($this->duration()->isNotEmpty()) {
+            $info[] = $this->duration();
         }
+        return implode(', ', $info);
+    }
 
-        return [
-            'type' => 'video',
-            'headline' => 'Video',
-            'content' => $content
-        ];
-    }
-    public function fileinfo(): ?string
-    {
-        $info = 'mp4';
-        if ($dur = $this->content()->duration()->value()) {
-            $info =  $dur . ', ' . $info;
-        }
-        return null;
-    }
 }
 
-/*
-* Entity > File > 3d
-*/
 class EntityFile3d extends EntityFile
 {
-    /*
-    * general
-    */
+
     public function type(): string
     {
         return '3d';
     }
+
     public function view(): ?string
     {
-
         if ($file = $this->content()->content_files()->toFile()) {
             if ($file->extension() === 'fbx') {
-
                 return '3d';
             }
         }
         return 'image';
     }
-    public function dataView(): ?array
+
+    public function fileinfo(): string
     {
-
-        if ($this->view() === 'image') {
-
-            return [
-                'type' => 'image',
-                'headline' => 'Preview',
-                'content' => [
-                    'html' => $this->thumbnail()->responsiveImage('large')
-                ]
-            ];
-        }
-
-        $url = $this->site()->url();
-
-        return [
-            'type' => '3d',
-            'headline' => 'Model',
-            'content' => [
-                'url' => $this->content()->content_files()->toFile()->url(),
-            ]
-        ];
-    }
-    public function fileinfo(): ?string
-    {
-        $info = 'fbx';
+        $info = ['fbx'];
         if ($file = $this->content_files()->toFile()) {
-            return $info . ', ' . F::nicesize(F::size($file->root()));
+            $info[] = $file->niceSize();
         }
-        return $info;
+        return implode(', ', $info);
     }
+
 }
 
-/*
-* Entity > File > Audio
-*/
 class EntityFileAudio extends EntityFile
 {
-    /*
-    * general
-    */
+
     public function type(): string
     {
         return 'audio';
     }
+
     public function view(): ?string
     {
         if ($this->audio()->count() > 0) {
@@ -348,30 +224,18 @@ class EntityFileAudio extends EntityFile
         }
         return null;
     }
-    public function dataView(): ?array
-    {
 
-        if ($this->view() != 'audio') {
-            return null;
+    public function fileinfo(): string
+    {
+        $info = [];
+        if( $this->duration()->isNotEmpty() ) {
+            $info[] = $this->duration();
         }
-        $file = $this->audio()->first();
-
-        return [
-            'type' => 'audio',
-            'headline' => 'Audio',
-            'content' => [
-                'url' => $file->url(),
-                'mime' => $file->mime(),
-                'duration' => $this->content()->duration()->or('1:00')->value()
-            ]
-        ];
-    }
-    public function fileinfo(): ?string
-    {
         if ($file = $this->file()) {
-            $info = $this->content()->duration()->value() . ', ';
-            return $info . $file->extension() . ', ' . F::nicesize(F::size($file->root()));
+            $info[] = $file->extension();
+            $info[] = $file->niceSize();
         }
-        return null;
+        return implode(', ', $info);
     }
+    
 }

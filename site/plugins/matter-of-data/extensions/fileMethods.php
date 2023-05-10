@@ -4,39 +4,11 @@ use Kirby\Cms\Html;
 use Kirby\Cms\Page;
 use Kirby\Cms\Field;
 use Kirby\Data\Yaml;
+use Kirby\Filesystem\F;
+use Kirby\Toolkit\Str;
 
 return [
-	/**
-     * @kql-allowed
-     */
-	'title' => function () {
-		/*
-		* returns the filename as title, making $file mor compatible to $page templates
-		*/
-		return $this->filename();
-	},
-	
-	'filetitle' => function () {
-		/*
-		* returns the filename as title, making $file mor compatible to $page templates
-		*/
-		return wbr($this->filename());
-	},
-	'downloadLink' => function () {
-		/*
-		* creates a download link
-		*/
-		return Html::a($this->url(), 'Download', [
-			'title' => 'Download "' . $this->filename() . '"',
-			'download' => true
-		]);
-	},
-	'isType' => function ($type) {
-		/*
-		* tests if this page matches the given type
-		*/
-		return ($type === 'file' || $type === $this->type());
-	},
+
 	'toLink' => function ($text = false) {
 		/*
 		* creates a link to this page
@@ -49,12 +21,35 @@ return [
 			]
 		);
 	},
+
 	'alt' => function (): string {
 		if ($title = $this->additional_title()->isNotEmpty()) {
 			return $title;
 		}
 		return $this->title();
 	},
+	
+	'toImageEntity' => function () {
+		return Page::factory([
+			'id' => $this->id(),
+			'slug' => $this->filename(),
+			'template' => 'file',
+			'model' => 'file_image',
+			'parent' => $this->kirby()->page('archive/images'),
+			'content' => $this->content()->toArray()
+		]);
+	},
+
+	/**
+     * @kql-allowed
+     */
+	'title' => function () {
+		/*
+		* returns the filename as title, making $file mor compatible to $page templates
+		*/
+		return $this->filename();
+	},
+
 	/**
      * @kql-allowed
      */
@@ -72,59 +67,6 @@ return [
 			);
 		}
 	},
-	'toImageEntity' => function () {
-		return Page::factory([
-			'id' => $this->id(),
-			'slug' => $this->filename(),
-			'template' => 'file',
-			'model' => 'file_image',
-			'parent' => $this->kirby()->page('archive/images'),
-			'content' => $this->content()->toArray()
-		]);
-	},
-	'responsiveImage' => function (string $srcset = 'medium', bool $lazy = null, string $alt = null) {
-		if ($lazy === null) {
-			$size = 80;
-		} else {
-			$size = 360;
-		}
-		return Html::img(
-			$this->resize($size)->url(),
-			[
-				'alt' => $alt === null ? $this->alt($alt) : $alt,
-				'class' => 'lazyload',
-				'data-sizes' => 'auto',
-				'data-src' => $this->resize(2000),
-				'data-srcset' => $this->srcset($srcset),
-			]
-		);
-	},
-	'dataThumbnail' => function ($srcset = 'small') {
-		return $this->responsiveImage($srcset);
-	},
-	'dataAbstract' => function ($srcset = 'small') {
-
-		/*
-		* only matches to images
-		*/
-		if ($this->type() != 'image') {
-			return null;
-		}
-
-		$content = [
-			'url' => $this->url(),
-			'title' => $this->title(),
-			'template' => 'entity',
-			'worlditem' => $this->worlditem(),
-			'thumbnail' => $this->dataThumbnail($srcset)
-		];
-
-		return $content;
-	},
-
-	/*
-	new
-	*/
 
 	'updateDateModified' => function ( bool $created = false, bool $return = false ){
 		
@@ -145,6 +87,27 @@ return [
 		$this->update([
 			'date_modified' => Yaml::encode($modified)
 		]);
+	},
+	
+	'extractDateFromFilenameOrExif' => function ( $filename = null ){
+
+		$filename = $filename ?? Str::slug( F::name( $this->filename() ) );
+
+		$pattern = "/(?!\D)((1[5-9]|20)[0-9](0s|[0-9]((-(0[1-9]|1[012]))(-(0[1-9]|[12][0-9]|3[01]))?)?))(?=\D)/";
+		
+		preg_match($pattern, $filename, $matches);
+		if (isset($matches[0])) {
+			return $matches[0];
+		}
+		
+		$exif = $this->exif();
+		
+		if ($timestamp = $exif->timestamp()) {
+			return date('Y-m-d', $timestamp);
+		}
+
+		return null;
+		
 	},
 
 ];

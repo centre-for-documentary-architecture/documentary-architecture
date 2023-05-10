@@ -1,16 +1,10 @@
 <?php
 
 use Kirby\Cms\App as Kirby;
-use Kirby\Toolkit\Str;
-use Kirby\Cms\Page;
 
-// import functions
 require_once __DIR__ . '/functions/helpers.php';
 require_once __DIR__ . '/functions/anchors.php';
-require_once __DIR__ . '/functions/formats.php';
-require_once __DIR__ . '/functions/searchReplaceFields.php';
 
-// import models
 require_once __DIR__ . '/extensions/pageModels/page.php';
 require_once __DIR__ . '/extensions/pageModels/archive.php';
 require_once __DIR__ . '/extensions/pageModels/entity.php';
@@ -19,48 +13,6 @@ require_once __DIR__ . '/extensions/pageModels/entityItem.php';
 require_once __DIR__ . '/extensions/pageModels/entityFile.php';
 
 Kirby::plugin('cda/matter-of-data', [
-
-	'options' => [
-		'pagination' => 40,
-	],
-
-	'routes' => [
-		[
-			'pattern' => 'archive/images/(:any)',
-			'action'  => function ($any) {
-				return kirby()->file('archive/images/' . $any)->toImageEntity();
-			}
-		],
-		[
-			'pattern' => 'team/(:any)',
-			'action'  => function ($any) {
-
-				$user = kirby()->users()->filter(function ($user) use ($any) {
-					return Str::slug($user->name()) === $any;
-				})->first();
-
-				$content = $user->content()->toArray();
-				$content['user'] = $user;
-				return Page::factory([
-					'slug' => $any,
-					'template' => 'archive',
-					'model' => 'author',
-					'content' => $content,
-					'query' => $any
-				]);
-			}
-		]
-	],
-
-	'components' => [
-		'file::url' => function (Kirby $kirby, $file) {
-			if ($file->type() === 'video') {
-				return $kirby->url() . '/content/' . $file->parent()->diruri() . '/' . $file->filename();
-			} else {
-				return $file->mediaUrl();
-			}
-		}
-	],
 
 	'pageModels'   => [
 
@@ -106,8 +58,6 @@ Kirby::plugin('cda/matter-of-data', [
 		'file_video'         => 'Kirby\Cms\EntityFileVideo',
 		'file_image'         => 'Kirby\Cms\EntityFileImage',
 
-		'item_source'        => 'Kirby\Cms\EntitySource',
-
 		'home' => 'Kirby\Cms\HomePage'
 
 	],
@@ -124,6 +74,6 @@ Kirby::plugin('cda/matter-of-data', [
 	'fieldMethods' => require_once __DIR__ . '/extensions/fieldMethods.php',
 
 	'hooks' 	   => require_once __DIR__ . '/extensions/hooks.php',
-	'tags' 		   => require_once __DIR__ . '/extensions/tags.php',
+	'tags' 		   => require_once __DIR__ . '/extensions/kirbytags.php',
 
 ]);

@@ -39,19 +39,6 @@ return [
 		return implode( '/', $types );
 	},
 
-
-
-
-	'classlist' => function (): string {
-		return $this->entity() . ' ' . $this->type();
-	},
-	'theme' => function (): string {
-		return 'black';
-	},
-	'layout' => function (): string {
-		return 'regular';
-	},
-
 	/*
 	* generic fields all pages should have
 	*/
@@ -64,6 +51,7 @@ return [
 
 		return new Field($this, 'keywords', $fallback);
 	},
+
 	'description' => function (string $fallback = ''): Field {
 
 		if ($this->content()->description()->isNotEmpty()) {
@@ -73,6 +61,7 @@ return [
 
 		return new Field($this, 'description', $fallback);
 	},
+
 	'thumbnail' => function (): ?File {
 
 		if ($file = $this->content()->thumbnail()->toFile()) {
@@ -81,73 +70,7 @@ return [
 
 		return null;
 	},
-	
-	'entityInfo' => function (): string {
 
-		return '';
-	},
-
-	/*
-	* general data representations on the current page
-	*/
-	'dataAbstract' => function (string $srcset = 'medium') {
-
-		$data = [
-			'url' => $this->url(),
-			'title' => $this->title()->value(),
-			'template' => $this->template()->name(),
-			'classlist' => $this->classlist(),
-			'worlditem' => $this->worlditem(),
-			'count' => $this->countCollection(),
-			'info' => $this->entityInfo(),
-			'keywords' => $this->research_methods()->split(),
-		];
-
-		if ($srcset && $thumbnail = $this->thumbnail()) {
-			$data['thumbnail'] = $this->thumbnail()->dataThumbnail($srcset);
-		}
-
-		return $data;
-	},
-	'dataGeneral' => function (): array {
-		$data = [
-			'url' => $this->url(),
-			'id' => $this->id(),
-			'entity' => $this->entity(),
-			'type' => $this->type(),
-			'category' => $this->category(),
-
-			'title' => $this->title()->value(),
-			'keywords' => $this->research_methods()->split(),
-			'description' => $this->description()->value(),
-
-			'theme' => $this->theme(),
-			'layout' => $this->layout(),
-			'template' => $this->template()->name(),
-			'worlditem' => $this->worlditem(),
-		];
-		if ($thumbnail = $this->thumbnail()) {
-			$data['thumbnail'] = $this->thumbnail()->dataThumbnail('medium');
-		}
-		return $data;
-	},
-	'dataSet' => function (): array {
-		/*
-		* this shall be overridden by pageModels to include individual sets of information
-		*/
-		return $this->dataGeneral();
-	},
-	'dataBreadcrumbs' => function (): array {
-		// get all parents and flip the order
-		$crumbs = $this->parents()->flip();
-
-		// add the home page
-		$crumbs->prepend($this->site()->homePage());
-
-		$crumbs->add($this);
-
-		return $crumbs->dataAbstract(false);
-	},
 	'collection' => function () {
 
 		if ($this->hasChildren()) {
@@ -156,9 +79,11 @@ return [
 		}
 		return [];
 	},
-	'worlditem' => function (): ?string {
-		return null;
-	},
+
+	/*
+	new
+	*/
+
 	'schema' => function (): array {
 
 		$breadcrumbs = [];
@@ -194,10 +119,6 @@ return [
 		];
 	},
 
-	/*
-	new
-	*/
-
 	'updateDateModified' => function ( bool $created = false, bool $return = false ){
 		
 		$modified = Yaml::decode( $this->date_modified()->value() );
@@ -223,12 +144,6 @@ return [
 	* legacy
 	*/
 
-	'isType' => function ($type) {
-		/*
-		* tests if this page matches the given type
-		*/
-		return in_array($type, explode('_', $this->intendedTemplate()));
-	},
 	'toLink' => function ($text = false) {
 		/*
 		* creates a link to this page
@@ -241,10 +156,5 @@ return [
 			]
 		);
 	},
-	'filetitle' => function () {
-		/*
-		* inserts word break hints <wbr> into filenames
-		*/
-		return wbr($this->title());
-	},
+
 ];

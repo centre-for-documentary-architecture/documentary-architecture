@@ -41,17 +41,6 @@ function toKeywords($terms, string $delimiter = ',', string $glue = ', ')
 	return implode($glue, $return);
 }
 
-function keywordDataAbstract(string $keyword)
-{
-	return [
-		'url' => kirby()->page('archive')->url() . '?research=' . $keyword,
-		'title' => $keyword,
-		'template' => 'archive',
-		'classlist' => 'archive',
-		'worlditem' => null
-	];
-}
-
 function toLink($url, $text = false)
 {
 	/*
@@ -77,27 +66,32 @@ function toLink($url, $text = false)
 	);
 }
 
-function toLinkOrKeyword(string $text, $url = '')
-{
-	if ($url) {
-		return toLink($url, $text);
-	}
-	return toKeyword($text);
-}
-
-function toPageOrKeyword(string $id)
+function toDateKeyword(string $date)
 {
 
-	$kirby = kirby();
-
-	if ($page = $kirby->page($id)) {
-
-		return $page->toLink();
-	} else if ($image = $kirby->file($id)) {
-
-		return $image = $image->toLink;
-	} else {
-
-		return toKeyword($id);
+	// Decade YYY0s -> YYY
+	if (preg_match('/^\d{3}(?=0s)/', $date, $match)) {
+		return toKeyword($match[0], $date, $date);
 	}
+
+	$datetime = explode(' ', $date);
+	$dates = explode('-', $datetime[0]);
+
+	// YYYY-YYYY
+	if (preg_match('/^\d{4}-\d{4}$/', $date)) {
+		return toKeyword($dates[0]) . '-' . toKeyword($dates[1]);
+	}
+
+	// YYYY(-MM)(-DD)
+	$return = [];
+	$key = '';
+	foreach ($dates as $date) {
+		if ($key) {
+			$key .= '-';
+		}
+		$key .= $date;
+		$return[] = toKeyword($key, $date);
+	}
+	$datetime[0] = implode('-', $return);
+	return implode(' ', $datetime);
 }

@@ -6,9 +6,9 @@ use Kirby\Toolkit\Str;
 return [
 
 	/*
-	all refactored and approved 2023-04-06
-	*/
-
+	 * used by
+	 * (user: ) kirbytag
+	 */
 	'toLink' => function () {
 		$name = $this->name();
 		return Html::a(
@@ -20,6 +20,11 @@ return [
 		);
 	},
 
+	/*
+	 * used by
+	 * $user->toLink()
+	 * $user->schema()
+	 */
 	'url' => function ( bool $absolute = false ) {
 		$url = '/info/team/' . $this->slug();
 		if( $absolute === true ){
@@ -28,10 +33,9 @@ return [
 		return $url;
 	},
 
-	'slug' => function () {
-		return Str::slug( $this->name() );
-	},
-
+	/**
+     * @kql-allowed
+     */
 	'schema' => function (): array {
 		$data = [
 			'@context' => 'https://schema.org',

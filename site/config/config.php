@@ -26,7 +26,6 @@ return [
 		'methods' => [
 			'allowed' => [
 				'Kirby\Cms\Page::type',
-				'Kirby\Cms\Users::findBySlug',
 			]
 		],
 	],

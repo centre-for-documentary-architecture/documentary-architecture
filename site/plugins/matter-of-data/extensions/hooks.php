@@ -11,11 +11,7 @@ return [
 	},
 
 	'page.changeTitle:after' => function ($newPage) {
-		$newTitle = $newPage->content()->title()->value();
-
-		$newPage->update([
-			'title' => $newTitle
-		]);
+		$newPage->updateDateModified( true );
 	},
 
 	'page.create:after' => function ($page) {
@@ -33,67 +29,32 @@ return [
 		syncContexts($newPage, $oldPage);
 	},
 
-	'file.changeName:after' => function ($newFile, $oldFile) {
-		
-		if ($newFile->template() != 'file_image') {
-			return;
-		}
-
-		/*
-		* when filename is changed, all pages, where this image is used as thumbnail, should be updated
-		*/
-		searchReplaceFields($oldFile->id(), $newFile->id(), 'thumbnail');
-	},
-
 	'file.create:after' => function ($file) {
+		if ($file->template() == 'file_image') {
+			
+			$filename = Str::slug( F::name( $this->filename() ) );
 
-		if ($file->template() != 'file_image') {
-			return;
-		}
+			$update = $file->updateDateModified( true, true );
+			
+			$date = $file->extractDateFromFilenameOrExif( $filename );
+			if( $date ){
+				$update['date'] = $date;
+			}
 
-		$update = $file->updateDateModified( true, true );
+			$file->changeName($filename)->update($update);
 
-		$name = Str::slug(F::name($file->filename()));
-		$exif = $file->exif();
-
-		// prefill date field
-		$pattern = "/(?!\D)((1[5-9]|20)[0-9](0s|[0-9]((-(0[1-9]|1[012]))(-(0[1-9]|[12][0-9]|3[01]))?)?))(?=\D)/";
-		preg_match($pattern, $name, $matches);
-
-		if (isset($matches[0])) {
-			// extract date from filename
-			$update['date'] = $matches[0];
-		} else if ($timestamp = $exif->timestamp()) {
-			// extract date fron exif
-			$update['date'] = date('Y-m-d', $timestamp);
-		}
-
-		// @todo extract location from exif and save into file
-		// if ($exif->location()->lat() && $exif->location()->lng()) {
-		// 	$update['location_start'] = Yaml::encode([[
-		// 		'lat' => $exif->location()->lat(),
-		// 		'lon' => $exif->location()->lng()
-		// 	]]);
-		// }
-
-		/*
-		* sanitize and change name
-		* update fields
-		*/
-		$file->changeName($name)->update($update);
+		}		
 	},
 
 	'file.update:after' => function ($newFile, $oldFile) {
-		
-		if ($newFile->template() != 'file_image') {
-			return;
+		if ($newFile->template() == 'file_image') {
+
+			$newFile->updateDateModified();
+
+			require_once __DIR__ . '/../functions/syncContexts.php';
+			syncContexts($newFile, $oldFile);
+
 		}
-
-		$newFile->updateDateModified();
-
-		require_once __DIR__ . '/../functions/syncContexts.php';
-		syncContexts($newFile, $oldFile);
-
 	},
 
 ];

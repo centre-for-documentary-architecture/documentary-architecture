@@ -125,6 +125,3 @@ tabs:
                   title:
                     type: text
                     help: false
-
-              # worlditem:
-                # required: true
