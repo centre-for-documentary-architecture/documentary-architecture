@@ -41,31 +41,16 @@ class Entity extends Page
         return 'collection';
     }
 
-    /*
-    * entity concepts
-    */
-    // public function contexts()
-    // {
-    //     // entities
-    //     return $this->content()->contexts()->toEntities();
-    // }
-
-    public function collection()
-    {
-        if ($this->hasChildren()) {
-            return $this->children()->listed();
-        }
-        return $this->contextualized();
-    }
-
     /**
      * @kql-allowed
      */
-	public function countCollection() {
-		if ($this->hasChildren()) {
-            return $this->children()->count();
-        }
-		return $this->contextualized()->toEntities()->count() ?? 1;
+	public function count() {
+
+        $count = $this->children()->count()
+            + $this->contextualized()->toEntities()->count()
+            + $this->contexts()->toEntities()->count();
+
+		return $count ?? 1;
 	}
 
     public function geoJson(): ?array

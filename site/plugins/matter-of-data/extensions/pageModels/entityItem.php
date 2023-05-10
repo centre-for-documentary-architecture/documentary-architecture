@@ -9,11 +9,6 @@ class EntityItem extends Entity
     {
         return 'item';
     }
-    
-    public function collection()
-    {
-        return $this->contextualized();
-    }
 
 }
 

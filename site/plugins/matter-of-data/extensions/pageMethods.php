@@ -1,6 +1,5 @@
 <?php
 
-use Kirby\Cms\Field;
 use Kirby\Cms\File;
 use Kirby\Cms\Html;
 use Kirby\Data\Yaml;
@@ -46,29 +45,6 @@ return [
 		return implode( '/', $types );
 	},
 
-	/*
-	* generic fields all pages should have
-	*/
-	'keywords' => function (string $fallback = ''): Field {
-
-		if ($this->content()->keywords()->isNotEmpty()) {
-
-			return $this->content()->keywords();
-		}
-
-		return new Field($this, 'keywords', $fallback);
-	},
-
-	'description' => function (string $fallback = ''): Field {
-
-		if ($this->content()->description()->isNotEmpty()) {
-
-			return $this->content()->description();
-		}
-
-		return new Field($this, 'description', $fallback);
-	},
-
 	'thumbnail' => function (): ?File {
 
 		if ($file = $this->content()->thumbnail()->toFile()) {
@@ -76,15 +52,6 @@ return [
 		}
 
 		return null;
-	},
-
-	'collection' => function () {
-
-		if ($this->hasChildren()) {
-
-			return $this->children()->listed();
-		}
-		return [];
 	},
 
 	/*

@@ -16,11 +16,6 @@ class EntityFile extends Entity
         return $this->title();
     }
 
-    public function collection()
-    {
-        return $this->contexts()->toEntities();
-    }
-
     public function fileinfo(): string
     {
         $info = [];
@@ -33,7 +28,7 @@ class EntityFile extends Entity
 
     public function dataTranscript(): ?array
     {
-        $transcripts = $this->content()->transcript()->toStructure();
+        $transcripts = $this->transcript()->toStructure();
         if ($transcripts->count() < 1) {
             return null;
         }
@@ -129,7 +124,7 @@ class EntityFileVideo extends EntityFile
     public function srcset(): ?array
     {
 
-        $sources = $this->content()->remote_file();
+        $sources = $this->remote_file();
 
         if (!$sources->exists() || $sources->isEmpty()) {
             return [];
@@ -188,7 +183,7 @@ class EntityFile3d extends EntityFile
 
     public function view(): ?string
     {
-        if ($file = $this->content()->content_files()->toFile()) {
+        if ($file = $this->content_files()->toFile()) {
             if ($file->extension() === 'fbx') {
                 return '3d';
             }

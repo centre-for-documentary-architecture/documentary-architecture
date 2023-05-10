@@ -13,7 +13,7 @@ class EntityCollection extends Entity
     public function collection()
     {
         // select options
-        if ($this->content()->content_collection()->exists()) {
+        if ($this->content_collection()->exists()) {
 
             switch ($this->content_collection()->value()):
 
@@ -21,7 +21,7 @@ class EntityCollection extends Entity
                     return $this->children()->listed();
 
                 case 'contextualized':
-                    return $this->contextualized();
+                    return $this->contextualized()->toEntities();
 
                 case 'contexts':
                     return $this->contexts()->toEntities();
@@ -42,7 +42,7 @@ class EntityCollection extends Entity
 
             return $this->children()->listed();
         }
-        return $this->contextualized();
+        return $this->contextualized()->toEntities();
     }
 
 }
