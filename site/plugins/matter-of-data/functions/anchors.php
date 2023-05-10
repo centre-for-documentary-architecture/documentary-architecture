@@ -1,13 +1,12 @@
 <?php
-/*
-* several functions that create html anchor tags
-*/
 
+use Kirby\Cms\Html;
+
+/**
+ * create link to archive search with query string
+ */
 function toKeyword(string $keyword, $text = false, $title = false)
 {
-	/*
-	* create a archive query link of any string
-	*/
 	$keyword = trim($keyword, " -,.;+\t\n\r\0\x0B");
 	if (!$keyword) {
 		return;
@@ -17,7 +16,7 @@ function toKeyword(string $keyword, $text = false, $title = false)
 	return Html::a(
 		kirby()->page('archive')->url() . '?research=' . $keyword,
 		$text,
-		$attr = [
+		[
 			'title' => 'Research "' . $title . '" (' . esc($keyword) . ')',
 			'rel' => 'search',
 			'class' => 'follow'
@@ -25,12 +24,11 @@ function toKeyword(string $keyword, $text = false, $title = false)
 	);
 }
 
+/**
+ * create multiple links
+ */
 function toKeywords($terms, string $delimiter = ',', string $glue = ', ')
 {
-	/*
-	* create a list of archive query links
-	* $terms can be array or string
-	*/
 	if (is_string($terms)) {
 		$terms = explode($delimiter, $terms);
 	}
@@ -41,11 +39,11 @@ function toKeywords($terms, string $delimiter = ',', string $glue = ', ')
 	return implode($glue, $return);
 }
 
+/**
+ * external link
+ */
 function toLink($url, $text = false)
 {
-	/*
-	* creates an external weblink
-	*/
 	if (!$text) {
 		$host = parse_url($url);
 		if ($host = $host['host']) {
@@ -58,7 +56,7 @@ function toLink($url, $text = false)
 	return Html::a(
 		$url,
 		$text,
-		$attr = [
+		[
 			'target' => '_blank',
 			'class' => 'follow',
 			'title' => 'Open "' . $url . '"'
@@ -66,6 +64,9 @@ function toLink($url, $text = false)
 	);
 }
 
+/**
+ * create link to archive search with date query
+ */
 function toDateKeyword(string $date)
 {
 

@@ -7,17 +7,6 @@ use Kirby\Cms\Collection;
 class Entities extends Collection
 {
 
-    public function geoJson(): array
-    {
-        $array = [];
-        foreach ($this as $page) {
-            if ($geoJson = $page->geoJson()) {
-                $array[] = $geoJson;
-            }
-        }
-        return $array;
-    }
-
     public function toLinks(): string
     {
         $links = [];
@@ -53,11 +42,13 @@ class Entity extends Page
 		return $count ?? 1;
 	}
 
+    /**
+     * @todo
+     * https://geojson.org
+     */
     public function geoJson(): ?array
     {
 
-        // @todo
-        // https://geojson.org
         if (!$this->content()->location_start()->exists()) {
             return null;
         }

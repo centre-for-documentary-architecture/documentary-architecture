@@ -46,10 +46,10 @@ class EntityFile extends Entity
 
 }
 
-/*
-* Entity > File > Image
-* this class lets an image imitate page behaviour
-*/
+/**
+ * Entity > File > Image
+ * this class lets an image imitate page behaviour
+ */
 class EntityFileImage extends EntityFile
 {
 
@@ -76,11 +76,17 @@ class EntityFileImage extends EntityFile
         return 'image';
     }
 
+    /**
+     * convert this EntityFileImage back to image object
+     */
     public function file(string $filename = null, string $in = 'files'): File
     {
         return $this->kirby()->file($this->id());
     }
 
+    /**
+     * alias to $this->file()
+     */
     public function image(string $filename = null): File
     {
         return $this->file();

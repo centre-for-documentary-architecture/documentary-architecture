@@ -2,20 +2,21 @@
 
 use Kirby\Data\Yaml;
 
-/*
-* update contextualized of contexts ;)
-*
-* when adding contexts to a page, those listed pages shall have this page listed under contextualized
-* this bilateral connection needs to be updated when one of those is updated, moved, renamed, duplicated
-*/
+/**
+ * update contextualized of contexts ;)
+ *
+ * when adding contexts to a page, those listed pages shall have this page listed under contextualized
+ * this bilateral connection needs to be updated when one of those is updated, moved, renamed, duplicated
+ */
 
 function syncContexts($page, $oldPage)
 {
 
-	/*
-	* i agree, this is essentially 2 times the same code block, but not exactly...
-	* would be nice to compact it into one
-	*/
+	/**
+	 * @todo 
+	 * i agree, this is essentially 2 times the same code block, but not exactly...
+	 * would be nice to compact it into one
+	 */
 
 	$pageId = $page->id();
 	$pageContent = $page->content();

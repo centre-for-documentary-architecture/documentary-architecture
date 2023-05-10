@@ -43,11 +43,13 @@ class PageArchiveFilter extends PageArchive {}
 class PageArchiveImages extends PageArchiveFilter
 {
 
+    /**
+     * Converts images to virtual pages
+     */
     public function children()
     {
         $images = [];
         foreach ($this->images() as $image) {
-
             $images[] = [
                 'slug'     => $image->filename(),
                 'num'      => 0,
@@ -56,7 +58,6 @@ class PageArchiveImages extends PageArchiveFilter
                 'content'  => $image->content()->toArray()
             ];
         }
-
         return Pages::factory($images, $this);
     }
 

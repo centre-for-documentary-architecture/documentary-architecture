@@ -9,14 +9,14 @@ use Kirby\Toolkit\Str;
 
 return [
 
+	/**
+	 * creates a link to this page
+	 */
 	'toLink' => function ($text = false) {
-		/*
-		* creates a link to this page
-		*/
 		return Html::a(
 			$this->url(),
 			$text ? $text : $this->title(),
-			$attr = [
+			[
 				'title' => 'Go to "' . $this->title() . '"'
 			]
 		);
@@ -42,11 +42,9 @@ return [
 
 	/**
      * @kql-allowed
+	 * returns the filename as title, making $file mor compatible to $page templates
      */
 	'title' => function () {
-		/*
-		* returns the filename as title, making $file mor compatible to $page templates
-		*/
 		return $this->filename();
 	},
 
@@ -54,9 +52,8 @@ return [
      * @kql-allowed
      */
 	'thumbnail' => function () {
-		/*
-		* tests if this page matches the given type
-		*/
+		/**
+		 */
 		if ($this->content()->thumbnail()->exists() && $thumbnail = $this->content()->thumbnail()->isNotEmpty()) {
 			return $thumbnail;
 		} else {

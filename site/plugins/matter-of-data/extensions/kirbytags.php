@@ -5,30 +5,30 @@ use Kirby\Toolkit\Html;
 
 return [
 
+	/**
+	 * custom kirbytag (tag: Tel Aviv) that creates an archive query
+	 */
 	'tag' => [
-		/*
-		* custom kirbytag (tag: Tel Aviv) that creates an archive query
-		*/
 		'attr' => [],
 		'html' => function ($tag) {
 			return toKeyword($tag->value);
 		}
 	],
 
+	/**
+	 * alias of tag
+	 */
 	'keyword' => [
-		/*
-		* alias of tag
-		*/
 		'attr' => [],
 		'html' => function ($tag) {
 			return toKeyword($tag->value);
 		}
 	],
 
+	/**
+	 * overriding (date: YYYY-MM-DD) that creates 3 query links
+	 */
 	'date' => [
-		/*
-		* overriding (date: YYYY-MM-DD) that creates 3 query links
-		*/
 		'attr' => [],
 		'html' => function ($tag) {
 			return toDateKeyword($tag->date);
@@ -77,15 +77,11 @@ return [
 		}
 	],
 
-	/*
-	refactored
-	*/
-
+	/**
+	 * (user: Moritz Ebeling)
+	 * creates link to user profile
+	 */
 	'user' => [
-		/*
-		(user: Moritz Ebeling)
-		creates link to user profile
-		*/
 		'attr' => [],
 		'html' => function ($tag) {
 			if( $user = kirby()->users()->findBySlug( Str::slug($tag->user) ) ){

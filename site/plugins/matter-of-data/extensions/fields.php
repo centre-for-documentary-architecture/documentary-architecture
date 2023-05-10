@@ -5,9 +5,9 @@ use Kirby\Data\Yaml;
 return [
 
 	'entities' => [
-		/*
-		* a field that should list all pages (and virtual pages made from images)
-		*/
+		/**
+		 * a field that should list all pages (and virtual pages made from images)
+		 */
 		'extends' => 'pages',
 		'methods' => [
 			'toPages' => function ($value = null) {

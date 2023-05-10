@@ -54,10 +54,6 @@ return [
 		return null;
 	},
 
-	/*
-	new
-	*/
-
 	'schema' => function (): array {
 
 		$breadcrumbs = [];
@@ -114,18 +110,14 @@ return [
 		]);
 	},
 
-	/*
-	* legacy
-	*/
-
+	/**
+	 * creates a link to this page
+	 */
 	'toLink' => function ($text = false) {
-		/*
-		* creates a link to this page
-		*/
 		return Html::a(
 			$this->url(),
 			$text ? $text : $this->title(),
-			$attr = [
+			[
 				'title' => 'Go to "' . $this->title() . '"'
 			]
 		);

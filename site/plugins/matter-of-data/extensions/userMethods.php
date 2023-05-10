@@ -5,7 +5,7 @@ use Kirby\Toolkit\Str;
 
 return [
 
-	/*
+	/**
 	 * used by
 	 * (user: ) kirbytag
 	 */
@@ -20,7 +20,7 @@ return [
 		);
 	},
 
-	/*
+	/**
 	 * used by
 	 * $user->toLink()
 	 * $user->schema()

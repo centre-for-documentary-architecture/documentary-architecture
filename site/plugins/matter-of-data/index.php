@@ -1,11 +1,13 @@
 <?php
 
+namespace Kirby\Cms;
 use Kirby\Cms\App as Kirby;
 
 require_once __DIR__ . '/functions/helpers.php';
 require_once __DIR__ . '/functions/anchors.php';
 
-require_once __DIR__ . '/extensions/pageModels/page.php';
+class HomePage extends Page {}
+
 require_once __DIR__ . '/extensions/pageModels/archive.php';
 require_once __DIR__ . '/extensions/pageModels/entity.php';
 require_once __DIR__ . '/extensions/pageModels/entityCollection.php';
@@ -16,7 +18,6 @@ Kirby::plugin('cda/matter-of-data', [
 
 	'pageModels'   => [
 
-		// archive
 		'archive'            => 'Kirby\Cms\PageArchive',
 
 		'items'              => 'Kirby\Cms\PageArchiveFilter',
@@ -35,13 +36,9 @@ Kirby::plugin('cda/matter-of-data', [
 
 		'author'             => 'Kirby\Cms\PageArchiveFilter',
 
-		// entity
-
-		// collection
 		'collection'		 => 'Kirby\Cms\EntityCollection',
 		'collection_liebling-house' => 'Kirby\Cms\LieblingHouseCollection',
 
-		// item
 		'item'               => 'Kirby\Cms\EntityItem',
 		'item_building'      => 'Kirby\Cms\EntityItemBuilding',
 		'item_material'      => 'Kirby\Cms\EntityItemMaterial',
@@ -51,7 +48,6 @@ Kirby::plugin('cda/matter-of-data', [
 		'item_event'         => 'Kirby\Cms\EntityItemEvent',
 		'item_publication'   => 'Kirby\Cms\EntityItemPublication',
 
-		// file
 		'file'               => 'Kirby\Cms\EntityFile',
 		'file_3d'            => 'Kirby\Cms\EntityFile3d',
 		'file_audio'         => 'Kirby\Cms\EntityFileAudio',
