@@ -1,17 +1,10 @@
 <?php
 
 namespace Kirby\Cms;
+use Kirby\Cms\Field;
 
 class EntityCollection extends Entity
 {
-
-    /**
-     * @todo
-     */
-    public function entity(): string
-    {
-        return 'collection';
-    }
 
     /**
      * @todo
@@ -55,29 +48,20 @@ class EntityCollection extends Entity
 class LieblingHouseCollection extends EntityCollection
 {
 
-    /**
-     * @todo
-     */
     public function type(): string
     {
         return 'liebling-house';
     }
 
-    /**
-     * @todo
-     */
-    public function category(): string
+    public function category()
     {
-        switch ($this->depth()) {
-            case 1:
-                return 'overview';
-                break;
-            case 2:
-                return 'tour';
-                break;
-            default:
-                return 'tourstop';
-                break;
-        }
+        $values = [
+            'liebling-house',
+            'overview',
+            'tour',
+            'tourstop'
+        ];
+        return new Field($this, 'category', $values[ $this->depth() ]);
     }
+    
 }

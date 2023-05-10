@@ -72,6 +72,20 @@ return [
 		return $count ?? 1;
 	},
 
+	/**
+	 * @kql-allowed
+	 */
+	'transparent' => function (): bool {
+		if( $this->is_transparent()->isTrue() ){
+			return true;
+		}
+		return in_array( $this->category()->toSlug(), [
+			'photogrammetry',
+			'object',
+			'3d-modelling',
+		]);
+	},
+
 	'updateDateModified' => function (bool $created = false, bool $return = false) {
 
 		$modified = Yaml::decode($this->date_modified()->value());

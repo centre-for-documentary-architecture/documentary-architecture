@@ -4,14 +4,6 @@ namespace Kirby\Cms;
 
 class EntityItem extends Entity
 {
-
-    /**
-     * @todo
-     */
-    public function entity(): string
-    {
-        return 'item';
-    }
 }
 
 class EntityItemPerson extends EntityItem

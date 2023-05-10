@@ -62,6 +62,7 @@ Kirby::plugin('cda/matter-of-data', [
 
 	'fileMethods' =>  require_once __DIR__ . '/extensions/fileMethods.php',
 	'userMethods' =>  require_once __DIR__ . '/extensions/userMethods.php',
+	'usersMethods' =>  require_once __DIR__ . '/extensions/usersMethods.php',
 
 	'fields'       => require_once __DIR__ . '/extensions/fields.php',
 	'fieldMethods' => require_once __DIR__ . '/extensions/fieldMethods.php',

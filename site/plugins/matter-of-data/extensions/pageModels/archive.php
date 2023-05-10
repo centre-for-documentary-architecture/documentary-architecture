@@ -38,6 +38,15 @@ class PageArchive extends Page
             ]
         ]);
     }
+
+    public function image(string $filename = null)
+    {
+        if( $filename === null ) {
+            return null;
+        }
+        return parent::image($filename);
+    }
+
 }
 
 class PageArchiveFilter extends PageArchive

@@ -1,8 +1,8 @@
 <?php
 
-use Kirby\Cms\File;
 use Kirby\Cms\Html;
 use Kirby\Data\Yaml;
+use Kirby\Toolkit\Str;
 
 return [
 	
@@ -15,44 +15,25 @@ return [
 	
 	/**
      * @kql-allowed
-	 * @todo what does it to and where is it used?
+	 * collection|item|file
      */
 	'entity' => function (): string {
-		// collection|item|file
-		return explode('_', $this->intendedTemplate())[0];
-	},
-
-	/**
-     * @kql-allowed
-	 * @todo what does it to and where is it used?
-     */
-	'category' => function (): ?string {
-		// select field
-		if ($this->content()->category()->isNotEmpty()) {
-			return $this->content()->category()->toSlug()->value();
-		}
-		return null;
+		return $this->intendedTemplate();
 	},
 	
 	/**
      * @kql-allowed
-	 * @todo what does it to and where is it used?
+	 * 3d|audio|image|video|building|event|material|object|organisation|person|publication
      */
 	'type' => function (): string {
-		$types = explode( '_', $this->intendedTemplate() );
-
-		if ($this->content()->category()->isNotEmpty()) {
-			$types[] = $this->content()->category()->toSlug()->value();
-		}
-
-		return implode( '/', $types );
+		return $this->intendedTemplate();
 	},
 
 	/**
      * @kql-allowed
      */
 	'count' => function() {
-
+	
         $count = $this->children()->count()
             + $this->contextualized()->toEntities()->count()
             + $this->contexts()->toEntities()->count();

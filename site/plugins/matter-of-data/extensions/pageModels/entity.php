@@ -24,6 +24,14 @@ class Entities extends Collection
 class Entity extends Page
 {
 
+    public function entity(): string {
+        return explode('_', $this->intendedTemplate())[0];
+    }
+	
+    public function type(): string {
+        return explode('_', $this->intendedTemplate())[1];
+    }
+
     /**
      * @todo
      */
@@ -40,7 +48,6 @@ class Entity extends Page
      */
     public function image(?string $filename = null)
     {
-
         if ($image = $this->thumbnail()->toFile()) {
             return $image;
         }

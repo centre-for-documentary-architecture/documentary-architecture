@@ -7,6 +7,28 @@ return [
 
 	/**
 	 * used by
+	 * $user->toLink()
+	 * $user->schema()
+	 * @todo is this needed?
+	 * @kql-allowed
+	 */
+	'url' => function (bool $absolute = false) {
+		$url = '/info/team/' . $this->slug();
+		if ($absolute === true) {
+			$url = $this->kirby()->url() . $url;
+		}
+		return $url;
+	},
+
+	/**
+	 * @kql-allowed
+	 */
+	'slug' => function () {
+		return Str::slug( $this->name() );
+	},
+
+	/**
+	 * used by
 	 * (user: ) kirbytag
 	 * @todo is this needed?
 	 */
@@ -19,20 +41,6 @@ return [
 				'title' => "Profile of $name"
 			]
 		);
-	},
-
-	/**
-	 * used by
-	 * $user->toLink()
-	 * $user->schema()
-	 * @todo is this needed?
-	 */
-	'url' => function (bool $absolute = false) {
-		$url = '/info/team/' . $this->slug();
-		if ($absolute === true) {
-			$url = $this->kirby()->url() . $url;
-		}
-		return $url;
 	},
 
 	/**

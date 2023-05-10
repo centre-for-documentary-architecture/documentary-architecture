@@ -1,19 +1,10 @@
 <?php
 
 namespace Kirby\Cms;
-
 use Kirby\Cms\Field;
 
 class EntityFile extends Entity
 {
-
-    /**
-     * @todo
-     */
-    public function entity(): string
-    {
-        return 'file';
-    }
 
     public function filename()
     {
@@ -56,9 +47,6 @@ class EntityFile extends Entity
 class EntityFileImage extends EntityFile
 {
 
-    /**
-     * @todo
-     */
     public function type(): string
     {
         return 'image';
@@ -84,6 +72,20 @@ class EntityFileImage extends EntityFile
         }
         return 'image';
     }
+
+    /**
+	 * @kql-allowed
+	 */
+	public function transparent(): bool {
+		if( $this->is_transparent()->isTrue() ){
+			return true;
+		}
+		return in_array( $this->category()->toSlug(), [
+			'photogrammetry',
+			'object',
+			'3d-modelling',
+		]);
+	}
 
     /**
      * convert this EntityFileImage back to image object
@@ -113,14 +115,6 @@ class EntityFileImage extends EntityFile
 
 class EntityFileVideo extends EntityFile
 {
-
-    /**
-     * @todo
-     */
-    public function type(): string
-    {
-        return 'video';
-    }
 
     /**
      * @todo
@@ -190,14 +184,6 @@ class EntityFile3d extends EntityFile
     /**
      * @todo
      */
-    public function type(): string
-    {
-        return '3d';
-    }
-
-    /**
-     * @todo
-     */
     public function view(): ?string
     {
         if ($file = $this->content_files()->toFile()) {
@@ -220,14 +206,6 @@ class EntityFile3d extends EntityFile
 
 class EntityFileAudio extends EntityFile
 {
-
-    /**
-     * @todo
-     */
-    public function type(): string
-    {
-        return 'audio';
-    }
 
     /**
      * @todo
