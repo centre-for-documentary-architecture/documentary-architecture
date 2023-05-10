@@ -21,11 +21,10 @@ extends: pages/files
 tabs:
 
   tab_archive:
-    columns:
-      column_left:
-        sections:
-          section_pool:
-            image:
-              cover: true
-            templates:
-              - file_video
+    sections:
+      section_pool:
+
+        image:
+          cover: true
+        templates:
+          - file_video

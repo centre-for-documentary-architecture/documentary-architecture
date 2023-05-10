@@ -4,6 +4,7 @@ sortBy: filename desc
 limit: 60
 sortable: false
 template: file_image
+info: "{{ file.count }} connections"
 search: true
 image:
   cover: false

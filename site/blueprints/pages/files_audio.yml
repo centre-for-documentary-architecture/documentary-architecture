@@ -21,11 +21,8 @@ extends: pages/files
 tabs:
 
   tab_archive:
-    columns:
-      column_left:
-        sections:
-          section_pool:
-            image:
-              back: '#f9f9f9'
-            templates:
-              - file_audio
+    sections:
+
+      section_pool:
+        templates:
+          - file_audio

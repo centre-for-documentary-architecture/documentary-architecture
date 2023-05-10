@@ -21,7 +21,6 @@ extends: pages/files
 tabs:
 
   tab_archive:
-    columns:
-      column_left:
-        sections:
-          section_pool: sections/files_image
+    sections:
+    
+      section_pool: sections/files_image

@@ -25,9 +25,8 @@ extends: pages/items
 tabs:
 
   tab_archive:
-    columns:
-      column_left:
-        sections:
-          section_pool:
-            templates:
-              - item_material
+    sections:
+    
+      section_pool:
+        templates:
+          - item_material

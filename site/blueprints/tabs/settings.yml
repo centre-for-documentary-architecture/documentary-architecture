@@ -2,6 +2,23 @@ label: Settings
 icon: cog
 columns:
 
+  - width: 1/1
+    sections:
+
+      wiki: sections/service/wiki
+
+  - width: 1/1
+    fields:
+
+      highlights:
+        type: entities
+        label: Featured on homepage
+        query: page.children.listed
+        info: "{{ page.count }} connections"
+        image:
+          cover: true
+          back: '#f9f9f9'
+
   - width: 1/2
     fields:
 

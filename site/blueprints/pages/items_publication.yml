@@ -25,17 +25,9 @@ extends: pages/items
 tabs:
 
   tab_archive:
-    columns:
-      column_left:
-        sections:
-          section_pool:
-            templates:
-              - item_publication
-              - item_event
+    sections:
 
-      column_right:
-        sections:
-          section_fields:
-            fields:
-              highlights:
-                max: 16
+      section_pool:
+        templates:
+          - item_publication
+          - item_event

@@ -45,6 +45,18 @@ return [
 		return implode( '/', $types );
 	},
 
+	/**
+     * @kql-allowed
+     */
+	'count' => function() {
+
+        $count = $this->children()->count()
+            + $this->contextualized()->toEntities()->count()
+            + $this->contexts()->toEntities()->count();
+
+		return $count ?? 1;
+	},
+
 	'schema' => function (): array {
 
 		$breadcrumbs = [];

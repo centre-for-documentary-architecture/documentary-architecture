@@ -5,6 +5,7 @@ empty: Empty
 sortable: false
 sortBy: title asc
 search: true
+info: "{{ page.count }} connections"
 templates:
   - item
 image:

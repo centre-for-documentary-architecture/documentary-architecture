@@ -93,6 +93,7 @@ tabs:
 
               represents_entity:
                 extends: fields/pages
+                label: Represents entity
                 max: 1
                 help: Select an entity this collection is about, e.g. Max Liebling House
                 when:

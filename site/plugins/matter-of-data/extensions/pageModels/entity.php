@@ -29,18 +29,6 @@ class Entity extends Page
         }
         return 'collection';
     }
-
-    /**
-     * @kql-allowed
-     */
-	public function count() {
-
-        $count = $this->children()->count()
-            + $this->contextualized()->toEntities()->count()
-            + $this->contexts()->toEntities()->count();
-
-		return $count ?? 1;
-	}
     
     /**
      * @kql-allowed

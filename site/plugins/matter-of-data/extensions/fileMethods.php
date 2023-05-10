@@ -55,6 +55,17 @@ return [
 		return $this;
 	},
 
+	/**
+     * @kql-allowed
+     */
+	'count' => function() {
+
+        $count = $this->contextualized()->toEntities()->count()
+            + $this->contexts()->toEntities()->count();
+
+		return $count ?? 1;
+	},
+
 	'updateDateModified' => function ( bool $created = false, bool $return = false ){
 		
 		$modified = Yaml::decode( $this->date_modified()->value() );

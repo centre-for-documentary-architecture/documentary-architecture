@@ -1,6 +1,5 @@
 type: pages
-label: Entity
 multiple: true
 image:
   back: '#f9f9f9'
-  cover: false
+  cover: true

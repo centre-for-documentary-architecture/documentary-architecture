@@ -18,6 +18,7 @@ columns:
               - This directly represents another entity
 
           represents_entity:
+            label: Represents entity
             extends: fields/pages
             type: entities
             max: 1

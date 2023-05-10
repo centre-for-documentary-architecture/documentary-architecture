@@ -19,27 +19,20 @@ options:
 tabs:
 
   tab_archive:
-    extends: tabs/archive
-    columns:
-
-      column_left:
-        sections:
-
-          section_pool:
-            extends: sections/pages_pool
-            headline: Files
-            sortBy: title desc
-            limit: 40
-            search: true
-            image:
-              cover: false
-              back: black
-            templates:
-              - file
-
-      column_right:
-        sections:
-        
-          wiki: sections/service/wiki
+    label: Archive
+    icon: table
+    sections:
+      
+      section_pool:
+        extends: sections/pages_pool
+        headline: Files
+        sortBy: title desc
+        limit: 40
+        search: true
+        info: "{{ page.count }} connections"
+        image:
+          cover: false
+        templates:
+          - file
 
   tab_settings: tabs/settings

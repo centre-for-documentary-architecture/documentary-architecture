@@ -21,9 +21,10 @@ extends: pages/files
 tabs:
 
   tab_archive:
-    columns:
-      column_left:
-        sections:
-          section_pool:
-            templates:
-              - file_3d
+    sections:
+
+      section_pool:
+        image:
+          back: '#000'
+        templates:
+          - file_3d

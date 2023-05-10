@@ -25,17 +25,14 @@ options:
 tabs:
 
   tab_archive:
-    extends: tabs/archive
-    columns:
+    label: Archive
+    icon: table
+    sections:
 
-      column_left:
-        sections:
-
-          section_pool:
-            extends: sections/pages_pool
-            headline: Items
-            limit: 40
-            templates:
-              - item
+      section_pool:
+        extends: sections/pages_pool
+        headline: Items
+        templates:
+          - item
 
   tab_settings: tabs/settings
