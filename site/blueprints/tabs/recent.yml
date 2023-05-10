@@ -12,9 +12,10 @@ sections:
       query: page.thumbnail
       back: '#f9f9f9'
       cover: true
+    text: false
     columns:
 
-      text:
+      title:
         label: Title
         width: 1/2
         value: "<a href="{{ page.adminUrl }}">{{ page.title }}</a>"

@@ -122,12 +122,22 @@ class Entity extends Page
         return $schema;
     }
 
-    public function contentIsIncomplete(): bool
+    public function emptyFields()
     {
+        $fields = [];
         if( $this->date()->isEmpty() ){
-            return true;
+            $fields[] = 'Date';
         }
-        return false;
+        if( $this->intendedTemplate() == 'item_person' && $this->description()->isEmpty() ){
+            $fields[] = 'Description';
+        }
+        if( !$this->image() ){
+            $fields[] = 'Image';
+        }
+        if( $this->location()->isEmpty() && $this->locations()->isEmpty() ){
+            $fields[] = 'Location';
+        }
+        return implode(', ',$fields);
     }
 
 }
