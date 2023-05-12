@@ -71,6 +71,19 @@ return [
 
 		return $count ?? 1;
 	},
+	
+	/**
+	 * @kql-allowed
+	 */
+	'kqlAbstract' => function () {
+		return [
+			'id' => $this->id(),
+			'width' => $this->width(),
+			'height' => $this->height(),
+			'transparent' => $this->transparent(),
+			'alt' => (string)$this->alt(),
+		];
+	},
 
 	/**
 	 * @kql-allowed

@@ -7,6 +7,8 @@ fields:
     extends: fields/pages
     label: Inherit location
     multiple: false
+    query: site.archive
+    help: If a page is selected, the following information will be ignored
 
   location:
     type: locator

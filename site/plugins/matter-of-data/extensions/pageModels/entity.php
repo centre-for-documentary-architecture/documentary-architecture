@@ -52,6 +52,75 @@ class Entity extends Page
             return $image;
         }
     }
+    
+    /**
+     * @kql-allowed
+     */
+    public function properties()
+    {
+        $blocks = $this->content()->properties()->toBlocks();
+
+        $properties = [];
+        foreach( $blocks as $block ){
+            $properties[] = $block->toProperty();
+        }
+
+        /**
+         * convert tags to entities
+         */
+
+        $fields = [
+            'architects' => 'Architects',
+            'material' => 'Material',
+            'manufacturer' => 'Manufacturer',
+            'members' => 'Members',
+            'projects' => 'Projects',
+        ];
+
+        foreach( $fields as $field => $title ){
+            if( $this->content()->$field()->isNotEmpty() ){
+                $properties[] = [
+                    'type' => 'collection',
+                    'content' => [
+                        'title' => $title,
+                        'items' => $this->content()->$field()->tagsToEntities(),
+                    ],
+                ];
+            }
+        }
+
+        /**
+         * convert tags to text
+         */
+
+        $fields = [
+            'occupation' => 'Occupation',
+        ];
+
+        foreach( $fields as $field => $title ){
+            if( $this->content()->$field()->isNotEmpty() ){
+                $properties[] = [
+                    'type' => 'text',
+                    'content' => [
+                        'title' => $title,
+                        'text' => (string)$this->content()->$field(),
+                    ],
+                ];
+            }
+        }
+
+        if( $this->content()->bio()->isNotEmpty() ){
+            $properties[] = [
+                'type' => 'text',
+                'content' => [
+                    'title' => 'Bio',
+                    'text' => (string)$this->content()->bio()->kirbytext(),
+                ],
+            ];
+        }
+
+        return $properties;
+    }
 
     /**
      * @todo
@@ -121,9 +190,13 @@ class Entity extends Page
         if (!$this->image()) {
             $fields[] = 'Image';
         }
-        if ($this->location()->isEmpty() && $this->locations()->isEmpty()) {
+        /**
+         * @todo some items have a locations or timeline field instead of location
+         */
+        if ($this->location()->toLocation() === false ) {
             $fields[] = 'Location';
         }
         return implode(', ', $fields);
     }
+
 }

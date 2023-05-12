@@ -2,9 +2,24 @@
 
 use Kirby\Cms\Html;
 use Kirby\Data\Yaml;
-use Kirby\Toolkit\Str;
 
 return [
+
+	/**
+	 * @kql-allowed
+	 */
+	'kqlAbstract' => function () {
+		if( $image = $this->image() ){
+			$image = $image->kqlAbstract();
+		}
+		return [
+			'id' => $this->id(),
+			'title' => (string)$this->title(),
+			'url' => $this->url(),
+			'count' => $this->count(),
+			'image' => $image ?? false,
+		];
+	},
 	
 	/**
      * @kql-allowed
