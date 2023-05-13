@@ -8,6 +8,7 @@ return [
 	/**
 	 * convert the field value to slug
 	 * @todo do we need this?
+	 * @kql-allowed
 	 */
 	'toSlug' => function ($field) {
 		if ($field->isNotEmpty()) {

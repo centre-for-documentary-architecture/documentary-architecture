@@ -89,14 +89,21 @@ return [
 	 * @kql-allowed
 	 */
 	'transparent' => function (): bool {
-		if( $this->is_transparent()->isTrue() ){
+		if( $this->content()->is_transparent()->isTrue() ){
 			return true;
 		}
-		return in_array( $this->category()->toSlug(), [
+		$matching_categories = [
 			'photogrammetry',
 			'object',
 			'3d-modelling',
-		]);
+		];
+		if( in_array( $this->category()->toSlug(), $matching_categories) ){
+			return true;
+		}
+		if( in_array( $this->parent()->category()->toSlug(), $matching_categories) ){
+			return true;
+		}
+		return false;
 	},
 
 	'updateDateModified' => function (bool $created = false, bool $return = false) {
