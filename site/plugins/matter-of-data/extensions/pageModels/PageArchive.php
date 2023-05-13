@@ -41,36 +41,9 @@ class PageArchive extends Page
 
     public function image(string $filename = null)
     {
-        if( $filename === null ) {
+        if ($filename === null) {
             return null;
         }
         return parent::image($filename);
-    }
-
-}
-
-class PageArchiveFilter extends PageArchive
-{
-}
-
-class PageArchiveImages extends PageArchiveFilter
-{
-
-    /**
-     * Converts images to virtual pages
-     */
-    public function children()
-    {
-        $images = [];
-        foreach ($this->images() as $image) {
-            $images[] = [
-                'slug'     => $image->filename(),
-                'num'      => 0,
-                'model'    => 'file_image',
-                'template' => 'file_image',
-                'content'  => $image->content()->toArray()
-            ];
-        }
-        return Pages::factory($images, $this);
     }
 }

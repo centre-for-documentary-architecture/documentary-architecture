@@ -2,33 +2,16 @@
 
 namespace Kirby\Cms;
 
-use Kirby\Cms\Collection;
-
-class Entities extends Collection
-{
-
-    /**
-     * @todo is this actuall used? and where?
-     */
-    public function toLinks(): string
-    {
-        $links = [];
-        foreach ($this as $page) {
-
-            $links[] = $page->toLink();
-        }
-        return implode(', ', $links);
-    }
-}
-
 class Entity extends Page
 {
 
-    public function entity(): string {
+    public function entity(): string
+    {
         return explode('_', $this->intendedTemplate())[0];
     }
-	
-    public function type(): string {
+
+    public function type(): string
+    {
         return explode('_', $this->intendedTemplate())[1];
     }
 
@@ -52,16 +35,16 @@ class Entity extends Page
             return $image;
         }
     }
-    
+
     /**
      * @kql-allowed
      */
-    public function properties()
+    public function properties(): array
     {
         $blocks = $this->content()->properties()->toBlocks();
 
         $properties = [];
-        foreach( $blocks as $block ){
+        foreach ($blocks as $block) {
             $properties[] = $block->toProperty();
         }
 
@@ -77,8 +60,8 @@ class Entity extends Page
             'projects' => 'Projects',
         ];
 
-        foreach( $fields as $field => $title ){
-            if( $this->content()->$field()->isNotEmpty() ){
+        foreach ($fields as $field => $title) {
+            if ($this->content()->$field()->isNotEmpty()) {
                 $properties[] = [
                     'type' => 'collection',
                     'content' => [
@@ -97,8 +80,8 @@ class Entity extends Page
             'occupation' => 'Occupation',
         ];
 
-        foreach( $fields as $field => $title ){
-            if( $this->content()->$field()->isNotEmpty() ){
+        foreach ($fields as $field => $title) {
+            if ($this->content()->$field()->isNotEmpty()) {
                 $properties[] = [
                     'type' => 'text',
                     'content' => [
@@ -109,7 +92,7 @@ class Entity extends Page
             }
         }
 
-        if( $this->content()->bio()->isNotEmpty() ){
+        if ($this->content()->bio()->isNotEmpty()) {
             $properties[] = [
                 'type' => 'text',
                 'content' => [
@@ -193,10 +176,9 @@ class Entity extends Page
         /**
          * @todo some items have a locations or timeline field instead of location
          */
-        if ($this->location()->toLocation() === false ) {
+        if ($this->location()->toLocation() === false) {
             $fields[] = 'Location';
         }
         return implode(', ', $fields);
     }
-
 }

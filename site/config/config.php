@@ -11,7 +11,7 @@ Str::$language = [
 
 return [
 
-	'debug'  => false,
+	'debug'  => true,
 	'smartypants' => true,
 
 	'frontend' => 'https://new.documentary-architecture.org',
@@ -22,12 +22,7 @@ return [
 	],
 
 	'kql' => [
-		'auth' => false,
-		'methods' => [
-			'allowed' => [
-				'Kirby\Cms\Page::type',
-			]
-		],
+		'auth' => false
 	],
 
 ];

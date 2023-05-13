@@ -24,7 +24,7 @@ return [
 	 * @kql-allowed
 	 */
 	'slug' => function () {
-		return Str::slug( $this->name() );
+		return Str::slug($this->name());
 	},
 
 	/**

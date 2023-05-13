@@ -1,6 +1,6 @@
 <?php
 
-use Kirby\Cms\Entities;
+use Kirby\Cms\Collection;
 use Kirby\Toolkit\Str;
 
 return [
@@ -11,7 +11,7 @@ return [
 	 */
 	'toSlug' => function ($field) {
 		if ($field->isNotEmpty()) {
-			$field->value = Str::slug( $field->value );
+			$field->value = Str::slug($field->value);
 		}
 		return $field;
 	},
@@ -23,7 +23,7 @@ return [
 		if (!$field->isTrue()) {
 			return null;
 		}
-		return $fallback;    
+		return $fallback;
 	},
 
 	'toLink' => function ($field, $text = false) {
@@ -43,7 +43,7 @@ return [
 	},
 
 	'toEntities' => function ($field) {
-		$entities = new Entities();
+		$entities = new Collection();
 		$kirby = kirby();
 		foreach ($field->toData('yaml') as $link) {
 			if ($page = $kirby->page($link)) {
@@ -61,11 +61,11 @@ return [
 		return $field->toEntities()->first();
 	},
 
-	'structureToLinks' => function ($field, bool $includeTitle = true ) {
+	'structureToLinks' => function ($field, bool $includeTitle = true) {
 
 		$links = [];
-		foreach( $field->toStructure() as $row ){
-			if( $includeTitle ){
+		foreach ($field->toStructure() as $row) {
+			if ($includeTitle) {
 				$links[] = [
 					'href' => (string)$row->href(),
 					'title' => $row->title()->isNotEmpty() ? (string)$row->title() : parse_url($row->href())['host']
@@ -77,16 +77,16 @@ return [
 
 		return $links;
 	},
-	
-	'toLocation' => function ($field ) {
-		if( $field->isEmpty() ){
+
+	'toLocation' => function ($field) {
+		if ($field->isEmpty()) {
 			return false;
 		}
 
 		$object = $field->toObject();
 
 		// inherit
-		if( $inherit = $object->inherit()->toPage() ){
+		if ($inherit = $object->inherit()->toPage()) {
 			return $inherit->location()->toLocation();
 		}
 
@@ -94,17 +94,17 @@ return [
 		$location = $object->location()->toObject();
 
 		// override
-		if( $object->address()->isNotEmpty() ){
+		if ($object->address()->isNotEmpty()) {
 			$location->update([
 				'address' => $object->address()->value()
 			]);
 		}
-		if( $object->city()->isNotEmpty() ){
+		if ($object->city()->isNotEmpty()) {
 			$location->update([
 				'city' => $object->city()->value()
 			]);
 		}
-		if( $location->number()->isNotEmpty() && $location->address()->isNotEmpty() ){
+		if ($location->number()->isNotEmpty() && $location->address()->isNotEmpty()) {
 			$address = (string)$location->address();
 			$pattern = '/\b' . preg_quote((string)$location->number(), '/') . '\b$/';
 			if (preg_match($pattern, $address)) {
@@ -114,22 +114,22 @@ return [
 			}
 		}
 
-		if( $location->lat()->isEmpty() ){
-			if( $location->country()->isEmpty() ){
+		if ($location->lat()->isEmpty()) {
+			if ($location->country()->isEmpty()) {
 				return false;
 			}
 		}
 
 		return $location->toArray();
 	},
-	
-	'toTimeline' => function ($field ) {
-		if( $field->isEmpty() ){
+
+	'toTimeline' => function ($field) {
+		if ($field->isEmpty()) {
 			return false;
 		}
 
 		$timeline = [];
-		foreach( $field->toStructure() as $item ){
+		foreach ($field->toStructure() as $item) {
 			$timeline[] = [
 				'title' => (string)$item->title(),
 				'text' => (string)$item->text()->kirbytext(),
@@ -140,11 +140,11 @@ return [
 
 		return $timeline;
 	},
-	
-	'tagsToUsers' => function ($field ) {
+
+	'tagsToUsers' => function ($field) {
 		$users = [];
-		foreach( $field->split() as $item ){
-			if( $user = kirby()->users()->findBySlug( Str::slug( $item ) ) ){
+		foreach ($field->split() as $item) {
+			if ($user = kirby()->users()->findBySlug(Str::slug($item))) {
 				$users[] = [
 					'name' => (string)$user->name(),
 					'url' => $user->url(),
@@ -159,10 +159,10 @@ return [
 		return $users;
 	},
 
-	'tagsToEntities' => function ($field ) {
+	'tagsToEntities' => function ($field) {
 		$kirby = kirby();
 		$items = [];
-		foreach( $field->split() as $item ){
+		foreach ($field->split() as $item) {
 
 			if ($page = $kirby->page($item)) {
 				$items[] = $page->kqlAbstract();
@@ -176,14 +176,14 @@ return [
 		}
 		return $items;
 	},
-	
-	'toCredits' => function ($field ) {
-		if( $field->isEmpty() ){
+
+	'toCredits' => function ($field) {
+		if ($field->isEmpty()) {
 			return false;
 		}
 
 		$credits = [];
-		foreach( $field->toStructure() as $item ){
+		foreach ($field->toStructure() as $item) {
 
 			$people = $item->person()->tagsToUsers();
 
@@ -195,5 +195,5 @@ return [
 
 		return $credits;
 	},
-	
+
 ];
