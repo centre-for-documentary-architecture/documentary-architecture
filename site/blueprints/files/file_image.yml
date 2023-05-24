@@ -82,13 +82,13 @@ tabs:
                 help: Panoramas will be cropped to 4096 x 2048 pixels
                 width: 1/2
                 text:
-                    - Normal
-                    - 'This is a 360° panorama'
+                  - Normal
+                  - 'This is a 360° panorama'
               
               is_transparent:
                 label: Transparent
                 type: toggle
                 width: 1/2
                 text:
-                    - No
-                    - Yes
+                  - 'No'
+                  - 'Yes'

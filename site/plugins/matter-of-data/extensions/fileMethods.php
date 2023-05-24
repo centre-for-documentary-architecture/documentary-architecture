@@ -94,7 +94,6 @@ return [
 		}
 		$matching_categories = [
 			'photogrammetry',
-			'object',
 			'3d-modelling',
 		];
 		if( in_array( $this->category()->toSlug(), $matching_categories) ){

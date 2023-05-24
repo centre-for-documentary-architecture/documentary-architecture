@@ -4,19 +4,17 @@ namespace Kirby\Cms;
 
 use Kirby\Cms\App as Kirby;
 
-load([
-	'Kirby\\Cms\\DefaultBlock'            => 'extensions/blockModels/DefaultBlock.php',
-	'Kirby\\Cms\\Entity'                  => 'extensions/pageModels/Entity.php',
-	'Kirby\\Cms\\EntityCollection'        => 'extensions/pageModels/EntityCollection.php',
-	'Kirby\\Cms\\EntityFile'              => 'extensions/pageModels/EntityFile.php',
-	'Kirby\\Cms\\EntityFile3d'            => 'extensions/pageModels/EntityFile3d.php',
-	'Kirby\\Cms\\EntityFileAudio'         => 'extensions/pageModels/EntityFileAudio.php',
-	'Kirby\\Cms\\EntityFileImage'         => 'extensions/pageModels/EntityFileImage.php',
-	'Kirby\\Cms\\EntityFileVideo'         => 'extensions/pageModels/EntityFileVideo.php',
-	'Kirby\\Cms\\LieblingHouseCollection' => 'extensions/pageModels/LieblingHouseCollection.php',
-	'Kirby\\Cms\\PageArchive'             => 'extensions/pageModels/PageArchive.php',
-	'Kirby\\Cms\\PageArchiveImages'       => 'extensions/pageModels/PageArchiveImages.php',
-], __DIR__);
+require_once __DIR__ . '/extensions/blockModels/DefaultBlock.php';
+require_once __DIR__ . '/extensions/pageModels/Entity.php';
+require_once __DIR__ . '/extensions/pageModels/EntityCollection.php';
+require_once __DIR__ . '/extensions/pageModels/EntityFile.php';
+require_once __DIR__ . '/extensions/pageModels/EntityFile3d.php';
+require_once __DIR__ . '/extensions/pageModels/EntityFileAudio.php';
+require_once __DIR__ . '/extensions/pageModels/EntityFileImage.php';
+require_once __DIR__ . '/extensions/pageModels/EntityFileVideo.php';
+require_once __DIR__ . '/extensions/pageModels/LieblingHouseCollection.php';
+require_once __DIR__ . '/extensions/pageModels/PageArchive.php';
+require_once __DIR__ . '/extensions/pageModels/PageArchiveImages.php';
 
 require_once __DIR__ . '/functions/helpers.php';
 require_once __DIR__ . '/functions/anchors.php';

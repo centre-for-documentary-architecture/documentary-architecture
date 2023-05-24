@@ -8,7 +8,6 @@ return [
 	/**
 	 * convert the field value to slug
 	 * @todo do we need this?
-	 * @kql-allowed
 	 */
 	'toSlug' => function ($field) {
 		if ($field->isNotEmpty()) {
@@ -195,6 +194,19 @@ return [
 		}
 
 		return $credits;
+	},
+	
+	'toSources' => function ($field) {
+		if ($field->isEmpty()) {
+			return false;
+		}
+
+		$sources = [];
+		foreach ($field->toStructure() as $item) {
+			$sources[] = (string)$item->text();
+		}
+
+		return $sources;
 	},
 
 ];
