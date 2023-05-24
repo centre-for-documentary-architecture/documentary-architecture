@@ -64,23 +64,21 @@ return [
 	/**
 	 * @kql-allowed
 	 */
-	'entitiesWorkedOn' => function () {
-		
-		$id = $this->id();
-		
-		$entities = $this->site()->archive()->entities();
-		$entities = $entities->filter(function($item) use ($id) {
-			if( str_contains( (string)$item->date_modified(), $id ) ){
-				return true;
-			}
-		});
-
-		$entities = $entities->sortBy(function ($child) {
-			return $child->date_modified()->toObject()->modified()->toDate();
-		}, 'desc');
-
-		return $entities;
-
+	'collection' => function () {
+		return $this->site()->archive()->entities()->search( $this->name(), [
+			'fields' => ['credits']
+		]);
+	},
+	
+	/**
+	 * @kql-allowed
+	 */
+	'view' => function () {
+        return [
+            'type' => 'collection',
+            'query' => 'user("'.$this->id().'").collection',
+            'layout' => 'cards',
+        ];
 	},
 
 	/**

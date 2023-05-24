@@ -19,6 +19,7 @@ tabs:
                 label: 3D .fbx file
                 type: files
                 max: 1
+                query: page.files.filterBy('extension', 'fbx')
                 image:
                   back: '#f9f9f9'
 

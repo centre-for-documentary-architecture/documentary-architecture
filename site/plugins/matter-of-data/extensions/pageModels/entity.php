@@ -15,15 +15,13 @@ class Entity extends Page
         return explode('_', $this->intendedTemplate())[1];
     }
 
-    /**
-     * @todo
-     */
-    public function view(): ?string
+    public function view()
     {
-        if ($this->image()) {
-            return 'image';
-        }
-        return 'collection';
+        return [
+            'type' => 'collection',
+            'query' => 'page("'.$this->id().'").contextualized.toEntities',
+            'layout' => 'cards',
+        ];
     }
 
     /**
@@ -41,21 +39,51 @@ class Entity extends Page
      */
     public function properties(): array
     {
-        $blocks = $this->content()->properties()->toBlocks();
+
+        /**
+         * occupation
+         * 
+         * material
+         * manufacturer
+         * architects
+         * members
+         * projects
+         * 
+         * bio
+         * 
+         * individual properties
+        */
 
         $properties = [];
-        foreach ($blocks as $block) {
-            $properties[] = $block->toProperty();
-        }
+        
+        /**
+         * convert tags to text
+         */
 
+         $fields = [
+            'occupation' => 'Occupation',
+        ];
+
+        foreach ($fields as $field => $title) {
+            if ($this->content()->$field()->isNotEmpty()) {
+                $properties[] = [
+                    'type' => 'text',
+                    'content' => [
+                        'title' => $title,
+                        'text' => (string)$this->content()->$field(),
+                    ],
+                ];
+            }
+        }
+        
         /**
          * convert tags to entities
          */
 
         $fields = [
-            'architects' => 'Architects',
             'material' => 'Material',
             'manufacturer' => 'Manufacturer',
+            'architects' => 'Architects',
             'members' => 'Members',
             'projects' => 'Projects',
         ];
@@ -73,24 +101,8 @@ class Entity extends Page
         }
 
         /**
-         * convert tags to text
+         * text
          */
-
-        $fields = [
-            'occupation' => 'Occupation',
-        ];
-
-        foreach ($fields as $field => $title) {
-            if ($this->content()->$field()->isNotEmpty()) {
-                $properties[] = [
-                    'type' => 'text',
-                    'content' => [
-                        'title' => $title,
-                        'text' => (string)$this->content()->$field(),
-                    ],
-                ];
-            }
-        }
 
         if ($this->content()->bio()->isNotEmpty()) {
             $properties[] = [
@@ -100,6 +112,15 @@ class Entity extends Page
                     'text' => (string)$this->content()->bio()->kirbytext(),
                 ],
             ];
+        }
+
+        /**
+         * individual properties
+         */
+
+        $blocks = $this->content()->properties()->toBlocks();
+        foreach ($blocks as $block) {
+            $properties[] = $block->toProperty();
         }
 
         return $properties;
@@ -167,12 +188,35 @@ class Entity extends Page
         if ($this->date()->isEmpty()) {
             $fields[] = 'Date';
         }
-        if ($this->intendedTemplate() == 'item_person' && $this->description()->isEmpty()) {
+        if ($this->entity() == 'item' && $this->description()->isEmpty()) {
             $fields[] = 'Description';
         }
         if (!$this->image()) {
-            $fields[] = 'Image';
+            $fields[] = 'Thumbnail';
         }
+
+        if ($this->intendedTemplate() == 'item_building' && $this->architects()->isEmpty()) {
+            $fields[] = 'Architect';
+        }
+        if ($this->intendedTemplate() == 'item_object' && $this->material()->isEmpty()) {
+            $fields[] = 'Material';
+        }
+        if ($this->intendedTemplate() == 'item_object' && $this->manufacturer()->isEmpty()) {
+            $fields[] = 'Manufacturer';
+        }
+        if ($this->intendedTemplate() == 'item_organisation' && $this->members()->isEmpty()) {
+            $fields[] = 'Members';
+        }
+        if ($this->intendedTemplate() == 'item_person' && $this->occupation()->isEmpty()) {
+            $fields[] = 'Occupation';
+        }
+        if ($this->intendedTemplate() == 'item_person' && $this->projects()->isEmpty()) {
+            $fields[] = 'Projects';
+        }
+        if ($this->intendedTemplate() == 'item_person' && $this->bio()->isEmpty()) {
+            $fields[] = 'Bio';
+        }
+
         /**
          * @todo some items have a locations or timeline field instead of location
          */

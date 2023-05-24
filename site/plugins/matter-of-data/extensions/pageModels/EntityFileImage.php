@@ -26,15 +26,31 @@ class EntityFileImage extends EntityFile
         return new Field($this, 'title', $this->uid());
     }
 
-    /**
-     * @todo
-     */
-    public function view(): ?string
+    public function view()
     {
+        $file = $this->file();
+
         if ($this->is_360()->isTrue()) {
-            return 'panorama';
+            return [
+                'type' => '360',
+                'image' => [
+                    'id' => $file->id(),
+                    'width' => $file->width(),
+                    'height' => $file->height(),
+                    'alt' => $file->alt(),
+                ],
+            ];
         }
-        return 'image';
+
+        return [
+            'type' => 'image',
+            'image' => [
+                'id' => $file->id(),
+                'width' => $file->width(),
+                'height' => $file->height(),
+                'alt' => $file->alt(),
+            ],
+        ];
     }
 
     /**

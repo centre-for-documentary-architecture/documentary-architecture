@@ -5,19 +5,35 @@ namespace Kirby\Cms;
 class EntityFile3d extends EntityFile
 {
 
-    /**
-     * @todo
-     */
-    public function view(): ?string
+    public function view()
     {
         if ($file = $this->content_files()->toFile()) {
             if ($file->extension() === 'fbx') {
-                return '3d';
+                return [
+                    'type' => '3d',
+                    '3d' => [
+                        'fbx' => $file->url()
+                    ]
+                ];
             }
         }
-        return 'image';
+        if( $file = $this->image() ){
+            return [
+                'type' => 'image',
+                'image' => [
+                    'id' => $file->id(),
+                    'width' => $file->width(),
+                    'height' => $file->height(),
+                    'alt' => $file->alt(),
+                ],
+            ];
+        }
+        return false;
     }
 
+    /**
+     * @todo
+     */
     public function fileinfo(): string
     {
         $info = ['fbx'];

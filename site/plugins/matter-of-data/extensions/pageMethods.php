@@ -30,6 +30,13 @@ return [
 	
 	/**
      * @kql-allowed
+     */
+	'view' => function () {
+		return false;
+	},
+	
+	/**
+     * @kql-allowed
 	 * collection|item|file
      */
 	'entity' => function (): string {

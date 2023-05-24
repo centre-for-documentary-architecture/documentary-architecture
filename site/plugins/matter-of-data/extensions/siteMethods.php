@@ -9,6 +9,19 @@ return [
 		return $this->page('archive');
 	},
 
+	/**
+     * @kql-allowed
+     */
+	'entitiy' => function ($id) {
+		if ($page = $this->page($id)) {
+			return $page;
+		}
+		if ($file = $this->file($id)) {
+			return $file->toImageEntity();
+		}
+		return null;
+	},
+
 	'schema' => function (): array {
 
 		$image = $this->image();

@@ -10,6 +10,9 @@ class EntityFile extends Entity
         return $this->title();
     }
 
+    /**
+     * @todo
+     */
     public function fileinfo(): string
     {
         $info = [];

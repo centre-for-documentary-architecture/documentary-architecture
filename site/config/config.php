@@ -2,6 +2,9 @@
 
 use Kirby\Toolkit\Str;
 
+// header("Access-Control-Allow-Origin: https://new.documentary-architecture.org");
+header("Access-Control-Allow-Origin: *");
+
 Str::$language = [
 	'ß' => 'ss',
 	'ä' => 'ae',

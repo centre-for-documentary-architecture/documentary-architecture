@@ -160,13 +160,12 @@ return [
 	},
 
 	'tagsToEntities' => function ($field) {
-		$kirby = kirby();
+		$site = kirby()->site();
 		$items = [];
 		foreach ($field->split() as $item) {
-
-			if ($page = $kirby->page($item)) {
+			if ($page = $site->page($item)) {
 				$items[] = $page->kqlAbstract();
-			} else if ($image = $kirby->file($item)) {
+			} else if ($image = $site->file($item)) {
 				$items[] = $image->kqlAbstract();
 			} else {
 				$items[] = [

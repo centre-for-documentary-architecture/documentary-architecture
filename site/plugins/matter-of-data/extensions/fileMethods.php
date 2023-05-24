@@ -1,10 +1,10 @@
 <?php
 
 use Kirby\Cms\Html;
-use Kirby\Cms\Page;
 use Kirby\Data\Yaml;
 use Kirby\Filesystem\F;
 use Kirby\Toolkit\Str;
+use Kirby\Cms\EntityFileImage;
 
 return [
 
@@ -36,7 +36,7 @@ return [
 	 * convert this $file object into an Entity object
 	 */
 	'toImageEntity' => function () {
-		return Page::factory([
+		return EntityFileImage::factory([
 			'id' => $this->id(),
 			'slug' => $this->filename(),
 			'template' => 'file',
@@ -90,6 +90,9 @@ return [
 	 */
 	'transparent' => function (): bool {
 		if( $this->content()->is_transparent()->isTrue() ){
+			return true;
+		}
+		if( $this->content()->is_360()->isTrue() ){
 			return true;
 		}
 		$matching_categories = [

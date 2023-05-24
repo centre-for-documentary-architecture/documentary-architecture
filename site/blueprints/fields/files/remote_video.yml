@@ -1,11 +1,10 @@
-type: structure
+type: object
 label: Remote files on DigitalOcean CDN
-multiple: false
-columns:
-  filename:
-    width: 1/2
-  sizes:
-    width: 1/2
+# columns:
+#   filename:
+#     width: 1/2
+#   sizes:
+#     width: 1/2
 fields:
 
   filename:
